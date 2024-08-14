@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입 만들기</title>
+    <style>
+      table {
+        border: 1px solid black;
+      }
+      th,
+      td {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th colspan="2">회원가입</th>
+      </tr>
+      <tr>
+        <th>*이름</th>
+        <td><input type="text" name="uName" id="uName" /></td>
+      </tr>
+      <tr>
+        <th>*ID</th>
+        <td>
+          <input type="text" name="uID" id="uID" readonly value="admin" />
+          <input type="button" name="checkID" value="유효성 확인" />
+        </td>
+      </tr>
+      <tr>
+        <th>*비밀번호</th>
+        <td>
+          <input type="password" name="uPWD" id="uPWD" />
+        </td>
+      </tr>
+      <tr>
+        <th>*비밀번호 확인</th>
+        <td>
+          <input type="password" name="uPWD_Confirm" id="uPWD_Confirm" />
+        </td>
+      </tr>
+      <tr>
+        <th>*직업</th>
+        <td>
+          <select name="work">
+            <option selected>직업명</option>
+            <option value="기타V">기타</option>
+            <option value="회사원V">회사원</option>
+            <option value="학생V">학생</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>*성별</th>
+        <td>
+          <input type="radio" name="gender" value="male" id="male" />
+          <label for="male">남자</label>
+
+          <input type="radio" name="gender" value="female" id="female" />
+          <label for="female">여자</label>
+        </td>
+      </tr>
+      <tr>
+        <th>*취미</th>
+        <td>
+          <input type="checkbox" name="hobby" value="d1" id="read_book" />
+          <label for="read_book">독서</label>
+          <input type="checkbox" name="hobby" value="d2" id="hiking" />
+          <label for="hiking">등산</label>
+          <input type="checkbox" name="hobby" value="d3" id="fishing" />
+          <label for="fishing">낚시</label>
+        <!-- 
+          label 태그의 for 속성의 값은 input 태그의 id와 같아야하고,
+          input 태그의 value와 id의 값은 일치해도 상관없다.
+          input 태그 옆에 그냥 텍스트를 적어주는 것보다 CSS를 사용하는
+          것에 있어서 label을 통해 텍스트를 적어주는 것이 더욱 좋은 방법이다.
+         -->
+
+        </td>
+      </tr>
+      <tr>
+        <th>*가입동기</th>
+        <td>
+          <textarea cols="100" rows="20"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <!-- td 태그에 정렬 값을 바로 준다. CSS를 사용하는 방법 1
+          <head></head>에 <style></style>을 적어 CSS 코드를 작성하는 방법 2
+          CSS 파일을 별도로 만들고 HTML에서 Link 해주는 방법 3
+          이 중에서 3번의 방법이 가장 좋은 방법이다. -->
+          <input type="submit" value="가입" />
+          <input type="reset" value="다시 입력" />
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>드롭다운 목록 만들기</title>
+  </head>
+  <body>
+    <h1>여러 데이터 나열하기</h1>
+    <form action="a.jsp" method="get">
+      <!-- 드롭다운 목록 -->
+      <label>상품 선택</label>
+      <select name="f">
+        <option value="gift_3">선물용 3kg</option>
+        <option value="gift_5">선물용 5kg</option>
+        <option value="family_3">가정용 3kg</option>
+        <option value="family_5">가정용 3kg</option>
+      </select>
+
+      <hr />
+
+      <!-- 데이터 목록 -->
+      <label>포장 요구</label>
+      <input type="text" list="pack" name="p" value="" />
+      <!-- list와 datalist의 id가 일치해야함!!! -->
+      <datalist id="pack">
+        <option value="package">선물 포장</option>
+        <option value="no_package">포장 X</option>
+      </datalist>
+
+      <!-- !!!!!!!!!!datalist 보다는 select/option 태그를 더 많이 사용한다!!!!!!!!! -->
+
+      <button type="submit">전송</button>
+    </form>
+  </body>
+</html>

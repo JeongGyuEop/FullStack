@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문제 2</title>
+    <style>
+      #container {
+        width: 520px;
+        margin: 0 auto;
+        padding: 20px 40px;
+        border: 1px solid black;
+      }
+      #button {
+        padding: 10px 0px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      ul {
+        list-style-type: none;
+      }
+      li {
+        line-height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <form action="">
+        <h1>프런트엔드 개발자 지원서</h1>
+        HTML, CSS, 자바스크립트 의 기술을 이해하고 실무 경험이 있는 분을 찾습니다.
+        <hr />
+        <h3>개인 정보</h3>
+        <ul>
+          <li>
+            <label for="">이름</label>
+            <input type="text" placeholder="공백 없이 입력해주세요." />
+          </li>
+          <li>
+            <label for="">연락처</label>
+            <input type="tel" />
+          </li>
+        </ul>
+        <h3>지원 분야</h3>
+        <ul>
+          <li><input type="radio" />웹 퍼블리싱</li>
+          <li><input type="radio" />웹 애플리케이션 개발자</li>
+          <li><input type="radio" />개발 환경 개선</li>
+        </ul>
+        <h3>지원 동기</h3>
+        <textarea rows="5" cols="60" placeholder="본사 지원 동기를 간략히 써 주세요."></textarea>
+        <div id="button">
+          <button type="submit">접수하기</button>
+          <button type="reset">다시 쓰기</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

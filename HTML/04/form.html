@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="입력받은 데이터를 전송할 서버 페이지 주소를 작성" method="get">
+      <!-- 
+    <form action="입력받은 데이터를 전송할 서버 페이지 주소를 작성">
+    <form action="a.jsp"></form>
+    action속성은 필수 속성.
+  -->
+      아이디: <input type="text" /><br />
+      패스워드: <input type="password" /><br />
+      <input type="submit" value="로그인" /><br />
+    </form>
+
+    <!-- 
+    <form></form> 태그?
+
+    - 입력한 정보를 서버 페이지로 요청해서 전달할 태그!
+    - action 속성
+         : <form> 태그 사이에 입력 태그들에 의해 입력받은
+            데이터들을 요청할 서버페이지 주소를 작성하는 속성
+
+    - method 속성
+          : 입력받은 데이터들을 get 또는 post 전송방식으로
+          요청해서 전달하기 위해 전송방식 하나를 설정하는 속성
+        
+   -->
+
+    <br /><br />
+    <form action="main.jsp" method="get">
+      <input type="text" /> 아이디 등 텍스트를 입력받음 !! <br />
+      <input type="password" /> 패스워드를 입력받음 !! <br />
+      <input type="tel" /> 전화번호를 입력받음 <br />
+      <input type="url" /> URL을 입력받음 <br />
+      <input type="search" /> 검색어를 입력받음 !!<br />
+      <input type="email" /> 이메일을 입력받은 <br />
+      <input type="checkbox" /> 클릭해서 체크하는 박스 !!! <br />
+      <input type="radio" name="gender" /> 남자 <input type="radio" name="gender" /> 여자
+      <i>여러 개중 하나를 선택하는 경우(name 속성이 같아야함) !!!</i> <br />
+      <input type="file" /> 파일 업로드를 사용할 때 사용 !! <br />
+      <input type="button" value="버튼에 텍스트 부여" /> 일반적인 버튼을 생성 <br />
+      <input type="image" src="images/top.jpg" width="50" height="10" />
+    </form>
+  </body>
+</html>

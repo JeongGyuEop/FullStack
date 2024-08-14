@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+  1. <input> 태그?
+    - 다양한 입력할 수 있는 디자인을 보여주며, 사용자가 입력한 정보를 받을 때
+      사용되는 태그.
+    - 기본 문법
+        <input 속성="속성값">
+
+  2. <input> 태그에 다양한 입력 디자인 유형을 설정하는 type 속성?
+    - 기본 문법
+      <input type="다양한 종류 값">
+
+  3. type="text"와 type="password"
+    - <input type="text"> : 주로 아이디나 이름, 주소 등 한 줄짜리 일반 텍스트를
+                            입력할 때 사용합니다.
+    - <input type="password"> : 비밀번호를 입력받을 때 사용한다. 이때 비밀번호는
+                                노출 되지 않고, * 기호나 ● 블릿기호로 표시합니다.
+
+  4. <input type="text">인 텍스트 필드와 <input type="password">인 비밀번호 필드에서
+    사용하는 주요 다른 속성들!
+    - size 속성:
+        텍스트 필드와 비밀번호 필드 화면에 입력한 데이터가 몇 글자가 보이도록 할 것인지
+        지정하는 속성이다. 예를들어 최대로 입력받을 수 있는 글자 수가 10개인데, size 값을
+        5개로 지정하면 필드 크기는 5개 글자 크기에 맞추고 나머지 5개 글자는 화면에 보이지
+        않는다.
+
+    - value 속성:
+        텍스트 필드 요소가 화면에 표시될 때 텍스트 필드 부분에 보여주는 내용을 미리 설정하는 
+        속성이다. 이 value 속성을 작성하지 않으면 빈 공백 문자열 텍스트가 텍스트 필드 영역에
+        표시 된다. 또한 비밀번호 필드에서는 사용하지 않는 속성이다.
+
+    - maxlength 속성:
+        텍스트 필드와 비밀번호 필드에 입력할 수 있는 최대 문자 수를 지정하는 속성이다.
+-->
+
+    <form action="a.json" method="get">
+      <fieldset>
+        <label for="">아이디: <input type="text" id="user_id" size="10" value="admin" maxlength="3" /></label>
+        <label for="">비밀번호: <input type="password" id="user_pw" size="10" maxlength="4" /></label>
+        <input type="submit" value="로그인" />
+      </fieldset>
+    </form>
+
+    <!-- 설명 계속...
+
+  5. type="checkbox" 와 type="radio"
+    - <input type="checkbox"> : 여러 개의 선택지를 사용자가 0 또는 1개 이상 선택할 때
+    - <input type="radio"> : 여러 항목 중에 원하는 1개의 항목을 선택할 때 사용되는 요소
+
+  6. checkbox와 radio 버튼 <input>들에서 사용하는 주요 다른 속성들!
+    - value 속성:
+      선택한 체크박스나 라디오버튼의 값을 서버페이지에게 알려줄 때 넘겨줄 값을 지정하는
+      속성이다. 요청하는 값은 영문이나 숫자여야 하며 필수 속성이다.
+
+    - checked 속성:
+      checkbox나 radio 버튼 항목은 처음에 아무것도 선택되지 않은 상태로 표시된다. 여러
+      항목 중에서 기본으로 선택해 놓고 싶은 항목에 사용한다. 속성에 대한 값은 따로 없다. 
+   
+-->
+    <form action="">
+      <fieldset>
+        <legend>상품 선택</legend>
+
+        <p><b>주문할 상품을 선택해 주세요.</b></p>
+        <ul>
+          <li>
+            <label for=""> <input type="checkbox" name="a" value="s_3" />선물용 3kg </label>
+            <input type="number" />개
+          </li>
+
+          <li>
+            <label for=""> <input type="checkbox" name="b" value="s_5" />선물용 5kg </label>
+            <input type="number" />개
+          </li>
+
+          <li>
+            <label for=""> <input type="checkbox" name="c" value="f_3" />가정용 3kg </label>
+            <input type="number" />개
+          </li>
+
+          <li>
+            <label for=""> <input type="checkbox" name="d" value="f_5" />가정용 5kg </label>
+            <input type="number" />개
+          </li>
+        </ul>
+
+        <p><b>포장 선택</b></p>
+        <ul>
+          <li>
+            <label for=""> <input type="radio" name="gift" value="yes" checked /> 선물포장 </label>
+          </li>
+
+          <li>
+            <label for=""> <input type="radio" name="gift" value="no" /> 선물포장 X </label>
+          </li>
+        </ul>
+        <button>버튼</button>
+      </fieldset>
+    </form>
+  </body>
+</html>

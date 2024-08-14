@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+    <form></form> 태그?
+  - <form></form> 태그는 몇가지 속성을 사용해서 입력받은 자료를 어떤 전송방식으로
+  서버페이지로 넘겨 처리할 것인지를 지정하는 태그이다.
+  - 기본문법
+          <form 속성=""속성값">
+            여러 폼 요소들 ....
+          </form>
+  - <form></form> 태그의 속성 종류들
+          1. method 속성 (중요) : 
+            사용자가 입력한 내용을 서버 쪽 프로그램(서버페이지)으로
+            어떻게 넘겨 줄것인지 지정하는 속성으로 값dmf get 또는 post 
+            둘중 하나를 사용
+
+          > get 전송방식 (기본값) : 
+              데이터를 256 ~ 4,096byte 크기까지만 서버페이지 쪽으로 넘길 수 있는 전송방식.
+              웹 브라우저 주소 표시줄에서 사용자가 입력한 내용이 그대로 드러나는 단점이 있다.
+          > post 전송방식 :
+              입력한 내용의 길이에 제한 받지 않고, 사용자가 입력한 내용도 주소창에
+              드러나지 않는다.
+
+          2. name 속성
+            - 자바스크립트언어로 <form></form> 내부에 작성된 <input>요소들을 제어할 때
+              하는 <>태그의 이름을지정할 때 사용하는 속성이다.
+                <form action="" name="f1">
+                  <input type="text" name="">
+                </form>
+                <form action="" name="f2"></form>
+
+          3. action 속성 (중요)
+            - <form></form>으로 감싼 태그에 입력한 내용들을 서버페이지로 전달하기 위해
+              서버페이지 주소 경로를 작성하는 속성이다.
+
+          4. target 속성
+            - action 속성에서 지정한 서버페이지를 현재 웹 브라우저 창이 아닌 다른 창을
+              띄워서 요청할 수 있도록 설정한느 속성이다.
+
+          5. autocomplete 속성
+            - <form></form>으로 감싸져 있는 자식태그에 데이터를 입력할 때 입력한 내용을
+              자동으로 표시해 주는 속성이다.
+            - 기본값은 "on" 이다. 즉, 자동완성이 기본으로 켜셔 있으므로 입력한 적이 있는
+              값을, "off"로 지정하면 자동완성 기능을 비활성화한다.
+----------------------------------------------------------------------------------------------
+  <fieldset></fieldset> 태그?
+        - 하나의 <form></form> 안에서 여러 구역을 나누어 표시할 때 사용하는 태그.
+        예를 들어 쇼핑몰 사이트의 주문서를 작성할 때 개인정보와 배송정보를 나누어
+        표시하면 사용자가 입력하기도 편하고 화면도 깔끔하게 정리 가능하다.
+        
+        - 기본문법 :
+            <fieldset 속성="속성값"></fieldset>
+    
+  <legend></legend> 태그?
+        - 이 태그는 <fieldset></fieldset> 태그로 묶은 그룹에 제목을 붙이는 태그.
+
+        - 기본문법 :
+            <fieldset>
+              <legend>제목</legend>
+              설명 : <fieldset> 안에 여러 <input> 요소, <label> 요소,...
+            </fieldset>
+        
+  <label></label> 태그?
+        - 한 줄 텍스트를 입력 받을 수 있는 <input>태그 앞에 텍스트를 표시할 영역을
+          지정하는 태그.
+
+        - 기본문법1 :
+            <label>레이블명<input></label>
+            설명 : <label></label> 태그 안에 <input>태그를 넣는 문법.
+
+        - 기본 문법2 :
+            <label for="id">레이블명</label>
+            <input id="id">
+            설명 : <label></label> 태그와 <input> 태그를 따로 작성해 놓고,
+            <label>태그의 for속성값과 <input>태그의 id 속성값을 서로 같게 입력하여
+            서로 연결하는 것이다. 다시 말해 <input>태그의 id 속성값을 <label>태그의
+            for 속성에게 알려주는 방법을 사용한다. 
+-->
+
+    <h1>레드향 주문하기</h1>
+    <form action="a.jsp" method="get" autocomplete="on">
+      <fieldset>
+        <legend>개인정보</legend>
+        <label for="name">아이디(6자 이상) <input type="text" /></label>
+      </fieldset>
+
+      <fieldset>
+        <!-- 추천하는 방법 <input>이 밖으로 -->
+        <legend>배송 정보</legend>
+        <label for="address">배송지 주소</label>
+        <input id="address" type="text" />
+      </fieldset>
+
+      <!--
+       버튼의 종류
+        (1) <input type="button" value="일반버튼" onclick="alert('경고한다.');">
+        (2) <input type="submit" value="전송">
+        (3) <input type="image" src="이미지경로" value="전송">
+        (4) <input type="reset" value="리셋">
+        (5) <button type="button">버튼</button>
+            기본은 전송(submit) 버튼이지만, type 속성에 따라 일반 버튼이 될 수도 있다.
+      -->
+      <input type="submit" />
+    </form>
+  </body>
+</html>

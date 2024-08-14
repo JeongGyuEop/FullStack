@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>텍스트를 여러 줄 입력하기</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>레드향 주문하기</h1>
+      <form>
+        <fieldset>
+          <legend>배송 정보</legend>
+          <ul id="delivery">
+            <li>
+              <label for="user_name">이름</label>
+              <input type="text" id="user_name" />
+            </li>
+            <li>
+              <label for="addr">배송 주소</label>
+              <input type="text" id="addr" />
+            </li>
+            <li>
+              <label for="mail">이메일</label>
+              <input type="email" id="mail" placeholder="example@naver.com" />
+            </li>
+            <li>
+              <label for="phone">전화번호</label>
+              <input type="tel" id="phone" placeholder="010-1234-5678" />
+            </li>
+            <li>
+              <label for="d-day">배송 날짜 지정</label>
+              <input type="date" id="d-day" />
+              <small>(주문일로부터 최소 3일 이후)</small>
+            </li>
+            <li>
+              <label for="memo">배송 메모</label><br>
+              <textarea id="memo" cols="50" rows="10" placeholder="메모 내용을 입력해주세요."></textarea>
+            </li>
+          </ul>
+        </fieldset>
+        <div id="container">
+          <input type="submit" value="주문하기" />
+          <input type="reset" value="주문 초기화" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

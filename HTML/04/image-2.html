@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>원래 크기의 이미지</p>
+    <img src="./images/salad.jpg" alt="샐러드" />
+    <!-- .은 현재 디렉토리를 의미, /는 파고든다는 의미인데, 생략이 가능하다. -->
+
+    <p>width="50%", height="50%"로 지정한 이미지</p>
+    <img src="images/salad.jpg" alt="샐러드" width="50%" />
+    <!-- height 속성은 자동으로 적용되기 때문에 적어주지 않는다. -->
+
+    <p>width="150"으로 지정한 이미지</p>
+    <img src="../04/images/salad.jpg" alt="샐러드" width="150" />
+    <!-- ../와 ./는 상대경로로 파일을 찾는 것이다. 그리고 150뒤에 px는 생략가능하다 -->
+    <h1>레드향</h1>
+  </body>
+</html>

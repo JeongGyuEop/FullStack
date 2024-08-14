@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <!-- CSS 코드 작성하는 곳 -->
+    <style>
+      /* 
+      아래에 작성해 놓은 table 태그를 선택해서 가져와서 스타일 설정!
+      이때 태그명을 기술하고 {} 중괄호를 넣어서 스타일을 설정할 수 있다. 
+      */
+      table {
+        /*
+         border: 테두리선의 굵기값 | 테두리선의 종류 | 테두리선 색상 
+         border: 1px                 solid             red;
+         */
+        border-collapse: collapse; /* 테이블의 경계선을 합침 */
+        width: 100%;
+      }
+  
+      th {
+        border: 2px solid black; /* 헤더 셀의 테두리 */
+        padding: 5px; /* 셀 내부 여백 */
+        font-size: 18px; /* 글자 크기 */
+        color: blue; /* 글자 색상 */
+      }
+  
+      td {
+        border: 2px solid black; /* 데이터 셀의 테두리 */
+        padding: 8px; /* 셀 내부 여백 */
+        text-align: center; /* 텍스트 가운데 정렬 */
+      }
+  
+      caption {
+        caption-side: top; /* 캡션을 테이블 상단에 위치 */
+        font-weight: bold; /* 굵은 글씨 */
+        padding: 8px; /* 캡션의 여백 */
+      }
+    </style>
+</head>
+<body>
+  <!-- table 태그는 표를 만들때 사용되는 태그이다. -->
+  <table>
+    <caption>음료</caption>
+    <tr>
+      <th>번호</th>
+      <th>상품명</th>
+      <th>수량</th>
+      <th>가격</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>콜라</td>
+      <td>1개</td>
+      <td>1,500원</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>사이다</td>
+      <td>2개</td>
+      <td rowspan="2">1,000원</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>탄산수</td>
+      <td>3개</td>
+      <!-- <td>1,000원</td> 위의 행에서 rowspan을 사용하여 합쳤는데 하나 더 적을 경우를 확인 -->
+    </tr>
+    <tr>
+      <td colspan="3">총 금액</td>
+      <td>6,500원</td>
+      <!-- <td>총 금액</td>
+      <td colspan="3">6,500원</td> -->
+    </tr>
+  </table>
+</body>
+</html>
