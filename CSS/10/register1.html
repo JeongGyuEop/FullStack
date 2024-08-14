@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>회원 가입</title>
+    <link rel="stylesheet" href="css/register1.css" />
+  </head>
+  <body>
+    <form id="signup">
+      <fieldset>
+        <legend>로그인 정보</legend>
+        <ul>
+          <li>
+            <label for="userid">아이디</label>
+            <input id="userid" name="userid" type="text" required autofocus />
+            <!-- autofocus 속성을 사용하면 페이지를 열었을 때 해방 부분에 입력할
+          수 있도록 포커스를 잡는다.  -->
+          </li>
+          <li>
+            <label for="pwd1">비밀번호</label>
+            <input id="pwd1" name="pwd1" type="password" required />
+            <!-- required 속성을 사용하면 input, select, textarea, button, fieldset, legend,
+          details, summary, datalist, keygen, output, progress, meter, and textarea
+          요소는 비어 있으면 제출할 수 없다. -->
+          </li>
+          <li>
+            <label for="pwd2">비밀번호 확인</label>
+            <input id="pwd2" name="pwd2" type="password" required />
+          </li>
+          <li>
+            <label for="level">회원 등급</label>
+            <input id="level" name="level" type="text" readonly value="준회원" />
+            <!-- readonly 속성은 입력은 할 수 없고, 읽을 수만 있도록 하기 위해 사용한다. -->
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>개인 정보</legend>
+        <ul>
+          <li>
+            <label for="fullname">이름</label>
+            <input id="fullname" name="fullname" type="text" placeholder="5자미만 공백없이" required />
+          </li>
+          <li>
+            <label for="email">메일 주소</label>
+            <input id="email" name="email" type="email" placeholder="abcd@domain.com" required autocomplete="off" />
+          </li>
+          <li>
+            <label for="tel">연락처</label>
+            <input id="tel" name="tel" type="tel" autocomplete="off" />
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <button type="submit">제출</button>
+      </fieldset>
+    </form>
+  </body>
+</html>

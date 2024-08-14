@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 960px;
+        margin: 0 auto;
+      }
+      .navi {
+        width: 960px;
+        height: 60px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #ccc;
+      }
+      .navi ul {
+        list-style: none;
+        padding-top: 10px;
+        padding-bottom: 5px;
+      }
+      .navi ul li {
+        float: left;
+        width: 150px;
+        padding: 10px;
+      }
+
+      /* a:link 한 번이라도 클릭해서 방문하지 않은 a요소 모두 선택
+      a:visited 한 번이라도 클릭해서 방문한 a요소 모두 선택 */
+      .navi a:link,
+      .navi a:visited {
+        display: block;
+        font-size: 14px;
+        text-decoration: none;
+        color: #000;
+        padding: 10px;
+      }
+
+      /* a:hover a요소중에서 마우스 포인터가 올라가있는 a요소만 선택 */
+      /* a:focus a요소에서 포커스를 받은 a요소만 선택 */
+      .navi a:hover,
+      .navi a:focus {
+        background-color: #222;
+        color: #fff;
+      }
+
+      /* a:active a요소중에서 클릭하고 있는 상태(활성화 되어 있는 상태)의
+       a요소만 선택 */
+      .navi a:active {
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navi">
+        <ul>
+          <li><a href="#">이용 안내</a></li>
+          <li><a href="#">객실 소개</a></li>
+          <li><a href="#">예약 방법 및 요금</a></li>
+          <li><a href="#">예약하기</a></li>
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>

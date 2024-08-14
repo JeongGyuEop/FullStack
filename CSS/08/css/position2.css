@@ -1,0 +1,38 @@
+* {
+  /* 모든 요소 테두리영역을 포함해서 너비를 게산하기 위해 설정 */
+  box-sizing: border-box;
+  
+  /* 모든 요소 기본 바깥 여백 제거 */
+  margin: 0;
+  
+  /* 모든 요소 기본 안쪽 여백 제거 */  
+  padding: 0;
+}
+
+/* id 속성에 대한 아이디명이 contents인 div 요소 한쌍을 선택 */
+#contents {
+  /* div 박스 영역에 배경 이미지를 반복 없이 설정 */
+  background: url(../images/bg.jpg) no-repeat;
+
+  /* 배경 이미지를 div 박스 영역 크기에 맞춘다. */
+  background-size: cover;
+
+  width: 800px; /* div 박스 영역의 너비 설정 */
+  height: 500px; /* div 박스 영역의 높이 설정 */
+  margin: 0 auto;
+  /* 자식 요소의 절대 위치를 위한 상대 위치 설정 */
+  position: relative;
+}
+
+/* h1 요소 선택 */
+h1 {
+  color: #fff;
+
+  /* position: relative 값을 사용한 div(#contents) 값을 기분으로 위치를 배치 */
+  position: absolute;
+
+  text-shadow: 2px 3px 0 #222;
+  font-size: 120px;
+  right: 100px;
+  bottom: 100px;
+}

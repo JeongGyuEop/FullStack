@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Transform</title>
+    <style>
+      #container {
+        width: 800px;
+        margin: 20px auto;
+      }
+
+      .origin {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #222;
+        float: left;
+        margin: 40px;
+        perspective: 200px; /* 원근감 추가 */
+      }
+
+      .origin > div {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        transition: all 1s; /* 3초 동안 회전하도록 트랜지션 적용 */
+      }
+
+      #rotatex:hover {
+        /* x축 방향으로 55도 회전 */
+        transform: rotateX(55deg);
+      }
+      #rotatey:hover {
+        /* y축 방향으로 55도 회전 */
+        transform: rotateY(55deg);
+      }
+      #rotatez:hover {
+        /* z축 방향으로 55도 회전 */
+        transform: rotateZ(55deg);
+      }
+      #rotatexyz:hover {
+        /* x, y, z축 방향으로 벡터를 지정하고 55도 회전 */
+        transform: rotate3d(2.5, 1.2, -1.5, 55deg);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="origin">
+        <div id="rotatex"></div>
+      </div>
+      <div class="origin">
+        <div id="rotatey"></div>
+      </div>
+      <div class="origin">
+        <div id="rotatez"></div>
+      </div>
+      <div class="origin">
+        <div id="rotatexyz"></div>
+      </div>
+    </div>
+  </body>
+</html>

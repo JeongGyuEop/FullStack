@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+      아이디 선택자 '#'
+        - 문법
+          #아이디명 { 속성명: 값; } 
+        
+        - 설명
+          > '#'은 id 속성에 대한 아이디명이 ~~~~
+          > #아이디명은 id 속성에 대한 아이디명이 작성한 아이디 명과 일치하는
+            요소를 선택해서 가져와 스타일 설정! 
+    -->
+    <style>
+      #container {
+        width: 500px; /* 선택해 온 div 영역의 너비를 500px로 설정 */
+        border: 1px solid black;
+        padding: 10px; /* 선택해 온 div 영역의 테두리와 내용사이 안쪽여백를 10px로 설정 */
+        margin: 10px auto; /* 선택해 온 div 영역을 중앙 배치 */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>레드향</h1>
+      <p>껍질에 붉은 빛이 돌아 레드향이라 부른다.</p>
+      <p>레드향은 한라봉과 귤을 교배한 것으로 일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+      <p>비타민 C와 비타민 P가 풍부해 혈액순환, 감기예방 등에 좋은 것으로 알려져 있다.</p>
+    </div>
+  </body>
+</html>

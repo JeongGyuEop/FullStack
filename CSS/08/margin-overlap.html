@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box3"></div>
+    <style>
+      * {
+        /* 모든 요소의 총 너비와 높이에 패딩과 경계선(테두리선)을 포함해 계산 */
+        box-sizing: border-box;
+      }
+      div {
+        width: 200px; /* div 영역의 너비 설정 */
+        height: 100px; /* div 영역의 테두리(border영역)까지 포함해서 높이 설정 */
+        margin: 30px;
+      }
+      #box1 {
+        background-color: blue;
+      }
+      #box2 {
+        background-color: red;
+      }
+      #box3 {
+        background-color: green;
+      }
+    </style>
+  </body>
+</html>

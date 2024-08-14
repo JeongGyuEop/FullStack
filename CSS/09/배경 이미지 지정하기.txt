@@ -1,0 +1,84 @@
+
+
+
+1. 웹 요소에 배경 이미지를 넣는 background-image 속성
+  - 문법
+      bacground-image : url('이미지파일 경로');
+        > " "로 감싸도 가능
+        > 이미지 경로 작성 시, 절대경로와 상대경로 모두 작성 가능하다. 
+  - 배경을 넣을 때 요소보다 이미지 크기가 작으면 이미지가 가로와 세로로
+    반복되면서 요소의 배경을 가득 채움
+
+
+2. 배경 이미지의 반복 방법을 지정하는 background-repeat 속성
+  - 문법
+    background-repeat : repeat | repeat-x | repeat-y | no-repeat;
+    
+    > repeat : 브라우저 화면에 가득찰 때까지 가로와 세로 방향으로 
+              모두 background-image를 반복
+    > repeat-x : 브라우저 화면 너비에 가득 찰 때까지 가로로 반복
+    > repeat-y : 브라우저 화면 높이에 가득 찰 때까지 세로로 반복
+    > no-repeat : background-image를 화면에 한번만 표시하도록 반복하지 않음 
+
+
+3. 배경 이미지의 위치를 조절하는 background-position 속성
+  - 배경 이미지의 수평 위치 또는 수직 위치의 값을 지정
+  - 문법
+      bacground-position : 수평위치 수직위치;
+        > 수평위치 : left | center | right | 백분율 | 길이 값
+        > 수직위치 : top | center | bottom | 백분율 | 길이 값
+  - 키워드 : 배경 이미지의 위치를 지정할  때 가장 많이 사용하는 속성 값
+            > 수평위치 : left | center | right 
+            > 수직위치 : top | center | bottom
+  - 백분율(%) : 해당 위치에 배경 이미지의 위치를 백분율로 계산하여 맞춘다.
+      (예) bacground-position: 30% 60%; 라는 것은 배경 이미지를 넣을 요소의 왼쪽
+          모서리로부터 가로 30% 세로 60%의 위치에 배경 이미지의 가로 세로가 각각
+          30% 60%인 위치를 맞춘다.
+  - 크기 : 배경 이미지의 위치를 길이로 직접 지정 가능
+      (예) bacground-position: 30px 20px; 이면 가로 30px 세로 20px의 위치에 배경
+          이미지의 왼쪽 상단 모서리를 맞춘다.
+
+  
+4. 배경 이미지의 적용 범위를 조절하는 background-origin 속성
+  - 배경이미지를 패딩까지 표시하거나 테두리까지 포함해서 표시할 수 있다.
+    > content-box : 박스모델에서 내용 부분만 배경 이미지를 표시(기본값)
+    > padding-box : 박스모델에서 패딩까지 배경 이미지를 표시
+    > border-box : 박스 모델에서 테두리까지 배경 이미지를 표시
+
+
+5. 배경 이미지를 고정하는 background-attachment 속성
+  > scroll : 화면을 스크롤하면 배경 미미지도 스크롤된다.(기본값)
+  > fixed : 화면을 스크롤하면 배경 이미지는 고정되고 내용만 스크롤한다.
+
+
+6. bacground 속성 하나로 배경 이미지 제어하기
+  - 배경 이미지 관련 속성을 background 하나의 속성으로 줄여 사용 가능
+    > body {
+      bacground-image: url('image/bg4.png');
+      bacground-repeat: no-repeat;
+      background-position: center bottom;
+      bacground-attachment: fixed;
+    }
+    > bacground: url('images/bg4.png') no-repeat center bottom fixed;
+      (속성 값이 다르므로 입력 순서는 상관 없다.)
+
+
+7. 배경 이미지 크기를 조절하는 background-size 속성
+  - 화면에 배경 이미지를 가득 채워야 할 경우 유용
+  - 속성 값이 하나라면 그 값은 너비로 인식하고 높이는 비율에 따라 자동 계산
+    > auto : 원래 배경 이미지 크기만큼 표시한다.(기본값)
+    > contain : 요소 안에 배경 이미지가 다 들어오도록 이미지를 확대, 축소 한다.
+    > cover : 배경 이미지로 요소를 모두 덮도록 이미지르 확대, 축소한다.
+    > 크기 : 이미지와 너비와 높이를 지정한다. 값이 하나만 주어질 경우 너빗값으로 인식하며,
+              이미지의 너비와 너빗값에 맞춘 높잇값도 자동 계산
+    > 백분율 : 배경 이미지가 들어갈 요소의 크기를 기준으로 값을 백분율로 지정하고
+                그 크기에 맞도록 배경 이미지를 확대, 축소 한다.
+
+
+
+
+
+
+
+
+

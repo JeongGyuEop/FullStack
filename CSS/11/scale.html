@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Transform:scale</title>
+    <style>
+      #container {
+        width: 600px;
+        margin: 20px auto;
+      }
+      .origin {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        float: left;
+        margin: 40px;
+      }
+      .origin > div {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+      }
+
+      /* 주제 : transform 속성에 scale() 함수르 값으로 사용하여 도형 위에 마우스 포인터
+			올려놓으면 크기가 변형되게 하는 행위의 예제 */
+      #container .origin #scalex {
+        transform: scaleX(2);
+      }
+      #scaley {
+        transform: scaleY(0.5);
+      }
+      #scale {
+        transform: scale(0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="origin">
+        <div id="scalex"></div>
+      </div>
+      <div class="origin">
+        <div id="scaley"></div>
+      </div>
+      <div class="origin">
+        <div id="scale"></div>
+      </div>
+    </div>
+  </body>
+</html>

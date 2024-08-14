@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>연습문제 3</title>
+    <style>
+      a:link,
+      a:visited {
+        color: black;
+        text-decoration: none;
+      }
+
+      /* a <- 모든 a 요소를 선택
+			a:hover <- 모든 a 요소 중에서 마우스 포인터가 올라가 있는 a만 최종선택 */
+
+      a:hover {
+        background-color: #000; /* 마우스가 올라가 있는 a의 배경색을 검정으로 설정 */
+        color: #fff; /* 마우스가 올라가 있는 a 내부에 작성된 메뉴 텍스트의 색상을 흰색으로 설정 */
+      }
+      ul {
+        list-style: none;
+      }
+      li {
+        float: left;
+      }
+      a {
+        display: block;
+        padding: 10px 20px;
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#">메뉴1</a></li>
+        <li><a href="#">메뉴2</a></li>
+        <li><a href="#">메뉴3</a></li>
+        <li><a href="#">메뉴4</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

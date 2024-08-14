@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 100px;
+        display: inline-block;
+        margin: 10px;
+        /* 모든 div에 테두리 스타일을 실선으로 지정 */
+        border-style: solid;
+      }
+
+      #box1 {
+        /* 네 방향 모두 2px로 굵기 설정 */
+        border-width: 4px;
+      }
+      #box2 {
+        /* 위와 아래 thick, 왼쪽과 오른쪽 thin */
+        /* 속성값이 2개라면 첫번째 값이 위아래, 두번째 값이 좌우 */
+        border-width: thick thin;
+      }
+      #box3 {
+        /* 위 thick, 오른쪽과 왼쪽은 thin, 아래는 medium */
+        /* 속성값이 3개 라면, 위쪽, 오른쪽과 왼쪽, 아래쪽으로 값이 적용 */
+        border-width: thick thin medium;
+      }
+
+      #box4 {
+        /* 위 5, 오른쪽 10, 아래 15, 왼쪽 20 */
+        border-width: 5px 10px 15px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box3"></div>
+    <div id="box4"></div>
+  </body>
+</html>

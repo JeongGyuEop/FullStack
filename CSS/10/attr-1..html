@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        list-style: none;
+      }
+      li {
+        display: inline-block;
+        width: 120px;
+        margin: 10px;
+        text-align: center;
+      }
+
+      /*
+      모든 a요소를  선택하되, href 속성이 부여된 a요소들만 최종선택
+      a -> 모든 a 요소들을 선택해 온다. 
+      a[href] -> 모든 a 요소들을 선택해오고, 
+                그중에서도 href 속성이 적힌 a 요소들만 최종 선택
+      */
+      a[href] {
+        background: aquamarine;
+        border: 1px solid #ccc;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li><a>메인 메뉴 : </a></li>
+      <li><a href="#">메뉴 1 </a></li>
+      <li><a href="#">메뉴 2 </a></li>
+      <li><a>메뉴 3 </a></li>
+      <li><a href="#">메뉴 4 </a></li>
+    </ul>
+  </body>
+</html>

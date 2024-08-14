@@ -1,0 +1,49 @@
+* {
+  /* 브라우저의 기본 마진 리셋 */
+  margin: 0;
+
+  /* 브라우저의 기본 마진 리셋 */
+  padding: 0;
+
+  /* 테두리까지 포함해서 박스모델 너비 계산할 수 있도록 설정 */
+  box-sizing: border-box;
+}
+
+#container {
+  width: 100%;
+  margin: 20px auto; /* 내용을 화면 가운데 배치 */
+}
+
+#header {
+  width: 100%; /* 부모 div 요소의 너비와 똑같게 설정 */
+  height: 120px; /* header 요소의 높이 설정 */
+  background-color: #acacac; /* header 영역의 배경색 설정 */
+}
+
+#left-sidebar {
+  width: 20%;
+  height: 600px;
+  background-color: #e9e9e9;
+  float: left;
+}
+
+#contents {
+  width: 60%;
+  height: 600px;
+  background-color: #f7f7f7;
+  float: left;
+}
+
+#right-sidebar {
+  width: 20%;
+  height: 600px;
+  background-color: #e9e9e9;
+  float: right;
+}
+
+#footer {
+  width: 100%;
+  height: 100px;
+  background-color: #888888;
+  clear: left;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 참고.
+모바일 기본 뷰포트 너비는 기기마다 다르지만, 일반적을 다음과 같은 값들이 사용
+  - iPhone 6/7/8 : 375px
+  - iPhone 6/7/8 : 414px
+  - iPhone X/XS : 375px
+  - iPhone XR : 414px
+
+  - Galaxy S8/S9 : 360px
+  - Galaxy S8+/S9+ : 412px
+
+  위 값들은 모바일 기기의 해상도와 크기에 따라 다를 수 있다.
+  일반적으로 320px에서 414px 사이의 웹브라우저의 너비값을 가진다. */
+
+      h1 {
+        /* 뷰포트 너비의 5%로 너비를 설정
+      - 데스크탑의 웹 브라우저 뷰포트 너비(980px)의 5% -> 5vw 계산
+      - 5vw = 980px * 5% = 980 * 0.05 = 49px
+
+      - 모바일의 웹 브라우저 뷰포트 너비(320px)의 5% -> 5vw 계산
+      - 5vw = 320px * 5% = 320 * 0.05 = 16px */
+        font-size: 5vw;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>안녕하세요?</h1>
+  </body>
+</html>

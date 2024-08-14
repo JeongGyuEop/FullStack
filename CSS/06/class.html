@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내부 스타일 시트 사용하기</title>
+    <!-- 
+      클래스 선택자 '.'
+        - 사용 방법
+          .클래스명 { 속성명 : 값;}
+        - 설명 :
+          > '.' 은 class 속성에 대한 ~~~
+          > '.클래스명' 은 class 속성에 대한 클래스명이 완전히 일치하는 
+              요소를 선택해 온다.
+    -->
+    <style>
+      /* 클래스 속성에 대한 클래스 명이 accent와 완전히 일치하는 요소들을 몽땅 
+      선택해 와서 스타일 설정한다.
+      아래에 작성되어 있는 <h1>과 <span>요소 2개를 몽땅 한번에 선택해 온다. */
+
+      .accent {
+        border: 1px solid black; /* 영역의 바깥 테두리 선 굵기 1px,
+                                        solid는 가는 실선,
+                                        black은 선색상이 검은색 
+                                    */
+        padding: 10px;
+      }
+
+      .bg {
+        /* h1을 선택해 온다. */
+        background-color: aquamarine;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1 class="accent bg">레드향</h1>
+      <p>껍질에 붉은 빛이 돌아 <span class="accent">레드향</span>이라 부른다.</p>
+      <p>레드향은 한라봉과 귤을 교배한 것으로 일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+      <p>비타민 C와 비타민 P가 풍부해 혈액순환, 감기예방 등에 좋은 것으로 알려져 있다.</p>
+    </div>
+  </body>
+</html>

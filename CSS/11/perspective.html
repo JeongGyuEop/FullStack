@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Transform</title>
+    <style>
+      .origin {
+        width: 152px;
+        height: 180px;
+        border: 1px solid black;
+        margin: 30px;
+        float: left;
+      }
+      .origin > div {
+        width: 152px;
+        height: 180px;
+      }
+
+      .rotatex:hover {
+        /* x축으로 50도 회전 */
+        transform: rotateX(50deg);
+      }
+
+      #pers {
+        /* CSS에서 perspective 속성은 3D 공간에서 원금감을 설정하는데
+				사용되는 속성이다. 원근감은 요소가 멀어질수록 작아보이는 
+				효과를 말한다.
+				이 속성은 3D 변환이 적용된 자식요소에도 영향을 미친다. */
+
+        /* 원근감의 깊이를 300px로 설정한다. 값이 작을 수록 원근감이 더 강하게,
+				값이 클수록 원근감이 덜 나타난다. */
+        perspective: 300px; /* 원근감 추가 : 3D공간에서의 깊이 설정 */
+      }
+    </style>
+  </head>
+  <body>
+    <h4>원본 이미지</h4>
+    <div class="origin">
+      <img src="images/sunset.jpg" alt="" />
+    </div>
+    <div class="origin">
+      <div class="rotatex">
+        <img src="images/sunset.jpg" alt="" />
+      </div>
+    </div>
+    <div class="origin" id="pers">
+      <div class="rotatex">
+        <img src="images/sunset.jpg" alt="" />
+      </div>
+    </div>
+  </body>
+</html>

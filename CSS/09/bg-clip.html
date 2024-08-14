@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 안쪽 div 3쌍만 모두 선택 */
+      .desc {
+        border: 5px dotted #222;
+        background-color: pink;
+        width: 350px;
+        padding: 20px;
+        margin-right: 20px;
+        float: left;
+      }
+
+      #clip-border {
+        /* 선택한 첫번째 div 요소의 바깥테두리 배경색을 적용을 설정 */
+        background-clip: border-box;
+      }
+      #clip-padding {
+        /* 선택한 두번째 div 요소영역의 테두리 영역을 뺀 padding(안쪽여백영역) 
+        까지의 배경색 적용을 설정 */
+        background-clip: padding-box;
+      }
+      #clip-content {
+        /* 선택한 세번째 div 요소 영역의 테두리 영역을 뺀 content(내용) 영역
+        까지의 배경색 적용을 설정 */
+        background-clip: content-box;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 다른 html 태그들을 그룹으로 묶어 표현하는 박스 형태의 영역 -->
+    <div id="container">
+      <div class="desc" id="clip-border">
+        <h1>레드향</h1>
+        <p>껍질에 붉은 빛이 돌아 <b>레드향</b>이라 불린다.</p>
+        <p>레드향은 <em>한라봉과 귤을 교배</em>한 것으로<br />일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+      </div>
+      <div class="desc" id="clip-padding">
+        <h1>레드향</h1>
+        <p>껍질에 붉은 빛이 돌아 <b>레드향</b>이라 불린다.</p>
+        <p>레드향은 <em>한라봉과 귤을 교배</em>한 것으로<br />일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+      </div>
+      <div class="desc" id="clip-content">
+        <h1>레드향</h1>
+        <p>껍질에 붉은 빛이 돌아 <b>레드향</b>이라 불린다.</p>
+        <p>레드향은 <em>한라봉과 귤을 교배</em>한 것으로<br />일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+      </div>
+    </div>
+  </body>
+</html>

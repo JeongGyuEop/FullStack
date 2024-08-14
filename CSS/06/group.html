@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- 그룹 선택자(다중 선택자) ','
+      - 같은 스타일 설정을 해야하는 요소들을 묶어서 다중선택하는 선택자
+      - 사용 형식
+        선택자1, 선택자2, ... { 속성명: 값; }
+      - 설명
+        > 선택자종류1과 선택자종류2를 2개의 요소를 한꺼번에 선택해 올때
+          , 쉼표 그룹선택자 기호를 사용한다. -->
+
+    <style>
+      /* 
+        h1,#p2 {
+          text-align: center;
+        } 
+      */
+      h1,
+      #p2 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>레드향</h1>
+      <p>껍질에 붉은 빛이 돌아 레드향이라 부른다.</p>
+      <p id="p2">레드향은 한라봉과 귤을 교배한 것으로 일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+      <p>비타민 C와 비타민 P가 풍부해 혈액순환, 감기예방 등에 좋은 것으로 알려져 있다.</p>
+    </div>
+  </body>
+</html>

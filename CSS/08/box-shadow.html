@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px; /* 콘텐츠 영역의 너비 설정 */
+        height: 100px; /* 콘텐츠 영역의 높이 설정 */
+        border: 1px solid #222;
+        margin: 15px;
+        display: inline-block;
+        /* display 속성 : HTML 요소의 박스모델을 정의하고
+          - 요소가 페이지에 어떻게 배치될지 결정하는 속성
+            - 값의 종류 
+              > block : 요소를 block-level element로 설정한다.
+                        블록레벨요소는 항상 새로운 줄에서 시작하며,
+                        가로 전체를 차지함.
+              > inline : 요소를 inline-level element로 설정한다.
+                        인라인레벨요소는 새로운 줄을 시작하지 않으면
+                        콘텐츠 영역의 내용(텍스트 또는 이미지크기) 만큼 공간 차지
+              > inline-block : 요소를 inline-level element로 설정하지만,
+                              블록레벨요소처럼 너비와 높이를 지정할 수 있다.
+              > none : 요소를 display: none;로 설정하며,
+                        요소는 화면에서 보이지 않는다. 
+              > flex : 요소를 플렉스 컨테이너로 설정하여, 자식 요소들을 플렉스
+                      아이템으로 배치
+              > grid : 요소를 그리드 컨테이너로 설정하여, 자식 요소들을 그리드
+                      아이템으로 배치
+              > table : 요소를 테이블 컨테이너로 설정
+              > table-row, table-column, table-cell 등등...
+              ....
+              ....
+              ...
+        */
+
+        border-radius: 20px;
+        /* 요소의 모서리를 둥글게 만드는데 사용하는 속성
+        border-radius: 왼쪽 위, 오른쪽 위, 오른쪽 아래, 왼쪽 아래; */
+      }
+      .box1 {
+        box-shadow: 2px -2px 5px 0px;
+      }
+      .box2 {
+        box-shadow: 5px 5px 15px 5px blue;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 첫번째 div 박스는 그림자 색을 따로 지정하지 않아 검은색으로 나타나고, -->
+    <!-- 두번째 div 박스는 그림자의 번짐 정도와 색을 지정하여 파란색으로 나타나게 한다. -->
+    <div class="box1"></div>
+    <div class="box2"></div>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        list-style: circle;
+      }
+      li {
+        padding: 5px 30px;
+      }
+      li a {
+        font-size: 16px;
+        color: black;
+        text-decoration: none;
+      }
+
+      /* a 요소들 중에서 href 속성값이 w3인 단어가 어디라도 포함되어 있는
+      a 요소들만 최종선택 */
+      /* 2개 이상 적을 때는 ','를 사용하면 '또는'을 의미하고, 없으면 AND의 뜻을 가짐 */
+      a[href*='w3'],
+      [href*='wg'] {
+        background: blue;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>HTML5 참고 사이트</h1>
+    <p>(아래 링크 중에서 배경색이 파란색인 링크는 W3C 사이트로 연결됩니다.)</p>
+    <ul>
+      <li><a href="https://html.spec.w3-hatwg.org">HTML 표준안 사이트</a></li>
+      <li><a href="https://caniuse.com">HTML 지원 여부 체크</a></li>
+      <li><a href="https://www.w3.org/TR/css-mediaqueries">HTML 미디어쿼리</a></li>
+    </ul>
+  </body>
+</html>
