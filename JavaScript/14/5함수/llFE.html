@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+/* 
+    일반적으로 함수를 선언하면 전역 스코프영역에 정의됩니다.
+    그리고 프로그램이 종료되기까지 전역 스코프에 선언한 함수는
+    메모리에서 사라지지 않습니다.
+    아래에 정의된 init함수가 있습니다.
+    const키워드에 저장했기때문에 프로그램이 종료되기 전에는
+    init 변수명으로 function을  재사용할수 있습니다.
+
+    const init = function(){
+
+      console.log("initialized");
+
+    };
+*/
+
+    //이 함수는 즉시 실행함수를 만들것입니다.
+    //함수는 어차피 한번만 호출해서 사용할 함수인데,
+    //const키워드 때문에 init식별자를 더이상 사용할수 없게 됩니다.
+    //이러한 현상을 가리켜 전역 스코프영역의 코드가 오염됐다고 표현함
+    //이런 경우에 즉시 실행함수로 정의하면 전역 스코프가 오염된것을
+    //방지할수 있습니다.
+    //마지막으로 즉시 실행수는 한번 호출되어 실행되고 나면
+    //메모리에 데이터가 남아 있지 않습니다.
+    //그래서 재호출 코드 init(); 한번도 만들어져있지않은 함수로 인식됩니다
+    //실제로 즉시 실행함수를 호출한 다음에 재호출하면 오류발생함. 
+    (function init(){
+      console.log("initialized");
+    })();
+
+    //재호출
+    init();  //ReferenceError : init is not define
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+  
+</body>
+</html>

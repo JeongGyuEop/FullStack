@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // i변수의 초기값을 1로 저장하여
+    // i변수의 값을 1씩 증가 시키면서
+    // i변수의 값이 10보다 작거나 같을떄 까지만
+    // 숫자 1부터 10 사이의 1 2 3 4 5 까지만 반복해서 출력하고싶다
+    for(let i=1;   i<=10;    i++){
+
+        //반복 증가한 i변수값이
+        //6이 되는 순간 for반복문을 
+        //빠져나가자
+        if(i === 6){
+            break; //강제로 for{}중활호를 빠져나감 !
+        }
+           
+        document.write(i , "<br>");
+
+    }//for 닫기 
+
+    document.write("--------------------<br>");
+
+    //조건값을 저장할 변수 초기화
+    let i=1;
+
+         //조건식
+    while(i<=10){
+      
+      if(i === 6){
+        break; //i가 6과 같아지면  while반복을 중단 하고 빠져나감
+      }
+      document.write(i, "<br>");
+
+      i++;//증감식
+    }
+
+
+
+    //while반복문에 break를 사용하여
+    //1부터 시작하여 10까지의 숫자를 반복해서 출력하되
+    //숫자가 5가 되었을때 반복을 종료
+    //출력결과
+    //1
+    //2
+    //3
+    //4
+    //5
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>

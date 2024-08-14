@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let num1 = 10;
+      let num2 = 20;
+      let result; // 계산 결과값 저장할 변수
+
+      // 이 식은 num1 변수에 저장된 10을 1차감한 9를 다시 num1변수에 저장하는 식
+      // num1 = num1 - 1;
+      // 이 식은 결과는 같지만, 위의 식보다 짧게 작성할 수 있다.
+      // num1 -= 1;
+
+      num1--; // 변수 num1에 저장된 10을 1감소 시킨 9를 다시 num1변수에 대입
+      // 요약 : num1 변수값 1감소!
+
+      // 현재 이 줄에서 num1변수에 저장된 값은? 9
+      document.write(num1, '<br>');
+
+      num1++; // num1 = num1 + 1 또는 num += 1;
+
+      // 현재 저장된 값은 10
+      document.write(num1, '<br>');
+
+      // 후위증가연산자가 변수명 뒤에 있으면, 먼저 변수 result에 num2변수에 저장된
+      // 20을 저장한 후에 num2변수의 값을 1 증가시킨다.
+      result = num2++;
+
+      document.write(result, '<br>'); // 현재 저장된 값은 20
+      document.write(num2, '<br>'); // 현재 저장된 값은 21
+
+      result = ++num2;
+      // [20] = ++[21];
+      // ++전위증가연산자가 변수명 앞에 있을 때는, 먼저 num2 변수에 저장된 값
+      // 21을 1 증가시킨 후에 result변수에 대입한다.
+
+      document.write(result, '<br>'); // 현재 저장된 값은 22
+      document.write(num2, '<br>'); // 현재 저장된 값은 22
+    </script>
+  </body>
+</html>

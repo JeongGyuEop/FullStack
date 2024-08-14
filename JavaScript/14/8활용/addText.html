@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        border-bottom: 1px dashed #222;
+        margin-bottom: 20px;
+      }
+      h1,
+      h2,
+      button,
+      p {
+        margin-bottom: 20px;
+      }
+      #cart {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>상품 설명</h1>
+      <h2>자바스크립트의 정석</h2>
+      <p>베스트 셀러 입니다. 잘 팔립니다.</p>
+
+      <button id="order">주문하기</button>
+    </div>
+
+    <div id="orderInfo"></div>
+
+    <script>
+      // 주문 정보를 보여줄 영역 <div id="orderInfo"></div> 선택
+      const orderInfo = document.querySelector('#orderInfo');
+
+      // <button id="order">주문하기</button> 선택해서 가져온다.
+      const orderButton = document.querySelector('#order');
+
+      // <h2>자바스크립트의 정석</h2> 선택해서 가지고 온다.
+      const title = document.querySelector('#container > h2');
+
+      // <button id="order">주문하기</button> 클릭했을 때
+      orderButton.addEventListener('click', () => {
+        // 새로운 p요소노드 생성 <p></p>
+        let newP = document.createElement('p');
+
+        // title 변수에 저장된 <h2>자바스크립트의 정석</h2> 요소노드의
+        // "자바스크립트의 정석" -> 텍스트 노드를 추출해서
+        // 새로운 텍스트노드 생성
+        // title.innerText -> "자바스크립트의 정석"
+        let textNode = document.createTextNode(title.innerText);
+        // "자바스크립트의 정석"
+
+        // "자바스크립트의 정석" -> 새로만든 텍스트 노드를
+        // <p></p> -> 새로만든 요소노드 컨텐츠 영역에 자식노드로 추가
+        //<p>"자바스크립트의 정석"</p>
+        newP.appendChild(textNode);
+
+        // <p style="font-size:0.8em; color: blue;">"자바스크립트의 정석"</p>에 스타일 추가
+        newP.style.fontSize = '0.8em';
+        newP.style.color = 'blue';
+
+        // <p style="font-size:0.8em; color: blue;">"자바스크립트의 정석"</p> 생성한 요소를
+        // <div id="orderInfo"></div> 컨텐츠 영역에 자식 노드로 추가
+        orderInfo.appendChild(newP);
+      });
+    </script>
+  </body>
+</html>

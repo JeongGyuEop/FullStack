@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      //함수 정의문 작성
+      //기능 : 구구단의 단수를 매개변수 dan으로 전달 받아 
+      //       전달 받은 dan변수의 구구단을 출력하는 기능의 gugudan함수 
+
+      function gugudan(dan){ //dan -> 매개변수명 
+
+          //전달 받은 dan변수의 값을 사용해서
+          //구구단 을 만들어 출력!
+          for(let i=1;  i<=9;  i++){
+
+              console.log(`${dan} * ${i} = ${dan * i}`);
+          }
+
+      }
+
+      //함수 호출
+      //함수명(매개변수로전달할값);
+      gugudan(3);  //매개변수로 전달할값 3  -> 인수 
+      gugudan(5);  //매개변수로 전달할값 5  -> 인수
+      gugudan(9);  //매개변수로 전달할값 9  -> 인수 
+
+
+
+
+
+
+  </script>
+
+
+
+
+</body>
+</html>

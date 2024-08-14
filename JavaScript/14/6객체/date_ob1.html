@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Date 객체 메모리에 만들어져 있는 메소드의 종류들
+      //   getFullYear() 메서드 : 현재 날짜 정보 중에서도 연도 정보만 반환.
+      //   getMonth() + 1 : 0~11까지의 값(0:1월, 1:2월, ..., 11:12월)을 반환.
+      //   getDate() : 1~31까지의 값(1~31일)을 반환.
+      //   getDay() : 0~6까지의 값(0:일요일, 1:월요일, 2:화요일,..., 5:토요일, 6:일요일)을 반환.
+      //   getTime() 메서드 : 1970년 1월 1일 12:00 이후의 시간을 밀리초(1/1000) 단위로 반환.
+      //   getHours() : 현재 날짜 정보 중에서 0~23까지의 값(0~23시)을 반환.
+      //   getMinutes() : 0~59까지의 값(0~59분)을 반환.
+      //   getSeconds() : 0~59까지의 값(0~59초)을 반환.
+      //   getMilliseconds() : 0~999까지의 값(0~999밀리초)을 반환.
+      //   ..
+
+      // 1. 현재 날짜 정보를 제공해주는 Date 이름의 객체 생성
+      // 방법
+      //   let 변수 = new Date();
+      let today = new Date();
+
+      // 현재 몇 월인지에 대한 정보를 제공받으려면
+      // Date 객체 내부의 getMonth() 메소드 호출
+      // (참고. getMonth() 메서드를 호출하면 현재 월-1 값을 반환한다.)
+      // let nowMonth = today.getMonth(); // 6
+      let nowMonth = today.getMonth() + 1; // 7
+
+      // 현재 몇일 인지에 대한 정보를 제공받으려면
+      // Date 객체 내부의 getDate() 메소드 호출
+      let nowDay = today.getDate();
+
+      // 현재 무슨 요일인지에 대한 정보를 제공받으려면
+      // Date 객체 내부의 getDay() 메소드 호출
+      // (참고. getDay() 메서드를 호출하면 0~6까지의 값을 반환한다.)
+      // 0:일요일, 1:월요일, 2:화요일, 3:수요일, 4:목요일, 5:금요일, 6:토요일
+      let nowDayOfWeek = today.getDay();
+
+      console.log(nowMonth);
+      console.log(nowDay);
+      console.log(nowDayOfWeek);
+
+      document.write('현재 월 : ' + nowMonth, '<br/>');
+      document.write('현재 일 : ' + nowDay, '<br/>');
+      document.write('현재 요일 : ' + ['일', '월', '화', '수', '목', '금', '토'][nowDayOfWeek]);
+    </script>
+  </body>
+</html>

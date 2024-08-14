@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id="title">title</h1>
+  <p class="text">text-1</p>
+  <p class="text">text-2</p>
+
+  <script>
+    //id속성에 부여한값이 title과 일치하는 요소노드 <h1 id="title">title</h1>선택
+    const el = document.getElementById("title");
+
+    //<h1 id="title">title</h1>
+    console.log(el);
+
+    //class속성에 부여한 값이 text과 일치하는 모든 요소들을
+    //<p class="text">text-1</p>
+    //<p class="text">text-2</p>
+    //을 배열에 담아 배열자체를 반환해 줍니다.
+    //[ <p class="text">text-1</p> ,  <p class="text">text-2</p>   ]
+    //               0                          1                      index
+    const classEl = document.getElementsByClassName("text");
+
+    console.log( classEl[0] );  // <p class="text">text-1</p>
+    console.log( classEl[1] );  // <p class="text">text-2</p>
+/*
+  <h1 id="title">title</h1>
+  <p class="text">text-1</p>
+  <p class="text">text-2</p>
+*/
+    //메소드 호출시 요소노드명p(태그명p)을 전달하면
+    //p와 일치하는 모든 p요소노드들을 배열에 담아 선택해옵니다.
+ //[ <p class="text">text-1</p> ,  <p class="text">text-2</p>   ]
+    //               0                          1                      index                           ]
+    const tagEls = document.getElementsByTagName("p");
+
+    console.log(tagEls[0]); //<p class="text">text-1</p>
+    console.log(tagEls[1]); //<p class="text">text-2</p> 
+
+
+
+    /*
+		document객체에 만들어져 있는 메소드
+		1. getElementById("요소노드의id속성에부여한값");
+	    	-> 요소노드의부여한 id속성값을 매개변수로 전달하면
+	    	   전달한 id속성값과 일치하는 요소노드를 1개만 선택해 반환해 줍니다.
+	    	   
+	    2. getElementsByClassName("요소노드의class속성에부여한값");
+	    	-> 요소노드의 부여한 class속성값을 매개변수로 전달하면
+	    	   전달한 class속성값과 일치하는 모든 요소들을 배열에 담아 배열을 선택해서
+	    	   반환해 줍니다.
+	    	   
+	    3. getElementsByTagName("요소노드명");
+	    	-> 작성해 놓은 HTML요소노드명을 매개변수로 전달하면
+	    	   전달한 요소노드명과 일치하는 모든 요소노드들을 배열에 담아 
+	    	   배열을 선택해서 반환해 줍니다.
+	    	  
+	*/
+		//class속성값, id속성값, HTML태그명을 이용해 노드를 선택합니다.
+
+
+  </script>
+
+
+
+  
+</body>
+</html>

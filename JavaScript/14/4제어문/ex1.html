@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+            문제 1: 나이 기반 영화 등급 추천
+
+                    사용자에게 나이를 입력받아 그나이에 맞는 영화 등급을 추천하는 프로그램을 작성하세요.
+
+                    0~12: "어린이용 영화 추천"      출력
+                    13~17: "청소년용 영화 추천"     출력
+                    18 이상: "성인용 영화 추천"     출력
+
+        */
+
+      let age = prompt('나이를 입력해 주세요'); // 문자열로 입력받음
+      age = parseInt(age); // 문자열로 입력받은 age를 정수로 변환
+
+      if (age >= 0 && age <= 12) {
+        document.write('어린이용 영화 추천');
+      } else if (age >= 13 && age <= 17) {
+        document.write('청소년용 영화 추천');
+      } else {
+        document.write('성인용 영화 추천');
+      }
+
+      //   switch (parseInt(age, 10)) {
+      //     case 0:
+      //     case 1:
+      //     case 2:
+      //     case 3:
+      //     case 4:
+      //     case 5:
+      //     case 6:
+      //     case 7:
+      //     case 8:
+      //     case 9:
+      //     case 10:
+      //     case 11:
+      //       document.write('어린이용 영화 추천');
+      //       break;
+      //     case 12:
+      //     case 13:
+      //     case 14:
+      //     case 15:
+      //     case 16:
+      //     case 17:
+      //       document.write('청소년용 영화 추천');
+      //       break;
+      //     default:
+      //       document.write('성인용 영화 추천');
+      //       break;
+      //   }
+    </script>
+  </body>
+</html>

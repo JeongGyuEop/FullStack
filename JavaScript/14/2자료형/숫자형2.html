@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 주제 : NaN이 발생하는 잘못된 수치 연산의 예
+      const nan1 = 1 * 'hello'; // 정수 곱 문자열 -> 불가능 NaN
+      console.log('nan1 = ' + nan1); // NaN 출력
+
+      const nan2 = 1 - 'hello'; // 정수 빼기 문자열 -> 불가능 NaN
+      console.log('nan2 = ' + nan2); // NaN 출력
+
+      // 정수 합 문자열 -> 가능하지만 정수 1이 문자열로 바뀌어 hello와 합쳐진다.
+      const nan3 = 1 + 'hello';
+      console.log('nan3 = ' + nan3); // 문자열 출력
+      alert('자료형은 ' + typeof nan3 + '입니다');
+
+      const nan4 = 1 / 'hello'; // 정수 나누기 문자열 -> 불가능 NaN
+      console.log('nan4 = ' + nan4); // NaN 출력
+
+      // 결론
+      // 자바스크립트에서는 NaN이라는 값이 있기 때문에 수학연산이 안전
+      // 숫자가 아닌 문자열을 곱하는 등 수학적으로 불가능한 연산을 명령해도
+      // 자바스크립트 해석기는 NaN이라는 값을 반환할 뿐 오류를 발생시키거나
+      // 프로그램 동작을 멈추지 않는다.
+      // 그렇기 때문에 자바스크립트는 다른 언어에 비해 '안전한 수학 연산'이 가능하다.
+    </script>
+  </body>
+</html>

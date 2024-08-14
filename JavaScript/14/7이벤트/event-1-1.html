@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- 
+    동작 설명
+
+      1. 방식 1)event-1-1.html 웹 페이지가 웹 브라우저에 로드되고, 버튼이 HTML 요소에 직접 등록된
+          'onclick' 이벤트 핸들러(alert('HTML Event'))를 실행
+
+      2. 방식 2)이후, JavaScript 코드가 실행되면서 'document.getElementById('myButton').onclick에
+          새로운 핸들러 함수 (alert('DOM Event'))가 등록된다.
+          이로 인해서 방식 1이 방식 2로 인해 덮어 씌워진다.
+
+          따라서 결국 버튼을 클릭하면 'DOM Event'경고 메시지 창이 출력된다. 
+    -->
+
+    <script>
+      // 웹 브라우저 창에 load 이벤트 등록
+      window.onload = function () {
+        // 방식2. DOM을 이용한 이벤트 등록
+        const btn = document.getElementById('myButton');
+        btn.onclick = function () {
+          alert('DOM Event');
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <!-- 방식1. HTML 요소에 직접 이벤트 등록 -->
+    <button id="myButton" onclick="alert('HTML Event')">Click me</button>
+
+    <!--
+    선택한 요소에 이벤트 등록하는 방법 2가지
+
+    // 방식 1. 직접 HTML 요소에 이벤트 등록
+    //     문법 : <태그명 on등록할이벤트종류="이벤트처리할함수호출">텍스트</태그명>
+
+    // 방식 2. DOM을 이용한 이벤트 등록 방식
+    //     문법 : 요소노드선택.on등록할이벤트종류="이벤트처리함수호출"; 
+  --></body>
+</html>

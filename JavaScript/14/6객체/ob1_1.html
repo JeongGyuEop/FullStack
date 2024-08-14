@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 자동차 객체 만들기
+      // let 참조변수명 = { 속성명: 값, 속성명: 값, 속성명: function(){} }
+      let car = {
+        color: '빨강',
+        model: '소나타',
+        type: '가솔린',
+
+        // 기능(메소드, 함수)
+        // 주행가는 기능의 메서드
+        go: function () {
+          document.write('자동차가 주행합니다.', '<br>');
+        },
+
+        // 정지하는 기능의 메서드
+        stop: function () {
+          document.write('자동차가 정지합니다.', '<br>');
+        }
+      }; // 객체 메모리를 닫는 기호
+
+      //--------------------------------------------------------------------------
+      // 위에서 만든 car 객체 메모리의 속성값 얻기
+      // 문법
+      //    car 참조변수명.얻을값이저장된속성명;
+
+      document.write(car.color, '<br>'); // "빨강"
+      document.write(car.model, '<br>'); // "소나타"
+      document.write(car.type, '<br>'); // "가솔린"
+      car.go();
+      car.stop();
+    </script>
+  </body>
+</html>

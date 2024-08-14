@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="parent" style="padding: 20px; background-color: lightblue">
+      Parent
+      <div id="child" style="padding: 20px; background-color: lightcoral">Child</div>
+    </div>
+
+    <script>
+      // 캡처링 단계에서 이벤트 처리
+      //  -> 이벤트리스너메소드 addEventListener는 true로 설정되어 캡처링 단계에서
+      //     이벤트를 처리한다.
+      //     이벤트가 'Child' <div> 요소에 도달하기 전에 'Parent'<div> 요소에서 먼저
+      //     클릭 이벤트를 처리한다.
+      document.getElementById('parent').addEventListener(
+        'click',
+        function () {
+          alert('Parent capturing');
+        },
+        true
+      );
+
+      // 버블링 단계에서 이벤트 처리
+      //  -> 이벤트리스너메소드 addEventListener는 false로 설정되어 버블링 단계에서
+      //     이벤트를 처리한다.
+      //     이벤트가 'Child' <div> 요소에 도달한 후 'Parent'<div> 요소에서 먼저
+      //     클릭 이벤트를 처리한다.
+      document.getElementById('child').addEventListener(
+        'click',
+        function () {
+          alert('Child bubbling');
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

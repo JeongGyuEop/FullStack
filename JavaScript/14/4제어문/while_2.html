@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 문제: while 반복문을 사용하여 숫자 1부터 30까지 숫자 중에서 2의 배수이면서
+      // 6의 배수인 숫자만 반복해서 출력
+      let num = 1;
+      while (num <= 30) {
+        if (num % 2 === 0 && num % 6 === 0) {
+          console.log(num);
+        }
+        num++;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 사이트 방문자에게 좋아하는 숫자를 하나 입력받아 숫자가 짝수인지 홀수인지
+      // if-else 조건문을 사용하여 판단하고, 짝수일 경우 "당신이 좋아하는 숫자는 짝수 입니다."
+      // 홀수일 경우 "당신이 좋아하는 숫자는 홀수 입니다."를 웹 브라우저에 출력.
+
+      let favoriteNum = prompt('좋아하는 숫자를 입력하시오');
+
+      if (favoriteNum % 2 === 0) {
+        document.write('당신이 좋아하는 숫자는 짝수 입니다.');
+      } else {
+        document.write('당신이 좋아하는 숫자는 홀수 입니다.');
+      }
+    </script>
+  </body>
+</html>

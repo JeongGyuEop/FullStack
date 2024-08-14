@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 주제: new 키워드와 기본 객체 메모리를 생성하는 Object() 생성함수를 이용하여
+        개발자가 직접 객체메모리 만들어보기 -->
+    <script>
+      // 현실에 존재하는 TV객체를 모델링하여 속성과 기능을 추출
+      // 속성(데이터) : 너비(30cm), 높이(25cm), 무게(20kg), 색상(흰색)
+      // 기능 : 전원 기능, 채널 기능, 볼륨 기능
+
+      // lgTv 객체 메모리 생성
+      let lgTv = new Object(); // 변수 선언 = new 생성함수();
+
+      // 만들어진 lgTv 객체 메모리에 접근하여 변수와 메소드를 만들어 추가하자
+      // 방법
+      //      new Object(); 에 의해 생성된 객체 메모리의 주소번지가 저장된
+      //      lgTv 참조변수명.생성할_속성명 = 저장_데이터;
+      lgTv.width = '30cm';
+      lgTv.height = '25cm';
+      lgTv.weight = '20kg';
+      lgTv.color = 'white';
+
+      // function Tv() {
+      //   this.width = width;
+      //   this.height = height;
+      //   this.weight = weight;
+      //   this.color = color;
+      // }
+
+      // 생성된 lgTv 객체 메모리 내부에 TV의 전원을 끄는 기능(메서드)를 만들어 추가
+      // 메소드를 만들어 lgTv 객체 메모리에 추가하는 방법
+      //     lgTv 참조변수명.생성할_속성명 = function() { 기능을 코드로 구현; }
+
+      lgTv.on = function () {
+        document.write('전원이 켜졌습니다! <br>');
+      };
+      lgTv.off = function () {
+        document.write('전원이 꺼졌습니다! <br>');
+      };
+      lgTv.channelUp = function () {
+        document.write('채널이 증가합니다! <br>');
+      };
+      lgTv.channelDown = function () {
+        document.write('채널이 감소합니다! <br>');
+      };
+
+      // Tv.prototype.on = function () {
+      //   console.log('전원이 켜졌습니다! <br>');
+      // };
+      // Tv.prototype.off = function () {
+      //   console.log('전원이 꺼졌습니다! <br>');
+      // };
+      // Tv.prototype.channelUp = function () {
+      //   console.log('채널이 증가합니다! <br>');
+      // };
+      // Tv.prototype.channelDown = function () {
+      //   console.log('채널이 감소합니다! <br>');
+      // };
+
+      //------------------------------------------------------------------------------
+      // 위에 만들어 놓은 lgTv 객체 메모리 내부에 있는 속성에 저장된 값 가져오기
+      // 문법
+      //    lgTv 참조 변수명.값이 저장된_속성명;
+      document.write(lgTv.width);
+      document.write('<br>');
+      document.write(lgTv.height);
+      document.write('<br>');
+      document.write(lgTv.weight);
+      document.write('<br>');
+      document.write(lgTv.color);
+      document.write('<br>');
+
+      //------------------------------------------------------------------------------
+      // lgTv 객체 메모리 내부에 있는 기능(메서드) 호출하기
+      // 문법
+      //    lgTv 참조변수명.실행할_메서드();
+      lgTv.on();
+      lgTv.channelUp();
+      lgTv.channelDown();
+      lgTv.off();
+    </script>
+  </body>
+</html>

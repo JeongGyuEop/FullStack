@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/modal-result.css" />
+  </head>
+  <body>
+    <button id="open">프로필 보기</button>
+
+    <div id="modal-box">
+      <div id="modal-contents">
+        <button id="close">&times;</button>
+        <h1 id="title">My profile</h1>
+        <div id="profile">
+          <img src="images/pf.png" alt="도레미" />
+          <div id="desc">
+            <p class="user">이름 : 도레미</p>
+            <p class="user">주소 : somewhere</p>
+            <p class="user">연락처 : 1234-5678</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--
+        모달 창? 화면에 내용이 팝업되면서 키타 내용은 블러 처리되어 
+            팝업된 내용에만 집중할 수 있게 해주는 창 
+            
+        주제 : 프로필보기를 클릭했을 때 모달 박스에 프로필 정보를 보여주자
+    -->
+
+    <script>
+      // 프로필 보기 <button> 선택
+      const open = document.querySelector('#open');
+      // 모달 영역 <div> 선택
+      const modalBox = document.querySelector('#modal-box');
+      // 모달 영역 오른쪽 상단 위쪽 X 디자인 <button> 닫기 버튼 선택
+      const close = document.querySelector('#close');
+
+      // 프로필 보기 <button> 요소에 click 이벤트 등록
+      open.addEventListener('click', () => {
+        modalBox.classList.add('active');
+      });
+
+      // 모달 영역 오른쪽 상단 위쪽 X 디자인 <button> 닫기 버튼 요소에 click 이벤트 등록
+      close.addEventListener('click', () => {
+        // 모달 영역 오른쪽 상단에 x <button>을 클릭하면
+        // <div class="active"> 모달 영역에서 class 속성에 대한 class 속성 제거
+        modalBox.removeAttribute('class');
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // location 객체에서 제공하는 href 속성
+      // - 이 속성을 호출하면 웹 브라우저 주소창에 요청을 위해 입력했던
+      //   전체 요청주소(URL)을 얻을 수 있다.
+
+      // document.write(location.href);
+
+      // location 객체의 href 속성에 재요청할 주소를 저장하면?
+      // - 웹 브라우저 주소창에 자동으로 재요청할 주소가 입력되어 자동으로 재요청한다.
+      location.href = 'https://www.naver.com'; // 재요청할 주소 작성;
+
+      // location 객체의 reload() 메소드를 호출하면?
+      // - 현재 클라이언트가 보고 있는 화면(location.html)을 재요청하기 위해
+      //   자동으로 웹 브라우저 주소창에 현재 보고 있는 화면(location.html)의
+      //   주소가 자동으로 입력되어 자동 재요청하게 된다.(F5를 누른것과 같음)
+      location.reload(); // 새로고침 F5번을 누른것과 같음.
+    </script>
+  </body>
+</html>

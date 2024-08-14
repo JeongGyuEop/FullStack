@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <script>
+    //함수 표현식으로 함수 정의하기
+         //  변수 = 네이밍 함수
+    const gugudan = function naming(){ //네이밍 함수 
+
+      for(let i=1;  i<=9;  i++){
+          console.log(`3 * ${i} = ${3 * i}`);
+      }
+    };
+
+    //함수 호출
+    //변수명();
+    gugudan();
+
+    console.log("----------------------------------");
+
+        // 변수명 =  익명함수
+    const gugudan2 = function(){  //익명함수 
+
+      for(let i=1;  i<=9;  i++){
+          console.log(`3 * ${i} = ${3 * i}`);
+      }
+
+    };
+
+    //함수 호출
+    //변수명();
+    gugudan2();
+
+    /*
+      함수 표현식으로 함수를 정의할때는 const키워드를 주로 사용합니다.
+      var, let키워드를 사용해도 문제없지만,
+      const키워드로 정의하는 것이 좋습니다.
+      보통 함수는 일관된 목적을 가진 코드 집합이라서 재정의 해서도, 재할당해서도 안되는
+      경우가 많기 때문입니다.
+
+
+
+    */
+
+
+
+
+
+
+  </script>
+</body>
+</html>

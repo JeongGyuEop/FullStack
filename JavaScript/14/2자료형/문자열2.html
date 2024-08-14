@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @font-face {
+        font-family: 'Orbit';
+        src: url('./fonts/Orbit/Orbit-Regular.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'CustomFont';
+        src: url('./fonts/PlaywriteCU-Light.ttf') format('truetype');
+      }
+      #lee {
+        text-align: center;
+        color: blueviolet;
+        font-size: 50px;
+        font-family: 'CustomFont', sans-serif;
+      }
+      #kim {
+        text-align: center;
+        color: blueviolet;
+        font-size: 50px;
+        font-family: 'Orbit', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // let예약어로 name이라는 이름의 변수 선언 동시에
+      // 이정환 문자열 저장
+      let name = 'Lee jung hwan ';
+
+      // let 예약어로 welcomeText 라는 이름의 변수 선언 동시에
+      // 님 반가워요! 문자열 저장
+      let welcomeText = 'Welcome!!';
+
+      // let 예약어로 resultWelcomeText 라는 이름의 변수 선언한는 동시에
+      // name 변수에 저장된 값 + welcomeText 변수에 저장된 값을 + 연산한
+      // 하나의 문자열dmf resultWelcomeText 변수에 저장
+      let resultWelcomeText = name + welcomeText;
+
+      // console.log()구문을 이용해 resultWelcomeText 변수에 저장된 값 출력
+      console.log(resultWelcomeText);
+
+      console.log(typeof resultWelcomeText); // string
+
+      document.write('<p id="lee">' + resultWelcomeText + '<p>');
+
+      // ----------------------------------------------------------------
+
+      // 큰따옴표나 작은 따옴표 말고 백틱 ` `을 이용해도 문자열로 만들 수 있다.
+      let guestName = '이정환';
+
+      // 백틱 ` ` 기호로 감싼 문자열은 따옴표로 감싼 문자열과 동일하지만
+      // ${ }안에 변수명을 작성해서 변수에 저장된 값을 불러와
+      // 문자열로 변환한다.
+      let greetingText = `welcome ${guestName}!`;
+      console.log(greetingText); // welcome 이정환!
+
+      // -----------------------------------------------------------------
+
+      // name 변수를 선언하는 동시에 문자열 김길동 저장
+      let name2 = '김길동';
+
+      // location2 변수를 선언하는 동시에 문자열 역곡 저장
+      let location2 = '역곡';
+
+      // introduce 변수를 선언하는 동시에
+      // 백틱 ` ` 을 이용해 name 변수에 저장된 문자열 불러오고
+      //                        은 작성 후
+      //                        location2 변수에 저장된 문자열을 불러오고
+      //                        에 살고 있습니다. 작성한 전체 문자열을 만들어서 저장
+      let introduce = `${name2}은 ${location2}에 살고 있습니다.`;
+
+      // introduce 변수에 저장된 만들어진 전체 문자열 웹브라우저에 출력
+      console.log(introduce);
+      document.write("<p id='kim'>" + introduce + '</p>');
+    </script>
+  </body>
+</html>

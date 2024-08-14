@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      /*바깥 쪽 for에서 9반복되면서 출력되는 모든 div를 한번에 선택해서 가져와*/
+      div {
+        display: inline-block; /*인라인 블록으로 설정하여 가로로 나열되도록 합니다.*/
+        border: 1px solid #ccc; /*경계선을 설정함*/
+        /*패딩을 설정합니다.  위쪽 0, 오른쪽 20px,  아래쪽 30px , 왼쪽 20px*/
+        padding: 0 20px 30px 20px;
+        /*마진을 설정합니다.  모든 방향 15px로 바깥여백 띄우기*/
+        margin: 15px;
+        /*행간을 설정합니다. 2배*/
+        line-height: 2;
+
+      }
+      /*div태그 내부의 h3태그에 스타일 적용*/
+      div h3 {
+        text-align: center; /*텍스트 가운데 정렬*/
+        font-weight: bold; /*글꼴을 굵게 설정*/
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <h1>구구단</h1>
+
+
+    <script>
+      //주제 : 중첩 for문을(바깥쪽for문안에 안쪽for문 같이사용) 이용하여
+      //       CSS를 반영한 구구단 반복 출력 만들기
+
+      let i, j; // i=> 바깥쪽 for에서 사용
+                // j=> 안쪽 for에서 사용
+
+      for (i = 1; i <= 9; i++) {//바깥쪽 for
+        
+        document.write("<div>");
+        document.write("<h3>" + i + "단</h3>");
+        
+        for(j = 1;  j <= 9;  j++){//안쪽 for
+            document.write(i + " X " + j + " = " + i*j + "<br>");
+        }
+
+        document.write("</div>");
+      }
+    </script>
+  </body>
+</html>

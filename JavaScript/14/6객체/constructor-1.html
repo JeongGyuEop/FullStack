@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 주제. 생성자 함수(설계도)를 만들고 설계도를 이용하여 객체 만들기
+      //    생성자 함수(설계도)만드는 문법
+
+      //      방법 1.
+      //        function 생성자 함수명(매개변수) {
+      //          this.키1 : 값1,
+      //          this.키2 : 값2,
+      //          ...
+      //          this.메서드1 : function() {...},
+      //          this.메서드2 : function() {...},
+      //          ...
+      //        }
+
+      //      방법 2. 표현식 문법을 사용해서 생성자 함수 만들기
+      //        const 생성자함수명 = function(매개변수) {
+      //          this.키1 : 값1,
+      //          this.키2 : 값2,
+      //         ...
+      //          this.��서드1 : function() {...},
+      //          this.��서드2 : function() {...},
+      //         ...
+      //        }
+
+      // 예제 : Book() 생성자 함수(설계도) 만들고, new 예약어 사용하여 객체 만들기(방법 1 사용)
+      function Book(title, pages, done = false) {
+        // 객체의 변수 = 매개변수
+        this.title = title;
+        this.pages = pages;
+        this.done = done;
+        // 객체의 메서드
+        this.finish = function () {
+          let str = '';
+          this.done === false ? (str = '읽는 중') : (str = '완독');
+          return str;
+        };
+      }
+      // 위 만들어진 (생성자 함수)설계도를 호출해서 하나의 책 객체 메모리 생성
+      let book1 = new Book('웹 표준의 정석', 648, false);
+
+      console.log(`${book1.title} - ${book1.pages}쪽 - ${book1.finish()}`);
+
+      // 위 만들어진 (생성자 함수)설계도를 호출해서 하나의 책 객체 메모리 생성
+      let book2 = new Book('점프 투 파이썬', 360, true);
+
+      console.log(`${book2.title} - ${book2.pages}쪽 - ${book2.finish()}`);
+    </script>
+  </body>
+</html>

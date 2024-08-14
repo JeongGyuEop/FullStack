@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 문제 : 사이트 방문자에게 현재 몇월 달인지 입력받는다.
+      //       입력 받은 월에 따라 각각 다른 문장을 출력한다.
+
+      // 순서 1. 사이트 방문자에게 현재 월을 입력받아 mon변수에 저장
+      let mon = prompt('현재 월을 입력해주세요.');
+      mon = parseInt(mon, 10);
+      switch (parseInt(mon)) {
+        case 9:
+        case 10:
+        case 11:
+          document.write('독서의 계절 가을이네요!!');
+          break;
+        case 6:
+        case 7:
+        case 8:
+          document.write('여행가기 좋은 여름이네요!!');
+          break;
+        case 3:
+        case 4:
+        case 5:
+          document.write('햇살 가득한 봄이네요!!');
+          break;
+        case 12:
+        case 1:
+        case 2:
+          document.write('스키의 계절 겨울이네요!!');
+          break;
+        default:
+          document.write('올바른 월을 입력해주세요.');
+          break;
+      }
+
+      // switch (mon) {
+      //   case 9 <= mon && mon <= 11:
+      //     // 입력 받은 현재 월이 9~11월 사이라면?
+      //     document.write('독서의 계절 가을이네요!!');
+      //     break;
+      //   case 6 <= mon && mon <= 8:
+      //     // 입력받은 현재 월이 6~8월 사이라면?
+      //     document.write('여행가기 좋은 여름이네요!!');
+      //     break;
+      //   case 3 <= mon && mon <= 5:
+      //     // 입력 받은 현재 월이 3~5월 사이라면?
+      //     document.write('햇살 가득한 봄이네요!!');
+      //     break;
+      //   case 12 == mon || mon == 1 || mon == 2:
+      //     // 입력 받은 현재 월이 12, 1, 2월 사이라면?
+      //     document.write('스키의 계절 겨울이네요!!');
+      //     break;
+      //   default:
+      //     // 입력 받은 현재 월이 올바르지 않은 경우 (1~12 범위 밖)
+      //     document.write('올바른 월을 입력해주세요.');
+      //     break;
+      // }
+    </script>
+  </body>
+</html>

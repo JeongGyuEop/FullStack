@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/event-5.css" />
+  </head>
+  <body>
+    <div id="contents">
+      <input type="text" id="word" />
+      <button id="bttn">글자 수 확인</button>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+      // 참고. 입력한 문자열의 문자 갯수(길이)를 알아내기 위해 length 프로퍼티 사용
+      const button = document.querySelector('#bttn');
+      button.addEventListener('click', () => {
+        // 텍스트 필드 입력한 내용 얻기
+        const textField = document.querySelector('#word').value;
+        // 결과값을 표시할 <div id="result"></div> 요소를 가져와 저장
+        const result = document.querySelector('#result');
+
+        // 텍스트 필드에 입력한 전체 문자열의 문자 길이(갯수)
+        let count = textField.length;
+
+        // 결과값 표시
+        result.innerText = `글자 갯수 : ${count}`;
+      });
+    </script>
+  </body>
+</html>

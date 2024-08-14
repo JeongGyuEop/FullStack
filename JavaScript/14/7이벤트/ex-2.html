@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    .convert {
+      background-color: #222;
+      color: #fff;
+    }
+  </style>
+  <body>
+    <p>버튼을 클릭하면 배경색과 글자색이 바뀝니다.</p>
+    <button>Click</button>
+
+    <script>
+      // addEventListener메소드를 사용해서 버튼을 클릭했을 때 문서의 배경색과
+      // 글자색을 토글하는 코드를 작성하자.
+      const button = document.querySelector('button');
+
+      // 미리 .convert 스타일을 만들어 놓고 토글하기
+      button.addEventListener('click', function () {
+        // document.body -> <body>요소 선택
+        // document.body.classList.toggle('convert'); -> <body> 요소의 class
+        // 리스트에서  'convert' 클래스를 토글한다.
+        // 만약 <body> 요소에 'convert' class가 없으면 추가하고,
+        // 만약 <body> 요소에 'convert' class가 있으면 삭제한다.
+        document.body.classList.toggle('convert');
+      });
+
+      // 이벤트 처리 함수를 화살표 함수 형태로 처리
+      // document.querySelector('button').addEventListener('click', () => {
+      //   document.body.style.backgroundColor = 'green';
+      // });
+
+      // 이벤트 처리 함수를 익명함수 function 형태로 처리
+      // document.querySelector('button').addEventListener('click', function() {
+      //   document.body.style.backgroundColor = 'green';
+      // })
+
+      // 이미 만든 함수
+      // function changeBackground() {
+      //   document.body.style.backgroundColor = 'green';
+      // }
+
+      document.querySelector('button').addEventListener('click', changeBackground);
+    </script>
+  </body>
+</html>

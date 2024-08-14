@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box-1">
+      <p class="text">text-1</p>
+      <p class="text">text-2</p>
+    </div>
+    <div class="box-2">
+      <p class="text">text-3</p>
+      <p class="text">text-4</p>
+    </div>
+    <script>
+      // querySelectorAll 메소드 호출 시 class 속성에 부여한 값이 box-1인
+      // <div class="box-1">
+      //   <p class="text">text-1</p>
+      //   <p class="text">text-2</p>
+      // </div> 부모요소노드를 먼저 선택해 오되
+      // 빈공백(하위 선택자)를 이용하여 하위 모든 자식 p 요소 노드를 선택해 오는데
+      // 그 중에서 class 속성값이 text인
+      // <p class="text">text-1</p>
+      // <p class="text">text-2</p>
+      // 자식요소노드 두쌍을 모두 NodeList 객체배열에 담아
+      // 최종 NodeList 객체 배열을 반환해 준다.
+      const el3 = document.querySelectorAll('.box-1 .text');
+      console.log(el3);
+
+      // getElementByClassName 메소드 호출 시 class 속성에 부여한 값 "box-1"을 전달하면
+      // "box-1"과 일치하는
+      // <div class="box-1">
+      //   <p class="text">text-1</p>
+      //   <p class="text">text-2</p>
+      // </div>
+      // 요소 노드를 배열에 담에 선택해오는데 .children 속성을 호출하여 <div> 안에 있는 자식
+      // <p class="text">text-1</p>
+      // <p class="text">text-2</p>
+      // 들을 배열에 담아 최종 선택해 온다.
+      const el2 = document.getElementsByClassName('box-1')[0].children;
+      console.log(el2);
+
+      // 메소드 호출 시 class 속성값이 box-1인 <div> 요소 노드 한쌍을 선택해서 반환
+      // <div class="box-1">
+      //   <p class="text">text-1</p>
+      //   <p class="text">text-2</p>
+      // </div>
+      const el = document.querySelector('.box-1');
+      console.log(el);
+    </script>
+  </body>
+</html>

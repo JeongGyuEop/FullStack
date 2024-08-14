@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="css/event.css">
+
+</head>
+<body>
+  BODY
+    <div>
+      DIV
+      <section>
+          SECTION
+          <p>
+            p
+          </p>
+      </section>
+    </div>
+    <script>
+
+        //모든 요소를 선택해서 가져와 elements상수에 배열형태로 저장
+        const elements = document.querySelectorAll("*");
+
+        //NodeList 유사배열에 저장된 선택한 모든 요소노드를 순회하면서
+        //click이벤트를 등록하고 각 click이벤트가 발생했을때..
+        //event객체의 target속성과 , event객체의 currentTarget속성을 호출한 값 출력
+    
+        for( let element of  elements ) {
+              element.addEventListener("click", e =>
+                  console.log(`event.target : ${e.target.tagName},
+                               event.currentTarget : ${e.currentTarget.tagName}`), true
+              );
+        }
+     
+     
+     
+
+    </script>
+
+
+</body>
+</html>
+
+<!--
+테스트
+가장 안쪾의 <p>P</p>영역을 클릭해보세요
+
+설명 :버블링을 기본으로 하므로 P영역에서부터 최상위 요소까지 이벤트처리가 전파될것입니다
+      console창을 보면 event.target속성을 호출하면 계속 P가 출력 되는데,
+                      event.currentTarget속성은 P부터 시작해서 HTML까지
+                      차례대로 버블링되게 출력됩니다.
+
+       event.target속성을 호출하면 처음 이벤트가 발생한 대상요소를 반환
+       event.currentTarget속성은 이벤트가 부모요소로 전파되면서 
+                          현재 이벤트 처리함수의 실행코드가 실행되는 대상요소를 반환
+
+----------------------
+console탭에 출력결과 
+
+propagation.js:7 event.target : P, event.currentTarget : P
+propagation.js:7 event.target : P, event.currentTarget : SECTION
+propagation.js:7 event.target : P, event.currentTarget : DIV
+propagation.js:7 event.target : P, event.currentTarget : BODY
+propagation.js:7 event.target : P, event.currentTarget : HTML
+
+
+
+-->
+

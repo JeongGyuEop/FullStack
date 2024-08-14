@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 논리연산자?
+      // - 피연산자를 논리적으로 평가한 뒤, 조건에 맞는 피연산자를 반환하는
+      //   연산을 수행하는 연산자
+
+      // and연산자 &&는 피연산자를 왼쪽부터 평가하여 평가 결과가 거짓이면 거짓이
+      // 나온 피연산자를 즉시 반환하고, 거짓이 아니면 마지막에 평가되는 피연산자를 반환.
+      document.write(true && true, '<br/>');
+      document.write(true && true && true, '<br/>');
+
+      // 논리연산자에는 한 가지 특징이 있다. 어떤 피연산자든 모두 논리형으로 평가한다.
+      // 숫자형을 쓰거나 문자열으르 쓰거나 전부 논리값으로 평가한다.
+      // 자바스크립트의 자료형 중 ""빈 문자열, undefined, 0, null 만 거짓으로 평가되고
+      // 나머지는 참으로 평가된다.
+      document.write('' && 'cat', '<br>'); // 비어있는 문자 출력
+      // 이유 : && 연산자는 첫 번째 피연산자가 false(거짓) 이므로 두번째 피연산자를
+      //        평가하지 않고 첫 번째 피연산자 ""를 반환한다.\
+
+      document.write(undefined && 'cat', '<br>'); // undefined 출력
+      //               false
+      // 이유 : 위와 같다
+
+      document.write(0 && 'cat', '<br>'); // 0 출력
+      // 위와 같은 이유
+
+      document.write(null && 'cat', '<br/>'); // null 출력
+      // 위와 같은 이유
+
+      //------------------------------------------------------------------------
+      document.write('<br/>');
+
+      // 논리연산자가 반드시 true, false를 반환하는 것이라 평가 결과에 따라 피연산자를
+      // 반환하는 특징이 있다.
+      document.write('cat' && 'dog', '<br>'); // "dog" 출력
+      //             true  &&  true
+      // cat 은 자바스크립트에서 참으로 평가.(빈공백 X)
+      // && 연산자는 첫 번째 피연산자가 참이므로 두 번째 피연산자 "dog"를 평가
+      // dog 도 참으로 평가되므로, 두 번째 피연산자 dog을 반환한다.
+
+      document.write('cat' && 'dog' && 'bird', '<br>'); // "bird" 출력
+      //               true && true && true
+      // 이유는 위와 같음
+
+      //----------------------------------------------------------------------------
+      document.write('<br>');
+
+      // || 연산자는 피연산자를 왼쪽부터 평가해 참으로 평가된 피연산자를 즉시 반환한다.
+      // 만약 모든 피연산자가 참으로 평가되지 않으면 마지막에 평가된 피연산자를 반환
+      document.write(false || true || false, '<br>'); // true
+
+      document.write(false || false, '<br>'); // false
+
+      document.write(false || 'cat', '<br>'); // cat
+      // 첫 번째 피연산자 false는 거짓으로 평가된다.
+      // || 연산자는 첫 번째 피연산자가 거짓이므로 두 번째 피연산자를 평가한다.
+      // 두번째 피연산자 "cat"은 참으로 평가되므로 || 연산자는 cat을 반환한다.
+
+      document.write('dog' || 'cat', '<br>');
+      // || 연산자는 첫 번째 피연산자 "dog" 가 참이므로 두 번째 피연산자를 평가하지 않고
+      // 첫 번째 피연산자 dog를 반환해서 출력한다.
+
+      // 결론 : || 연산자는 첫 번째 피연산자가 참이면, 두 번째 피연산자를 평가하지 않고
+      //        첫 번째 피연산자를 반환한다.
+      //        첫 번째 피연산자가 거짓이면 두 번째 피연산자를 평가하고 그 값을 반환한다.
+
+      //----------------------------------------------------------------------------
+      document.write('<br/>');
+
+      // ! 연산자는 피연산자나 식을 평가한 논리값의 반대값(true -> false, flase -> true)
+      // 를 반환한다.
+      document.write(!false, '<br>'); // true
+
+      document.write(!(10 < 20), '<br>'); // false
+
+      document.write(!(10 < 20 && 20 < 10), '<br>'); // true
+
+      // 다만 ! 연산자는 괄호를 어떻게 묶는지에 따라 결과 값이 달라질 수 있다.
+      // 예를 들어 !true && false 식과 !(true && false) 식은 결과 값이 다를 수 있다.
+      document.write(!true && false, '<br>'); // false
+      document.write(!(true && false), '<br>'); // true
+
+      document.write(10 !== '10');
+    </script>
+  </body>
+</html>

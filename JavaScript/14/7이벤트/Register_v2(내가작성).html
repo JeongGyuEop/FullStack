@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+
+    <style>
+      span {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+	  onkeyup 키보드 관련이벤트
+	  -> 키를 누르고 뗸 행동(이벤트)
+
+ -->
+
+    <table border="1" align="center">
+      <tr>
+        <td colspan="2" align="center">회원가입</td>
+      </tr>
+      <tr>
+        <td>*이름</td>
+        <td>
+          <input type="text" name="uName" id="uName" onkeyup="validateName();" placeholder="김개똥" />
+          <span id="name">이름을 입력해주세요</span>
+        </td>
+      </tr>
+      <tr>
+        <td>*ID</td>
+        <td>
+          <input type="text" name="uID" id="uID" onkeyup="validateID();" placeholder="admin" />
+          <span id="id">ID를 입력해주세요</span>
+        </td>
+      </tr>
+      <tr>
+        <td>*비밀번호</td>
+        <td>
+          <input type="password" name="uPWD" id="uPWD" onkeyup="validatePassword();" placeholder="1234" />
+          <span id="pwd">비밀번호를 입력해주세요</span>
+        </td>
+      </tr>
+      <tr>
+        <td>*비밀번호 확인</td>
+        <td>
+          <input type="password" name="uPWD_Confirm" id="uPWD_Confirm" onkeyup="validatePasswordConfirmation();" />
+          <span id="pwd_confirm">비밀번호 확인란 입력해주세요</span>
+        </td>
+      </tr>
+      <tr>
+        <td>*직업</td>
+        <td>
+          <select name="work" id="work" onchange="validateWork()">
+            <option value="직업명" selected>직업명</option>
+            <option value="기타">기타</option>
+            <option value="회사원">회사원</option>
+            <option value="학생">학생</option>
+          </select>
+          <span id="work-error">직업 하나를 선택해 주세요</span>
+        </td>
+      </tr>
+      <tr>
+        <td>*성별</td>
+        <td>
+          남자<input type="radio" name="sex" id="s1" value="male" onchange="validateGender()" /> 여자<input
+            type="radio"
+            name="sex"
+            id="s2"
+            value="female"
+            onchange="validateGender()"
+          />
+          <span id="gender-error">성별을 체크해 주세요</span>
+        </td>
+      </tr>
+      <tr>
+        <td>*취미</td>
+        <td>
+          <input type="checkbox" name="hobby" id="h1" value="독서" onchange="validateHobby()" />독서
+          <input type="checkbox" name="hobby" id="h2" value="등산" onchange="validateHobby()" />등산
+          <input type="checkbox" name="hobby" id="h3" value="낚시" onchange="validateHobby()" />낚시
+          <span id="hobby-error">취미를 하나이상 체크 해 주세요</span>
+        </td>
+      </tr>
+      <tr>
+        <td>*가입동기</td>
+        <td>
+          <textarea
+            rows="20"
+            cols="100"
+            name="motivation"
+            onkeyup="textArea()"
+            placeholder="가입동기를 두줄 이상 입력 하시오."
+          ></textarea>
+          <span id="motivation-error">가입 동기를 입력해주세요</span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="button" value="가입" onclick="validateForm()" />
+        </td>
+      </tr>
+    </table>
+
+    <script type="text/javascript">
+      // 이름 유효성 검사
+      // 이름 입력 공간 <input>에 이름을 입력하는 순간 호출되는 함수
+      function validateName() {
+        // <input type="text" name="uName" id="uName" onkeyup="validateName();" placeholder="김개똥" />
+        // id 속성값이 uName인 <input>을 선택해서 가져와 변수에 저장
+        let inputName = document.getElementById('uName');
+
+        // <span id="name">이름을 입력해주세요</span>선택해서 가져와 변수에 저장
+        let nameError = document.getElementById('name');
+
+        // 이름을 입력했는지 안했는지 검사
+        // 이름 입력을 하지 않았다면?
+        if (inputName.value.trim() === '') {
+          // <span id="name"></span>요소의 텍스트 노드 위치에
+          // 메시지를 보여주자.
+          nameError.innerText = '이름을 입력해주세요';
+        } else {
+          // 이름을 입력했다면?
+          // 이름을 3자 ~ 7자 사이로 입력하지 않았다면?
+          if (inputName.value.length < 3 || inputName.value.length > 7) {
+            // <span id="name"> 이름을 입력해주세요</span> 영역의 텍스트를
+            // 이름은 3자에서 7자 사이로 입력해 주세요' 문자열을 넣어서 메세지를 보여주자
+            nameError.innerText = '이름은 3자에서 7자 사이로 입력해 주세요';
+          } else {
+            // 이름 입력을 3자 ~ 7자 사이로 입력했다면?
+            // <span id="name"> 이름을 입력해주세요</span> 영역의 텍스트를
+            // 빈공백 '' 문자열을 넣어서 메세지를 보여주지 말자
+            nameError.innerText = '✅';
+          }
+        }
+      }
+
+      //----------------------------------------------------------------
+      // ID 유효성 검사
+      function validateID() {
+        const idInput = document.getElementById('uID');
+        const idError = document.getElementById('id');
+
+        if (idInput.value.length < 3 || idInput.value.length > 7) {
+          idError.textContent = 'ID는 3자 ~ 7자 사이로 입력하세요.';
+          // idInput.focus();
+          return false;
+        } else {
+          idError.textContent = '✅';
+        }
+      }
+
+      //----------------------------------------------------------------
+      // 비밀번호 유효성 검사
+      function validatePassword() {
+        const pwdInput = document.getElementById('uPWD');
+        const pwdError = document.getElementById('pwd');
+
+        if (pwdInput.value.length < 4 || pwdInput.value.length > 10) {
+          pwdError.textContent = '비밀번호는 4자 ~ 10자 사이로 입력하세요.';
+          return false;
+        } else {
+          pwdError.textContent = '';
+          return true;
+        }
+      }
+
+      //----------------------------------------------------------------
+      // 비밀번호 확인 유효성 검사
+      function validatePasswordConfirmation() {
+        const pwdInput = document.getElementById('uPWD');
+        const pwdError = document.getElementById('pwd');
+        const pwdConfirmInput = document.getElementById('uPWD_Confirm');
+        const pwdConfirmError = document.getElementById('pwd_confirm');
+        if (validatePassword() === false) {
+          pwdConfirmError.innerText = '';
+        } else if (pwdInput.value !== pwdConfirmInput.value) {
+          pwdConfirmError.textContent = '비밀번호와 비밀번호 확인이 일치하지 않습니다.❌';
+          pwdError.textContent = '비밀번호와 비밀번호 확인이 일치하지 않습니다.❌';
+          pwdConfirmError.style.color = 'red';
+          pwdError.style.color = 'red';
+        } else if (pwdConfirmInput.value === '') {
+          pwdConfirmError.textContent = '비밀번호 확인을 입력하세요';
+        } else {
+          pwdConfirmError.textContent = '비밀번호와 비밀번호 확인이 일치합니다. ✅';
+          pwdError.textContent = '비밀번호와 비밀번호 확인이 일치합니다. ✅';
+          pwdConfirmError.style.color = 'green';
+          pwdError.style.color = 'green';
+        }
+      }
+
+      //----------------------------------------------------------------
+      // 직업 유효성 검사
+      const inputWork = document.getElementById('work');
+      inputWork.addEventListener('change', () => {
+        const workSelect = document.getElementById('work');
+        const workError = document.getElementById('work-error');
+
+        if (workSelect.value === '직업명') {
+          workError.textContent = '직업을 선택하세요.';
+        } else {
+          workError.textContent = '✅';
+        }
+      });
+
+      //----------------------------------------------------------------
+      // 성별 유효성 검사
+      const inputSex = document.getElementsByName('sex');
+      const genderError = document.getElementById('gender-error');
+      let isCheckedSex = false;
+      // id 값을 가져오는 것이 아닌 name값을 getElementsByName()으로 가져오면
+      // 유사배열 형태이기 때문에 forEach 또는 Array.from을 사용하여 배열로
+      // 변환하여 .addEventListener를 호출하여 사용한다.
+      inputSex.forEach(radio => {
+        radio.addEventListener('change', () => {
+          isCheckedSex = true;
+          genderError.textContent = '✅';
+        });
+      });
+
+      //----------------------------------------------------------------
+      // 취미 유효성 검사
+      const hobbyCheckbox = document.getElementsByName('hobby');
+      const hobbyError = document.getElementById('hobby-error');
+      let hobbyCount = 0;
+      hobbyCheckbox.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) {
+            hobbyCount++;
+          } else {
+            hobbyCount--;
+          }
+          if (hobbyCount > 0) {
+            hobbyError.textContent = '✅';
+          } else {
+            hobbyError.textContent = '취미를 하나 이상 체크 해 주세요';
+          }
+        });
+      });
+
+      //----------------------------------------------------------------
+      // 가입동기 유효성 검사
+      const motivationTextarea = document.getElementsByName('motivation');
+      const motivationError = document.getElementById('motivation-error');
+
+      motivationTextarea.forEach(motive => {
+        motive.addEventListener('keyup', () => {
+          if (motive.value.trim() !== '') {
+            motivationError.innerText = '✅';
+          } else {
+            motivationError.innerText = '가입 동기를 입력해주세요';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

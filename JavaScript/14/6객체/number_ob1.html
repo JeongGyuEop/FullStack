@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Number 객체 메모리 생성 방법
+      // 숫자를 변수에 저장시키면 된다.
+      //    예) let num = 3.456;
+
+      let num1 = 3.456789;
+      let num2 = 700000;
+      let num3 = '30.5px';
+      let num4 = 40;
+
+      // toFixed(반올림할 자리수) 메서드
+      // num1 변수에 저장된 값 3.456789를 지정한 고정 소수점 자리 만큼 반올림하여 표기
+      // 소수점 둘째 자리까지 반올림되어 다음과 같이 표기
+      // 3.456789에서 소수점 세째자리에서 반올림하여 3.46으로 만들어 반환.
+      document.write(num1.toFixed(2), '<br>'); // 3.46
+
+      // num1 변수에 저장된 값 3.456789 숫자를 문자열 "3.456789"로 변환
+      document.write(num1.toString(), '<br>'); // "3.456789"
+
+      // num4 변수의 Number 객체 메모리에 저장된 40값 반환
+      document.write(num4.valueOf(), '<br>');
+
+      //-----------------------------------------------------------------------------
+      // Number 객체 메모리에 만들어진 메서드가 아니라
+      // 함수 자체로 만들어진 함수를 호출해보자
+      // let num3 = "30.5px";
+      // num3 변수에 저장된 "30.5px" 문자열에서 30 숫자만 추출해서 반환
+      document.write(parseInt(num3), '<br>'); // 30
+
+      // num3 변수에 저장된 "30.5px" 문자열을 parseInt 함수를 호출할 때 매개변수로
+      // 전달하면 정수 30 숫자를 반환하고, num4 변수에 저장된 40과 더해보자.
+      // 최종 70이 출력되는지 확인
+      document.write(parseInt('30.5px') + num4, '<br>'); // 70
+
+      // num3 변수에 저장된 "30.5px" 문자열에서 실수만 추출해서 30.5를 반환
+      // num4 변수에 저장된 40과 더한다.
+      // 최종 70.5가 출력되는지 확인
+      document.write(parseFloat('30.5px') + num4, '<br>'); // 70.5
+    </script>
+  </body>
+</html>

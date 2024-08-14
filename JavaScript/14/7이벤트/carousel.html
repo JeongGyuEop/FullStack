@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/carousel.css" />
+  </head>
+  <body>
+    <p>좌우 화살표를 눌러보세요</p>
+
+    <!-- 캐러셀 영역 -->
+    <div id="container">
+      <!-- 왼쪽 화살표 -->
+      <div class="arrow" id="left">&lang;</div>
+
+      <!-- 오른쪽 화살표 -->
+      <div class="arrow" id="right">&rang;</div>
+    </div>
+
+    <script>
+      // 캐러셀 영역 <div id="container"></div> 선택
+      const container = document.querySelector('#container');
+
+      // 이미지명의 문자열을 저장한 배열
+      const pics = ['pic-1.jpg', 'pic-2.jpg', 'pic-3.jpg', 'pic-4.jpg', 'pic-5.jpg'];
+      //                 0          1           2           3           4         index
+
+      // 캐러셀 영역에 배경이미지를 첫 번째 이미지 기본으로 표시
+      container.style.backgroundImage = `url('images/${pics[0]}')`;
+
+      // <화살표 <div>, > 화살표 <div> 모두 배열에 담아서 선택해 온다.
+      const arrows = document.querySelectorAll('.arrow');
+
+      let i = 0; // 배열의 index 저장
+
+      // 배열
+      // <div class="arrow" id="left">&lang;</div>
+      // <div class="arrow" id="right">&rang;</div>
+      arrows.forEach(arrow => {
+        arrow.addEventListener('click', e => {
+          // 이벤트가 발생한 왼쪽 <div>를 선택해서 가져와
+          // 왼쪽 화살표 영역을 클릭했다면? if문
+          if (e.target.id === 'left') {
+            i--; // index 1 감소
+
+            // i가 0 이하일 때
+            if (i < 0) {
+              i = pics.length - 1;
+            }
+            container.style.backgroundImage = `url('images/${pics[i]}')`; // 캐러셀 영역에 i번째 이미지 표시
+          } else if (e.target.id === 'right') {
+            // 오른쪽 화살표 영역을 클릭했다면?
+            i++; // index 1 증가
+
+            // i가 pics.length - 1 이상일 때 -> 마지막 이미지라면?
+            if (i >= pics.length) {
+              i = 0; // 첫 번째 이미지 명이 저장된 index로 만들어주자
+            }
+            container.style.backgroundImage = `url('images/${pics[i]} ')`; // 캐러셀 영역에 i번째 이미지 표시
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

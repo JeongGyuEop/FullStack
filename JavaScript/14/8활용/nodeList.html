@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>노드 리스트 살펴보기</h1>
+    <p>HTML</p>
+    <p>CSS</p>
+    <p>JavaScript</p>
+    <!-- <p>"TypeScript"</p> 추가-->
+
+    <script>
+      // 1. 요소노드 만들기 - createElement() 메소드
+      //     기본문법   ->    document.createElement(생성할 요소 노드명);
+      let newP = document.createElement('p'); // <p></p>
+
+      // 2. 텍스트노드 만들기 - createTextNode() 메소드
+      //     기본문법   ->    document.createTextNode(텍스트);
+      let textNode = document.createTextNode('TypeScript'); // "TypeScript"
+
+      // 3. 자식 노드 연결하기 - appendChild() 메소드
+      //     기본문법   ->    부모노드.appendChild(자식노드);
+      // <p></p> 부모노드.appendChild("TypeScript")
+      newP.appendChild(textNode);
+      // <p>"TypeScript"</p>
+
+      // 4. 3번에서 만든 <p>"TypeScript"</p>생성한 요소노드전체를
+      // body 부모요소노드에 연결해서 추가!
+      document.body.appendChild(newP); // <body></body>.appendChild(<p>"TypeScript"</p>);
+    </script>
+  </body>
+</html>
+
+<!--
+                                      DOM 트리구조
+
+                                        document 
+                                
+            DOCTYPE                                           html
+
+                                            head                                   body
+
+                              meta           meta         title               h1    p    p   p   p
+                                                                                                (새로 추가된 p)
+                            charset      name content     Document                                TypeScript
+
+
+-->

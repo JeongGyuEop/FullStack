@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .red-color {
+        color: red;
+      }
+      .fz20 {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="text">text</p>
+
+    <script>
+      // <p id="text">text</p>
+      const pEl = document.querySelector('#text');
+
+      // <p id="text" class="red-color">text</p>
+      // pEl.classList.add('red-color');
+      // <p id="text" class="red-color fz20">text</p>
+      // pEl.classList.add('fz20');
+
+      // 한 줄을 작성해서 red-color와 fz20을 추가하는 방법
+      pEl.classList.add('red-color', 'fz20'); // red-color, fz20 class를 pEl에 추가
+
+      // 적용된 class 속성에 대한 값을 삭제하고 싶을 때 classList 속성의 remove() 메소드를 사용하자.
+      // pEl.classList.remove('red-color'); // red-color class를 pEl에서 삭제
+      // pEl.classList.remove('fz20'); // fz20 class를 pEl에서 삭제
+      pEl.classList.remove('red-color', 'fz20'); // <p id="text" class>text</p>
+
+      // 1초 간격으로 1초마다 toggle() 메소드 반복 호출! 실행!
+      window.setInterval(function () {
+        pEl.classList.toggle('red-color'); // red-color class를 pEl toggle
+        pEl.classList.toggle('fz20'); // fz20 class를 pEl toggle
+      }, 2000);
+
+      // 참고. 자바스크립트 구문으로 class 속성을 조작해 스타일을 적용시킬 수 있다.
+      //       선택한 요소노드에 class 속성을 지정할 때(추가, 삭제, 추가와 삭제의 반복)
+      //       classList 속성의 add(), remove(), toggle() 메소드 사용!
+      // 문법
+      //  요소선택.classList.add("class 속성값"); // 추가
+      // 요소선택.classList.remove("삭제할 class속성에 대한 값"); // 삭제
+      // 요소선택.classList.toggle("없으면 추가한 class 속성값 또는 있으면 삭제할 class 속성값");  // 추가 또는 삭제
+
+      // <p>text</p>
+      // const pEl = document.querySelector('p');
+
+      // pEl.style.color = 'red'; // 글자 색상 빨강
+      // pEl.style.fontSize = '20px'; // 글자 크기 설정
+      // pEl.style.fontWeight = 'bold'; // 글자 굵기 설정
+      // pEl.style.lineHeight = '1px'; // 줄 간격
+      // style 속성으로 스타일 조작하면 한줄에 속성에 대한 값 설정을 따로
+      // 작성해야 해서 불편하다.
+    </script>
+  </body>
+</html>

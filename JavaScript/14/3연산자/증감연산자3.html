@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let a = 3;
+      let b = 4;
+      let c = a++ + ++b + b++ + ++a;
+      // 순서1. a++은 a 변수에 저장된 값 3 사용.
+      //        a++을 진행하면 4를 다음 a로 넘겨준다.
+      // 순서2. ++b는 b에 저장되어 있던 4를 ++연산을 하여1 증가시킨다.
+      //        ++b 자리에는 5가 들어가고 b는 5가 된다.
+      // 순서3. 다음 b++ 자리는 저장되어 있던 5가 들어가고,
+      //        ++ 연산에 의해 1 증가시킨후 b에 대입하여 b의 최종값은 6이 된다.
+      // 순서4. ++a는 앞에서 넘겨 받은 4를 받아 ++ 연산을 먼저 수행하여 a++은 5가 되고,
+      //        a의 최종값은 5가 된다.
+
+      // c = 3 + 5 + 5 + 5
+      document.write(c);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let x = 5;
+      let y = x++ + ++x;
+      // y변수값을 계산하는 과정
+      // 1. x++ 현재 x변수에 저장된 값 5를 먼저 사용
+      //    x++ 자리에는 5가 투입된다.
+      // 2. ++x를 하기 전에 x++에 의해서 x는 6이 된다.
+      // 3. ++x 는 ++6이고 ++을 처리해 주면 7이 되기 때문에
+      //    ++x 자리는 값이 7이라고 할 수 있다.
+      // 4. 따라서 5 + 7을 하면 12가 된다.
+      document.write(y);
+    </script>
+  </body>
+</html>

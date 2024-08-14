@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let min = 120; // 최소값
+      let max = 150; // 최대값
+
+      let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+      // 원하는 구간에 난수(랜덤값)를 정수로 발생시키는 식
+      //   Math.floor(Math.random() * (최댓값-최솟값+1)) + 최솟값;
+
+      //   // 3~7 난수 1개를 정수로 발생
+      //   최소값 3
+      //   최대값 7
+
+      //   순서1. Math.random()이 0.8을 반환했다고 가정
+      //   순서2. 0.8 * (7 - 3 + 1) --> 0.8 * 5 --> 4.0
+      //   순서3. Math.floor(4.0) --> 4
+      //   순서4. 4 + 최솟값 --> 4 + 3 --> 7
+
+      // 3~7 난수 하나를 정수로 발생
+      //   최소값 3
+      //   최댓값 7
+
+      //   순서 1. Math.random() 이 0.2를 반환했다고 가정
+      //   순서 2. 0.2 *(7-3+1) --> 0.2 * 5 --> 1.0
+      //   순서 3. Math.floor(1.0) --> 1
+    </script>
+  </body>
+</html>

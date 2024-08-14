@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let number = 10;
+      // number 변수에 저장된 10을 20으로 만들어 저장시키려면?
+      // number = 20; 을 저장한다.
+
+      // number 변수에 저장된 20에 + 10을 해서 20으로 만든 뒤
+      // 30을 number 변수에 다시 저장하려면?
+
+      number = number + 10;
+      // 순서1. number + 10을 먼저 계산해서 20을 만들고
+      // 순서2. 만든 20을 = 대입연산자를 이용해 number 변수에 저장한다.
+
+      number += 10;
+      // 순서1. number 변수에 저장된  20에다가 + 10을 하여 30으로 만든다.
+      // 순서2. 만든 30을 = 대입연산자를 사용해서 앞에 작성한 number 변수에
+      //        대입하여 저장한다.
+
+      // 현재 number 변수에 저장된 값은 30
+      document.write(number, '<br>');
+
+      number -= 10;
+      // 순서1. number - 10
+      //          30   - 10  -> 20
+      // 순서2. = 대입연산자 기호가 작동해서 앞에 작성한 nummber 변수에 20을
+      //        대입하여 저장한다.
+
+      // 현재 number 변수에 저장된 값은 20
+      document.write(number, '<br>');
+
+      number = number * 10;
+      // number * 10 -> 20 * 10 -> 200
+      // 위의 식은 줄여쓰면 아래와 같다.
+      // number *= 10;
+
+      // 현재 number 변수에 저장된 값은 200
+      document.write(number, '<br>');
+
+      number = number / 10;
+      // number / 10 -> 200 / 10 -> 20
+      // 위의 식은 줄여쓰면 아래와 같다.
+      // number /= 10;
+
+      // 현재 number 변수에 저장된 값은 20
+      document.write(number, '<br>');
+
+      number = number % 10;
+      // number % 10 -> 20 % 10 -> 0
+      // 위의 식은 줄여쓰면 아래와 같다.
+      // number %= 10;
+
+      // 현재 number 변수에 저장된 값은 0
+      document.write(number, '<br>');
+    </script>
+  </body>
+</html>

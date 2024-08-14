@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 문제 : 사이트 방문자에게 현재 몇월 달인지 입력받는다.
+      //       입력 받은 월에 따라 각각 다른 문장을 출력한다.
+
+      // 순서 1. 사이트 방문자에게 현재 월을 입력받아 mon변수에 저장
+      let mon = prompt('현재 월을 입력해주세요.');
+
+      // 순서 2. 입력받은 월에 따라 각각 다른 문장을 출력
+      //    if     else if     else 전체 구문을 사용해서 작성하시오
+
+      // 입력 받은 현재 월이 9~11월 사이라면?
+      if (9 <= mon && mon <= 11) {
+        //    "독서의 계절 가을 이네요!!" <- 출력
+        document.write('독서의 계절 가을이네요!!');
+      } else if (6 <= mon && mon <= 8) {
+        // 입력받은 현재 월이 6~8월 사이라면?
+
+        //     "여행가기 좋은 여름이네요!!" <- 출력
+        document.write('여행가기 좋은 여름이네요!!');
+      } else if (3 <= mon && mon <= 5) {
+        // 입력 받은 현재 월이 3~5월 사이라면?
+
+        //      " 햇살 가득한 봄이네요!!" <- 출력
+        document.write('여행가기 좋은 여름이네요!!');
+      } else {
+        // 입력 받은 현재 월이 그 밖의 월을 입력했다면?
+
+        //      " 스키의 계절 겨울이네요!!" <- 출력
+        document.write('스키의 계절 겨울이네요!!');
+      }
+    </script>
+  </body>
+</html>
