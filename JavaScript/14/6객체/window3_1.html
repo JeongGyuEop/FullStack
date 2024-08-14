@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 타이머 기능 만들기 -->
+    <script>
+      // setInterval 메소드를 사용하여 1초 간격으로 현재 날짜 정보를 사이트
+      // 화면에 반복해서 보여주자
+
+      // 현재 날짜정보를 제공하는 Date 객체
+
+      setInterval(function () {
+        // 1. 현재 날짜 정보를 제공해주는 Date 이름의 객체 생성
+        let date = new Date();
+
+        // 현재 년도, 월, 일, 시, 분, 초
+        console.log(
+          date.getFullYear() +
+            '년 ' +
+            (date.getMonth() + 1) +
+            '월 ' +
+            date.getDate() +
+            '일 ' +
+            date.getHours() +
+            '시 ' +
+            date.getMinutes() +
+            '분 ' +
+            date.getSeconds() +
+            '초'
+        );
+      }, 1000);
+    </script>
+  </body>
+</html>

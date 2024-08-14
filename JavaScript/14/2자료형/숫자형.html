@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 숫자형 실습
+      // 정수, 실수
+      // 참고. 특정 데이터가 어떤 종류의 자료형인지 웹 브라우저에게 물어보는 키워드
+      // 사용법 : typeof 데이터;
+
+      console.log(typeof 100); // number <- 숫자형 (정수)
+
+      console.log(typeof 4.13); // number <- 숫자형 (실수)
+
+      console.log(typeof '100'); // string <- 문자열
+
+      console.log(1 + 2); // 숫자형은 덧셈 가능
+      console.log(3 * 3); // 숫자형은 곱셈 가능
+      console.log(1 - 2); // 숫자형은 뺄셈 가능
+      console.log(1 / 2); // 숫자형은 나눗셈 가능
+
+      let num = prompt('번호를 입력하시오.');
+      if (num == null) {
+        alert('입력하신 값이 없습니다.');
+      } else {
+        document.write('자료형의 타입은' + typeof Number(num) + '입니다');
+      }
+    </script>
+  </body>
+</html>

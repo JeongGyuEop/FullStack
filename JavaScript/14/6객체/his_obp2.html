@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>두 번째 페이지(his_obp2.html페이지)</h1>
+    <a href="his_obp3.html">세 번째 페이지 이동</a>
+
+    <br />
+    <br />
+
+    <!-- 이전 페이지 button을 클릭하면 history 객체의 back()메소드가 호출되어
+    같은 브라우저 창에서 열어서 봤던 1단계 이전 페이지(his_obp1.html)을
+    재요청하여 보여준다. -->
+    <button onclick="history.back();">이전 페이지</button><br />
+
+    <!-- 다음 페이지 button을 클릭하면 history 객체의 forward() 메소드가 호출되어
+    같은 브라우저 창에서 현재 보고있는 페이지 다음으로 요청했던 화면(his_obp3.html)을
+    재요청해 보여준다. -->
+    <button onclick="history.forward();">다음 페이지</button>
+    <script></script>
+  </body>
+</html>

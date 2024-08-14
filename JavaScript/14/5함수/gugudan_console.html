@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <script>
+      //구구단 3단을 출력하는 코드를 수동으로 작성하면 불편합니다.
+      console.log('3 * 1 = 3');
+      console.log('3 * 2 = 6');
+      console.log('3 * 3 = 9');
+      console.log('3 * 4 = 12');
+      console.log('3 * 5 = 15');
+      console.log('3 * 6 = 18');
+      console.log('3 * 7 = 21');
+      console.log('3 * 8 = 24');
+      console.log('3 * 9 = 27');
+
+      console.log('-------------------------------');
+
+      //for반복문을 이용하면 간단하게 코드를 줄일수 있습니다.
+      for(let i=1;   i<=9;  i++){
+        console.log(`3 * ${i} = ${3 * i}`);
+      }
+     
+      console.log('--------------------------------');
+
+      //구구단 코드를 함수 안에 만들어 놓고  함수를 호출해서 사용하면 편리하다
+      //즉! 재호출 가능하니 유지보수도 편리하다.
+      function gugudan(){
+        //함수의 기능을 코드로 작성 할 영역
+        for(let i=1;   i<=9;  i++){
+            console.log(`3 * ${i} = ${3 * i}`);
+        }
+
+      } 
+
+      //함수 호출
+      gugudan();
+      gugudan();
+      gugudan();
+      gugudan();
+      gugudan();
+      
+
+     
+
+      
+
+
+    </script>
+
+
+
+</body>
+</html>

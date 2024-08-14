@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="frm1">
+      <input type="text" name="userid" />
+    </form>
+
+    <form name="frm2">
+      <input type="text" name="username" />
+    </form>
+
+    <form name="frm3">
+      <input type="text" name="usernick" />
+    </form>
+
+    <script>
+      // 방법 1. <form> 태그에 name 속성에 부여된 값을 이용해 <form>을 선택하는 방법
+      // 문법
+      //      document.form태그에_작성된_name속성값;
+      //      -> name 속성값이 적힌 <form>한쌍을 선택해 옴.
+      console.log(document.frm1); // name 속성값이 "frm1"인 <form></form>을 선택
+      // <form name="frm1">
+      //   <input type="text" name="userid" />
+      // </form>
+      console.log(document.frm2); // name 속성값이 "frm2"인 <form></form>을 선택
+      console.log(document.frm3); // name 속성값이 "frm3"인 <form></form>을 선택
+
+      console.log('---------------------------------------');
+      //------------------------------------------------------------------------------------
+      // 방법 2. document객체의 forms 속성을 이용해 선택하는 방법
+      // document 객체의 forms 속성을 이용해 현재 .html 웹 문서에 작성되어 있는 모든
+      // <form></form>요소 노드들을 HTMLCollection 객체에 담아 반환(선택해 온다.)
+
+      // document 객체의 forms 속성을 호출하면
+      // document 객체의 하위 form 요소노드들을 모두 HTMLCollection 객체에 담아 유사 배열로 반환
+      const HTMLCollections = document.forms;
+      console.log(HTMLCollections); // HTMLCollection(3) [frm1, frm2, frm3]
+
+      console.log(HTMLCollections[0]); // <form name="frm1"></form>
+      console.log(HTMLCollections[1]); // <form name="frm2"></form>
+      console.log(HTMLCollections[2]); // <form name="frm3"></form>
+    </script>
+  </body>
+</html>

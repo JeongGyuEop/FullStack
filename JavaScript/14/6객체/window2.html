@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 아래의 버튼에 클릭하는 행위(클릭 이벤트)를 등록할 때 onclick 속성을 작성
+  사이트(window2.html)이용자(클라이언트)가 화면을 보고 팝업창 열기
+  <button>을 클릭하면 popup()함수 호출 구문에 의해 자바스크립트 구문으로
+    만들어 놓은 function popup(){} 함수를 호출해서 이벤트 처리한다. -->
+    <button onclick="popup();">팝업창 열기</button>
+
+    <script>
+      // window 객체:
+      //   사이트 이용자가 사용하고 있는 웹 브라우저 창 하나의 정보를 제공하는 객체
+      //   - open 메소드 : 새로운 팝업창을 띄울 때 사용되는 메소드
+      //       사용법 : window객체명.open(팝업창에 띄울 html의 경로, 팝업창의 창 제목, 옵션 속성과 값 설정);
+      //   - close() : 팝업창을 닫는데 사용되는 메소드
+      //       사용법 : window객체명.close();
+
+      // 위 팝업창 열기 <button>을 클릭하면 호출되는 함수
+      function popup() {
+        // 새로운 팝업창을 띄우는 기능
+        window.open('popup.html', '팝업창 제목', 'width=200, height=100, left=400, top=400');
+      }
+    </script>
+  </body>
+</html>

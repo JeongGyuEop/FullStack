@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>연습문제 1</title>
+    <link rel="stylesheet" href="css/quiz-1.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h1>참가자 명단</h1>
+      <form>
+        <ul id="userInput">
+          <li>
+            <label for="username">이 름</label>
+            <input type="text" id="username" />
+          </li>
+          <li>
+            <label for="major">전 공</label>
+            <input type="text" id="major" />
+          </li>
+        </ul>
+        <button>등록하기</button>
+      </form>
+
+      <table id="attendant">
+        <thead>
+          <tr>
+            <th>이 름</th>
+            <th>전 공</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script>
+      const username = document.querySelector("#username");
+      const major = document.querySelector("#major");
+      const bttn = document.querySelector("form > button");
+
+//<button>등록하기</button> click 이벤트 등록      
+      bttn.addEventListener("click", (e) => {
+
+        e.preventDefault();
+
+        let tbody = document.querySelector("#attendant > tbody");
+        //<tbody></tbody> <- 새로 생성 X
+    
+        let newTr = document.createElement("tr");
+        //<tr></tr>
+
+// 첫번째 셀에 입력한 이름 넣기
+        let nameTd = document.createElement("td");
+            nameTd.innerText = username.value;
+        //<td>김길동</td>
+
+        username.value = "";
+
+// 두번째 셀에 입력한 전공 넣기
+        let majorTd = document.createElement("td");
+           majorTd.innerText = major.value;
+           //<td>컴공</td>
+
+        major.value = "";
+
+// 두 셀을 새 줄에 추가하기
+        newTr.appendChild(nameTd);
+        //<tr>  
+        //   <td>김길동</td> 
+        //</tr>
+
+        newTr.appendChild(majorTd);
+        // <tr>
+        //    <td>김길동</td>
+        //    <td>컴공</td>
+        //  </tr>
+
+// 새 줄을 tbody에 추가하기
+        tbody.appendChild(newTr);
+        /*
+          <tbody>
+              <tr>
+                <td>김길동</td>
+                <td>컴공</td>
+              </tr> 
+          </tbody>
+        */
+      });
+    </script>
+  </body>
+</html>

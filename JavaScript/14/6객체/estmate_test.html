@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="kor" xml:lang="ko">
+  <head>
+    <title>자동차 견적서</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font: 12px/1.5 dotum, '돋움', gulim, '굴림', sans-serif;
+      }
+      li {
+        list-style: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      h1 {
+        text-align: center;
+      }
+      #carZone {
+        width: 600px;
+        margin: 0 auto;
+      }
+      #estimate {
+        width: 100%;
+      }
+      #estimate th,
+      td {
+        border: 1px solid #ccc;
+        height: 30px;
+      }
+      #estimate th {
+        background-color: #333;
+        color: #fff;
+      }
+      #carZone td {
+        text-align: center;
+      }
+      tfoot {
+        font-size: 15px;
+        font-weight: bold;
+      }
+      #total {
+        border: none 0;
+        background: none;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
+    <script type="text/javascript">
+      // 실습 : 문서객체 모델을 사용하여 자동차 견적 미리보기 페이지 만들기
+      // 스토리 : 자동차를 구입하려는 고객이 자동차 견적을 미리 알아볼 수 있도록 페이지를 만들자
+      //          자동차에 설치할 옵션 체크박스를 체크하면 옵션 종류에 따라 차량의 가격이 증가되고,
+      //          체크했던 옵션을 해제하면 다시 차량의 가격이 감소되도록 할것. 함수에 옵션이 계산되는
+      //          기능을 코드로 작성한 후, 옵션에 체크박스를 클릭할 때 마다 체크된 옵션의 금액만
+      //          기본차량가격에 누적되어 보이도록 하자
+
+      // 자동차 옵션 체크박스를 클릭할 때마다 호출되는 car 함수 만들기
+      function car() {
+        // 1. 기본 차량 금액을 얻기 위해 먼저 기본차향 금액이 설정된 <input>을 선택해서 가져와
+        // <input>에 처음 설정된 value 속성의 값 13450000을 최종 얻자
+        // 참고.
+        // estmate_test.html 웹 문서를 웹 브라우저가 처음 로딩할 때
+        // 초기에 설정된 <input> 태그의 value 속성의 값을 얻을 때
+        // .defaultValue 속성을 호출하면 얻을 수 있다.
+        let basic_car = Number(document.getElementById('total').defaultValue); // 문자열 "13450000"
+        // "13450000" -> 13450000 숫자로 형변환할 때 Number 함수 이용
+
+        // 2. 체크박스 갯수만큼 3번 반복
+        for (let i = 1; i <= 3; i++) {
+          // 아래에 작성된 <input type="checkbox"> 요소들을 차례로 선택해서
+          // id 속성의 값이 opt1부터 opt3까지 작성된 체크박스를 선택해서 저장
+          let chkObj = document.getElementById('opt' + i);
+
+          // 선택해서 가져온 <input type="checkbox"> 체크박스가 체크가 되어있으면?
+          if (chkObj.checked) {
+            // 클릭하여 체크한 옵션 금액 얻기
+            // 예) 인조 가죽시트 체크박스 클릭하여 체크기 얻은 옵션금액 250000
+            // 예) 내비게이션 체크박스 클릭하여 체크기 얻은 옵션금액 250000
+            // 예) 선루르 체크박스 클릭하여 체크기 얻은 옵션금액 440000
+
+            // 체크한 옵션금액을 얻어 기본차량 금액에 누적
+            basic_car += Number(chkObj.value);
+          }
+        }
+        // 위에서 누적된 가격(기본가격 + 체크한 옵션 금액)을
+        // <input type="text" id="total" value="13450000"> 요소노드의
+        // value 속성에 13450000대신 설정(덮어씌움)
+        document.getElementById('total').value = basic_car;
+      }
+
+      // defaultValue 속성은 <input> 요소의 초기값을 얻을 때 사용하며,
+      // 사용자가 입력을 변경하기 전의 값을 반환한다.
+
+      // value 속성은 현재 입력된 값을 얻을 때 사용하며, 사용자가 입력 값을
+      // 변경하면 이 속성에 대한 값도 변경되므로 변경된 값을 반환함
+
+      // 즉 defaultValue 속성은 초기 상태를 유지하고, value 속성은 사용자의
+      // 입력에 따라 변하는 현재 상태값을 사용함
+    </script>
+  </head>
+  <body>
+    <h1>자동차 견적</h1>
+    <div id="carZone">
+      <p><img src="images/car1.jpg" alt="자동차" /></p>
+      <table id="estimate">
+        <colgroup>
+          <col width="380px" />
+          <col width="160px" />
+          <col width="*" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="row">옵 션</th>
+            <th scope="row">추가 가격</th>
+            <th scope="row">선택</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th scope="col">(기본)차량가격</th>
+            <td colspan="2">
+              <input type="text" name="total" id="total" value="13450000" readonly="readonly" />
+            </td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr>
+            <td><label for="opt1">인조가죽시트</label></td>
+            <td>250000</td>
+            <td>
+              <!-- 옵션 체크박스에 클릭할 때 마다 car()에 저장된 일련의 실행문을 실행합니다. -->
+              <input type="checkbox" name="opt1" id="opt1" value="250000" onclick="car();" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="opt2">내비게이션</label></td>
+            <td>250000</td>
+            <td>
+              <input type="checkbox" name="opt2" id="opt2" value="250000" onclick="car();" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="opt3">선루프</label></td>
+            <td>440000</td>
+            <td><input type="checkbox" name="opt3" id="opt3" value="440000" onclick="car();" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

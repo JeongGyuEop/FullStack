@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1분 퀴즈.   getArrayMaxNumber.html 파일 만들기
+
+      //   코드에서 max변수의 출력값이 배열 중 가장 큰 숫자가 될수 있도록
+      //   getArrayNumber()함수를 완성하시오.
+      //   이때 배열 요소는 반드시 숫자형이라고 가정합니다.
+
+      function getArrayMaxNumber(arr) {
+        /*함수 코드를 완성하세요*/
+        let max = 0;
+        arr.forEach(element => {
+          if (element > max) {
+            max = element;
+          }
+        });
+        return max;
+      }
+
+      const max = getArrayMaxNumber([10, 50, 30]); //함수 호출 구문
+
+      console.log(max);
+    </script>
+  </body>
+</html>

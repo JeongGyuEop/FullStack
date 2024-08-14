@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 주제 : 날짜 간격 계산하기
+      //   getTime() 메서드 : 1970년 1월 1일 12:00 이후의 시간을 밀리초(1/1000) 단위로 반환.
+      const date = new Date().getTime();
+
+      console.log(date);
+
+      // 두 날짜 사이의 간격을 구할 수 있다.
+      // 1. 특정 날짜 정보를 Date 객체 생성할 때 저장
+      const date1 = new Date('2022-12-13');
+
+      // 2. 다른 특정 날짜 정보를 Date 객체를 생성할 때 저장
+      const date2 = new Date('2022-12-25');
+
+      // 두 Date 객체의 getTime() 메서드를 사용하면 날짜가 밀리초 단위로 반환하는데
+      // 더 큰 숫자인 미래 날짜에서 더 작은 숫자인 과거 날짜를 뺀다.
+      // 그러면 두 날짜 사이의 간격 일수를 밀리초로 구할 수 있다.
+      // 참고. 밀리초를 24(시간) * 60(분) * 60(초) * 1000(밀리초)로 나누면
+      // 두 날짜 사이의 간격을 일수로 환산할 수 있다.
+      // const dateDiff =   date2.getTime()        -         date1.getTime();
+      //               1970.01.01  ~ 2022.12.25         1970.01.01 ~ 2022.12.13
+      //               사이 간격 날짜를 초로            사이 간격 날짜를 초로
+      //               계산하여 반환 받음.              계산해서 반환 받음.
+
+      const dateDiff = date2.getTime() - date1.getTime();
+
+      const interval = dateDiff / (24 * 60 * 60 * 1000);
+      console.log(`두 날짜의 차이는 ${interval}일 입니다.`);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 순서 1. 검사할 문자열을 만들어 변수에 저장
+      let str = 'Html Css Jquery';
+
+      // 순서 2. 검사할 문자열에 "css" 단어가 포함되어 있는지 검사하는
+      // 정규표현식(정규표현객체) 작성 후 변수에 저장
+      let reg1 = /css/;
+      // '/ /'는 정규표현식의 시작과 끝을 나타내는 구분자이다.
+      // 'css'는 찾고자 하는 문자열 패턴. 이 경우는 'css'라는 문자열이 포함하는지 검사하는 패턴
+
+      // 순서 3. 정규표현식을 이용해 검사할 문자열에 css 단어가 포함되어 있는지 검사하기 위해
+      // test() 메소드를 호출
+      // 정규표현식객체.test(검사할 문자열);
+
+      // 변수 str의 검사할 문자열이 reg1 정규표현 형식을 잘 지켰으면
+      // true, 아니면 false를 return
+      // 요약 : str 변수에 저장된 검사할 문자열에 reg1 정규표현식(css 단어가 포함되어 있는지
+      //        검사하는 패턴식)에 맞는 부분이 있는지 검사함.
+      let result1 = reg1.test(str);
+
+      // 검사 결과를 웹 페이지 출력한다.
+      document.write(result1, '<br>'); // false --> 대소문자를 구분하기 때문
+
+      document.write('<br>');
+      //---------------------------------------------------------------------------------------
+      // let leg1 = /css/i
+      // 검색옵션 자리에 i옵션기호 작성하면 검사 시 대소문자 구분하지 않고 css 문자열이 있는지 검사한다.
+    </script>
+  </body>
+</html>

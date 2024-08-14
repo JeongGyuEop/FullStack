@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 상수 이름 지을 때 한글을 포함해 문자, 숫자, 특수기호 _와 $만 허용
+      // 상수 이름에 첫 문자는 숫자가 올 수 없다.
+      // 영문, $, _ 등만 올 수 있다.
+
+      // const ^age = 25; // 상수명에 ^가 포함되면 안된다.
+
+      const $age = 25; // 상수 명에 $를 포함할 수 있다.
+
+      const human_age = 25; // 상수명에 _ 언더스코어 기호가 포함될 수 있다.
+
+      // user_name이라는 이름의 상수 메모리를 만들고, "이정환" 문자열 초기화
+      const user_name = '이정환';
+
+      // $ 이름의 상수메모리를 선언하는 동시에 "JQuery"문자열 초기화
+      const $ = 'JQuery';
+
+      // 2022year 이름의 상수메모리 선언과 동시에 "good" 문자열 저장
+      // const 2022year = "good"
+
+      // _2022year 이름의 상수메모리 선언과 동시에 "good" 문자열 초기화
+      const _2022year = 'good';
+
+      // year2022 이름의 상수메모리 선언과 동시에 "good" 문자열 초기화
+      const year2022 = 'good';
+
+      document.write($age + '<br>');
+      document.write(human_age + '<br>');
+      document.write(user_name + '<br>');
+      document.write($ + '<br>');
+      // document.write(2022year + '<br>');
+      document.write(_2022year + '<br>');
+      document.write(year2022 + '<br>');
+      // document.write(year_2022 + '<br>'); // Error: year_2022 is not defined
+    </script>
+  </body>
+</html>

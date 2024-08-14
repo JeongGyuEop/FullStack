@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //1. 함수선언문으로 함수 정의 ,  매개변수 처리
+    function multiply(a, b) {
+
+      console.log(`a: ${a},  b: ${b}`);
+
+      return a * b;
+    }
+
+    //1-1. 함수 호출시 두개의 매개변수 a,b에 각각 인수를 전달
+    //     -> a매개변수는 5, b매개변수는 10으로 전달 되어 
+    //        5와 10을 곱한 결과 50을 return에 의해 반환받습니다.
+// console.log( multiply(5,10) );  // a: 5, b: 10  
+//                                 // 50
+
+    //1-2. 함수 호출시 a매개변수에만 7을 전달하고, b매개변수는 값을 전달하지 않았을때
+    //a매개변수에는 7이 전달되고, b매개변수에는 전달된 값이 없으므로 undefined가 할당되어
+    //console.log(`a: ${a},  b: ${b}`); 구문에서 실행결과를 보면  
+    //             a: 7,    b: undefined 출력되고
+    //console.log( multiply(7) ); 출력하면
+    //            return  7 * undefiend가 되므로 
+    //           NaN을 반환 받아 출력함.
+//console.log( multiply(7) ); // NaN 
+
+    //1-3. multiply(); 호출시  a와 b매개변수는 모두 undefined가 되어
+    //      console.log(`a: ${a},  b: ${b}`); 출력결과는
+    //                   a:undefined,  b:undefiend    입니다.
+    // 그리고 return a * b; 는   return undefined * undefiend; 으로 NaN이 반환됨           
+//console.log( multiply() );
+
+    //-----------------------------------------------------------------------
+
+      //2. 화살표 함수로 함수 정의 및 매개변수 기본값 할당에 대해서 
+
+      //화살표 함수로 함수 정의
+      const add  = (x = 5, y = 5) => {
+
+          console.log(`x: ${x}, y: ${y}`);
+
+          return x + y;
+      };
+       
+    
+      //결론 : 매개변수 x나 y에 함수 호출시 인수를 전달하지 않으면
+      //       undefined가 할당되는데 ES6버전의 기본값 할당기능을 사용하면 이를 방지 할수 있다.
+
+      //함수 호출
+      // add(); 호출시  x매개변수,y매개변수에 전달하는 인수가 없으므로
+      // 화살표 함수 정의시 매개변수x의 기본값 5 , 매개변수y의 기본값 5 그대로 사용
+      //  console.log(`x: ${x}, y: ${y}`);
+      //               x: 5,     y: 5     출력됨
+      // return x + y;
+      // return 5 + 5;
+      // return 10;
+      // add(); 호출한 코드의 줄 자리에 10을 반환 받아서 사용!
+      console.log( add() ); //x: 5,     y: 5
+                            //10
+    
+      // x매개변수자리에 5대신 3이 전달되어 저장될것이고,
+      // y매개변수는 초깃값 5가 저장되어 있어서 그대로 사용될것이다.
+      // console.log(`x: ${x}, y: ${y}`);
+      //              x:   3 , y:  5    출력됨
+      // return x + y;
+      // return 3 + 5;
+      // return  8;
+      // add(3); 호출한 코드의 줄 자리에 8을 반환 받아서 사용!
+//    console.log(  add(3)   ); //x:3, y:5
+                                //8
+
+
+//    console.log( add(3, 7) );// x:3, y:7
+                               // 10
+
+
+
+
+
+
+
+  </script>
+
+  
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book List</title>
+    <link rel="stylesheet" href="css/bookList.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h1>Book List</h1>
+      <form>
+        <ul id="bookInfo">
+          <li>
+            <label for="title">제 목</label>
+            <input type="text" id="title" />
+          </li>
+          <li>
+            <label for="author">저 자</label>
+            <input type="text" id="author" />
+          </li>
+        </ul>
+
+        <button type="reset">취소하기</button>
+        <button id="save" type="submit">저장하기</button>
+      </form>
+
+      <ul id="bookList"></ul>
+    </div>
+
+    <script>
+      const title = document.querySelector('#title');
+      const author = document.querySelector('#author');
+      const save = document.querySelector('#save');
+      const reset = document.querySelector('button[type=reset]');
+      const bookList = document.querySelector('#bookList');
+
+      save.addEventListener('click', e => {
+        // 저장하기 버튼 <button id="save">저장하기</button> 요소에는
+        // 기본적으로 <form></form> 사이에 작성되어 있기 때문에
+        // submit 기본 이벤트가 적용되어 있다.
+        // <form>에 의해 전송 요청을 차단하기 위해
+        // e매개변수의 event 객체의 preventDefault() 메소드로 submit 이벤트를 차단한다.
+        // 참고. 가장 윗줄에 작성해야 아랫줄의
+        e.preventDefault();
+
+        // if (title.value === '' || author.value === '') {
+        //   alert('제목, 저자를 입력하세요.');
+        // } else {
+
+        // }
+        let createElement = document.createElement('li');
+
+        createElement.innerHTML = `${title.value} - ${author.value} <span class="delButton">삭제</span>`;
+        bookList.appendChild(createElement);
+        title.value = '';
+        author.value = '';
+
+        const delButtons = document.querySelectorAll('.delButton');
+        for (item of delButtons) {
+          item.addEventListener('click', function () {
+            // this.parentNode.parentNode.removeChild(this.parentNode);
+            let list = this.parentNode;
+            list.parentNode.removeChild(list);
+          });
+        }
+      });
+
+      reset.addEventListener('click', () => {
+        title.value = '';
+        author.value = '';
+      });
+    </script>
+  </body>
+</html>

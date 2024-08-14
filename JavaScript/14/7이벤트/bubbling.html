@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/event.css" />
+  </head>
+  <body>
+    BODY
+    <div onclick="console.log('div')">
+      DIV
+      <section onclick="console.log('section')">
+        SECTION
+        <p onclick="console.log('p')">P</p>
+      </section>
+    </div>
+  </body>
+</html>
+<!--
+  버블링 : 요소에서 발생한 이벤트가 계속 부모요소로 전파되는 이벤트방식 테스트
+
+  순서1.  웹브라우저 창에서 bubbling.html문서를 열고 F12를 눌러 console창도 함께 열어 놓자.
+
+  순서2. 가장 안쪾 P요소 영역 클릭하면
+        console창에 P 뿐만 아니라 SECTION과 DIV를 클릭하면 나타나는 내용도 함께 출력됨
+        설명
+          이것은 P요소에서 발생한 click이벤트가 seciton요소를 거쳐 div부모요소로 전달 되면서
+          해당 요소들의 이벤트 처리기(함수)가 함께 실행되었기 때문입니다.
+          body 요소와 html요소에도 이벤트가 전달되었지만,
+          이들 요소에는 따로 이벤트 처리기(함수)를 작성 해 놓지 않았으므로
+          아무런 결과값도 출력하지 않습니다. 
+
+-->

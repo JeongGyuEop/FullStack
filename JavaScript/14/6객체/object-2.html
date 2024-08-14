@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 주제 6. 객체 내부에 메소드 만들기
+      //     - 함수 이름에 해당하는 메소드 이름 먼저 지정한 후
+      //       function 예약어 사용해 만든다.
+      //     - 문법
+      //         메소드명 : function(){
+
+      //         }
+      let book3 = {
+        title: '점프 투 파이썬',
+        pages: 360,
+        // buy: function () {
+        //   console.log('이 책을 구입했습니다.');
+        // }
+        // 버전 업데이트가 되어 메서드를 정의할 때 function이라는 예약어를 사용하지 않아도
+        // 아래와 같은 형태로 만들 수 있다.
+        buy() {
+          console.log('이 책을 구입했습니다.');
+        }
+      };
+
+      console.log(book3);
+
+      //--------------------------------------------------------------------------------
+      // 주제 7. 만들어 놓은 book3객체의 메소드 호출
+      //    문법
+      //        객체명.메소드명();
+      book3.buy(); // '이 책을 구입했습니다.'
+
+      //--------------------------------------------------------------------------------
+      // 주제 8. 객체 내부에 만들어진 메소드 호출하여 사용 시 this 예약어 사용
+      let book4 = {
+        title: 'Javascript',
+        pages: 500,
+        author: '김말똥',
+        done: false,
+        finish: function () {
+          // 메서드 안에서 book4 객체명.done키(속성)를 사용한다면 이렇게 작성할 수 있다.
+          // book4.done === false ? console.log('읽는 중') : console.log('완독');
+
+          // 메서드 안에서 this 예약어를 book4 대신 사용
+          this.done === false ? console.log('읽는 중') : console.log('완독');
+        }
+      };
+      // book4객체의 finish 메소드 호출
+      book4.finish(); // "읽는 중"
+      book4.done = true;
+      book4.finish();
+
+      //--------------------------------------------------------------------------------
+      // 주제 9. 객체 메모리 복사
+      //     1. 원시 유형의 값(자료: 숫자, true) 복사하기
+      let number1 = 100;
+      let number2 = number1;
+      console.log(number1); // 100
+      console.log(number2); // 100
+      // 결론. 숫자 같은 원시형 자료는 값을 전달한다.
+      //      number1 이라는 변수 메모리에 값을 할당한 후
+      //      다시 number 변수 메모리에 저장된 100을 number 변수 메모리에 할당하면
+      //      number 1 변수에 저장된 100 값이 number2 변수 메모리에 똑같이 복사된다.
+
+      //     2. 객체 메모리의 참조 주소값 전달하여 객체 메모리 복사
+      let bag1 = { color: 'blue', width: 30, height: 50 };
+      let bag2 = bag1;
+      console.log(bag1); // { color: 'blue', width: 30, height: 50 }
+      console.log(bag2); // { color: 'blue', width: 30, height: 50 }
+
+      bag2.color = 'red'; // bag2.color 값을 red로 바꾸면 bag1.color도 red로 바뀐다.
+      console.log(bag1); // { color:'red', width: 30, height: 50 }
+      console.log(bag2); // { color:'red', width: 30, height: 50 }
+
+      // 결론 : 객체를 복사할 경우에는 값이 아니라 생성된 객체 메모리의 주소를 복사한다는 의미
+    </script>
+  </body>
+</html>

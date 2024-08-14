@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 나누기 연산자와 나머지연산자 비교하기
+      var numberOne = 15 / 2; // numberOne 변수에 저장되는 값은 7
+      document.write(numberOne, '<br>'); // 자동으로 형변환이 발생하여 7.5가 출력된다.
+      // 정수 15를 2로 나누었을 때 소수점 이하의 값이 발생
+      // 15를 2로 나누면 7.5가 나오는 것은 정수와 정수의 나눗셈 결곽가
+      // 소수점 이하를 포함할 수 있기 때문이다.
+
+      // 15를 2로 나누었을 때의 나머지값을 구한다.
+      var numberTwo = 15 % 2; // numberTwo 변수에 저장되는 값은 1
+      document.write(numberTwo, '<br>'); // 1이 출력된다.
+
+      // 그 밖의 산술연산자 + - *
+      var result1 = 10 + 1; // 11
+      document.write(result1, '<br>'); // 11출력
+
+      var result2 = 10 - 1; // 9
+      document.write(result2, '<br>'); // 9출력
+
+      var result3 = 10 * 2; // 10
+      document.write(result3, '<br>'); // 10출력
+
+      document.write('------------------------------------<br>');
+
+      // numberA 변수를 선언하는 동시에 1을 저장
+      let numberA = 1;
+
+      // numberB 변수를 선언하는 동시에 2을 저장
+      let numberB = 2;
+
+      // numberA 변수에 저장된 값과 numberB 변수에 저장된 값의 합을 출력후 줄바꿈
+      document.write(numberA + numberB, '<br>'); // 3 출력
+
+      // numberA 변수에 저장된 값에서 numberB 변수에 저장된 값을 뺀 후 출력후 줄바꿈
+      document.write(numberA - numberB, '<br>'); // -1
+
+      // numberA 변수에 저장된 값과 numberB 변수에 저장된 값을 곱한 후 출력후 줄바꿈
+      document.write(numberA * numberB, '<br>'); // 2
+
+      // numberA 변수에 저장된 값을 numberB 변수에 저장된 값으로 나눈 나머지를 구한
+      // 후 출력후 줄바꿈
+      document.write(numberA % numberB, '<br>'); // 1
+
+      // numberA 변수에 저장된 값을 numberB 변수에 저장된 값으로 나눈 후 출력후 줄바꿈
+      document.write(numberA / numberB, '<br>'); // 0.5
+
+      document.write('------------------------------------<br>');
+
+      // 연산자가 동등한 우선순위를 가질 때 왼쪽에서 오른쪽으로 차례대로 계산함
+      // 그런데.. 곱셈 또는 나눗셈이 덧셈 그리고 뺄셈과 같은 연산식에 있을 때
+      // 곱셈 또는 나눗셈을 먼저 계산하고 그 후 덧셈 또는 뺄셈을 계산
+      let result4 = 1 + 2 * 10;
+      // 순서1. 2 * 10 을 먼저 계산하여 20으로 만들어준다.
+      // 순서2. 앞에 작성된 1과 20을 + 더한다. 연산결과 21을 만들어준다.
+      document.write(result4, '<br>'); // 21
+
+      let result5 = (1 + 2) * 10;
+      // 순서1. (1 + 2)를 먼저 계산하여 3으로 만들어준다.
+      // 순서2. 3 * 10 을 계산하여 30으로 만들어준다.
+      document.write(result5, '<br>'); // 30
+    </script>
+  </body>
+</html>

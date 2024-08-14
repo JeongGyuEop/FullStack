@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // window 객체의 setInterval()메소드, clearInterval()메소드
+
+      // setInterval() 메소드
+      // - 일정한 시간 간격으로 실행문을 반복하여 실행시킬 때 사용하느 메소드
+      //   즉! 일정한 시간간격으로 자동으로 사진이 바뀌는 사진첩을 만든다거나
+      //   자동으로 흐르는 슬라이드 배너를 만들 때 사용한다.
+      // - 기본 문법
+      //   let 참조변수 = window.setInterval("실행문", 시간간격의 값);
+      //   let        t = window.setInterval( i++    , 3000);
+      //                       3초 마다 변수 i의 값을 1씩 증가
+      //   설명: 가령 3초 간격이라면 3000을 작성
+      //         만약 10초 간격이라면 10000을 작성
+      //         만약 0.5초 간격이라면 500을 작성
+      //         마지막으로 t 참조변수는 호출한 setInterval()메소드를 제거시킬 때 사용함.
+
+      // clearInterval() 메소드
+      //   - setInterval() 메소드를 사용하여 일정한 시간간격으로 계속해서 반속해 실행되는
+      //     setInterval() 메소드를 제거해서 취소하고자 할때 사용되는 메소드
+      //     즉! 자동으로 바뀌는 사진첩을 멈추고자 할때 사용
+      //   - 기본 문법
+      //       window.clearInterval(참조변수전달);
+      //       window.clearInterval(t); <- t참조변수에 저장되어 있던 setInterval()메소드 제거한다.
+
+      let i = 0;
+
+      // 3초 휴식 후 즉! 3초 간격으로 실행문(i++)을 반복해서 수행
+      let auto = window.setInterval('console.log(i++)', 3000);
+    </script>
+    <!-- 아래의 버튼에 클릭이벤트 등록후 클릭하면 clearInterval() 메소드를 호출하여
+     setInterval()메소드 제거! 실행 중지 시키자 -->
+    <button onclick="clearInterval(auto)">정지버튼</button>
+  </body>
+</html>

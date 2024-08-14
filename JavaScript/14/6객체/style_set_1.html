@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+      <p id="text">text</p>
+
+      <script>
+        //<p id="text">text</p> 요소노드
+        const pEl = document.getElementById("text");
+
+        pEl.style.color = "red"; //text 텍스트노드의 색상을 빨강으로 설정
+
+        //<p id="text">text</p> 요소노드
+        const pEl2 = document.querySelector("p");
+
+    //주의 할점 
+		//CSS속성 중에서 background-color속성과 같이 
+		// 대시 - 기호를 뺼셈연산자 - 로 인식한다는 점입니다.
+		// 그러므로 backgroundColor처럼 카멜표기법으로 변경해서 작성해야 합니다. 
+        pEl2.style.backgroundColor = "#ff0000"; //배경색 빨강으로 설정 
+
+        pEl2.style.fontSize = "20px"; //글자 크기 20px
+
+        pEl2.style.color = "#ffffff"; //글자 색 흰색 
+
+        
+        /*
+          선택한 노드의 타입이 요소노드라면
+          style속성으로 요소에 스타일(CSS)을 지정할수 있습니다.
+          
+          문법
+            요소노드선택.style.css속성명 = 스타일값;
+        */
+
+
+      </script>
+
+
+
+
+</body>
+</html>

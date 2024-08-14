@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 주제 : 즐겨 이용하는 사이트 명을 입력받아 입력받은 사이트를 자동으로
+      //       재요청해서 보여주는 예
+
+      // 순서 1. prompt 함수를 이용하여 즐겨 이용하는 사이트 명을 입력받아 site
+      //         이름의 변수를 만들어 저장
+      var site = prompt('네이버, 다음, 네이트, 구글 중 즐겨 이용하는 사이트 URL을 입력하세요.');
+
+      let url; // 입력받은 사이트 명에 따라 실제 http 주소를 저장시킬 변수
+
+      // 순서2. switch문을 이용하여 입력받은 사이트 명에 따라 각 사이트 주소를 각각
+      //       다른 주소로 url 변수에 저장시키자.
+      switch (
+        site // 입력 받은 사이트명 -> 네이버, 다음, 네이트, 구글 중 하나
+      ) {
+        case '네이버': //위 site 변수에 저장된 입력한 사이트 명이 "네이버" 문자열과 같은가?"
+          url = 'https://www.naver.com'; // 네이버 사이트 url
+          break;
+
+        case '다음': //위 site 변수에 저장된 입력한 사이트 명이 "다음" 문자열과 같은가?"
+          url = 'https://www.daum.net'; // 다음 사이트 url
+          break;
+
+        case '네이트': //위 site 변수에 저장된 입력한 사이트 명이 "네이트" 문자열과 같은가?"
+          url = 'https://www.nate.com'; // 네이버 사이트 url
+          break;
+
+        case '구글': //위 site 변수에 저장된 입력한 사이트 명이 "네이버 문자열과 같은가?"
+          url = 'https://www.google.com'; // 네이버 사이트 url
+          break;
+
+        default: // 네이버, 다음, 네이트, 구글 이외 다른 단어를 입력한 경우
+          alert('보기 중에 없는 사이트 명을 입력하셨습니다. 확인해주세요.');
+          break; // 생략 가능
+      }
+
+      // 순서 3. 만약에~ 변수 url에 포털사이트주소가 저장되어 있을 경우
+      if (url) {
+        // location 객체 : 웹 브라우저 주소창에 작성한 주소정보를 제공하는 객체
+        // location 객체의 href 속성에 재요청할 주소를 저장시키면
+        // 저장시킨 사이트 주소로 재요청하게 된다.
+        location.href = url;
+      }
+      // if 괄호 사이에 조건식을 작성할 수 잇는데
+      // 조건식의 결과값이 아래와 같은 값들이 오게 되면 모두 false로 간주
+      // 그 외의 값이 오면 모두 true로 간주
+      // false -> false
+      // 0 -> false
+      // "" -> false
+      // null -> false
+      // undefined -> false
+      // NaN -> false
+    </script>
+  </body>
+</html>

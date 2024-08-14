@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <script>
+
+      //두개의 인수를 매개변수로 전달 받아
+      //전달 받은 인수의 유형이  number(숫자형)의 형태이면?
+      // +  더해서  더한 결과값을 반환하고 
+      //숫자가 아니면 함수를 빠져나가는 기능의 sum함수 정의
+
+      function sum(num1, num2){
+          //num1매개변수로 전달 받은 인수가 숫자형태가 아니고
+          //또는
+          //num2매개변수로 전달 받은 인수가 숫자형태가 아니면?
+          if( typeof num1 !== "number" ||  typeof num2 !==  "number"){
+
+              return; //sum함수의 {}중괄호를 빠져나갑니다.
+          }
+
+          //매개변수 num1과 num2로 전달 받은 인수가 숫자(number)이면?
+          //더해서  더한 결괏값을 반환
+          return num1 + num2;
+      }
+
+      //------------------
+      //sum이라는 이름의 함수 호출
+      //호출할떄~~ 인수 "a", "b"를 전달 합시다
+      let result = sum("a", "b");
+        //undefiend
+
+      console.log(result);
+
+      console.log("--------------------------------------------");
+
+
+      //화살표 함수와 return문
+      //-> 화살표 함수에서 {}를 생략하면 화살표 다음에 오는 코드는 return문으로 처리된다
+      //   예를 들어, 다음 코드는 매개변수 num1, num2의 합을 즉시 반환합니다.
+      const sum2 = (num1, num2) =>  num1 + num2; 
+
+      const result2 = sum2(10, 20);//함수 호출
+
+      console.log(result2); //30
+
+
+
+    </script>
+
+
+</body>
+</html>

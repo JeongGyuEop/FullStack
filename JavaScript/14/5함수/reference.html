@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let a = 10; //전역스코프영역에 만들어 놓은 전역변수
+    const b = 20;//전역스코프 영역에 만들어 놓은 전역상수
+
+    function sum(){
+
+      let a = 50;//지역스코프 영역에 만들어 놓은 지역변수
+      const b = 70;//지역스코프 영역에 만들어 놓은 지역상수
+
+      console.log(`함수 내부 a변수값 출력 : ${a}`); //50
+      console.log(`함수 내부 b상수값 출력 : ${b}`); //70
+
+    }
+
+    sum();//함수 호출 
+/*
+결론 :  let, const키워드로 변수 a,b를 함수 외부에 선언하고, 함수 내부에도 똑같이
+        변수 a,b를 선언했는데 중복 선언 오류가 발생하지 않습니다.
+        전역스코프와 지역스코프에 같은 식별자(변수이름)을 가지는 참조대상이 있다면
+        먼저 같은 지역스코프영역에 만들어 놓은 식별자(변수이름)을 참조 합니다.
+        그리고 같은 지역 스코프에서 참조할 식별자(변수이름)를 찾지 못할때만
+        전역 스코프영역에 만들어 놓은 식별자(변수이름)를 찾습니다. 
+*/
+
+
+  </script>
+</body>
+</html>

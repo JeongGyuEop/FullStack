@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+
+    <style>
+      .error-message {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <table border="1" align="center">
+      <tr>
+        <td colspan="2" align="center">회원가입</td>
+      </tr>
+      <tr>
+        <td>*이름</td>
+        <td><input type="text" name="uName" id="uName" /><span id="uNameError" class="error-message"></span></td>
+      </tr>
+      <tr>
+        <td>*ID</td>
+        <td><input type="text" name="uID" id="uID" /><span id="uIDError" class="error-message"></span></td>
+      </tr>
+      <tr>
+        <td>*비밀번호</td>
+        <td><input type="password" name="uPWD" id="uPWD" /><span id="uPWDError" class="error-message"></span></td>
+      </tr>
+      <tr>
+        <td>*비밀번호 확인</td>
+        <td>
+          <input type="password" name="uPWD_Confirm" id="uPWD_Confirm" /><span
+            id="uPWDConfirmError"
+            class="error-message"
+          ></span>
+        </td>
+      </tr>
+      <tr>
+        <td>*직업</td>
+        <td>
+          <select name="work" id="work">
+            <option selected>직업명</option>
+            <option value="기타">기타</option>
+            <option value="회사원">회사원</option>
+            <option value="학생">학생</option>
+          </select>
+          <span id="workError" class="error-message"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>*성별</td>
+        <td>
+          남자<input type="radio" name="sex" id="s1" value="male" /> 여자<input
+            type="radio"
+            name="sex"
+            id="s2"
+            value="female"
+          />
+          <span id="sexError" class="error-message"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>*취미</td>
+        <td>
+          <input type="checkbox" name="hobby" id="h1" value="독서" />독서
+          <input type="checkbox" name="hobby" id="h2" value="등산" />등산
+          <input type="checkbox" name="hobby" id="h3" value="낚시" />낚시
+          <span id="hobbyError" class="error-message"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>*가입동기</td>
+        <td>
+          <textarea rows="20" cols="100" name="motivation"></textarea>
+          <span id="motivationError" class="error-message"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="button" value="가입" />
+        </td>
+      </tr>
+    </table>
+
+    <script type="text/javascript">
+      // 가입 <input type="button" value="가입"> 요소를 선택해서 변수에 저장
+      let joinButton = document.querySelector('input[type=button]');
+
+      // 선택한 요소에 click 이벤트 등록하고, click 이벤트 발생하면 처리할 이벤트 핸들러 함수 연결
+      // 문법
+      //    요소선택.addEventListener('등록할 이벤트 종류명', 이벤트처리할 function(){});
+      joinButton.addEventListener('click', function () {
+        // 1. 모든 입력 태그에 잘 입력되었는지 유효성 검사를 위해
+        //    validateForm() 함수 호출하여 처리
+        if (validateForm()) {
+          alert('모두 정상적으로 입력해서 서버페이로 회원가입을 요청합니다.');
+        }
+      });
+
+      /*
+               문제. 자바스크립트 문법을 사용하여 회원가입 폼의 유효성을 검사하는 코드입니다.
+               위의  HTML태그 내용과 같은 회원가입 폼이 있다고 했을 때  자바스크립트 문법 만을 이용해서
+               모든 입력이 되었는지,
+               아이디를 3자 ~ 7자 사이로 입력했는지,
+               비밀번호를 4자 ~ 10자 사이로 입력했는지,
+               입력한 비밀번호와 비밀번호 확인의 데이터가 같은지,
+               직업을 선택했는지,
+               성별을 선택 또는 체크 했는지,
+               취미를 하나 이상 체크 했는지,
+               가입동기를 입력 했는지 유효성 검사 하는 코드를 전체 작성해 주고  각 줄에 주석을 다시오.
+      */
+
+      function validateForm() {
+        // 1. 이름 영역 유효성 검사(이름이 입력되었는지..)
+        const userNameInput = document.getElementById('uName');
+        const userNameError = document.getElementById('uNameError');
+
+        if (userNameInput.value.trim() === '') {
+          userNameError.textContent = '이름을 입력해주세요.';
+          // userNameInput.focus();
+          return false;
+        } else {
+          userNameError.textContent = '✅';
+        }
+
+        //------------------------------------------------------------------------------------
+        // 2. ID 영역 유효성 검사(아이디를 3자 ~ 7자 사이로 입력했는지..)
+        const idInput = document.getElementById('uID');
+        const idError = document.getElementById('uIDError');
+
+        if (idInput.value.length < 3 || idInput.value.length > 7 || idInput.value === '') {
+          idError.textContent = 'ID는 3자 ~ 7자 사이로 입력하세요.';
+          // idInput.focus();
+          return false;
+        } else {
+          idError.textContent = '✅';
+        }
+
+        //------------------------------------------------------------------------------------
+        // 3. 비밀번호 영역 유효성 검사(비밀번호를 4자 ~ 10자 사이로 입력했는지..)
+        const pwdInput = document.getElementById('uPWD');
+        const pwdError = document.getElementById('uPWDError');
+        let check_pwd = false;
+
+        if (pwdInput.value.length < 4 || pwdInput.value.length > 10 || pwdInput.value === '') {
+          pwdError.textContent = '비밀번호는 4자 ~ 10자 사이로 입력하세요.';
+          // pwdInput.focus();
+          return false;
+        } else {
+          pwdError.textContent = '';
+          check_pwd = true;
+        }
+
+        //------------------------------------------------------------------------------------
+        // 4. 비밀번호 확인 영역 유효성 검사(비밀번호와 비밀번호 확인의 데이터가 같은지..)
+        const pwdConfirmInput = document.getElementById('uPWD_Confirm');
+        const pwdConfirmError = document.getElementById('uPWDConfirmError');
+
+        if (pwdInput.value !== pwdConfirmInput.value && check_pwd === true) {
+          pwdConfirmError.textContent = '비밀번호와 비밀번호 확인이 일치하지 않습니다.❌';
+          pwdError.textContent = '비밀번호와 비밀번호 확인이 일치하지 않습니다.❌';
+          // pwdConfirmInput.focus();
+          return false;
+        } else if (pwdConfirmInput.value === '') {
+          pwdConfirmError.textContent = '비밀번호 확인을 입력하세요';
+          return false;
+        } else {
+          pwdConfirmError.textContent = '비밀번호와 비밀번호 확인이 일치합니다. ✅';
+          pwdError.textContent = '비밀번호와 비밀번호 확인이 일치합니다. ✅';
+          pwdConfirmError.style.color = 'green';
+          pwdError.style.color = 'green';
+        }
+
+        //------------------------------------------------------------------------------------
+        // 5. 직업 영역 유효성 검사(직업을 선택했는지..)
+        const workSelect = document.getElementById('work');
+        const workError = document.getElementById('workError');
+
+        if (workSelect.value === '직업명') {
+          workError.textContent = '직업을 선택하세요.';
+          // workSelect.focus();
+          return false;
+        } else {
+          workError.textContent = '✅';
+        }
+
+        //------------------------------------------------------------------------------------
+        // 6. 성별 영역 유효성 검사(성별을 선택 또는 체크 했는지..)
+        const maleRadio = document.getElementById('s1');
+        const femaleRadio = document.getElementById('s2');
+        const sexError = document.getElementById('sexError');
+
+        if (!maleRadio.checked && !femaleRadio.checked) {
+          sexError.textContent = '성별을 선택하세요.';
+          // maleRadio.focus();
+          return false;
+        } else {
+          sexError.textContent = '✅';
+        }
+
+        //------------------------------------------------------------------------------------
+        // 7. 취미 영역 유효성 검사(취미를 하나 이상 체크 했는지..)
+        const hobbyCheckbox = document.getElementsByName('hobby');
+        const hobbyError = document.getElementById('hobbyError');
+
+        let hobbyCount = 0;
+        for (let i = 0; i < hobbyCheckbox.length; i++) {
+          if (hobbyCheckbox[i].checked) {
+            hobbyCount++;
+          }
+        }
+        if (hobbyCount === 0) {
+          hobbyError.textContent = '취미를 하나 이상 선택하세요.';
+          // hobbyCheckbox[0].focus();
+          return false;
+        } else {
+          hobbyError.textContent = '✅';
+        }
+
+        //------------------------------------------------------------------------------------
+        // 8. 가입동기 영역 유효성 검사(가입동기를 입력 했는지..)
+        const motivationTextarea = document.querySelector('textarea[name="motivation"]');
+        const motivationError = document.getElementById('motivationError');
+
+        if (motivationTextarea.value.trim() === '') {
+          motivationTextarea.setAttribute('placeholder', '가입동기를 입력하세요.');
+          // motivationTextarea.focus();
+          return false;
+        } else {
+          motivationError.textContent = '';
+        }
+
+        return true;
+      }
+    </script>
+  </body>
+</html>

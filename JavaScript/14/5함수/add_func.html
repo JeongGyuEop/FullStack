@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //두개의 매개변수로 전달받은 값의 합을 구하는 기능의 함수 정의
+    function sum(num1, num2){
+        let result = num1 + num2;
+        return result; //함수 내부 데이터를 함수 외부(함수를 호출한 줄로)로 전달(반환)    
+    }
+
+    //sum이름의 함수를 호출시 10, 20 매개변수 num1과 num2에 각각 순서대로 전달해
+    // 30을 구해 오자
+    const result = sum(10,  20);
+
+    console.log(result); // 10과 20의 합 30이 출력됨
+
+
+
+
+
+
+  </script>
+</body>
+</html>

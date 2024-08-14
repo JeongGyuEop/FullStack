@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 주제 1. 사용자 정의 객체 만들기
+
+      // - 객체는 여러 개의 키:값 형태를 가지고 있다.
+      //   키를 속성 또는 프로퍼티라고도 부른다.
+
+      // - 객체 메모리 생성하는 문법
+      //     const 객체명(변수) = { 키1:값1, 키2:값2, ......... }
+
+      const book1 = {
+        title: '웹 표준의 정석',
+        pages: 648
+      };
+
+      //----------------------------------------------------------------
+      // 주제 2. 객체 프로퍼티(속성, 키)의 값을 얻거나 변경하는 방법
+      //     방법 1. .표기법 이용
+      //     방법 2. [] 괄호 표기법 이용
+
+      // 방법 1-1. 객체명.키 -> 객체 {} 내부에 저장된 키에 대응되는 값을 가져오기
+      console.log(book1.title); // "웹 표준의 정석"
+      // 방법 1-2. 객체명.키 = 변경할 값;  -> 객체 {} 내부에 저장된 키에 대응되는 값 변경
+      book1.title = '웹 표준의 정석2';
+      console.log(book1); //{title: "웹 표준의 정석2", pages: 648}
+
+      // 방법 2-1. 객체명["키"] -> 객체{} 내부에 저장된 키에 대응되는 값 가져오기
+      console.log(book1['title']);
+      // 방법 2-2 객체명["키"] = 변경할 값; -> 객체 {} 내부에 저장된 키에 대응되는 값 변경
+      book1['title'] = '웹 표준의 정석';
+      console.log(book1); //{title: "웹 표준의 정석", pages: 648}
+
+      //----------------------------------------------------------------
+      // 주제 3. 키:값 쌍이 없는 비어 있는 객체를 생성하고, 키:값 추가하기
+      let book2 = {}; // 빈 객체
+
+      // book2 비어있는 객체에 키:값 한쌍씩 넣으면 객체를 수정할수 있다.
+      book2.title = 'Javascript';
+      //{title: "javascript"}
+      book2.pages = 500;
+      book2.author = '김개똥';
+      console.log(book2); // {title: "javascript", pages: 500, author: "김개똥"}
+
+      //----------------------------------------------------------------
+      // 주제 4. 객체 내부에 만들어져 있는 키:값 삭제하기
+      //   삭제 문법
+      //         delete 객체명.키
+      delete book2.pages;
+      console.log(book2); // {title: "javascript", author: "김개똥"}
+      delete book2.authors;
+      console.log(book2); // {title: "javascript"}
+
+      //----------------------------------------------------------------
+      // 주제 5. 객체 중첩하기(객체안에 또 다른 객체를 넣을 수 있다.)
+      let student = {
+        name: 'Doremi',
+        score: {
+          history: 85,
+          science: 94,
+          average: function () {
+            return (this.history + this.science) / 2;
+          }
+        }
+      };
+      // 객체명.키.안쪽키
+      console.log(student.score.average());
+    </script>
+  </body>
+</html>

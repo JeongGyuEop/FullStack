@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="http://www.naver.com">네이버</a>
+    <br />
+    <h1 id="hi">안녕</h1>
+    <br />
+    <p class="p1" id="p2">안녕하세요 반갑습니다.</p>
+    <br />
+    <h2 class="red-color" id="h">안녕2</h2>
+
+    <script>
+      // 주제1. 선택한 요소노드의 속성을 삭제
+      const h2 = document.querySelector('.red-color');
+      h2.removeAttribute('id');
+      console.log(h2); // <h2 class="red-color">안녕2</h2>
+
+      // 주제2. 속성과 같이 저장된 값을 변경
+      const p = document.getElementsByTagName('p')[0];
+      p.setAttribute('id', 'p1');
+      console.log(p); // <p class="p1" id="p1">안녕하세요 반갑습니다.</p>
+
+      // 주제3. 속성에 대한 값 얻어오기
+      const h = document.getElementById('hi');
+      console.log(h.getAttribute('id')); // hi
+
+      // <a href="http://www.naver.com">네이버</a> 요소 노드를 선택해서 가져와
+      // aEl 상수에 저장
+      const aEl = document.getElementsByTagName('a')[0];
+
+      // 그리고 "네이버"라는 글자를 "구글"로 변경
+      aEl.textContent = '구글';
+
+      // 그리고 href 속성에 대한 주소값을 얻어오자
+      // href 상수에 저장
+      const href = aEl.getAttribute('href');
+
+      // href 상수에 지정된 주소값 출력
+      console.log(href); // http://www.naver.com
+    </script>
+  </body>
+</html>

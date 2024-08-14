@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+                문제 3: 학점 계산기
+
+
+                사용자에게 점수를 입력받아 학점을 출력하는 프로그램을 작성하세요.
+
+                90~100: "A"
+                80~89: "B"
+                70~79: "C"
+                60~69: "D"
+                0~59: "F"
+
+        */
+
+      if (grade >= 90 && grade <= 100) {
+        document.write('A');
+      } else if (grade >= 80 && grade <= 89) {
+        document.write('B');
+      } else if (grade >= 70 && grade <= 79) {
+        document.write('C');
+      } else if (grade >= 60 && grade <= 69) {
+        document.write('D');
+      } else if (grade >= 0 && grade <= 59) {
+        document.write('F');
+      } else {
+        document.write('0~100 사이의 점수만 입력하세요.');
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // window 객체가 제공하는 confirm 메소드
+      // - 확인 버튼과, 취소버튼이 존재하는 사이트 이용자에게 한 번 더 물어보기
+      //   위한 창을 띄울때 사용
+      // - 문법
+      //     window.confirm("한번 더 물어보기 위한 메시지");
+
+      // 확인 버튼과 취소 버튼 중에서 확인 버튼을 누르면 confirm 메소드는 true 반환해주고
+      // 취소 버튼을 누르면 confirm 메소드는 false 반환해 준다.
+
+      // let result = window.confirm('정말로 이 파일을 삭제하시겠습니까?');
+      // // 확인 버튼을 눌렀다면?
+      // if (result) {
+      //   document.write('파일이 삭제됨');
+      // } else {
+      //   // 취소 버튼을 눌렸다면?
+      //   document.write('파일이 삭제되지 않음');
+      // }
+
+      //-------------------------------------------------------------------------------------
+      // alert
+      // window 객체가 제공하는 alert 메소드
+      // - 경고 메세지 창을 띄울 때 사용.
+      // - 문법
+      //     window.alert("경고할 메시지 작성");
+
+      // window.alert('경고한다!');
+
+      //-------------------------------------------------------------------------------------
+      // prompt
+      // window 객체가 제공하는 prompt 메소드
+      // - 질문 메세지를 보여주고 사용자에게 입력 받을 수 있는 창을 띄울 때 사용.
+      //   확인 버튼과 취소 버튼 둘 중 하나를 누르면, 확인 버튼은 입력받은 데이터를 문자열로 반환
+      //   취소 버튼을 누르면 undefined 데이터를 반환
+
+      // - 문법
+      //     window.prompt("입력 받을 메시지 작성", "기본값");
+
+      let result = window.prompt('정수를 입력하세요', 0);
+      document.write('입력한 값 :' + result);
+    </script>
+  </body>
+</html>

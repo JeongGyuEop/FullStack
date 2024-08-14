@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let numberA = 2;
+      let numberB = 2;
+      let numberC = '2';
+
+      document.write(numberA === numberB, '<br>'); // true
+      //               2     ===     2
+
+      document.write(numberB === numberC, '<br>'); // false
+      //               2     ===    '2'
+      // 같은 숫자 2일지라도 2는 숫자형이고,
+      // '2'는 문자열형 이라서 같지 않으므로 false출력
+
+      document.write(numberA == numberB, '<br>'); // true
+      //               2     ==     2
+
+      document.write(numberB == numberC, '<br>'); // true
+      //               2     ==    '2'
+      // 자료형은 달라도 숫자형태의 값은 동일하므로
+      // 같은지 물어보면 컴퓨터는 같다고 인식하고 true를 반환한다.
+    </script>
+  </body>
+</html>

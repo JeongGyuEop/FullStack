@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 문제 :  while 반복문을 사용하여 팩토리얼을 계산하는 프로그램 만들기
+
+  팩토리얼 -> 1부터 주어진 어던 숫자까지 곱한 결과. -->
+
+    <h1>while 반복문을 사용한 팩토리얼 계산</h1>
+    <script>
+      // 사용자에게 입력받은 숫자까지의 팩토리얼을 구하기 위해
+      // 입력받은 숫자값을 n 변수에 저장
+      let n = prompt('숫자를 입력하세요.', '10');
+
+      // 입력을 했거나 입력하지 않았을 경우, 각각 다른 메시지를 저장할 변수를 선언
+      let msg = '';
+
+      // prompt 함수를 이용해 입력 후 확인 버튼을 눌렸다면?
+      // ('취소' 버튼을 누르지 않았는지 체크)
+      if (n !== null) {
+        let i = 1;
+        let count = 1;
+        while (i <= n) {
+          count *= i;
+          i++;
+        }
+        msg = n + '! = ' + count;
+      } else {
+        msg = '입력하신 값이 유효하지 않습니다.';
+      }
+      document.write(msg);
+    </script>
+  </body>
+</html>

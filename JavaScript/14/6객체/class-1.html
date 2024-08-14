@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      주제. 클래스(설계)를 만들고 객체 생성해보기
+
+      클래스
+      - 객체를 생성하기 위한 설계도(틀)
+      - 문법1. 
+              class 클래스명 {
+              
+                //생성자 함수 
+                constructor(){
+                  프로퍼티1,
+                  프로퍼티2,
+                  ........
+                }
+
+                메서드1(){     }
+                메서드2(){     }
+              }
+
+        - 문법2. 표현식 문법
+
+            const 클래스명 = class {
+
+                ....
+                    
+            }
+
+    */
+
+
+
+
+    //책 설계도(클래스) 만들기
+    class Book2 {
+
+      //생성자 함수: 객체 메모리 생성시 속성값들을 빠르게 초기화 목적
+      constructor(title, pages, done){//책 제목, 책 종페이지수, 완독여부
+
+        this.title = title;
+        this.pages = pages;
+        this.done =  done;
+
+      }
+      //메서드 
+      finish(){
+         let str = "";
+         
+         this.done === false ? str = "읽는 중" : str = "완독";
+
+         return str;
+      }
+    }
+
+    
+    // 위 Book2 class설계도를 이용해 실제 객체 메모리 생성
+    let book1 = new Book2("웹 표준의 정석", 648,  false);
+
+    console.log(book1.title + ", " + book1.pages + "쪽 - " + book1.finish() );
+
+    // 위 Book2 class설계도를 이용해 실제 객체 메모리 생성 2
+    let book2 = new Book2("점프 투 파이썬", 350,  true);
+
+    console.log(`${book2.title},${book2.pages}쪽 - ${book2.finish()}`);
+    
+
+
+
+
+
+  </script>
+</body>
+</html>

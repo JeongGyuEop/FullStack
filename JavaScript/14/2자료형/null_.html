@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let emptyVar; // 변수 선언
+
+      emptyVar = 10; // 변수 메모리에 10 저장
+
+      //위 변수에 저장된 10을 제거하고 싶을 때 대신  null 값을 집어넣어서 저장
+      // 결론 : null은 변수에 값을 제거할 용도의 데이터
+      emptyVar = null;
+      document.write(emptyVar);
+
+      // 결론2 : C언어나 JAVA 언어에서는 변수를 생성하고 아무런 값도 저장하지
+      // 않으면 null 값(비어있다는 의미의 값)을 가진다고 하지만, 자바스크립드에서는
+      // null 대신에 undefined 값을 갖게 된다.
+    </script>
+  </body>
+</html>

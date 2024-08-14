@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 기존에 없던 <a></a>요소노드 생성하기
+      // document.createElement("생성할 태그명")
+      const aEl = document.createElement('a'); // <a></a>
+
+      // <body요소노드 사이에 자식 <a>요소노드를 추가하기 위해
+      // <body></body> 요소노드를 선택해 와서
+      // 방법
+      //    부모요소노드.자식요소노드명
+      //    -> 자식요소노드 최종 선택해 올 수 있다.
+      document.body.appendChild(aEl);
+      // <body>
+      //    <a></a>
+      // </body>
+
+      // 생성한 a요소노드에 추가할 텍스트노드 ("길벗")을 만들어서 txtEl 변수에 저장
+      const txtEl = document.createTextNode('길벗');
+
+      // 위 동적으로 생성한 <a> 요소 노드를 선택해서 동적으로 생성한 "길벗" 텍스트 노드를
+      // appendChild() 메서드를 호출하여 자식 노드 위치에 추가
+      document.querySelector('a').appendChild(textEl);
+      // <body>
+      //    <a>길벗</a>
+      // </body>
+
+      // a 태그에 href 속성, target 속성 등이 있다.
+      // 이런 속성이 포함된 요소들은 속성노드까지 생성해 연결해야 한다.
+      // href 속성노드 생성
+      const hrefAttr = document.createAttribute('href');
+      // 동적으로 만든 href 속성에 주소를 저장
+      // 방법
+      // 속성명.value = 저장할 주소값;
+      hrefAttr.value = 'https://www.gilbut.co.kr/';
+
+      // href = "https://www.gilbut.co.kr/";
+      // aEl 요소노드에 href 속성노드를 appendChild() 메서드로 추가
+      aEl.appendChild(hrefAttr);
+      // <body>
+      //    <a href="https://www.gilbut.co.kr/">길벗</a>
+      // </body>
+    </script>
+  </body>
+</html>

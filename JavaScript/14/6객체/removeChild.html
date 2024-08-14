@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>text-1</p>
+    <a href="https://www.gilbut.co.kr">길벗</a>
+    <a href="https://www.google.com">구글</a>
+
+    <script>
+      // <p>text-1</p> 요소 노드 선택
+      const pEl = document.querySelector('p');
+
+      // pEl.parentNode속성을 호출하면
+      // body 부모 요소를 선택해 온다.
+      // <body><p>text-1</p></body>
+
+      // pEl 상수에 저장된 자식요소 노드 <p>text-1</p>에 접근해서 삭제
+      // 방법. removeChild(삭제할 자식 노드 선택);
+      pEl.parentNode.removeChild(pEl);
+      // <body><p>text-1</p></body>.removeChild(<p>text-1</p>);
+    </script>
+  </body>
+</html>

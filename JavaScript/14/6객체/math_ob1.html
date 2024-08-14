@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Math 객체는 따로 생성하지 않고,
+      // Math객체명.특정메서드(); 호출해서 사용
+      // Math 객체명.특정속성명; 호출해서 사용
+
+      // max 메서드 호출 시, 매개변수로 전달한 인수 중에서 가장 큰 값(최대값)을 반환
+      let maxNum = Math.max(10, 5, 8, 30);
+      document.write(maxNum, '<br>'); // 최대값 30 출력
+
+      // min 메서드 호출 시, 매개변수로 전달한 인수 중에서 가장 작은 값(최소값)을 반환
+      let minNum = Math.min(10, 5, 8, 30);
+      document.write(minNum, '<br>'); // 최소값 5 출력
+
+      //------------------------------------------------------------------------------
+      let num = 2.1234;
+
+      // num 변수의 값 2.1234에서 소수점 첫째자리에서 반올림하여 정수로 반환 (중요!!)
+      let roundNum = Math.round(num);
+      document.write(roundNum, '<br>'); // 2 출력
+
+      // num변수의 값 2.1234에서 소수점을 잘라내어 정수 2반 반환
+      let floorNum = Math.floor(num);
+      document.write(floorNum, '<br>'); // 2 출력
+
+      // num변수의 값 2.1234에서 소수점 첫째 자리에서 무조건 올림하여 반환 (중요!!)
+      let ceilNum = Math.ceil(num);
+      document.write(ceilNum, '<br>'); // 3 출력
+
+      // Math.random() : 0 ~ 1 사이의 난수(실수)를 반환 (중요!!!!!!!!)
+      let randomNum = Math.random();
+      document.write(randomNum, '<br>'); // 0~1 사이의 랜덤값 출력
+
+      // Math 객체의 PI 상수를 호출하면 3.141592....를 반환
+      let piNum = Math.PI;
+      document.write(piNum, '<br>'); // 3.141592653589793 출력
+
+      // Math.pow(base, exponent) : base의 exponent승을 반환
+      let powerNum = Math.pow(2, 10);
+      document.write(powerNum, '<br>'); // 1024 출력
+    </script>
+  </body>
+</html>

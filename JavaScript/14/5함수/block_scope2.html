@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    var a = 10; //블록문{} 를 기준으로 전역스코프에 변수를 선언
+    //전역변수 a
+
+    //블록문  {   }
+    {
+      //var 키워드를 사용하여 변수를 만들었을 경우
+      //지역스코프로 인식 하지 않고 전역스코프영역에 만든 전역변수 b로 만들어짐 
+      var b = 20;
+      //전역변수 b
+
+      console.log(`블록문 내부(지역스코프)에서 a변수값 얻어 출력 : ${a}`);
+      console.log(`블록문 내부(지역스코프)에서 b변수값 얻어 출력 : ${b}`);
+
+    }
+    console.log(`블록문 외부(전역스코프)에서 a변수값 얻어 출력 : ${a}`);
+
+    //오류가 발생하지 않습니다.
+    //이유 : var키워드는 함수 스코프 방식으로만 스코프를 나누기 떄문에
+    //       변수 a, b 모두 전역스코프영역에 선언한 전역변수로 인식하기 떄문이다.
+    console.log(`블록문 외부(전역스코프)에서 b변수값 얻어 출력 : ${b}`); 
+
+
+
+
+  </script>
+
+
+
+</body>
+</html>

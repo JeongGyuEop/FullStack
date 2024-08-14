@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book List</title>
+  <link rel="stylesheet" href="css/bookList.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Book List</h1>
+    <form>
+      <ul id="bookInfo">
+        <li>
+          <label for="title">제 목</label>
+          <input type="text" id="title">
+        </li>    
+        <li>
+          <label for="author">저 자</label>
+          <input type="text" id="author">
+        </li>   
+      </ul>
+  
+      <button type="reset">취소하기</button>
+      <button id="save">저장하기</button>
+    </form>
+
+    <!-- 정보가 표시될 영역 -->
+    <ul id="bookList"></ul>
+  </div>
+
+  <script>
+    //책 제목을 입력하는 <input type="text" id="title"> 요소선택
+    const title = document.querySelector("#title");
+
+    //저자 입력하는 <input type="text" id="author"> 요소선택
+    const author = document.querySelector("#author");
+
+    //저장하기 버튼 <button id="save">저장하기</button> 요소선택
+    const save = document.querySelector("#save");
+
+    //정보가 표시될 영역 <ul id="bookList"></ul>
+    const bookList = document.querySelector("#bookList");
+
+
+    // 저장하기 버튼에 click이벤트 등록
+    save.addEventListener("click", (e) => {
+
+      //저장하기 버튼 <button id="save">저장하기</button> 요소에는 기본적으로 <form>사이에 작성되어 있기 때문에 
+      //submit 기본이벤트가 적용되어 있다.
+      //<form>에 의해  전송요청을 차단하기 위해 e매개변수의 event객체의 preventDefault()메소드로 submit이벤트 차단
+      // 참고. 가장 윗줄에 작성해야 아래줄의 코드가 작동된다.
+
+      e.preventDefault();
+
+      //입력한 책 제목 정보와 저자 정보를 텍스트노드로 하는 li요소노드 생성
+      const item = document.createElement("li"); // <li></li>
+
+      item.innerHTML = `${title.value} - ${author.value} <span class="delButton">삭제</span>`;
+
+      // <li>
+      //   자바의정석 - 남궁성
+      //   <span class="delButton">삭제</span>
+      // </li>
+
+      //<ul id="bookList"></ul>사이에 새로 생성된 위 <li> 한쌍을 자식 노드로 추가
+      bookList.appendChild(item);
+
+      // <ul id="bookList">
+      //   <li>
+      //      자바의정석 - 남궁성
+      //      <span class="delButton">삭제</span>
+      //   </li>  
+      // </ul>
+
+      title.value = ""; // 책 제목 입력하는  <input>에 입력된 값 대신 빈공백 투입. 다른 책 내용을 입력할 수 있도록 하자
+      author.value = "";// 저자 명 또한 책 제목과 같다.
+
+      // 목록에서 제거!!!!!!!!!(삭제 클릭)
+      // 동적으로 생성한 삭제 <span>을 모두 배열에 담아 선택해 옴
+      const delButtons = document.querySelectorAll(".delButton");
+      // [ <span clas="delButton">삭제</span>, <span clas="delButton">삭제</span> ]
+
+      //delButtons 배열에 저장된 span을 차례로 얻어 click이벤트 등록 처리
+      for( let delButton of delButtons){
+      
+        // click이벤트 등록
+        delButton.addEventListener("click", function(){
+          //click이벤트가 발생한 this(span 삭제)
+        //  this.parentNode.parentNode.removeChild(this.parentNode);
+        //span.부모li.부모ul.removeChlid(span.부모li 삭제);
+
+        //아래와 같이 변수에 저장후 변수명을 사용해도 됨
+        let list = this.parentNode; // li
+        list.parentNode.removeChild(list);
+
+
+        });
+      } 
+
+
+
+
+    });
+
+
+
+  </script>
+
+
+</body>
+</html>

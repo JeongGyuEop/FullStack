@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      //함수를 만드는 방법 3가지
+      //1. 선언문 방식으로 만들기  호이스팅 가능
+      //   function 함수명(){  }
+      
+      //2. 표현식 방식으로 만들기 
+      //     const 변수명 = fuction(){};
+      //     const 변수명 = function 함수명(){};
+
+      //3. 화살표를 이용해 함수를 만드는 방식 
+      //     const 변수명  = () => {};
+
+/*
+      아래의 코드중에  printHello(); 함수 호출구문에 의해 
+      호이스팅된 함수 정의문 입니다.       
+
+      function printHello(){  //함수 정의문 
+
+        console.log("Hello");
+
+      }
+*/
+      printHello(); // 아래에 만들어 놓은 함수를 호출하는 순간
+                    // 호이스팅 되어 함수 호출이 가능하다.
+
+      function printHello(){  //함수 정의문 
+
+        console.log("Hello");
+
+      }
+
+
+//결론 : 
+//선언문방식으로 만든 함수 정의문은 호이스팅 되어  
+//함수호출문을 위에 적어도 호출이 가능하다.
+//그러나 2번쨰 방법인 함수표현식으로 만든 함수는 호이스팅되지 않는다.
+
+
+  </script>
+
+
+  
+</body>
+</html>

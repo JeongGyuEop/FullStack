@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습문제 2</title>  
+  <link rel="stylesheet" href="css/quiz-2.css">
+</head>
+<body>
+  <div id="noti-box"></div>
+  <button id="bttn">클릭!</button>
+</body>
+
+  <script>
+    //<button id="bttn">클릭!</button>  -  클릭할 버튼 
+    const bttn = document.querySelector('#bttn');
+    
+    //<div id="noti-box"></div> - 알림메세지 보여줄 영역
+    const notiBox = document.querySelector('#noti-box');
+
+    //bttn상수에 저장된 <button>버튼에 click이벤트 등록
+    bttn.addEventListener("click", () => {
+
+      //<div></div>노드 생성
+       const noti = document.createElement("div");
+                    
+      //<div class='noti'></div>
+      noti.classList.add('noti');
+
+      //<div class='noti'>알림 내용이 표시됩니다.</div>
+      noti.innerText = "알림 내용이 표시됩니다.";
+
+      //<div class='noti'>알림 내용이 표시됩니다.</div>  알림메세지보여주는 영역을
+      //미리 만들어져 있는  <div id="noti-box"></div>부모요소노드의 컨텐트영역에
+      //자식노드로 추가!
+      notiBox.appendChild(noti);
+      /*
+            <div id="noti-box">            
+              <div class='noti'>알림 내용이 표시됩니다.</div>             
+            </div>
+      */
+
+      //3000초 휴식 후  실행문 실행시키고 함수 종료 
+      window.setTimeout( () => { noti.remove(); }, 3000);
+
+
+    });
+
+
+  </script>
+
+</html>

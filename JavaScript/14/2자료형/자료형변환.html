@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 자료 형 변환
+      // 1. 묵시적 형 변환(자동 형 변환)
+      // 2. 명시적 형 변환(강제 형 변환)
+
+      let number = 10; // 10은 숫자형(number) 정수
+
+      let string = '20'; // 20은 문자열(string)
+
+      let string2 = '20개';
+
+      // 1. 묵시적 형 변환 알아보기
+      console.log(number + string);
+      console.log(string + number);
+
+      // 2. 명시적 형 변환 알아보기
+      // 참고. 자바스크립트에서 제공하는 Number 라는 이름의 함수가 있다.
+      //        기능 : 숫자형태로 되어있는 문자열을 Number 함수에게 전달하면,
+      //               숫자만 추출해서 정수로 반환
+      console.log(number + +string); // 30 (number + parseInt(string))
+      console.log(number + Number(string)); // 30 (Number(string))
+      console.log(number + Number(string2)); // NaN 출력
+      console.log(number + parseInt(string)); // 30 (parseInt(string))
+      console.log(number + parseInt(string2)); // 30 (parseInt(string))
+      console.log(number + parseFloat(string)); // 30.0 (parseFloat(string))
+      console.log(number + Boolean(string)); // true (Boolean(string))
+      console.log(String(number) + string2); // 1020개
+
+      // 함수 Number는 자바스크립트가 기본적으로 제공하는 내장함수
+      // 숫자가 아닌 문자를 포함한 전체 문자열을 집어 넣으면 숫자로 명시적 형 변환이
+      // 일어나지 않기 때문에 NaN이라는 값을 반환한다.
+      // 문자열을 포함한 '10개'라는 문자열에서 숫자만 출력하기 위해서는 parseInt함수를
+      // 사용한다.
+      console.log('');
+      let string3 = '16개';
+      console.log(parseInt(string3, 4));
+
+      // 구문
+      // parseInt(string, radix);
+      // 매개변수
+      // string: 변환할 문자열입니다. 문자열의 시작 부분에서부터 숫자 부분을 읽는다.
+      // radix: 선택 사항으로, 2와 36 사이의 정수로서 숫자가 나타내는 진수를 지정한다.
+      //         지정하지 않으면 기본적으로 10진수로 처리합니다.
+
+      // 문자열에서 숫자 추출
+      // parseInt()는 문자열의 시작 부분에서부터 숫자를 추출합니다.
+      // 만약 숫자가 아닌 문자가 나오면 변환을 중지합니다.
+      // 공백을 무시한다.
+
+      // 숫자형을 문자형으로 명시적으로 변환
+      // String 함수 사용!
+      let num = 2022;
+      console.log(String(num)); // '2022'
+
+      let varB = null;
+      console.log(String(varB) + ' ' + typeof String(varB));
+
+      let varC = true;
+      console.log(String(varC) + ' ' + typeof String(varC));
+
+      // 논리값으로 명시적 형 변환
+      // 논리값으로 변환하는 내장 함수로는 Boolean 함수가 있다.
+      // Boolean('하이'); -> true
+      // Boolean(0); -> false
+      // Boolean(''); ->false
+    </script>
+  </body>
+</html>

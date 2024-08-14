@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.
+      // 자바스크립트에서 키워드 var로 변수를 선언할 수 있다.
+      // age 라는 이름의 변수메모리 생성 동시에 25 저장
+      var age = 25;
+
+      // 단점 : 같은 age라는 이름으로 변수메모리 생성 가능
+      // 같은 age 라는 이름으로 변수 메모리를 만들어 저장하면
+      // 이상한 값을 얻을 수 있다.
+      var age = 30;
+
+      console.log(age);
+
+      // 2.
+      // 자바스크립트에서 키워드 let으로 변수를 선언할 수 있다.
+      // let으로 변수를 선언하면 변수이름을 중복해서 작성할 수 없다.
+      let age2 = 50;
+      let age2 = 100;
+
+      console.log(age2);
+    </script>
+  </body>
+</html>
