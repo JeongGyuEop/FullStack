@@ -1,0 +1,74 @@
+#container {
+  width: 1000px; /* 컨테이너의 너비를 1000px로 설정 */
+  margin: 20px auto; /* 컨테이너를 수평 중앙에 배치하고 상하 여백을 20px로 설정 */
+}
+h1 {
+  text-align: center; /* h1 요소의 텍스트를 중앙 정렬 */
+}
+.prod-list {
+  list-style: none; /* 리스트의 기본 스타일을 제거 */
+  padding: 0; /* 리스트의 내부 여백을 제거 */
+}
+.prod-list li {
+  float: left; /* 리스트 아이템을 왼쪽으로 정렬하여 가로로 나열 */
+  padding: 0; /* 리스트 아이템의 내부 여백을 제거 */
+  margin: 10px; /* 리스트 아이템의 외부 여백을 10px로 설정 */
+  overflow: hidden; /* 내용이 넘칠 경우 숨기기 */
+
+  position: relative; /* 리스트 아이템의 위치를 상대적으로 설정 */
+  /* relative 값을 준 li 요소들은 일반적인 흐름에 따라 배치되지만, 
+  top, right, bottom, left 속성을 사용하여 자신의 위치를 기준으로 
+  이동할 수 있다. */
+}
+.prod-list img {
+  margin: 0; /* 이미지의 외부 여백을 제거 */
+  padding: 0; /* 이미지의 내부 여백을 제거 */
+  float: left; /* 이미지를 왼쪽으로 정렬 */
+  z-index: 5; /* 이미지의 쌓임 순서를 5로 설정 */
+  /* CSS에서 요소의 쌓임 순서를 제어하는데 사용된다. 이 속성은 요소가 
+  다른 요소들 위나 아래에 어떻게 배치될지 결정한다. z-index 속성은 
+  정수 값을 가지며, 값이 클수록 더 위에 쌓이게 된다.
+
+  기본 규칙
+    z-index 속성은 position 속성이 relative, absolute, fixed, sticky 값으로 
+    설정된 요소에만 적용. 기본 값은 auto이며, 이는 요소가 부모 요소의 쌓임 
+    맥락 내에서 기본 순서대로 배치됨을 의미한다. */
+} 
+.prod-list .caption {
+  /* absolute 값을 설정하면 문서의 일반적인 흐름에서 제거되고, 
+  가장 가까운 부모요소 주에서 position 속성 값이 releative, 
+  absolute, fixed, sticky 으로 설정된 요소를 기준으로 배치된다. 
+  만약 없다면 초기 body 요소르 기준으로 배치한다. */
+  position: absolute; /* 캡션의 위치를 절대적으로 설정 */
+
+  top: 200px; /* 캡션을 위에서 200px 아래로 배치 */
+  width: 300px; /* 캡션의 너비를 300px로 설정 */
+  height: 200px; /* 캡션의 높이를 200px로 설정 */
+  padding-top: 20px; /* 캡션의 상단 내부 여백을 20px로 설정 */
+  background-color: rgba(0, 0, 0, 0.6); /* 캡션의 배경색을 반투명 검정으로 설정 */
+
+  opacity: 0; /* 캡션의 초기 불투명도를 0으로 설정 (보이지 않음) */
+  /* CSS에서 요소의 투명도를 설정하는데 사용한다. 값의 범위는 0~1이며, 
+  0은 완전히 투명하고 1은 완전히 불투명하다. 중간값은 0.5 반투명 상태이다. */
+
+  transition: all 0.6s ease-in-out; /* 모든 속성의 변화를 0.6초 동안 부드럽게 전환 */
+  /* opacity 속성 값을 이용 완전 선명해 질 때 부드럽게 0.6초동안 전환되도록 설정
+     요약 : 나타날 때 부드럽게 트랜지션 추가 */
+
+  z-index: 10; /* 캡션의 쌓임 순서를 10으로 설정 */
+  /* 캡션의 쌓임 순서를 10으로 설정. 즉 <div>텍스트영역들이 이미지<img> 요소
+  보다 위에 오도록 설정한다. */
+}
+
+/* class 속성 명이 .prod-list인 부모 ul 요소의 하위요소 중에서 마우스 포인터가 
+올라가있는 상태의 하위 li 요소의 하위요소 중 class 명이 .caption인 <div>요소를 
+선택해 온다. */
+.prod-list li:hover .caption {
+  opacity: 1; /* 마우스를 올렸을 때 캡션을 보이게 설정 */
+  transform: translateY(-200px); /* 마우스를 올렸을 때 캡션을 200px 위로 이동 */
+}
+
+.prod-list .caption h2, .prod-list .caption p {
+  color: #fff; /* 캡션 내부 텍스트 색상을 흰색으로 설정 */
+  text-align: center; /* 캡션 내부 텍스트를 중앙 정렬 */
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Transition</title>
+    <style>
+      .box {
+        margin: 20px auto;
+        width: 100px;
+        height: 100px;
+        background-color: #07f;
+        border: 1px solid #222;
+
+        /* 트랜지션 대상지정 - 너비속성, 높이 속성 */
+        transition-property: width, height;
+
+        /* 트랜지션 시간 설정 - 너비속성 동작시간 2초, 높이속성 동작시간 1초 */
+        transition-duration: 2s, 1s;
+      }
+      .box:hover {
+        width: 200px;
+        height: 120px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box"></div>
+  </body>
+</html>

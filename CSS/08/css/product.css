@@ -1,0 +1,19 @@
+div {
+  border: 1px solid #222;
+  padding: 20px;
+  margin: 0 auto;
+
+}
+#container {
+  width: 600px;
+  margin: 0 auto;
+  border: none;
+}
+#description {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+#package {
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS position 속성</title>
+    <style>
+      p {
+        width: 500px;
+        height: 200px;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        line-height: 2;
+      }
+      #static {
+        /* 웹 문서의 흐름에 맞게 설정 */
+        position: static;
+      }
+      #relative-1 {
+        /* 웹 문서의 흐름에 맞추어 배치하되, 위치값을 지정할 수 있게 설정 */
+        position: relative;
+      }
+      #relative-2 {
+        position: relative;
+        top: -50px; /* 위쪽에서 -50px 떨어지게(위로 이동) */
+        left: 100px; /* 왼쪽에서 100px 떨어져 배치 */
+      }
+      #fixed {
+        /* 웹 브라우저 정체 창 네모를 기주능로 위치를 지정해 배치하게 설정 */
+        position: fixed;
+        background-color: #222;
+        width: 100px;
+        height: 100px;
+        right: 30px;
+        top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="static">
+      Ex et adipisicing voluptate aliqua cupidatat nulla. Laboris est sint sit aliqua enim. Aute Lorem eu sint aute sunt
+      proident. Do culpa consectetur elit duis laboris reprehenderit incididunt nulla. Pariatur fugiat voluptate ea non
+      amet cupidatat.
+    </p>
+    <p id="relative-1">
+      Lorem ipsum reprehenderit adipisicing exercitation enim velit veniam incididunt sit consectetur elit exercitation.
+      Magna Lorem excepteur occaecat cupidatat sunt proident tempor do nostrud labore cillum non exercitation voluptate.
+    </p>
+    <p id="relative-2">
+      Excepteur voluptate ad irure ipsum duis. Deserunt cupidatat commodo proident eu mollit cillum commodo quis quis et
+      ad. Velit id duis enim reprehenderit eu dolor Lorem excepteur excepteur.
+    </p>
+    <p id="fixed"></p>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        /* 모든 요소에 테두리 크기까지 포함한 너빗값을 계산하기 위해 설정 */
+        box-sizing: border-box;
+      }
+
+      /* nav 요소의 하위 ul을 최종 선택 해서 가져와 스타일 정의할 때 다음과 같이 사용 */
+      nav ul {
+        list-style: none; /* li 요소의 list-style-type을 none으로 설정하여 불릿 제거 */
+      }
+
+      /* nav요소의 하위 ul요소의 하위 모든 li 요소를 선택해서 가져옴. */
+      nav ul li {
+        /* li 요소들을 인라인 레벨 요소로 설정하여 가로로 나열 */
+        display: inline-block;
+
+        /* li요소의 좌우 외부(바깥) 여백을 20px로 설정 */
+        margin: 0 20px;
+
+        /* li 요소의 내부 여백을 20px로 설정 */
+        padding: 20px;
+
+        border: 1px solid #222;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>menu 1</li>
+        <li>menu 2</li>
+        <li>menu 3</li>
+        <li>menu 4</li>
+      </ul>
+    </nav>
+  </body>
+</html>

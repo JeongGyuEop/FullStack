@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        display: inline-block;
+        border: 2px solid #222;
+        width: 200px;
+        height: 100px;
+      }
+      #margin1 {
+        /* id 속성에 대한 명이 margin1인 div 영역의 바깥 
+        위/오/아/왼 방향의 여백을 50px 만큼 띄워 설정 */
+        margin: 50px;
+      }
+      #margin2 {
+        /* 위/아래 30px, 왼/오 50px 설정 */
+        margin: 30px 50px;
+      }
+      #margin3 {
+        /* 위 30px, 왼/오 30px, 아래 50px로 설정 */
+        margin: 30px 30px 50px;
+      }
+      #margin4 {
+        /* id 속성에 대한 명이 margin4인 div 영역의 바깥
+        위/오/아/왼의 시계 방향의 여백을 30px, 50px, 30px, 50px로 설정 */
+        margin: 30px 50px 30px 50px;
+      }
+      #margin5 {
+        /* id 속성에 대한 명이 margin5인 div 영역의 바깥
+        오른쪽 방향의 여백을 20px로 설정 */
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="margin1"></div>
+    <div id="margin2"></div>
+    <div id="margin3"></div>
+    <div id="margin4"></div>
+    <div id="margin5"></div>
+  </body>
+</html>

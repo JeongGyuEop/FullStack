@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        /* 배경이미지 설정 */
+        /* no-repeat을 통해 이미지를 한번만 표시 */
+        /* fixed를 통해 배경 이미지를 웹브라우저에 고정시킴*/
+        /* 스크롤 해도 배경이미지가 고정되어 화면에 따라 움직이지 않음*/
+        background: url('images/cat.jpg') no-repeat fixed;
+
+        /* 배경 이미지 크기 설정 */
+        /* cover : 배경 이미지를 화면에 꽉 채우도록 확대 또는 축소하는 역할의 값 */
+        background-size: cover;
+
+        /* 텍스트 정렬 */
+        text-align: center;
+      }
+      h1 {
+        font-size: 160px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      .color1 {
+        color: rgb(255, 255, 255);
+      }
+      .color2 {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="color1">HTML</h1>
+    <h1 class="color2">CSS</h1>
+  </body>
+</html>

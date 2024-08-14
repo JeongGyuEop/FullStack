@@ -1,0 +1,17 @@
+
+
+
+
+place-items 속성
+이 속성은 align-item 속성과 justify-item 속성값을
+한중에 한꺼번에 설정할 수 있는 속성
+형식
+place-items: align-items속성의 값 justify-items속성의 값;
+
+palce-self 속성
+이 속성은 align-self 속성과 justify-self 속성값을
+한중에 한꺼번에 설정할 수 있는 속성
+  place-self: align-self속성의값 justify-self속성의값;
+
+item은 그리드 컨테이너 내부에 작성된 모든 그리드 아이템들
+selt는 개별 그리드 아이템에 대해 정렬을 설정

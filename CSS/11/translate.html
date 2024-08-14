@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>Transform:translate</title>
+    <style>
+			#container {
+				width:800px;
+				height:200px;
+				margin:20px auto;
+			}
+			.origin {
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				float: left;
+				margin: 40px;
+			}
+			.origin > div {				
+				width:100px;
+				height:100px;
+				background-color:orange;
+			}
+
+			#movex:hover {
+				/* 
+				transform 속성
+					- 웹 요소를 이동시키게 하는 속성
+
+				translateX() 함수
+				  - x축 방향으로 선택한 요소를 이동시키는 값 
+				*/
+        transform: translate(50px);
+      }
+
+			/* id 속성명이 movey인 div 요소를 선택해 오되 마우스 포인터가
+			올라가 있는 상태의 div요소만 최종 선택 */
+			#movey:hover {
+				/* y축으로(세로) 아래 방향으로 20px 만큼 이동 */
+				transform: translateY(50px);
+			}
+
+			#movexy:hover {
+				/* x축으로(가로) 10px 이동, y축으로(세로) 아래 방향으로 20px 이동 */
+				transform: translate(10px, 20px);
+			}
+
+		</style>
+	</head>
+	<body>		
+		<div id="container">
+			<div class="origin">
+				<div  id="movex"></div>		
+			</div>
+			<div class="origin">
+				<div id="movey"></div>	
+			</div>
+			<div class="origin">
+				<div id="movexy"></div>		
+			</div>
+		</div>
+		</div>
+	</body>
+</html>

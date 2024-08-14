@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* ul 한쌍을 가져와 li 요소들의 불릿기호 없애기 */
+      ul {
+        list-style: none;
+      }
+
+      /* 모든 li요소들을 한 번에 선택해서 가져와서 안쪽 여백을 위아래 5px,
+      좌우 안쪽 여백을 30px로 설정 */
+      li {
+        padding: 5px 30px;
+      }
+
+      /* 모든 li요소들을 선택해서 선택한 모든 li 요소들의 하위 모든 a를 선택하여
+      가져와서 글자 크기르 16px, a 요소들의 밑줄 제거, a 요소 사이에 작성된
+      텍스트 색상을 검은 색으로 설정 */
+      li a {
+        font-size: 16px;
+        text-decoration: none;
+        color: black;
+      }
+
+      /* [속성=속성값] 선택자 */
+      /* 
+      target -> 작성된 모든 요소들 중에서 target 속성이 부여된 요소들을 
+      선택해 오는데, target="_blank" -> target 속성에 대한 값이 _blank와 완전히 
+      일치하는 a요소 하나만 최종선택 
+      */
+      [target='_blank'] {
+        padding-right: 30px;
+        background: url('images/newwindow.png') no-repeat center right;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li><a href="https://html.spec.whatwg.org" target="_blank">HTML</a></li>
+      <li><a href="https://www.w3.org/TR/selectors">CSS Selector Level 3</a></li>
+      <li><a href="https://www.w3.org/TR/css3-mediaqueries">미디어쿼리</a></li>
+    </ul>
+  </body>
+</html>

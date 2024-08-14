@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품 소개 페이지</title>
+
+    <!-- 
+      전체선택자 '*'
+        - html 파일에 작성된 모든 태그(요소)를 한 번에 선택해 오는 선택자 
+    -->
+
+    <style>
+      /*
+        전체 선택자 기호 * 를 이용해 모든 HTML 태그를 한번에 
+        선택해서 가져와 스타일 변경한다. 이때 <body>태그 또한 가져오게 된다는
+        것에 주의하자. 
+      */
+      * {
+        margin: 0;
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+      div {
+        width: 50%;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="images/cat.jpg" />
+    <div></div>
+  </body>
+</html>
