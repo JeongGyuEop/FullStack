@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 객체 조작 및 생성 </title>  
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+	$(function( ){
+		// val()  첫번째1 
+		// - 선택한 입력요소의 value속성에 설정된 값을 반환하는 메소드
+		// - 문법1
+		//		  $("입력요소선택").val();
+		//<input type="text" name="user_name" id="user_name" value="용대리">
+		let result_1 = $("#user_name").val();
+		console.log(result_1);
+		
+	
+		//val("선택한입력요소의value속성에설정할 값") 두번째2
+		// - 선택한 입력요소의 value속성에 지정한 값을 변경하여 설정하는 메소드 
+		// - 문법2.
+		//         $("입력요소선택").val("value속성에설정할값");
+		//<input type="text" name="user_id" id="user_id" value="hello">
+		$("input:eq(1)").val("javascript");
+		//변경된 value속성 모습
+		//<input type="text" name="user_id" id="user_id" value="javascript">
+		
+	});
+	</script>
+</head>
+<body>
+	<h1>객체 조작 및 생성</h1>
+	<form action="#" id="form_1">
+		<p>
+			<label for="user_name">이름</label> 
+			<input type="text" name="user_name" id="user_name" value="용대리">
+		</p>
+		<p>
+			<label for="user_id">아이디</label> 
+			<input type="text" name="user_id" id="user_id" value="hello">
+		</p>
+	</form>
+</body>
+</html>
+
+
+
+
+

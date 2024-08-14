@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #student-list {
+        /* 학생 목록 스타일 설정 */
+        list-style-type: none;
+        padding: 0;
+      }
+      .student-item {
+        /* 각 학생 항목의 마진 설정 */
+        margin: 5px 0;
+      }
+    </style>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script>
+      // 웹 문서가 준비되면 실행되는 function
+      $(document).ready(function () {
+        // 학생들의 이름을 저장할 빈 배열 생성
+        let students = [];
+
+        // 학생 추가 함수
+        // 학생이름을 name매개변수로 받아서
+        // 배열에 추가하고,
+        // renderList() 함수를 호출하여 업데이트된 학생 목록을 화면에 보여준다.
+        function addStudent(name) {
+          students.push(name); // 입력받은 학생이름을 위 배열에 추가
+          renderList(); // 학생 목록을 다시 랜더링
+        }
+
+        // 학생 삭제 함수
+        function deleteStudent(name) {
+          students = $.grep(students, function (student) {
+            return student !== name; // students 배열에서 name과 일치하는 요소를 제거
+          });
+          renderList(); // 학생 목록을 다시 랜더링
+        }
+
+        // 학생 목록을 랜더링 하는 함수
+        // 요약: 학생이름을 화면에 표시하는 함수
+        // 1. students 배열을 기반으로 #student-list 요소의 자식 요소들을 모두 비우고 (삭제)
+        // 2. 각 학생 이름과 삭제 버튼을 포함한 리스트 아이템을 생성하여 추가
+        function renderList() {
+          // 이전에 추가된 학생 목록을 초기화하여
+          // 새로운 목록을 만들어 보여주기 위해 필요
+          $('#student-list').empty();
+
+          //                        index는 현재 반복요소의 index 번호
+          //                        student는 현재 요소(학생이름)을 나타냄
+          $.each(students, function (index, student) {
+            //각 학생 이름과 삭제 버튼을 포함한 <li> 리스트 항목을 동적으로 만들어
+            // #student-list인 <<ul> 사이에 새로운 항목으로 추가
+            // 요약 : 학생 목록에 새로운 항목 추가
+            $('#student-list').append(
+              `<li class="student-item">${student} <button class="delete-student" data-name="${student}">삭제</button></li>`
+            );
+          });
+        }
+
+        // 추가 버튼을 선택해서 클릭이벤트 등록
+        $('#add-student').click(function () {
+          // 학생 이름을 input field에서 입력한 학생 이름을 문자열로 가져오고
+          // 입력한 이름 문자열 앞 뒤 공백 제거 후 반환
+          const studentName = $('#student-name').val().trim();
+
+          // input field 초기화
+          $('#student-name').val('');
+
+          // 학생 이름을 입력했고, students 배열에 중복되지 않은 경우
+          if (studentName && $.inArray(studentName, students) === -1) {
+            // 조건이 참일 경우
+            // addStudent() 함수를 호출하여 학생이름을 students 배열에 추가
+            addStudent(studentName);
+
+            // 입력 필드를 비우고 포커스가 가도록 설정
+            // .val('')는 입력 필드의 값을 빈 문자열로 설정하여 필드를 비운다.
+            // .focus()는 사용자가 다음 입력을 진행할 수 있도록 포커스를 집중한다.
+            $('#student-name').val('').focus();
+
+            // students 배열의 내용을 ul#student-list 요소에 li 태그로 추가
+            //$('#student-list').append(`<li class="student-item">${studentName}</li>`);
+          } else {
+            // 조건이 거짓일 경우
+            // alert() 함수를 호출하여 "이름을 입력하거나, 이미 존재하는 학생입니다." 메시지를 출력
+            alert('이름을 입력하거나, 이미 존재하는 학생입니다.');
+          }
+        });
+
+        /*
+        
+        (동적 요소에 대한 이벤트 등록) 문법
+
+        $("이벤트가 등록된 부모 요소").on("등록할 이벤트 종류", "이벤트가 적용될 요소", function(){});
+        
+        */
+        // 삭제 버튼 클릭 이벤트 등록
+        $('#student-list').on('click', '.delete-student', function () {
+          // ul 하위 button 삭제 버튼 중에서
+          // click 이벤트가 발생한 button을 선택해서
+          // $(this)
+          const studentName = $(this).data('name');
+
+          // 학생 삭제 처리 함수 호출
+          deleteStudent(studentName);
+        });
+
+        //초기 렌더링
+        renderList(); //페이지 로드시 학생목록 렌더링
+      });
+    </script>
+  </head>
+  <body>
+    <h1>학생 관리 시스템</h1>
+    <div>
+      <!-- 학생 이름 입력 필드 -->
+      <input type="text" id="student-name" placeholder="학생 이름" />
+      <!-- 학생 추가 버튼 -->
+      <button id="add-student">추가</button>
+    </div>
+
+    <!-- 학생 목록을 표시할 요소 영역 -->
+    <ul id="student-list"></ul>
+  </body>
+</html>

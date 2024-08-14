@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<!-- 주제 : 인접관계 선택자 종류 중에서  하위요소 선택자    " " 를 사용한 예제   -->
+	
+	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+<body>
+	<div id="wrap">
+		<h1>인접관계 선택자</h1>	
+		<p>내용1</p>
+		<section>
+			<h1>하위 요소 선택자</h1>
+			<p>내용2</p>
+		</section>
+	</div>
+	
+	<script>
+		//하위 요소 선택자 ?
+		//-> 기준 요소로 선택한 하위요소만 선택하는 선택자   " "빈공백을 말함
+		//-> 문법
+		//		 $("기준요소선택1 요소선택2")
+		
+		//id속성값이 wrap인 기준요소<div>를 먼저 선택하고 
+		//빈공백 -> 하위요소선택자를 작성하면   <div>의 모든 하위요소들 중에서도 
+		//h1하위요소들만 모두 최종 선택해서 가져옴
+		$("#wrap h1").css(
+												{
+													"backgroundColor":"yellow",
+													"border":"2px dashed #f00" 
+												}
+						  				);
+					
+					
+		
+		
+		
+		
+		
+		    	
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+

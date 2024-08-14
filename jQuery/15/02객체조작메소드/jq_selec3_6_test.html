@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 객체 조작 및 생성 </title>  
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<script>
+	$(function(){
+		//<p id="p1">내용1</p> 요소를 선택해오기 위해
+		//#p1로 선택해 옵니다.
+		let h1 = $("#p1").height(); //콘텐츠 영역의 높이 50px 반환
+		console.log("h1 ->" + h1); // "h1 -> 50"
+
+		let w1 = $("#p1").width(); //콘텐츠 영역의 너비 100px 반환
+		console.log("w1 ->" + w1); // "w1 -> 100"
+
+
+		//<p id="p2">내용2</p>요소를 선택해 padding영역과 콘텐츠영역을 포함한 높이,너비
+		let h2 = $("#p2").innerHeight();//높이
+		console.log("h2 ->" + h2); //"h2 -> 90"
+
+		let w2 = $("#p2").innerWidth();//너비 
+		console.log("w2 -> " + w2); //"w2 -> 140"
+
+		//<p id="p1">내용1</p>요소를 선택해서 
+		//padding영역과 콘텐츠영역 그리고 border영역을 포함한 높이, 너비
+		let h3 = $("#p1").outerHeight();//높이
+		console.log("h3 -> " + h3); //"h3 -> 99"
+
+		let w3 = $("#p1").outerWidth();//너비 
+		console.log("w3 -> " + w3); //"w3 -> 149"
+
+		//<p id="p2">내용2</p> 요소를 선택해 
+		// padding여백 및  border두께영역을 포함한 요소의 너비값을 100px로 변경
+		// padding여백 및  border두께영역을 포함한 전체 높이값을 100px로 변경
+		$("#p2").outerWidth(100).outerHeight(100);
+
+
+		
+	});
+	</script>
+	<style>
+		*{padding: 0;}
+		#p1, #p2{
+			width: 100px;
+			height: 50px;
+			padding:20px;
+			border: 5px solid #000;
+			background-color: #ff0;
+		}
+	</style>
+</head>
+<body>
+	<h1>수치 조작 메서드</h1>
+	<p id="p1">내용1</p>
+	<p id="p2">내용2</p>
+</body>
+</html>
+
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- 설치 방법 1.
+      제이쿼리 문법을 사용하기 위해 다운로드 받은 .js 파일의 소스 내용을
+      현재 test.html 파일로 불러온다. -->
+    <!-- <script src="./js/jquery-3.7.1.js"></script> -->
+
+    <!-- 설치방법 2.
+        제이쿼리 문법을 사용하기 위해 제이쿼리 사이트에서 직접 .js 파일
+        소스 내용을 현재 파일로 불러와서 사용 -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  </head>
+  <body>
+    <h1>자바스크립트</h1>
+    <h1 id="h1">자바스크립트2</h1>
+
+    <h2>제이쿼리</h2>
+    <h2 id="h2">제이쿼리2</h2>
+
+    <!-- 제이쿼리 문법을 사용하기 위한 선언문 작성 -->
+    <script>
+      // 1. 자바스크립트 문법의 선택자 종류에서 태그명 선택자
+      //   getElementsByTagName()메소드 이용
+      //  [<h1>자바스크립트</h1>, <h1 id="h1">자바스크립트2</h1>]
+      //            0                            1                    index
+      let h1Object = document.getElementsByTagName('h1')[0];
+      console.log(h1Object); // <h1>자바스크립트</h1><br>
+
+      // 2. 자바스크립트 문법의 선택자 종류중에서
+      //    아이디 선택자 getElementById() 메소드 사용
+      //              <h1 id="h1">자바스크립트2</h1>
+      let h1Object2 = document.getElementById('h1');
+      console.log(h1Object2);
+
+      //---------------------------------------------------------------------
+      // 1. 제이쿼리 문법의 선택자 종류 중에서
+      //    태그명 선택자 이용
+      // 기본문법
+      //     $("선택자 종류의 문법")
+      // 태그명 선택자 문법
+      //     $("태그명")
+      // $("h2");  ->  [ <h2>제이쿼리</h2>, <h2 id="h2">제이쿼리2</h2> ]
+      //                        0                      1                    index
+      // $("h2")[0]; -> 0 index 위치에 저장된 <h2>제이쿼리</h2> 요소만 최종 선택
+      console.log($('h2')[0]);
+
+      // 제이쿼리 문법의 선택자 종류 중에서 아이디 선택자 # 이용
+      // <h2 id="h2">제이쿼리2</h2> 요소를 선택해서 가져옴
+      let newH2 = $('#h2')[0];
+      console.log(newH2); // <h2 id="h2">제이쿼리2</h2>
+    </script>
+  </body>
+</html>

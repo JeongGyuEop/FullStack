@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!--
+      주제 : 직접선택자를 이용해 선택한 기준요소를 기준으로
+             가장 가까이 작성된 상위요소 선택하는
+             closest("선택할상위요소선택")상위 요소선택자 사용 
+  -->
+  <!-- JQuery문법을 사용하기 위해 라이브러리 .js파일 불러와 적용  -->
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+  <script>
+      $(function(){
+          //<p class="txt1">내용</p>를 기준요소로 선택해오고
+          //closest("선택할상위요소선택")메소드 - 가장가까운상위요소선택자를
+          //이용해 가장 근접해 있는 div만 최종 선택
+          $(".txt1").closest("div").css("border","2px solid blue");
+      });
+  </script>
+
+</head>
+<body>
+      <h1 class="title">선택자</h1>
+      <div>
+          <div>
+              <p class="txt1">내용</p>
+          </div>
+      </div>
+
+
+</body>
+</html>

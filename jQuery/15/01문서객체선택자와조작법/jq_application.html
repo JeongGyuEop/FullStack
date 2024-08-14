@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+	<script type="text/javascript">
+		//배열
+		const arr1 = ["apple","banana","orange"];
+		//				0        1       2         index
+		const arr2 = ["grape", "lemon", "peach"];
+		//				0		1        2         index
+		
+		//배열병합
+		const mergedArr = $.merge(arr1, arr2);
+		//			["apple","banana","orange"] + ["grape", "lemon", "peach"]
+		//		->  ["apple","banana","orange","grape", "lemon", "peach"]
+		//				0       1        2       3          4        5    index
+		
+		console.log(mergedArr);
+		
+		//배열 요소 검색
+		const index = $.inArray("lemon", mergedArr);
+		console.log(index); // 4
+		
+		//배열 요소위치 체크 
+		if(index > -1){
+			console.log("lemon is at index" + index);
+		}
+		
+//		->  ["apple","banana","orange","grape", "lemon", "peach"]
+//				0       1        2       3          4        5    index		
+		
+		//배열 요소 필터링 
+		const filteredArr = $.grep(mergedArr, function(elem){
+		
+						    return  elem.indexOf('a') > -1;
+						   //["apple","banana","orange","grape", "peach"]
+						   
+							//"apple".indexOf('a') -> index 위치번호 0 반환
+							// 01234     
+							
+							//"banana".indexOf('a') -> index 위치번호 1 반환
+							// 012345
+							
+							//"orange".indexOf('a') -> index 위치번호 2 반환
+							// 012
+			
+					        //"grape".indexOf('a')  ->   index 위치번호2
+					        // 01234
+	 							     
+					        //"lemon".indexOf('a')  ->  없으므로 -1
+					        // 01234
+					     
+					        //"peach".indexOf('a')  -> index 위치번호 2
+					        // 012		
+		});
+		
+		console.log(filteredArr);
+		
+		//filteredArr 배열 -> ["apple","banana","orange","grape", "peach"]  
+		//						0        1        2       3         4     index
+		
+		//filteredArr 배열에 저장된 각 문자열들을 대문자로 변경후 새로운 배열에 담아 반환받기
+		const resultArr = $.map(filteredArr, function(elem){ 
+			
+				return elem.toUpperCase();
+			
+				//["APPLE","BANANA","ORANGE","GRAPE", "PEACH"] 
+			
+		});
+		
+		
+		
+		console.log(resultArr);   //["APPLE","BANANA","ORANGE","GRAPE", "PEACH"]  
+			
+	
+	</script>
+	
+
+
+
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
