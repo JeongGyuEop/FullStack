@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- 주제: script선문의 선언 위치에 따라 
+             JQuery 선택자를 이용해 DOM요소 선택 가능 여부가 결정된다.  -->
+
+  <!-- 방법2. JQuery설치 CDN주소 이용  -->
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+  <!-- 1. 선언문의 위치가 <body></body>내부에 작성된 DOM요소들보다 위쪾에 작성된 경우
+          이벤트 등록 기능을 사용하지 않으면 선택 불가능! -->
+  <script>
+    //자바스크립트의 document.getElementById() 아이디 선택자 메소드 !
+    //                      문서h1객체.style.스타일속성명 = 설정할 값;
+      // document.getElementById("title").style.color = "red";
+
+    //제이쿼리의  # 아이디 선택자 기호!
+    //문법  $("#id속성에설정된값")
+    //해석
+    //1. $("#")  <- id속성이 포함된 요소를 선택해 오는데
+    //2. $("#title") <- id속성의 값이 title인  h1요소를 선택해 옵니다.
+    //$("#title").css("color","red");
+  </script>
+
+  <!--
+      위 1. 을 가능하게 하려면? 윈도우창(웹브라우저창)정보를 가지고있는 window객체에
+      load이벤트 등록 구문을 작성해 놓으면 
+      선언문 script 의 선언 위치가 상단에 있든 상관없이
+      웹브라우저가 jq_sample1.html웹문서의 모든 DOM을 로딩한 상태에서
+      <h1>을 선택해 올수 있습니다. 그럼 가능하다!
+  -->
+  <script>
+        //자바스립트문법을 이용해 window객체에 load이벤트 등록
+        //  window.onload = function(){}
+
+       // window.onload = function(){
+
+          //아이디 선택자 getElementById()메소드를 이용해 
+          //h1요소를 선택해오고 스타일을 정의할수 있다
+      //   document.getElementById("title").style.color = "red";
+
+      //}
+      //----------------------------------------------------------------
+      //제이쿼리 문법
+      //웹브라우저창(window객체)에 load이벤트 등록 방법1.
+      
+      //해석 : 웹브라우저가 jq_sample1.html문서의 HTML태그들을 모두 로딩한 상태가되면
+      //        function 콜백함수가 자동으로 호출되어 실행되게 선언!
+
+      //$(document).ready(function(){ 선택자를 이용해 DOM을 선택해 와야함   });
+      /*
+        $(document).ready(function(){
+
+          //id속성값이 title인 <h1>요소 한쌍을 선택해서 가져와
+          //글자 색상을 빨강으로 설정
+          $("#title").css("color","red");
+
+        });
+      */
+
+      //제이쿼리 문법
+      //웹브라우저창(window) load이벤트 등록 방법2.
+          //$(function(){ 선택자를 이용해 DOM을 선택하는 코드작성    });
+  /*
+      $(function(){
+
+      //참고.
+      //선택한 요소에 특정속성에 설정된값을 변경하고자 할때
+      //.attr("특정속성명","변경할값");  메소드를 호출하여 사용하자!
+
+//<h1 id="title" class="h" >제목</h1>.attr("수정될값의속성명","수정할값");
+                          $("#title").attr("class","y");
+
+      });
+  */
+  </script>      
+</head>
+<body>
+   <h1 id="title" class="h" >제목</h1>
+   <!--
+    2. 선언문 위치가 <h1> DO요소보다 아래에 있으면
+       당연히 웹브라우저가 <h1> DO를 미리 읽어서 보관해 둔 상태에서
+       선택해 옵니다. 그러니 load이벤트를 구지~ 웹브라우저 window객체에 
+       등록하지 않아도 됩니다.
+   -->
+   <script>
+        //자바스크립트 문법으로 h1요소를 선택해 와서 글자색상을 빨강으로 설정
+        //document.getElementById("title").style.color = "red";
+
+        //제이쿼리 문법으로 h1요소를 선택해 와서 글자색상을 빨강으로 설정
+        $("#title").css("color","red");
+
+   </script>
+
+
+</body>
+</html>

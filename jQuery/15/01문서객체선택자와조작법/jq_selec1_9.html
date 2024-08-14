@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!--  주제 : 인접관계 선택자 종류 중에서  자식요소 선택자    >   children()  사용한 예제  -->
+
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$(function() {
+			//자식 요소 선택자            >  또는  children()메소드 
+			//- 의미 : 자식 요소 선택자는 선택된 요소를 기준으로  지정한! 자식요소만 선택하는 선택자 기호 >
+			//- 문법 
+			//		 		1.    $("요소선택>자식요소선택")
+			//              해석 :  요소선택 자리에서 선택한 요소를 기준으로  >기호 뒤에 적은  자식요소선택에서 선택한 자식요소만 선택
+			//       2.     $("요소선택").children("자식요소선택");
+			//				해석 :  요소선택 자리에서 선택한 요소를 기준으로 children()자식요소선택자에 적은  자식요소만 선택 
+			//       3.     $("요소선택").children();
+			//              해석 :  요소선택 자리에 선택한 요소를 기준으로 children()자식요소선택자를 호출하면 
+			//					     기준으로한 선택한 요소 내부에 있는 모든 자식요소들을 선택합니다.
+			
+			   //id속성의 값이 wrap인 부모 <div>요소를 선택하고 
+			   //이 요소를 기준으로  > 자식요소선택자 기호를 이용해  인접한 바로 직전 자식 요소들중에서 선택해 오는데
+			   //h1자식요소들을 몽땅 선택해 옵니다.
+		   //$("#wrap>h1").css("border","2px dashed #f00");
+			   
+			   //id속성값이 wrap인 부모<div>요소를 선택하고 
+			   //이 요소를 기준으로 > 자식요소선택자 기호를 이용해 인접한 바로 직전 자식 <section>요소를 기준요소로 선택해 오는데
+			   //children()메소드 즉! 자식요소선택자 메소드를 이용해  <section>내부에 있는 모든 자식 요소 <h1>  <p>를 모두 최종 선택
+			//  $("#wrap>section").children().css("border","2px dotted yellow");
+			   
+			    $("#wrap>section").children("p").css("background-color","pink");
+		});
+
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<h1>인접관계 선택자</h1>	
+		<h1>인접관계 선택자2</h1>
+		<p>내용1</p>
+		<section>
+			<h1>자식 요소 선택자</h1>
+			<p>내용2</p>
+		</section>
+	</div>
+</body>
+</html>
+

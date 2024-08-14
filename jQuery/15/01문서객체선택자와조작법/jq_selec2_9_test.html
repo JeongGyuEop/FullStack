@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+	<!--	 
+		배열 관련 메소드 종류 중에서
+		
+		$.inArray()
+		- 배열에 저장된 데이터 중  지정한 데이터를 찾아 index 값을 반환 하는 메소드 
+		- 문법
+				$.inArray(data, Array, startIndex)
+		
+		  해석 : 배열에 저장된  데이터 중 지정한 data를  
+             index위치의 오름차순으로 찾아 
+             먼저 찾은 data의  index값을 반환 하는 메소드 
+		
+	
+		$.isArray()
+		- 지정한 데이터가 배열 객체이면, 
+      true를 배열 객체가 아니면  false를 반환 하는 메소드 
+
+		- 문법
+		
+				$.isArray(object)		
+		    해석:   지정한 객체가 배열 객체이면 true를 반환, 아니면 false를 반환 합니다.		
+		
+		
+		$.merge()
+		- 두배열 객체를 하나의 배열객체로 묶어서 반환합니다.
+		- 문법
+			   $.merge(Array1, Array2)
+		    해석 : Array1배열과 Array2배열을 하나의 배열로 만들어서 반환 	   
+	
+	 -->
+
+   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+   <script>
+        //주제 : $.inArray(),  $.isArray() 메소드를 사용해
+        //       배열 객체의 정보를 구해보겠습니다.
+        //       또한 $.merge()메소드로 두배열을 하나의 배열로 만들어 반환하자
+        $(function(){
+
+          let arr1 = ["서울","대전","부산","전주"];
+                    //  0      1      2      3      index
+          let arr2 = ["한국", "미국", "일본", "중국"];
+                    //  0       1        2      3      index
+          let obj = { "name":"정부장",  "area":"서울" };   //객체 
+
+          //     ["한국", "미국", "일본", "중국"], ["서울","대전","부산","전주"]
+          //     ["한국", "미국", "일본", "중국","서울","대전","부산","전주"]
+          //     합친 하나의 새로운 배열을 반환 
+          let arr3 = $.merge(arr2, arr1);
+          console.log(arr3);//["한국", "미국", "일본", "중국","서울","대전","부산","전주"]
+
+
+          //arr1변수에 저장된 데이터가 배열이면 true반환하고 아니면 false반환
+          let okArray1 = $.isArray(arr1);
+          console.log(okArray1); //true
+
+          //obj변수에 저장된 데이터가 배열이면 true반환하고 아니면 false반환
+          let okArray2 = $.isArray(obj);
+          console.log(okArray2); //false
+
+          //arr1배열에 저장된 찾을 "부산" 데이터를 검색하여 있으면? 
+          //index위치 번호 2반환
+          let idxNum = $.inArray("부산", arr1);
+          console.log(idxNum); // 2
+
+
+
+
+        });
+
+   </script>
+
+
+</head>
+<body>
+  
+</body>
+</html>

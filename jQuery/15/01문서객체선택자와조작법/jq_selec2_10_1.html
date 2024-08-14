@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+<body>
+    <script>
+        /*
+            $.grep()메소드
+            - 배열에 저장된 데이터 수만큼 function함수가 반복실행되며
+              function함수의 반환값이 true인 경우에만
+              function함수의 매개변수로 넘어오는 원본배열값을 
+              새로운 배열에 저장해서 그 배열을 반환하는 메소드 
+
+            - 문법
+                   $.grep(가공할원본배열, function(매개변수){ return 조건식; } );
+        */
+        //  1 ~ 10 까지 숫자를 저장한 arr2 배열 생성
+        let arr2 = [ 1,2,3,4,5,6,7,8,9,10 ];
+        //           0 1 2 3 4 5 6 7 8 9    index
+
+        //  arr2가공할_원본배열의 값들 중에서 3의 배수인 값이 있으면
+        //  새로운 배열에 담아 반환받습니다.  반환받은 새배열은 newArr변수에 저장
+        let newArr = $.grep(arr2, function(e){
+
+            return  e % 3 === 0;
+
+        });
+        //  newArr변수에 저장된 배열 출력
+        console.log(newArr);
+        //  newArr변수에 저장된 배열 요소의 총 갯수 출력 
+        console.log(newArr.length);
+
+/*
+index()메소드
+- 선택자 구문으로 요소들(배열전체)을 먼저 선택 후, 
+  찾을 데이터 또는 $("찾을요소선택")이 있으면  인덱스 정보를 가져옴
+
+문법
+$("요소선택").index(찾을 데이터 또는 $("찾을요소선택"));
+*/
+		let arr = [1, 2, 3, 4, 5];
+		  //		   0  1  2  3  4  index
+		
+		//arr배열에 저장된 데이터중에서 3이 저장되어 있는지 찾습니다.
+		//3이 저장되어 있으면 3이 저장된 index위치 번호 2를 반환합니다.
+		console.log(  $(arr).index(3)   );
+  		
+		//arr배열에 저장된 데이터중에서 100이 저장되어 있는지 찾습니다.
+		//100이 저장되어 있으면 100이 저장된 index위치 번호를 반환하지만 
+    //없으므로 -1을 반환합니다.
+		console.log(  $(arr).index(100) ); 
+		
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- 
+	배열 관련 메소드 종류 중에서
+	
+	 $.map()
+	 - 배열에 저장된 데이터 수만큼 메소드를 반복 실행하는 메소드로, 
+	   배열 요소에 대해 지정된 콜백함수를 호출하고, 
+     결과를 모아 새로운 배열을 생성하는 메소드.
+	    단 기존 배열의 순서는 유지 됩니다.
+	 
+	 - 문법
+	 		$.map(array, function(매개변수1,매개변수2){
+	 		
+	 			return 데이터;
+	 		});	
+	 
+	 	해석 
+	 		array배열에 저장된 요소만큼 function콜백함수를 반복해서 실행합니다.
+	 		function콜백함수가 실행될떄마다  매개변수1에는 배열의 데이터 그리고 매개변수2에는 데이터가 저장된 index값이 대입되어 전달 됩니다.
+	 		return 데이터; 구문에서  새로운 데이터를 만들어서  새로운 배열메모리를 만들어서 저장후 반환해 줍니다.
+	 
+	 	예)  
+	 		 const array = [1,2,3,4,5];
+	 		 				        0 1 2 3 4   index
+	 		 				
+	 		 const  squares = $.map(array,function(elem,index){
+                                            1    *  1
+                                            2    *  2
+                                            3    *  3
+                                            4    *  4
+                                            5    *  5
+                                  return  elem * elem;
+                            
+                            // [1, 4, 9, 16, 25]
+                
+	 						  }); 				
+	 
+	 		 console.log(squares);   // [1, 4, 9, 16, 25] 
+	 
+	 
+	 $.grep()
+	 - 배열에 저장된 데이터 수만큼 콜백함수function()를 반복해서 실행하며,
+	      인덱스 오름차순으로 배열의 데이터를 불러 옵니다.
+	   function()의 반환값이 true이면  새배열에 저장되고 배열을 반환하는 메소드 
+	   
+	 - 문법
+	 		$.grep(array, function(매개변수1,매개변수2){
+	 			
+	 			return 조건식 또는 true 또는 false;
+	 		
+	 		});  
+	 
+	  해석 : 배열에 저장된 요소만큼 콜백함수function을 반복실행합니다.
+	       function이 호출될때마다  매개변수1에는 배열에 저장된 데이터를 가져오고, 매개변수2에는 index위치 번호가 오름 차순 정렬해서  받아옵니다.
+            반환된 데이터가 true이면  index위치를 오름 차순 정렬해서 새 배열에 저장하고 새롭게 가공된 배열 객체를 반환하는 메소드
+
+		
+	  예:
+	  		const array = [1,2,3,4,5];
+	  		//			   0 1 2 3 4  index
+	  		
+	  		const evens = $.grep(array, function(elem, index){ 
+	  										1  %  2 === 0;  false
+	  		                                2  %  2 === 0;  true
+	  		                                3  %  2 === 0;  false 
+	  		                                4  %  2 === 0;  true
+	  		                                5  %  2 === 0;  false
+	  		                                
+					  				return elem % 2 === 0;
+					  				
+					  					   [   2, 4  ]
+					  				
+					  		});
+		
+			console.log(evens); //[2,4]
+
+ -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      let arr1 = [
+        { area: '서울', name: '무대리' }, //0 index
+        { area: '부산', name: '홍과장' }, //1 index
+        { area: '대전', name: '박사장' }, //2 index
+        { area: '서울', name: '빅마마' } //3 index
+      ];
+      //$.map()메소드에 의해 새롭게 가공된 배열을 저장할 arr2변수
+      //arr1배열에 저장된 {}객체 갯수만큼 function을 반복 실행합니다.
+      let arr2 = $.map(arr1, function (elem, index) {
+        //elem매개변수에는  arr1배열에 저장된 {}객체를 index0 ~ index3의 순으로 받습니다
+        //전달받은 {"속성명1:속성값"} 객체의 "속성값"을 꺼내와서 사용하려면?
+        //객체명.속성명1 을 작성하면 속성명1에 저장된 "속성값"을 얻을수 있음
+        //elem객체명.area속성명1 을 작성하면   ->  "서울" 속성값 얻을수 있음
+
+        if (elem.area == '서울') {
+          //각 객체들이 사는지역이 서울인 객체들만 추출해서
+
+          return elem; // [
+          //   {"area":"서울", "name":"무대리"},
+          //   {"area":"서울", "name":"빅마마"}
+          // ]
+        }
+      });
+
+      console.log(arr2); //새롭게 가공된 arr2배열 출력!
+
+      console.log('------------- First End -------------');
+
+      // let arr1 = [
+      //   { area: '서울', name: '무대리' }, //0 index
+      //   { area: '부산', name: '홍과장' }, //1 index
+      //   { area: '대전', name: '박사장' }, //2 index
+      //   { area: '서울', name: '빅마마' } //3 index
+      // ];
+
+      //          원본배열 arr1에 저장된 {} 객체 갯수 만큼 function 호출되어 실행됨
+      let arr3 = $.grep(arr1, function (elem, index) {
+        // elem -> { area: '서울', name: '무대리' }
+        // index -> 0
+
+        // elem -> { area: '부산', name: '홍과장' }
+        // index -> 1
+
+        // elem -> { area: '대전', name: '박사장' }
+        // index -> 2
+
+        // elem -> { area: '서울', name: '빅마마' }
+        // index -> 3
+
+        // {} 객체 내부에 area 속성의 값이 "서울"을 포함하고 있다면?
+        if (elem.area === '서울') {
+          return true;
+          //  [ { area: '서울', name: '무대리' }, { area: '서울', name: '빅마마' } ]
+        } else {
+          return false;
+        }
+      });
+
+      console.log(arr3);
+      console.log('------------- Second End -------------');
+    </script>
+  </head>
+  <body></body>
+</html>

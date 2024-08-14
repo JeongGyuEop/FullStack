@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- JQuery문법을 사용하기 위해 라이브러리 .js파일 불러와 적용  -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script>
+      function add() {
+        // 100 개의 <div>This is element 0~99</div> 요소들을 생성하여
+        // 저장시킬 비어 있는 배열 생성
+        let elements = [];
+
+        for (let i = 0; i < 100; i++) {
+          elements.push('<div>This is element ' + i + '</div>');
+        }
+        // 위 for 문을 이용해 동적으로 생성한 <div> 요소들 100개는 elements 배열에 저장되어
+        // 있으므로 반복해서 꺼내어 사용하기 위해 $.each() 메소드 사용
+        $.each(elements, function (index, element) {
+          // 위 elements 배열에 각 index 위치에 저장된 동적으로 push한
+          // div 들을 차례대로 얻어
+          // 아래의 <div id="container"></div> 요소의 컨텐츠 영역 위치에 추가
+          $('#container').append(element);
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <!-- 추가 버튼을 클릭했을 때 100개의 <div>This is element 0 ~ 99</div> 요소를
+  반복해서 만들어 아래의 <div id="container"></div> 사이에 동적으로 추가 -->
+    <button onclick="add()">추가</button>
+
+    <div id="container"></div>
+  </body>
+</html>

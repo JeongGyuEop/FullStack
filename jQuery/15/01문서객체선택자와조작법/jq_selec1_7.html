@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!--주제 :  인접관계 선택자 종류 중에서 부모요소선택자 - parent()메소드  -->
+
+  <!-- JQuery문법을 사용하기 위해 라이브러리 .js파일 불러와 적용  -->
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+  <!--선언문-->
+  <script>
+      /*
+         부모요소선택자 - parent()메소드
+         - 선택한 요소를 감싸고 있는 바로 한단계 위의 부모요소를 최종 선택하는 선택자
+         - 문법
+                $("요소선택").parent();
+      */
+      //웹브라우저(window객체)에 load이벤트 등록후 이벤트처리
+      $(document).ready(function(){
+
+          //id속성의 값이 list_1인 하위 안쪽 <li>먼저 선택해오고
+          //.parent()부모요소선택자 메소드를 호출하여
+          //선택한 <li>를 기준으로 감싸고 있는 근거리에 있는 <ul>부모요소 최종선택
+          $("#list_1").parent().css("border","2px dashed #f00");
+      });
+  </script>
+</head>
+<body>
+    <h1>인접관계선택자</h1>
+    <ul id="wrap">
+        <li>리스트1
+            <ul>
+               <li id="list_1">리스트1-1</li>
+               <li>리스트1-2</li>
+            </ul>
+        </li>
+        <li>리스트2</li>
+        <li>리스트3</li>
+    </ul>
+
+
+
+</body>
+</html>
