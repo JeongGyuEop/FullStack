@@ -23,7 +23,7 @@ public class Opr02_05 {
 //		6. int형 변수 year가 400으로 나눠떨어지거나 또는 4로 나눠떨어지고 
 //		   100으로 나눠떨어지지 않을 때 연산 결과 값이 true인 조건식
 		int year = 800;
-		if( ((year%400) == 0 || (year%4) == 0 ) && (year%4) != 0) System.out.println(true);
+		if( ((year%400) == 0 || (year=%4) == 0 ) && (year%4) != 0) System.out.println(true);
 		
 //		   
 //		7. boolean형 변수 powerOn이 false일때 연산 결과 값이 true인 조건식
