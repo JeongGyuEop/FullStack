@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <!-- 웹 문서의 언어를 한국어로 설정해 웹브라우저가 인식할수 있도록  -->
+  <head>
+    <!-- 웹 문서이 문자 인코딩을 UTF-8로 설정하여 다양한 언어의 문자를 지원  -->
+    <meta charset="UTF-8" />
+
+    <!-- IE 브라우저에서 최신 렌더링 엔진을 사용하도록 설정하여 호환성 문제 해결 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- 뷰포트 설정: 모바일 기기에서의 반응형 디자인을 화면 너비 크기에 맞게 조정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 웹 페이지의 창 제목을 설정하여  브라우저 탭에 표시 -->
+    <title>기업형 웹 페이지</title>
+
+    <!-- 웹 페이지의 아이콘을 설정 (브라우저 탭 및 즐겨찾기에서 표시됨) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Font Awesome 아이콘 라이브러리를 불러와서 다양한 아이콘을 사용할수 있도록 함  -->
+    <script
+      src="https://kit.fontawesome.com/c47106c6a7.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 외부에 CSS파일(style.css)을 연결하여 HTML페이지의 스타일 적용 -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- IE 전용 스크립트 파일 연결( IE에서의 호환성 문제를 해결하기 위한 코드) -->
+    <script src="js/ie.js"></script>
+  </head>
+
+  <body>
+    <!--헤더 영역 
+          : <header>태그로 그룹을 묶고, 자식인 <div>태그에 클래스명 inner를 추가해 
+            로고, 메뉴와 같은 실제 콘텐츠를 가로 가운데로 정렬해 줄 그룹을 만듭니다.
+                    
+      -->
+    <header>
+      <div class="inner">
+        <!-- 사이트의 로고 및 제목을 포함한 메뉴들 -->
+        <h1><a href="#">DCODLAB</a></h1>
+
+        <!-- 네비게이션 메뉴 : 사이트의 주요 섹션으로 이동할수 있는 링크 목록 -->
+        <ul id="gnb">
+          <li><a href="#">DEPARTMENET</a></li>
+          <!--부서 링크-->
+          <li><a href="#">GALLERY</a></li>
+          <!-- 갤러리 링크-->
+          <li><a href="#">YOUTUBE</a></li>
+          <!--유투브 링크-->
+          <li><a href="#">COMMUNITY</a></li>
+          <!--커뮤니티 링크-->
+          <li><a href="#">LOCATION</a></li>
+          <!--위치 링크-->
+        </ul>
+
+        <!-- 유틸리티 메뉴 : 추가적인 기능을 제공하는 메뉴 링크 목록 -->
+        <ul class="util">
+          <li><a href="#">Contact</a></li>
+          <!-- 연락처 링크-->
+          <li><a href="#">Help</a></li>
+          <!-- 도움말 링크-->
+          <li><a href="#">Login</a></li>
+          <!-- 로그인 링크-->
+          <li><a href="#">Join</a></li>
+          <!-- 가입 링크-->
+          <li><a href="#">Sitemap</a></li>
+          <!-- 사이트맵 링크-->
+        </ul>
+      </div>
+    </header>
+
+    <figure>
+      <!-- 비디오 배경을 설정하여 시각적 효과를 제공하는 요소  -->
+                    <!-- 비디오파일 자동 재생, 음소거, 반복재생 설정-->
+      <video src="img/visual.mp4" autoplay muted loop></video>
+      
+      <!-- 비디오 위에 표시되는 콘텐츠를 감싸는 div  -->
+      <div class="inner">
+            <!--비디오 위에 표시되는 제목 및 설명-->
+            <h1>INFORMATION</h1> <!-- 비디오 제목 -->
+
+            <!-- 비디오 위에 표시되는 설명-->
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>
+                Id praesentium molestias similique quaerat magni facere in a? 
+                Adipisci, possimus reprehenderit!</p>
+            
+            <!-- 상세 정보 보기 링크 -->
+            <a href="#">view detail</a>
+      </div>  
+
+
+    </figure>
+
+    <section>
+        <!--최근 뉴스를 보여주는 div영역  -->
+        <div class="inner">
+            <!--최근 뉴스 제목 h1-->
+            <h1>RECENT NEWS</h1>
+
+            <!--최근 뉴스기사 목록을 감싸는 div영역-->
+            <div class="wrap">
+                <!-- 각 뉴스기사 내용을 보여주는 영역인 article 요소 영역-->
+                <article>
+                    <!-- 상단 위 배치되는 뉴스기사의 이미지 영역 -->
+                    <div class="pic">
+                        <img src="img/news1.jpg" alt="1번째 이미지">
+                    </div>
+                    <!-- 뉴스 제목 링크-->
+                     <h2><a href="#">엔비디아 주가 하락</a></h2>
+
+                     <!-- 뉴스 내용 요약 -->
+                      <p>엔비디아 주식 '저가매수 기회' 노리기 이르다,
+                        MS 아마존 메타 실적이 변수</p>
+                </article>
+                <article>
+                    <!-- 상단 위 배치되는 뉴스기사의 이미지 영역 -->
+                    <div class="pic">
+                        <img src="img/news2.jpg" alt="2번째 이미지">
+                    </div>
+                    <!-- 뉴스 제목 링크-->
+                     <h2><a href="#">엔비디아 주가 하락</a></h2>
+
+                     <!-- 뉴스 내용 요약 -->
+                      <p>엔비디아 주식 '저가매수 기회' 노리기 이르다,
+                        MS 아마존 메타 실적이 변수</p>
+                </article>
+                <article>
+                    <!-- 상단 위 배치되는 뉴스기사의 이미지 영역 -->
+                    <div class="pic">
+                        <img src="img/news3.jpg" alt="3번째 이미지">
+                    </div>
+                    <!-- 뉴스 제목 링크-->
+                     <h2><a href="#">엔비디아 주가 하락</a></h2>
+
+                     <!-- 뉴스 내용 요약 -->
+                      <p>엔비디아 주식 '저가매수 기회' 노리기 이르다,
+                        MS 아마존 메타 실적이 변수</p>
+                </article>
+                <article>
+                    <!-- 상단 위 배치되는 뉴스기사의 이미지 영역 -->
+                    <div class="pic">
+                        <img src="img/news4.jpg" alt="4번째 이미지">
+                    </div>
+                    <!-- 뉴스 제목 링크-->
+                     <h2><a href="#">엔비디아 주가 하락</a></h2>
+
+                     <!-- 뉴스 내용 요약 -->
+                      <p>엔비디아 주식 '저가매수 기회' 노리기 이르다,
+                        MS 아마존 메타 실적이 변수</p>
+                </article>                
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="inner"> <!-- 푸터 내부의 콘텐츠를 감싸는 div -->
+            <div class="upper"> <!-- 푸터 상단 섹션: 사이트 정보 및 링크 -->
+                <h1>DCODELAB</h1> <!-- 푸터 상단 제목 -->
+                <ul> <!-- 푸터 링크 목록: 정책, 이용약관 등 -->
+                    <li><a href="#">Policy</a></li> <!-- 정책 링크 -->
+                    <li><a href="#">Terms</a></li> <!-- 이용약관 링크 -->
+                    <li><a href="#">Family Site</a></li> <!-- 가족 사이트 링크 -->
+                    <li><a href="#">Sitemap</a></li> <!-- 사이트맵 링크 -->
+                </ul>
+            </div>
+
+            <div class="lower"> <!-- 푸터 하단 섹션: 연락처 정보 및 저작권 -->
+                <address>
+                    <!-- 연락처 정보: 회사의 연락처 및 주소 -->
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, facere.<br>
+                    TEL : 031-111-1234 C.P : 010-1234-5678 <!-- 전화번호 및 연락처 -->
+                </address>
+                <p>
+                    2020 DOCDELAB &copy; copyright all right reserved. <!-- 저작권 정보 -->
+                </p>
+            </div>
+        </div>
+    </footer>
+  </body>
+</html>

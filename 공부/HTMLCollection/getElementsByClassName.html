@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTMLCollection</title>
+  </head>
+  <body>
+    <ul>
+      <li class="a">김밥</li>
+      <li class="a">라면</li>
+      <li class="a">떡볶이</li>
+    </ul>
+    <script>
+      const liElements = document.getElementsByClassName('a');
+      console.log(liElements); // HTMLCollection(3) [li.a, li.a, li.a]
+
+      // 방법 1. for...of 문 적용
+      for (const liElement of liElements) {
+        console.log(liElement.textContent);
+      }
+      /*
+        "김밥"
+        "라면"
+        "떡볶이"
+      */
+
+      // 방법 2. for 문 적용
+      for (let i = 0; i < liElements.length; i++) {
+        console.log(liElements[i].textContent);
+      }
+      /*
+        "김밥"
+        "라면"
+        "떡볶이"
+      */
+
+      // 방법 3-1. forEach() 함수 사용
+      const arr = [...liElements];
+      arr.forEach(liElement => {
+        console.log(liElement.textContent);
+      });
+      /*
+        "김밥"
+        "라면"
+        "떡볶이"
+      */
+
+      // 방법 3-2. forEach() 함수 사용
+      const liElementsArray = Array.from(liElements);
+      liElementsArray.forEach(li => {
+        console.log(li.textContent);
+      });
+      /*
+        "김밥"
+        "라면"
+        "떡볶이"
+      */
+    </script>
+  </body>
+</html>

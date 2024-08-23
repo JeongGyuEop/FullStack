@@ -1,0 +1,324 @@
+/* 문자 인코딩 방식 UTF-8 설정 */
+@charset "utf-8";
+
+/* 구글 폰트 불러오기 */
+@import url("https://fonts.googleapis.com/css?family=Orbitron@display=swap");
+
+
+/* CSS 초기화 */
+* {
+  /* 모든 요소의 기본 바깥 여백 제거 */
+  margin: 0;
+  /* 모든 요소의 기본 안쪽 여백 제거 */
+  padding: 0;
+
+  /* 박스 모델 설정 */
+  box-sizing: border-box;
+}
+
+/* 목록 링크의 꾸며주기 효과를 제거하여 스타일을 초기화한다. */
+ul, ol {
+  /* 리스트 스타일 제거 */
+  list-style: none;
+}
+
+/* 모든 a(앵커) 요소의 스타일을 초기화 한다. */
+a {
+  text-decoration: none; /* a 요소의 텍스트 장식을 제거 */
+}
+
+/* 프로필 박스 만들기 */
+/* body 영역의 배경색을 설정하여 전체의 배경색을 초기화한다. */
+body {
+  /* 배경색 설정 */
+  background-color: #ebfaff;
+}
+
+/* section 영역에 대한 설정을 통해 */
+section {
+  width: 340px; /* section 영역의 너비를 340px로 설정 */
+  background-color: #fff; /* 배경색을 흰색으로 설정 */ 
+  padding: 30px; /* section영역의 안쪽 여백을 30px로 설정 */
+
+  /* section영역의 위,아래 바깥 여백을 50px로 하고, 
+  좌우 여백을 auto로 하여 가운데 배치하도록 한다. */
+  margin: 50px auto; 
+
+  /* section 영역의 그림자를 설정 (오른쪽, 아래, 번짐정도, 색상) */
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px; /* section 영역의 테두리의 둥근 모서리를 설정한다. */
+}
+
+/* 상단 버튼 만들기*/
+/* section영역의 하위 요소 중 nav요소 중 class 이름이 menu인 요소를 선택한다. */
+section nav.menu {
+   /* class 명이 menu인 nav 요소의 너비를 부모 요소인 section 영역에 100%로 설정 */
+  width: 100%; 
+}
+
+/* section영역의 하위 요소 중 nav요소 중 class 이름이 menu인
+  요소를 가져와 가상 요소를 적용 */
+section nav.menu::after {
+  content: ""; /* 가상 요소 생성 */
+  display: block; /* 가상 요소를 블럭 요소로 설정 */
+  clear: both; /* 플로트 해제 */
+}
+
+/* section영역의 하위 요소에서 class 이름이 menu인 nav요소의 하위 요소인 a를 선택 */
+section nav.menu a {
+  font-size: 20px; /* 폰트의 크기를 설정 */
+  color: #666; /* 폰트 색상 설정 */
+}
+
+/* section영역의 하위 요소에서 class 이름이 menu인 nav요소의
+  하위 요소인 a중에서 1번째 a요소를 선택한다.*/
+section nav.menu a:nth-of-type(1) {
+  float: left; /* 첫 번째 a링크를 왼쪽으로 정렬 */
+}
+
+/* section영역의 하위 요소에서 class 이름이 menu인 nav요소의
+  하위 요소인 a중에서 2번째 a요소를 선택한다 */
+section nav.menu a:nth-of-type(2) {
+  float: right; /* 두 번째 a 링크를 오른쪽으로 정렬 */
+}
+
+/* 프로필 영역 만들기 */
+/* section영역의 하위 요소 중에서 class 명이 profile인 article 요소를 선택한다. */
+section article.profile {
+  /* class 명이 profile인 article 요소의 너비를 부모 요소인 section 영역에 100%로 설정 */
+  width: 100%; 
+  text-align: center; /* article 요소 내의 텍스트를 가운데 정렬 */
+}
+
+/* section영역의 하위 요소 중에서 class 명이 profile인 article 요소의
+  하위 요소인 img 요소를 선택한다. */
+section article.profile img {
+  width: 200px; /* img 요소의 이미지 너비를 설정 */
+  height: 200px; /* img 요소의 이미지 높이 설정  */
+  border-radius: 50%; /* 테두리를 원형으로 둥글게 설정 */
+  margin-bottom: 20px; /* img 요소의 바깥 아래쪽 여백을 20px로 설정 */
+}
+
+/* section영역의 하위 요소 중에서 class 명이 profile인 article 요소의
+  하위 요소인 h1 요소를 선택한다. */
+section article.profile h1 {
+  font-family: 'arial'; /* 폰트 종류를 선택 */
+  font-size: 22px; /* 픈트 크기를 설정 */
+  font-weight: bold; /* 폰트 굵기를 설정 */
+  line-height: 1; /* 행간을 1로 설정하여 기본 폰트의 크기와 동일한 높이로 설정 */
+  color: #555; /* 폰트 색상 설정 */
+  margin-bottom: 5px; /* h1 요소의 바깥 아래쪽 여백을 5px로 설정 */
+}
+
+/* section영역의 하위 요소 중에서 class 명이 profile인 article 요소의
+ 하위 요소인 h2 요소를 선택한다 */
+section article.profile h2 {
+  font-family: 'arial'; /* 폰트 종류를 선택 */
+  font-weight: normal; /* 폰트 굵기 설정 */
+  font-size: 12px; /* 폰트 크기 설정 */
+  color: #bbb; /* 폰트 색상 설정 */
+  margin-bottom: 30px; /* h2 요소의 바깥 아래쪽 여백을 10px로 설정 */
+}
+
+/* section영역의 하위 요소 중에서 class 명이 profile인 article 요소의
+ 하위 요소인 a 요소 중에서 class 명이 btnView인 요소를 선택한다 */
+section article.profile a.btnView {
+  display: block; /* 요소를 블럭 요소로 설정 */
+  width: 180px; /* 요소의 너비 설정 */
+  height: 32px; /* 요소의 높이 설정 */
+  background-color: #444; /* 요소의 배경 색상 설정 */
+  color: #fff; /* 폰트 색상 설정 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  line-height: 32px; /* 행간을 32px로 설정하여 텍스트 수직 가운데 정렬 */
+  font-weight: bold; /* 폰트 굵기 설정 */
+  font-size: 10px; /* 폰트 크기 설정 */
+
+  /* 요소의 위쪽 바깥 여백은 0px, 좌우 바깥 여백은 자동, 아래쪽 바깥 여백은 20px로 설정 */
+  margin: 0px auto 20px; 
+
+  border-radius: 16px; /* 테두리를 둥글게 설정 */
+  font-family: 'arial'; /* 폰트 종류 설정 */
+}
+
+/* 연락처 목록 만들기 */
+/* section 영역의 하위 요소 중에서 class 명이 contact인 ul 요소를 선택한다. */
+section ul.contact {
+  text-align: center; /* 텍스트 중앙 정렬 */
+  margin-bottom: 25px; /* 요소의 아래쪽 바깥 여백을 25px로 설정 */
+}
+
+/* section 영역의 하위 요소에서 class 명이 contact인 ul 요소의 하위 li 요소를 선택한다.*/
+section ul.contact li {
+  width: 100%; /* 요소의 너비를 부모 요소인 ul 영역에 100%로 설정 */
+  padding: 10px 0; /* 요소의 안쪽 여백을 위,아래 10px과 좌우 0px로 설정 */
+  border-bottom: 1px solid #eee; /* 색상이 #eee이며, 굵기가 1px인 실선 테두리를 설정한다. */
+}
+
+/* section 영역의 하위 요소에서 class 명이 contact인 ul 요소의 하위요소인
+ li 요소의 i요소를 선택한다. */
+section ul.contact li i{
+  width: 20px; /* 요소의 너비 설정 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  color:#555; /* 텍스트 색상 설정 */
+  font-size: 15px; /* 폰트 크기 설정 */
+  text-shadow: 2px 2px 2px #ddd; /* 텍스트 그림자 설정(오른쪽, 아래, 번짐정도, 그림자 색상) */
+}
+
+/* section 영역의 하위 요소에서 class 명이 contact인 ul 요소의 하위요소인
+ li 요소의 span 요소를 선택한다. */
+section ul.contact li span {
+  font-weight: normal; /* 폰트 굵기를 보통으로 설정 */
+  font-size: 11px; /* 폰트 크기 설정 */
+  font-family: 'arial'; /* 폰트 종류 설정 */
+  color: #555; /* 폰트 색상 설정 */
+  letter-spacing: 1px; /* 텍스트의 글자 사이 간격을 1px로 설정 */
+}
+
+/*멤버별 링크 만들기 */
+/* section 영역의 하위 요소에서 class명이 others인 nav 요소를 선택 */
+section nav.others {
+  width: 100%; /* 요소의 영역을 부모 요소인 section 영역에 100%로 설정 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+/* section 영역의 하위 요소에서 class명이 others인 nav 요소의 하위요소 중 a요소를 선택 */
+section nav.others a {
+  display: inline-block; /* 요소를 인라인 블럭 요소로 설정 */
+  width: 30px; /* 요소 너비 설정 */
+  height: 30px; /* 요소 높이 설정 */
+  border-radius: 50%; /* 테두리를 원형으로 둥글게 설정 */
+  margin: 0px 10px; /* 요소의 위,아래 바깥 여백을 0px, 좌우 바깥 여백을 10px로 설정 */
+
+  /* 불투명도 설정하는 속성으로 0.0~1.0 사이의 값을 넣을 수 있다. */
+  /* 1.0에 가까운 수를 넣으면 선명해지고, 0.0에 가까운 수를 넣으면 투명해진다. */
+  opacity: 0.4; /* 요소의 불투명도 설정 */
+
+  filter: saturate(0.7); /* 요소의 채도 설정 */
+  /* filter: saturate(0.7);는 CSS 속성으로, 요소의 색상 채도를 조절하는 데 
+  사용됩니다. saturate() 함수는 이미지나 요소의 색상 채도를 증가 또는 
+  감소시킵니다.
+
+  - 세부 설명:
+  saturate(0.7): 색상 채도를 70%로 감소시킵니다. 
+  1보다 작은 값은 채도를 감소시키고, 1보다 큰 값은 채도를 증가시킵니다
+  
+  - 기본 사용 예:
+  img {
+    filter: saturate(0.7);
+  }
+      > 위 예에서는 이미지의 색상 채도를 원래의 70%로 줄입니다. 
+        이를 통해 이미지의 색상이 더 흐릿하게 보이게 됩니다. */
+}
+
+/* section 영역의 하위 요소에서 class명이 others인 nav 요소의 하위요소 중
+class 명이 on인 a요소를 선택 */
+section nav.others a.on {
+  opacity: 1; /* 불투명도 설정 */
+  filter: saturate(1); /* 채도 설정 */
+}
+
+/* section 영역의 하위 요소에서 class명이 others인 nav 요소의 
+첫 번째 a요소를 선택 */
+section nav.others a:nth-of-type(1) {
+	background-color: #35e0f7; /* 배경색 설정 */
+	box-shadow: 5px 5px 10px rgba(74, 255, 255, 0.7); /* 섀도우 효과 */
+}
+
+/* section 영역의 하위 요소에서 class명이 others인 nav 요소의 
+두 번째 a요소를 선택 */
+section nav.others a:nth-of-type(2) {
+	background-color: #55f5cd; /* 배경색 설정 */
+	box-shadow: 5px 5px 10px rgba(85, 245, 178, 0.7); /* 섀도우 효과 */
+}
+
+/* section 영역의 하위 요소에서 class명이 others인 nav 요소의 
+세 번째 a요소를 선택 */
+section nav.others a:nth-of-type(3) {
+	background-color: #ff80df; /* 배경색 설정 */
+	box-shadow: 5px 5px 10px rgba(255, 128, 223, 0.7); /* 섀도우 효과 */
+}
+
+/* section 영역의 하위 요소에서 class명이 others인 nav 요소의 
+네 번째 a요소를 선택 */
+section nav.others a:nth-of-type(4) {
+	background-color: #a794fd; /* 배경색 설정 */
+	box-shadow: 5px 5px 10px rgba(167, 148, 253, 0.7); /* 섀도우 효과 */
+}
+
+
+/* 멤버별 프로필 완성하기 */
+/* member1 */
+/* class 명이 member1인 body 요소를 선택 */
+body.member1 {
+	background-color: #ebfaff; /* 배경색 설정 */
+}
+
+/* class 명이 member1인 body 요소의 하위 section 요소의 하위 요소 중
+class 명이 profile인 article요소의 하위 img 요소 선택 */
+body.member1 section article.profile img {
+	box-shadow: 5px 15px 30px rgba(173, 216, 230, 0.8); /* 요소에 그림자 효과 설정*/
+}
+
+/* class 명이 member1인 body 요소의 하위 section 요소의 하위 요소 중
+class 명이 btnView인 a요소 선택 */
+body.member1 section a.btnView {
+	background: linear-gradient(45deg, #4affff, #35e0f7); /* 그라데이션 배경 설정 */
+	box-shadow: 5px 10px 20px rgba(0, 255, 255, 0.493); /* 요소에 그림자 효과 설정 */
+}
+
+/* member2 */
+/* class 명이 member2인 body 요소를 선택 */
+body.member2 {
+	background-color: #edffeb; /* 배경색 설정 */
+}
+
+/* class 명이 member2인 body 요소의 하위 section 요소의 하위 요소 중
+class 명이 profile인 article 요소의 하위 img 요소 선택 */
+body.member2 section article.profile img {
+	box-shadow: 5px 15px 20px #bdccb783; /* 요소에 그림자 효과 설정*/
+}
+
+/* class 명이 member2인 body 요소의 하위 section 요소의 하위 요소 중
+class 명이 btnView인 a요소 선택 */
+body.member2 section a.btnView {
+	background: linear-gradient(45deg, #a0ff9d, #55f5b2); /* 그라데이션 배경 설정 */
+    box-shadow: 5px 10px 20px rgba(33, 250, 105, 0.3); /* 요소에 그림자 효과 설정*/
+}
+
+/* member3 */
+/* class 명이 member3인 body 요소를 선택 */
+body.member3 {
+	background-color: #fff3fd; /* 배경색 설정 */
+}
+
+/* class 명이 member3인 body 요소의 하위 section 요소의 하위 요소 중
+class 명이 profile인 article 요소의 하위 img 요소 선택 */
+body.member3 section article.profile img {
+	box-shadow: 5px 15px 20px  rgba(252, 99, 214, 0.2); /* 섀도우 효과 */
+}
+
+/* class 명이 member3인 body 요소의 하위 section 요소의 하위 요소 중
+class 명이 btnView인 a요소 선택 */
+body.member3 section a.btnView {
+	background: linear-gradient(45deg, #ef74ff, #ff11c4); /* 그라데이션 배경 설정 */
+	box-shadow: 5px 10px 20px rgba(255, 17, 196, 0.357); /* 섀도우 효과 */
+}
+
+/* member4 */
+/* class 명이 member4인 body 요소를 선택 */
+body.member4 {
+	background-color: #f5f0ff; /* 배경색 설정 */
+}
+
+/* class 명이 member4인 body 요소의 하위 section 요소의 하위 요소 중
+class 명이 profile인 article 요소의 하위 img 요소 선택 */
+body.member4 section article.profile img {
+	box-shadow: 5px 15px 20px rgba(183, 82, 250, 0.2); /* 섀도우 효과 */
+}
+
+/* class 명이 member4인 body 요소의 하위 section 요소의 하위 요소 중
+class 명이 btnView인 a요소 선택 */
+body.member4 section a.btnView {
+	background: linear-gradient(45deg, #8e74ff, #a011ff); /* 그라데이션 배경 설정 */
+	box-shadow: 5px 10px 20px rgba(160, 17, 255, 0.4); /* 섀도우 효과 */
+}

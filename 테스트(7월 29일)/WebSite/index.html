@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 헤더 영역 : id 속성값이 header인 상단 div 태그를 선택하여 스타일 적용 */
+      #header {
+        background-color: #eee; /* 배경색을 연한 회색으로 지정 */
+        height: 100px; /* 요소의 영역의 높이를 100px로 지정 */
+        width: 1000px;
+
+        /* id가 header인 div 태그의 바깥쪽 여백 주기. 위,오,아,왼 순서 
+        : 가운데 정렬 후 아래쪽 20px 여백 주기*/
+        margin: 0 auto 20px auto;
+      }
+
+      /* nav(메뉴가 들어가는 영역) : id 속성값이 nav인 <div> 영역을 선택하여
+         스타일 적용 */
+      #nav {
+        background-color: #eee; /* 배경색을 연한 회색으로 지정 */
+        height: 50px; /* div id="nav" 요소의 영역의 높이를 50px로 지정 */
+        width: 1000px;
+        margin: 0 auto;
+      }
+
+      /* content(중앙 뉴스 기사 등이 들어갈 영역) div 영역을 선택해서 가져와
+       스타일 정의 */
+      #content {
+        background-color: #eee;
+        height: 600px;
+        width: 1000px;
+        margin: 20px auto 20px auto; /* 위 오 아 왼 순서대로 작성 */
+        /* div영역의 바깥 위, 아래 여백 20px 마큰 띄우고, 좌우 양쪽 너비를
+        웹 브라우저의 전체 너비에서 같은 비율로 설정하기 위해 각각 auto로
+        설정했다. 그러면 div 영역이 중앙정렬 되어 나타난다. */
+      }
+
+      /* 전체 영역 (<div id="body"></div>) 선택해서 가운데 정렬 
+      #body {
+        width: 1000px;
+        margin: 0 auto;
+      }
+      */
+
+      .section_main {
+        background-color: #ff0;
+        width: 700px;
+        height: 600px;
+        float: left;
+      }
+
+      .section {
+        background-color: green;
+        height: 300px;
+      }
+
+      .article {
+        background-color: aqua;
+        height: 300px;
+      }
+
+      .aside {
+        width: 300px;
+        background-color: #f00;
+        height: 600px;
+        float: left;
+      }
+
+      /* footer(하단 영역) div 영역을 선택해서 가져와
+       스타일 정의 */
+      #footer {
+        height: 100px;
+        background-color: #eee;
+        width: 1000px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div id="body"> -->
+    <div id="header">header</div>
+    <div id="nav">nav</div>
+    <div id="content">
+      <div class="section_main">
+        <div class="section">section</div>
+        <div class="article">article</div>
+      </div>
+      <div class="aside">aside</div>
+    </div>
+    <div id="footer">footer</div>
+  </body>
+</html>

@@ -1,0 +1,293 @@
+/* 문자 인코딩 방식 UTF-8 설정 */
+@charset "utf-8";
+
+/* 구글 폰트 불러오기 */
+@import url("https://fonts.googleapis.com/css?family=Orbitron@display=swap");
+
+
+/* CSS 초기화 */
+* {
+  /* 모든 요소의 기본 바깥 여백 제거 */
+  margin: 0;
+  /* 모든 요소의 기본 안쪽 여백 제거 */
+  padding: 0;
+
+  /* 박스 모델 설정 */
+  box-sizing: border-box;
+}
+
+/* 목록 링크의 꾸며주기 효과를 제거해서 전체 스타일 초기화 */
+ul, ol {
+  list-style: none;
+}
+
+/* 프로필 박스 만들기 */
+body {
+  /* 배경 색 설정 */
+  background-color: #ebfaff;
+}
+
+section {
+  /* 섹션 영역 너비 설정 */
+  width: 340px;
+  background-color: #fff;
+  padding: 30px;
+  margin: 50px auto;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+section nav.menu {
+  width: 100%;
+}
+
+section nav.menu::after {
+  /* 가상 요소 생성 */
+  content: "";
+  /* 가상 요소를 블럭 레벨 요소 설정 */
+  display: block;
+  /* 플루트 해제 */
+  clear: both;
+}
+
+section nav.menu a{
+  font-size: 20px;
+  color: #666;
+}
+
+
+
+
+/* section 영역 상단의 아이콘 메뉴를 좌우로 설정 */
+section nav.menu a:nth-of-type(1) {
+  /* 메뉴 아이콘 a요소를 왼쪽 정렬 */
+  float: left;
+  
+}
+section nav.menu a:nth-of-type(2) {
+  /* 노트 아이콘 a요소를 오른쪽 정렬 */
+  float: right;
+  
+}
+
+/* 프로필영역 만들기
+    - 카드 중간에 들어갈 이미지와 정보를 입력해서 프로필 영역을 만들자. */
+section article.profile {
+  /* 프로필 영역의 너비 설정 */
+  width: 100%; 
+  /* 텍스트 중앙 정렬 */
+  text-align: center;
+}
+
+section article.profile img {
+  /* 이미지 너비 설정 */
+  width: 200px;
+  /* 이미지 높이 설정 */
+  height: 200px;
+  /* 이미지 둥글게 설정 */
+  border-radius: 50%;
+  /* 이미지 하단 바깥 여백 설정 */
+  margin-bottom: 20px; 
+}
+
+/* 프로필 이름 */
+section article.profile h1 {
+  font-family: 'arial'; /* 폰트 종류 설정 */
+  font-weight: bold; /* 폰트 굵기 설정 */
+  font-size: 22px; /* 폰트 크기 설정 */
+  line-height: 1px; /* 줄 간격 설정 */
+  color: #555; /* 폰트 색상 설정 */
+  margin-bottom: 10px; /* 하단 바깥 여백 설정 */
+}
+
+/* 프로필 직업 */
+section article.profile h2 {
+  font-weight: normal; /* 폰트 굵기 설정 */
+  font-family: 'arial'; /* 폰트 종류 설정 */
+  font-size: 12px; /* 폰트 크기 설정 */
+  color: #bbb; /* 폰트 색상 설정 */
+  margin-bottom: 10px; /* 하단 바깥 여백 설정 */
+}
+
+/* 프로필 더보기 */
+section article.profile a.btnView {
+  display: block; /* 블럭 레벨 요소 */
+  width: 180px;
+  height: 32px;
+  background-color: #f7b335;
+  margin: 0 auto 10px;
+  border-radius: 16px;
+  line-height: 32px;
+  text-align: center;
+  color: #fff;
+  font-family: 'arial';
+  text-decoration: none;
+}
+
+/* 연락처 목록 만들기 영역 */
+section ul.contact {
+  margin-bottom: 15px; /* ul 하단 바깥 여백 설정 */
+  text-align: center;
+}
+
+section ul.contact li {
+  width: 100%; /* li 요소들의 너비 설정 */
+  padding: 10px 0px; /* 상하 좌우 패딩 설정 */
+  border-bottom: 1px solid #eee; /* li 요소들의 하단 테두리 설정 */
+}
+
+section ul.contact li:last-child {
+  /* 마지막에 작성된 두 번째 li 아래쪽의 바깥 테두리 선 없앰 */
+  border-bottom: none; 
+}
+
+section ul.contact li i {
+  width: 20%; /* 아이콘 영역의 너비 설정 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  color: #555; /* 폰트 색상 */
+  font-size: 15px; /* 폰트 크기 설정 */
+  text-shadow: 2px 2px 2px #ddd; /* 텍스트 그림자 설정 */
+}
+
+section ul.contact li span {
+  font-weight: normal; /* 폰트 굵기 설정 */
+  font-size: 11px; /* ��트 크기 설정 */
+  font-family: 'arial';
+  color: #555; /* 폰트 색상 */
+  letter-spacing: 1px; /* 글자 사이의 간격 설정 */
+}
+
+/* 멤버별 링크 만들기 */
+section nav.others {
+  width: 100%;
+  text-align: center;
+}
+
+section nav.others a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 0px 10px;
+  background-color: black;
+  opacity: 0.8; 
+  /* 불투명도 설정하는 속성으로 0.0~1.0 사이의 값을 넣을 수 있다. */
+  /* 1.0에 가까운 수를 넣으면 선명해지고, 0.0에 가까운 수를 넣으면 투명해진다. */
+
+  filter: saturate(0.7); 
+  /* filter: saturate(0.7);는 CSS 속성으로, 요소의 색상 채도를 조절하는 데 
+  사용됩니다. saturate() 함수는 이미지나 요소의 색상 채도를 증가 또는 
+  감소시킵니다.
+
+  - 세부 설명:
+  saturate(0.7): 색상 채도를 70%로 감소시킵니다. 
+  1보다 작은 값은 채도를 감소시키고, 1보다 큰 값은 채도를 증가시킵니다
+  
+  - 기본 사용 예:
+  img {
+    filter: saturate(0.7);
+  }
+      > 위 예에서는 이미지의 색상 채도를 원래의 70%로 줄입니다. 
+        이를 통해 이미지의 색상이 더 흐릿하게 보이게 됩니다. */
+}
+
+section nav.others a.on {
+  opacity: 1; /* 불투명도 설정 */
+  filter: saturate(1); /* 채도 설정 */
+}
+
+
+section nav.others a:nth-of-type(1):hover {
+  background-color: #f7b335;
+  box-shadow: 5px 5px 10px rgba(255, 177, 74, 0.7);
+}
+
+section nav.others a:nth-of-type(2):hover {
+  background-color: #3569f7;
+  box-shadow: 5px 5px 10px rgba(74, 137, 255, 0.7);
+}
+
+section nav.others a:nth-of-type(3):hover {
+  background-color: #a3f735;
+  box-shadow: 5px 5px 10px rgba(95, 255, 74, 0.7);
+}
+
+section nav.others a:nth-of-type(4):hover {
+  background-color: #aa35f7;
+  box-shadow: 5px 5px 10px rgba(189, 74, 255, 0.7);
+}
+
+
+/* 멤버별 프로필 완성 */
+
+/* member1*/
+body.member1 {
+  background-color: #ebfaff; /* 배경 색 */
+}
+body.member1 section article.profile img {
+  /* 이미지 그림자 설정 */
+  box-shadow: 10px 10px 30px rgba(255, 177, 74, 0.7);
+}
+body.member1 section article.profile a.btnView {
+  color: #000000;
+  background: linear-gradient(45deg, #f7b335, #f2f555);
+  box-shadow: 5px 10px 20px rgba(255, 177, 74, 0.7);
+}
+body.member1 section nav.others a:nth-of-type(1) {
+  background-color: #f7b335;
+  box-shadow: 5px 5px 10px rgba(255, 177, 74, 0.7);
+}
+
+/* member2 */
+body.member2 {
+  background-color: #ebfaff; /* 배경 색 */
+}
+body.member2 section article.profile img {
+  /* 이미지 그림자 설정 */
+  box-shadow: 10px 10px 30px rgba(74, 137, 255, 0.7);
+}
+body.member2 section article.profile a.btnView {
+  color: #000000;
+  background: linear-gradient(45deg, #3569f7, #55f0f5);
+  box-shadow: 5px 10px 20px rgba(74, 137, 255, 0.7);
+}
+body.member2 section nav.others a:nth-of-type(2) {
+  background-color: #3569f7;
+  box-shadow: 5px 5px 10px rgba(74, 137, 255, 0.7);
+}
+
+/* member3 */
+body.member3 {
+  background-color: #ebfaff; /* 배경 색 */
+}
+body.member3 section article.profile img {
+  /* 이미지 그림자 설정 */
+  box-shadow: 10px 10px 30px rgba(95, 255, 74, 0.7);
+}
+body.member3 section article.profile a.btnView {
+  color: #000000;
+  background: linear-gradient(45deg, #a3f735, #0db437);
+  box-shadow: 5px 10px 20px rgba(95, 255, 74, 0.7);
+}
+body.member3 section nav.others a:nth-of-type(3) {
+  background-color: #a3f735;
+  box-shadow: 5px 5px 10px rgba(95, 255, 74, 0.7);
+}
+
+/* member4 */
+body.member4 {
+  background-color: #ebfaff; /* 배경 색 */
+}
+body.member4 section article.profile img {
+  /* 이미지 그림자 설정 */
+  box-shadow: 10px 10px 30px rgba(189, 74, 255, 0.7);
+}
+body.member4 section article.profile a.btnView {
+  color: #000000;
+  background: linear-gradient(45deg, #aa35f7, #b40d69);
+  box-shadow: 5px 10px 20px rgba(189, 74, 255, 0.7);
+}
+body.member4 section nav.others a:nth-of-type(4) {
+  background-color: #aa35f7;
+  box-shadow: 5px 5px 10px rgba(189, 74, 255, 0.7);
+}

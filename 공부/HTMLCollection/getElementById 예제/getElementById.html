@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>getElementById</title>
+  </head>
+  <body>
+    <!-- ID가 "hello"인 <p> 요소 -->
+    <p id="hello">환영합니다. 반갑습니다!</p>
+
+    <script>
+      // changeColor 함수 정의, newColor 매개변수를 받아 <p> 요소의 색상을 변경
+      const changeColor = newColor => {
+        // ID가 "hello"인 요소 선택
+        const ele = document.getElementById('hello');
+        // 선택한 요소의 텍스트 색상을 newColor로 변경
+        ele.style.color = newColor;
+      };
+    </script>
+
+    <!-- 버튼 클릭 시 changeColor 함수를 호출하여 텍스트 색상을 빨간색으로 변경 -->
+    <button type="button" onclick="changeColor('red');">빨간색으로 바꿈</button>
+    <!-- 버튼 클릭 시 changeColor 함수를 호출하여 텍스트 색상을 파란색으로 변경 -->
+    <button type="button" onclick="changeColor('blue');">파란색으로 바꿈</button>
+  </body>
+</html>

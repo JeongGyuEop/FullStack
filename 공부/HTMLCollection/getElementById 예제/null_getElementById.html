@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>찾으려는 요소가 없을 때 에러 발생</title>
+  </head>
+  <body>
+    <button type="button" id="btn1">btn1 버튼</button>
+    <button type="button" id="btn2">btn2 버튼</button>
+    <button type="button" id="btn3">btn3 버튼</button>
+
+    <script>
+      // id="btn4"인 요소는 없다.
+      const btn4 = document.getElementById('btn4'); // id 값이 "btn4"와 일치하는 요소를 찾는다.
+
+      // btn4 요소 객체가 아닌 null을 반환
+
+      // Uncaught TypeError: Cannot read properties of null(reading 'addEventListener')
+      btn4.addEventListener('click', () => {
+        // ....
+      });
+    </script>
+  </body>
+</html>

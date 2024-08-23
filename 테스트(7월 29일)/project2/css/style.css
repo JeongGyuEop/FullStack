@@ -1,0 +1,339 @@
+/* 웹 문서의 문자 인코딩을 UTF-8로 설정하여 다양한 언어의 문자를 지원하게 설정 */
+@charset "utf-8";
+
+/* 전체 요소를 선택하여 기본 초기화 정의 */
+* {
+  margin: 0px; /* 모든 요소의 기본 바깥 여백을 0으로 설정하여 일관된 레이아웃 유지 */
+  padding: 0px; /* 모든 요소의 기본 안쪽 여백을 0으로 설정하여 불필요한 공간 제거 */
+  box-sizing: border-box; /* 요소의 크기를 테두리와 패딩을 포함하여 계산하여 예측 가능한 크기를 설정*/
+}
+
+/* ul, ol 요소를 선택하여 스타일 정의 */
+ul, ol {
+  list-style: none; /* 리스트의 기본 스타일 (점, 숫자 등)을 제거 */
+}
+
+/* a 요소를 선택하여 링크 스타일 정의 */
+a{
+  text-decoration: none; /* 링크의 기본 밑줄을 제거 */
+}
+
+/* ================================= header 영역 =================================== */
+header {
+  width: 100%; /* header 요소의 너비를 100%로 설정하여 화면 전체 너비를 차지한다. */
+  border-bottom: 1px solid #ddd;
+}
+
+header .inner {
+  width: 1180px; /* 헤더 내부의 너비를 1180px로 고정하여 중앙 정렬 */
+  height: 120px; /* 헤더의 높이를 120px로 설정하여 공간 확보 */
+  margin: 0 auto; /* 수평 중앙 정렬 */
+  position: relative; /* 자식 요소의 절대 위치 기준을 설정하여 내부 요소의 위치 조정 가능 */
+}
+
+/* 헤더 영역의 제목(DCODLAB)에 대한 스타일 정의 */
+header .inner h1 {
+  position: absolute; /* 제목을 절대 위치로 설정하여 자유롭게 배치 */
+  left: 0px; /* 왼쪽 정렬 */
+  bottom: 15px; /* 아래에서 15px 위치 */
+}
+
+/* 헤더 영역의 제목 링크에 대한 스타일 정의 */
+header .inner h1 a {
+  font: bold 24px/1 "arial"; /* 링크의 폰트를 굵고 24px로 설정 */
+  color: #444; /* 링크 색상을 어두운 회색으로 설정 */
+}
+
+/* 헤더 영역의 유틸리티 메뉴에 대한 스타일 정의 */
+header .inner .util {
+  position: absolute; /* 유틸리티 메뉴를 절대 위치로 설정하여 헤더 내에서 자유롭게 배치 */
+  top: 20px; /* 위에서 20px 위치하여 헤더의 상단에 배치 */
+  right: 30px; /* 오른쪽에서 30px 위치하여 헤더의 오른쪽에 배치 */
+}
+
+/* 헤더 영역의 유틸리티 메뉴의 li 요소에 대한 스타일 정의 */
+header .inner .util li {
+  float: left; /* 유틸리티 항목을 왼쪽으로 정렬 하여 수평 배치*/ 
+}
+
+/* 헤더 영역의 유틸리티 메뉴의 li 링크에 대한 스타일 정의 */
+header .inner .util li a{
+  display: block; /* 링크 요소를 block으로 설정*/
+  font: 12px/1 "arial"; /* 링크의 폰트를 굵고 12px로 설정 */
+  color: #999; /* 링크 색상을 연한 회색으로 설정 */
+  padding: 0px 10px; /* 좌우 패딩을 10px로 설정 */
+}
+
+/* 헤더 영역의 네비게이션 메뉴에 대한 스타일 정의 */
+header .inner #gnb {
+  position: absolute; /* 네비게이션 메뉴를 절대 위치로 설정하여 헤더 내에서 자유롭게 배치 */
+  bottom: 0px; /* 아래에서 0px 위치하여 헤더의 하단에 배치 */
+  right: 0px; /* 오른쪽에서 0px 위치하여 헤더의 오른쪽에 배치 */
+}
+
+/* 헤더 영역의 네비게이션 메뉴의 li 요소에 대한 스타일 정의 */
+header .inner #gnb li {
+  float: left; /* 네비게이션 메뉴 항목들을 왼쪽으로 정렬하여 수평 배치 */
+}
+
+/* 헤더 영역의 네비게이션 메뉴의 li 링크에 대한 스타일 정의 */
+header .inner #gnb li a {
+  display: block; /* 모든 a 링크 요소를 block으로 설정하여 클릭 영역을 확대 */
+  font: bold 15px/1 "arial"; /* 링크의 폰트를 굵고 14px로 설정하여 가독성 향상 */
+  color: #555; /* 링크 색상을 중간 회색으로 설정하여 시각적으로 강조 */
+  padding: 20px 40px; /* 상하 안쪽 여백을 20px, 좌우 안쪽 여백을 10px로 설정하여 클릭 영역 넓힘 */
+  transition: all 0.5s; /* 모든 속성에 대해 0.5초 동안 전환효과 설정하여 부드러운 변화 */
+}
+
+/* 헤더 영역의 네비게이션 메뉴의 li 링크에 마우스를 올렸을 경우에 대한 스타일 정의 */
+header .inner #gnb li a:hover {
+  background-color: #333; /* 마우스 오버 시 배경색을 중간 회색으로 설정하여 강조효과 제공 */
+  color: #fff; /* 마우스 오버 시 글자색을 흰색으로 설정하여 가독성 향상*/
+}
+
+/* ================================ figure 영역 ================================== */
+/* 웹 페이지의 기업 소개와 영상이미지 및 자세히 보기 요소들이 포함되어 있는 영역 */
+/* figure 영역에 대한 스타일 정의 */
+figure {
+  width: 100%; /* 부모요소인 <body>영역의 너비에 대하여 100%로 설정하여 화면 너비 가득 채움 */
+  height: calc(100vh - 120px); /* 브라우저 전체 높이에서 헤더의 높이를 뺀 높이로 설정하여
+                                  비디오가 화면에 가득 차도록 스타일 정의 */
+  background-color: #000; /* 배경색을 검정으로 설정 */
+  position: relative; /* 자식 video 요소와 h1, p 요소들을 절대 위치 기준을 설정하여 내부
+                        요소의 위치 조정 가능 */
+  overflow: hidden; /* 넘치는 내용을 숨김으로 설정 */
+  padding-top: 250px; /* 위 안쪽 여백을 250px로 설정하여 비디오와 텍스트 간격 조정 */
+}
+
+/* figure 요소의 하위 요소인 video 요소에 대한 스타일 정의 */
+figure video {
+  width: 100%; /* 부모 요소인 figure 영역에 대해 100%로 설정하여 화면 너비를 가득 채움 */
+  height: 100%; /* 부모 요소인 figure 영역에 대해 100%로 설정하여 화면 높이를 가득 채움 */
+  object-fit: cover; /* 비디오가 figure 영역 안쪽에 꽉 차도록 설정하여 비율 유지 */
+  position: absolute; /* 절대 위치를 설정하여 figure 영역 내부에서 자유롭게 배치 */
+  top: 0px; /* figure 영역을 기준으로 위쪽을 0px로 하여 figure영역의 위쪽에 붙게 설정 */
+  left: 0px; /* figure 영역을 기준으로 왼쪽을 0px로 하여 figure영역의 왼쪽에 붙게 설정 */
+  opacity: 0.3; /* 비디오 배경 투명도를 0.3으로 설정하여 약간 투명하게 설정 */
+}
+
+/* figure 요소의 하위 요소 중 class 명이 inner인 div 태그 요소를 선택하여 스타일 정의 */
+figure .inner { /* 비디오 위에 표시되는 콘텐츠를 감싸는 div */
+  width: 1180px; /* 내부 요소의 너비를 1180px로 설정 */
+  margin: 0px auto; /* 수평 중앙 정렬 */
+  position: relative; /* 자식 요소의 절대 위치 기준을 설정하여 내부 요소의 위치 조정 가능 */
+}
+
+/* figure 요소의 하위에 class 명이 inner인 div요소의 하위에 h1태그를 선택하여 스타일 정의 */
+figure .inner h1 { /* 비디오 위에 표시되는 콘텐츠 영역의 제목 */
+  font: normal 120px/1 "arial"; /* 폰트 크기를 120px로 설정하고, 줄 간격을 1로 설정, 폰트 종류는 Arial로 설정 */
+  color: #fff; /* 제목 폰트의 색상을 흰색으로 설정 */
+  margin-bottom: 20px; /* 제목 폰트의 아래쪽 바깥 여백을 20px로 설정하여 텍스트간 간격을 조정 */
+}
+
+/* figure 요소의 하위에 class 명이 inner인 div요소의 하위에 p태그를 선택하여 스타일 정의 */
+figure .inner p { /* 비디오 위에 표시되는 콘텐츠 영역의 설명 */
+  font: 16px/1.4 "arial"; /* 폰트 크기를 16px로 설정하고, 줄 간격을 1.4로 설정, 폰트 종류는 Arial로 설정 */
+  color: #888; /* 글자 색상을 연한 회색으로 설정하여 제목과 구분 */
+  margin-bottom: 60px; /* 설명 글의 아래쪽 바깥 여백을 60px로 설정하여 링크와의 간격을 조정 */
+}
+
+/* figure 요소의 하위에 class 명이 inner인 div요소의 하위에 a태그를 선택하여 스타일 정의 */
+figure .inner a { /* 상세정보 보기에 대한 링크 */
+  display: block; /* 블록 요소로 설정하여 영역 확대 */
+  width: 400px; /* 요소의 너비를 400px로 설정 */
+  height: 30px; /* 요소의 높이를 30px로 설정 */
+  border: 1px solid #bbb; /* 링크 요소의 테두리를 옅은 회색의 1px 굵기의 실선으로 설정 */
+  font: bold 11px/30px "arial"; /* 폰트를 굵게 설정하고, 크기를 11px로 설정, 줄 높이를 30px로 설정,
+                                 폰트 종류는 Arial로 설정 */
+  color: #fff; /* 폰트 색상을 흰색으로 설정 */
+  text-align: center; /* 텍스트를 중앙 정렬 */
+  letter-spacing: 1px; /* 글자 간격을 1px로 설정 */
+  transition: all 0.5s; /* 모든 속성에 대해 0.5초 동안의 전환효과 설정 */
+}
+
+/* figure 요소의 하위에 class 명이 inner인 div요소의 하위에 a태그에 마우스 포인터를
+   올렸을 경우에 대한 스타일 정의 */
+figure .inner a:hover {
+  background-color: #fff; /* 배경색을 흰색으로 설정 */
+  color: #333; /* 텍스트 색상을 짙은 회색으로 설정 */
+}
+
+/* ==================================== NEWS 영역 =================================== */
+/* section 요소에 대한 스타일 정의 */
+section {
+  width: 100%; /* 부모요소인 <body>영역의 너비에 대하여 100%로 설정하여 화면 너비 가득 채움 */
+  padding: 200px 0px; /* 위아래 안쪽 여백을 200px, 좌우 안쪽 여백을 0px로 설정 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소에 대한 스타일 정의 */
+section .inner { /* 최근 뉴스를 보여주는 영역 */
+  width: 1180px; /* 요소의 너비를 1180px로 설정 */
+  margin: 0px auto; /* 요소의 바깥 여백을 위아래 0px, 좌우는 auto로 설정하여 수평 중앙 정렬 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소의 하위 h1 요소에 대한 스타일 정의 */
+section .inner h1 { /* 최근 뉴스의 제목 */ 
+  font: bold 24px/1 "arial"; /* 폰트를 굵게 설정하고, 크기를 24px로 설정, 줄 높이를 1px로 설정,
+                              폰트 종류는 Arial로 설정 */
+  color: #333; /* 폰트 색상을 짙은 회색으로 설정 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  margin-bottom: 50px; /* 바깥 아래쪽 여백을 50px로 설정하여 텍스트 간격 조정 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .wrap인
+   요소에 대한 스타일 정의 */
+section .inner .wrap {
+  width: 100%; /* 전체 너비 설정하여 화면 가득 채움 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .wrap인
+   요소에 대한 콘텐츠 삽입 */
+section .inner .wrap::after {
+  content: ""; /* 가상 요소의 내용 없음 */
+  display: block; /* 가상 요소를 블록 요소로 설정 */
+  clear: both; /* 가상 요소 이전의 float 속성을 해제하여 부모 요소가 자식 요소를 감싸도록 함 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .wrap인
+   요소의 하위 article 요소를 선택하여 스타일 정의 */
+section .inner .wrap article { /* 각 뉴스 기사 내용을 보여주는 영역 */
+  float: left; /* 왼쪽으로 정렬하여 수평배치 */
+  width: 280px; /* 3각 뉴스 기사 영역의 너비를 280px로 설정하여 일관된 크기 유지 */
+  margin-right: 20px; /* 오른쪽 바깥 여백을 10px로 설정하여 기사영역 간격 조정 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .wrap인
+  요소의 하위 article 요소중 가장 마지막 요소를 선택하여 스타일 정의*/
+section .inner .wrap article:last-child {
+  margin-right: 0px; /* 바깥 오른쪽 여백을 0px로 설정하여 제거 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .wrap인
+  요소의 하위 article 요소의 하위 h2 요소를 선택하여 스타일 정의*/
+section .inner .wrap article h2 { /* 뉴스 제목 영역 */
+  margin-bottom: 10px; /* 바깥 아래쪽 여백을 10px로 설정하여 제목과 본문 간격 조정 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .wrap인
+  요소의 하위 article 요소의 하위 h2 요소의 하위요소 중 a(링크)요소를 선택하여 스타일 정의*/
+section .inner .wrap article h2 a { /* 뉴스 제목 링크 영역 */
+  font: bold 16px/1 "arial"; /* 폰트를 굵게 설정하고, 크기를 16px로 설정, 줄 높이를 1로 설정,
+                              폰트 종류는 Arial로 설정 */
+  color: #333; /* 텍스트 색상을 짙은 회색으로 설정 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .wrap인
+  요소의 하위 article 요소의 하위 p 요소를 선택하여 스타일 정의*/
+section .inner .wrap article p { /* 뉴스 내용 영역 */
+  font: 14px/1.4 "arial"; /* 폰트 크기를 14px로 설정, 줄 높이를 1.4로 설정,
+                          폰트 종류는 Arial로 설정 */
+  color: #777; /* 텍스트 색상을 연한 회색으로 설정 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .wrap인
+  요소의 하위 article 요소의 하위 요소중 class 명이 pic인 요소를 선택하여 스타일 정의*/
+section .inner .wrap article .pic { /* 뉴스 기사의 이미지 영역 */
+  width: 100%; /* 이미지 프레임 영역의 너비를 100%로 설정하여 화면을 가득 채움 */
+  height: 120px; /* 이미지 프레임 영역으 높이를 120px로 설정하여 일관된 크기 유지  */
+  background: #555; /* 배경색을 어두운 회색으로 설정하여 이미지가 없을때 시각적 효과 */
+  margin-bottom: 15px;  /* 바깥 아래쪽 여백을 15px로 설정하여 기사 간격 조정 */
+  position: relative; /* 자식 이미지의 절대 위치 기준을 부모요소 div로 설정하여 
+                          내부 img 요소의 위치 조정 가능하게 함. */
+  overflow: hidden; /* 넘치는 내용 숨김 */
+}
+
+/* section 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .wrap인
+  요소의 하위 article 요소의 하위 요소중 class 명이 pic인 요소의 하위 img 요소를
+  선택하여 스타일 정의*/
+section .inner .wrap article .pic img {
+  object-fit:  cover; /* 이미지가 div class=pic 영역 안에 꽉 차다록 설정하여 비율 유지 */
+  width: 100%; /* 부모 요소인 class명이 pic인 <div>영역 크기에 100% 너비로 설정 */
+  height: 100%; /* 부모 요소인 class명이 pic인 <div>영역 크기에 100% 높이로 설정 */
+}
+
+/* ================================== footer 영역 ================================= */
+/* footer 영역의 스타일 정의 */
+footer {
+  width: 100%;/* 부모요소인 <body>영역의 너비에 대하여 100%로 설정하여 화면 너비 가득 채움 */
+  background: #333; /* 배경색을 짙은 회색으로 설정 */
+  padding: 100px 0px; /* 위아래 안쪽 여백을 100px, 좌우 안쪽여백을 0px로 설정 */
+  border-top: 1px solid #888; /* 상단 테두리를 1px 두께의 실선, 색상은 중간 회색으로 설정 */
+}
+
+/* footer 요소의 하위 요소 중 class명이 inner인 div 요소의 스타일 정의 */
+footer .inner { /* footer 내부의 콘텐츠를 감싸는 영역 */
+	width: 1180px; /* 내부 요소의 너비를 고정하여 중앙 정렬을 쉽게 함 */
+	margin: 0px auto; /* 수평 중앙 정렬 */
+}
+
+/* footer 요소의 하위 요소 중 class명이 inner인 요소의 하위 요소의 class 명이 upper인 요소의
+  스타일 정의 */
+footer .inner .upper { /* footer영역의 상단 섹션 요소 */
+	width: 100%; /* 전체 너비 설정하여 화면을 가득 채움 */
+	border-bottom: 1px solid #777; /* 하단 경계선 추가하여 시각적 구분 제공 */
+	padding-bottom: 20px; /* 아래쪽 패딩을 20px로 설정하여 여백 조정 */
+}
+
+/* footer 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .upper인
+   요소에 대한 콘텐츠 삽입 */
+footer .inner .upper::after {
+	content: ""; /* 내용 없음 */
+	display: block; /* 블록 요소로 설정하여 레이아웃 정리 */
+	clear: both; /* float 해제하여 레이아웃 정리 */
+}
+
+/* footer 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .upper인
+   요소의 하위 h1요소의 스타일 정의 */
+footer .inner .upper h1 { /* footer 상단 제목 요소 */
+	float: left; /* 왼쪽으로 정렬하여 제목과 링크를 수평 배치 */
+	font: bold 24px/1 "arial"; /* 폰트를 굵게 설정하고, 크기를 24px로 설정, 줄 높이를 1로 설정,
+                                폰트 종류는 Arial로 설정 */
+	color: #666; /* 제목 색상을 중간 회색으로 설정하여 시각적 강조 */
+}
+
+/* footer 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .upper인
+   요소의 하위 ul 요소의 스타일 정의 */
+footer .inner .upper ul { /* footer 링크 목록 */
+  float: right; /* 오른쪽으로 정렬하여 링크 목록을 수평 배치 */
+}
+
+/* footer 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .upper인
+   요소의 하위 ul 요소의 하위 li 요소의 스타일 정의 */
+footer .inner .upper ul li { /* footer 링크 목록의 정책, 이용약관 등의 요소 */
+	float: left; /* 왼쪽으로 정렬하여 링크 항목을 수평 배치 */
+	margin-left: 20px; /* 왼쪽 여백을 20px로 설정하여 링크 간격 조정 */
+}
+
+/* footer 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 .upper인
+   요소의 하위 ul 요소의 하위 li 요소의 하위 a 링크 요소의 스타일 정의 */
+footer .inner .upper ul li a {
+  font: bold 14px/1 "arial"; /* 폰트를 굵게 설정하고, 크기를 14px로 설정, 줄 높이를 1로 설정,
+                              폰트 종류는 Arial로 설정 */
+  color: #666; /* 링크 색상을 중간 회색으로 설정 */
+}
+
+/* footer 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 lower인
+   요소의 스타일 정의 */
+footer .inner .lower { /* footer 하단 섹선 영역 */
+	width: 100%; /* 전체 너비 설정하여 화면을 가득 채움 */
+	padding-top: 20px; /* 위쪽 패딩을 20px로 설정하여 여백 조정 */
+}
+
+/* footer 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 lower인
+   요소의 하위 address 요소의 스타일 정의 */
+footer .inner .lower address { /* footer 영역의 연락처 정보 */
+	width: 100%; /* 전체 너비 설정하여 화면을 가득 채움 */
+  font: 12px/1.3 "arial"; /* 폰트 크기를 12px로 설정, 줄 높이를 1.3로 설정,
+                          폰트 종류는 Arial로 설정 */
+  color: #777; /* 연락처 색상을 중간 회색으로 설정 */
+  margin-bottom: 20px; /* 아래쪽 여백을 20px로 설정하여 텍스트 간격 조정 */
+}
+
+/* footer 요소의 하위 class 명이 inner인 div 요소의 하위 요소중 클래스 명이 lower인
+   요소의 하위 p 요소의 스타일 정의 */
+footer .inner .lower p { /* footer 영역의 저작권 정보 */
+	width: 100%; /* 전체 너비 설정하여 화면을 가득 채움 */
+  font: 12px/1 "arial"; /* 폰트 크기를 12px로 설정, 줄 높이를 1로 설정,
+                        폰트 종류는 Arial로 설정 */
+  color: #777; /* 텍스트 색상을 중간 회색으로 설정 */
+}

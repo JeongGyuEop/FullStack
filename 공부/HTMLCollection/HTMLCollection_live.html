@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTMLCollection</title>
+  </head>
+  <body>
+    <ul id="list">
+      <li>김밥</li>
+      <li>라면</li>
+      <li>떡볶이</li>
+    </ul>
+    <p>
+      <li>요소의 개수: <strong id="li-length-val">3</strong></li>
+    </p>
+    <button type="button" id="addButton">새로운 메뉴 추가</button>
+
+    <script>
+      // HTMLCollection 가져오기
+      const liElements = document.getElementsByTagName('li');
+
+      // 버튼 클릭 시 새로운 <li> 요소 추가
+      document.getElementById('addButton').addEventListener('click', () => {
+        const newLi = document.createElement('li');
+        newLi.textContent = '새로운 메뉴';
+
+        // 새로운 <li> 요소를 <ul>에 추가
+        document.getElementById('list').appendChild(newLi);
+
+        // <li> 요소의 개수 실시간 확인
+        const liElementsLength = liElements.length; // 이미 선언했던 liElements의 length가 실시간 반영
+        document.getElementById('li-length-val').textContent = liElementsLength;
+      });
+    </script>
+  </body>
+</html>

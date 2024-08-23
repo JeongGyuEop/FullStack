@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>textContent</title>
+  </head>
+  <body>
+    <ul>
+      <li>김밥</li>
+      <li>라면</li>
+      <li>떡볶이</li>
+    </ul>
+
+    <script>
+      // 첫 번째 li 요소 선택
+      const firstLiElement = document.getElementsByTagName('li')[0];
+
+      // 텍스트 콘텐츠 읽기
+      console.log(firstLiElement.textContent);
+
+      // 텍스트 콘텐츠 설정
+      firstLiElement.textContent = '새로운 텍스트';
+    </script>
+  </body>
+</html>

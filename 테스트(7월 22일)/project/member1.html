@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- HTML 웹 문서 언어 설정 -->
+<html lang="ko">
+  <head>
+    <!-- 문자 인코딩 방버 UTF-8로 설정 -->
+    <!-- UTF-8은 유니코드 문자 인코딩의 한 종류
+  전세계의 모든 문자를 표현할 수 있는 문자를
+  처리하는 방식의 값.
+
+  그래서 HTML 문서 내부에 다양한 나라의 언어와
+  문자를 올바르게 표시할 수 있음. -->
+    <meta charset="UTF-8" />
+
+    <!-- 반응형 웹 디자인을 할 때 뷰포트를 설정하는 구문
+  content 속성에 'width=device-width'는 너비를 디바이스의 너비와 동일하게 설정한다.
+  initial-scale=1.0은 초기의 확대/축소 비율을 1로 설정하여
+                    페이지가 처음 로드될 때의 확대 축소 비율을 지정
+                    설정을 해야만 모바일 장치에서 페이지가 올바르게 표시된다. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 웹 페이지의 제목 설정 -->
+
+    <!-- 웹 페이지의 파비콘을 설정한다.
+  파비콘 아이콘은 브라우저의 탭, 북마크, 즐겨찾기 등에 표시
+  rel="icon"은 링크의 관계를 아이콘으로 지정,
+  type="image/x-icon"은 파일의 MIME(웹 브라우저로 응답할 데이터유형) 타입을 지정한다. -->
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+
+    <!-- CSS를 로드하는 link 태그를 사용하여 CSS 파일을 연결 -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- defer 속성은 HTML 문서가 완전히 웹브라우저에 파싱된 후에
+    자바스크립트를 실행하도록 지연시키는 역할을 한다. 
+    
+    ie.js 는 브라우저를 체크하여 자바스크립트 코드 연결을 설정한 js-->
+    <script defer src="./js/ie.js"></script>
+
+    <!-- Font Awesome CDN을 사용하여 Font Awesome 폰트를 로드 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body class="member1">
+    <!-- section 태그를 사용하여 카드의 모양을 설정 -->
+    <section>
+      <!-- 메뉴 영역(네비게이션 바 영역) -->
+      <nav class="menu">
+        <!-- 메뉴 아이콘 -->
+        <a href="#"><i class="fas fa-bars"></i></a>
+        <!-- 노트 아이콘 -->
+        <a href="#"><i class="far fa-sticky-note"></i></a>
+      </nav>
+
+      <!-- 프로필 섹션 -->
+      <article class="profile">
+        <!-- 프로필 이미지 -->
+        <img src="./img/member1.jpg" alt="프로필 이미지" />
+
+        <!-- 이름 -->
+        <h1>DCODELAB</h1>
+
+        <!-- 직업 -->
+        <h2>UI/UX INTERACTIVE DEVELOPER</h2>
+
+        <!-- 더보기 버튼 -->
+        <a href="#" class="btnView">VIEW MORE</a>
+      </article>
+      <ul class="contact">
+        <li>
+          <!-- 페이스북 아이콘 -->
+          <i class="fab fab fa-facebook-f"></i>
+          <span>Visit My Facebook Page</span>
+        </li>
+        <li>
+          <!-- 이메일 아이콘 -->
+          <i class="fas far fa-envelope"></i>
+          <span>xxxxxxx@naver.com</span>
+        </li>
+      </ul>
+      <nav class="others">
+        <!-- 현재 페이지 링크 -->
+        <a href="member1.html" class="on"></a>
+
+        <!-- 멤버 2 페이지 링크 -->
+        <a href="member2.html"></a>
+
+        <!-- 멤버 3페이지 링크 -->
+        <a href="member3.html"></a>
+
+        <!-- 멤버 4페이지 링크 -->
+        <a href="member4.html"></a>
+      </nav>
+    </section>
+  </body>
+</html>

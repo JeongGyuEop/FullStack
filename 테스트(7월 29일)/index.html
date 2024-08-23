@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI 설계 확인하기</title>
+    <style>
+      /* 헤더 영역 : id 속성 값이 header인 상단 div 태그를 선택하여 스타일 정의 */
+      #header {
+        width: 1000px; /* 요소 영역의 너비를 1000px 지정 */
+        height: 100px; /* 요소 영역의 높이를 100px로 지정 */
+        background-color: #eee; /* 요소 영역의 배경 색을 연한 회색으로 지정 */
+        margin: 0 auto 20px auto; /* 바깥쪽 여백을 위(0), 오른쪽(auto), 아래(20px),
+                                      왼쪽(auto)로 지정하여 가운데 정렬 후 아래쪽에
+                                      20px의 여백을 주도록 지정 */
+      }
+
+      /* 메뉴가 들어가는 영역 : id 속성 값이 nav인 <div> 태그 영역을 선택하여 스타일 적용 */
+      #nav {
+        width: 1000px; /* 요소 영역의 너비를 1000px 지정 */
+        height: 50px; /* 요소 영역의 높이를 50px로 지정 */
+        background-color: #eee; /* 요소 영역의 배경 색을 연한 회색으로 지정 */
+        margin: 0 auto; /* 요소의 바깥쪽 여백을 위아래(0), 좌우(auto)로 설정하여 가운데
+                            정렬하고 위아래 바깥 여백을 주지 않는다. */
+      }
+
+      /* 중앙 뉴스 기사 등이 들어갈 영역: id 속성값이 content인 div 영역을 선택해서 스타일 정의 */
+      #content {
+        width: 1000px; /* 요소 영역의 너비를 1000px 지정 */
+        height: 600px; /* 요소 영역의 높이를 600px 지정 */
+        margin: 20px auto 20px auto; /* 요소의 바깥쪽 여백을 위(20px), 오른쪽(auto), 아래(20px),
+                                      왼쪽(auto)fh 설정하여 위아래 바깥 여백을 각각 20px을 주고 
+                                      중앙 정렬 */
+      }
+
+      /* class 속성 값이 section_main인 div 태그 영역을 선택하여 스타일 적용 */
+      .section_main {
+        width: 700px; /* 요소 영역의 너비를 700px 지정 */
+        height: 600px; /* 요소 영역의 높이를 600px 지정 */
+        float: left; /* 요소를 왼쪽으로 위치시켜 다른 요소들이 오른쪽에 위치할 수 있도록 함 */
+      }
+
+      /* class 속성 값이 section인 div 태그 영역을 선택하여 스타일 적용 */
+      .section {
+        background-color: rgb(255, 8, 214); /* 요소 영역의 배경 색을 밝은 핑크색으로 지정 */
+        height: 300px; /* 요소 영역의 높이를 300px 지정 */
+      }
+
+      /* class 속성 값이 .article인 div 태그 영역을 선택하여 스타일 적용 */
+      .article {
+        background-color: green; /* 요소 영역의 배경 색을 초록색으로 지정 */
+        height: 300px; /* 요소 영역의 높이를 300px 지정 */
+      }
+
+      /* class 속성 값이 .aside인 div 태그 영역을 선택하여 스타일 적용 */
+      .aside {
+        width: 300px; /* 요소 영역의 너비를 300px 지정 */
+        background-color: red; /* 요소 영역의 배경 색을 빨간색으로 지정 */
+        height: 600px; /* 요소 영역의 높이를 600px 지정 */
+        float: left; /* 요소를 왼쪽으로 위치시켜 다른 요소들이 오른쪽에 위치할 수 있도록 함 */
+      }
+
+      /* footer(하단 영역) div 영역을 선택해서 가져와 스타일 정의 */
+      #footer {
+        width: 1000px; /* 요소 영역의 너비를 1000px 지정 */
+        height: 100px; /* 요소 영역의 높이를 100px 지정 */
+        background-color: #eee; /* 요소 영역의 배경 색을 연한 회색으로 지정 */
+        margin: 0 auto; /* 요소의 바깥쪽 여백을 위아래(0), 좌우(auto)로 설정하여 가운데
+                          정렬하고 위아래 바깥 여백을 주지 않는다. */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">header</div>
+    <div id="nav">nav</div>
+    <div id="content">
+      <div class="section_main">
+        <div class="section">section</div>
+        <div class="article">article</div>
+      </div>
+      <div class="aside">aside</div>
+    </div>
+    <div id="footer">footer</div>
+  </body>
+</html>
