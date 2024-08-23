@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 이벤트 </title>
+	<!-- 
+		change() 이벤트 등록 메소드
+		
+		- 선택한 폼요소의 value속성값을  새로운 값으로 변경시 사용하는 메소드이고,
+		    포커스가 다른 요소로 이동하는 이벤트를 등록하는 메소드 입니다.
+		- 선택상자 <select> <option>요소에 이벤트를 등록하는 메소드 입니다.
+		
+		- 문법
+				$("이벤트대상요소선택").change(function(){ 이벤트 처리코드; });
+				$("이벤트대상요소선택").on("change", function(){ 이벤트 처리코드; });
+	
+				$("이벤트대상요소선택").change();   <- 강제로 <option>을 선택 할수 있게 합니다. 
+	 -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+	$(function(){
+		
+		
+		
+	
+	});
+	</script>
+</head>
+<body>
+	<select id="rel">
+		<option>과목선택</option>
+		<option value="k">국어</option>
+		<option value="e">영어</option>
+		<option value="m">수학</option>
+	</select>
+	<select id="rel_site">
+		<option value="">사이트 선택</option>
+		<option value="www.google.com">구글</option>
+		<option value="www.naver.com">네이버</option>
+		<option value="www.daum.net">다음</option>
+	</select>
+	<p class="txt"></p>
+</body>
+</html>
+
+
+
+

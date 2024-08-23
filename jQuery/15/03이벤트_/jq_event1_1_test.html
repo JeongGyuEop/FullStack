@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+
+    <!-- 제이쿼리 설치 -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      $(function () {
+        // 단독 이벤트 등록 메소드 종류 중에서 click메소드 사용
+        // 문법
+        //    $("이벤트등록대상요소선택").click(function(){
+        //
+        //				클릭 이벤트 처리코드 작성;
+        //
+        //    });
+
+        // <button class="btn1">버튼1</button> 요소를 선택해
+        // click 단독 이벤트 등록 메소드로 클릭하는 동작을 등록하고
+        // 만약 사이트 이용자가 해당 버튼 1을 클릭하면 이벤트 핸들러 함수가 처리할 수
+        // 있도록 작성
+        $('.btn1').click(function () {
+          // 클릭이벤트 처리 코드 작성
+          $('p:eq(1)').css({ color: 'red' });
+        });
+        //---------------------------------------------------------------------------
+
+        // 그룹 이벤트 등록 메소드 on 사용
+        // $("이벤트대상요소선택").on({
+        // 	"이벤트종류명1" : function(){ 이벤트처리할 코드 작성;   },
+        // 	"이벤트종류명2" : function(){ 이벤트처리할 코드작성2;   },
+        // 	"이벤트종류명3" : function(){ 이벤트처리할 코드 작성3;  }
+        // });
+
+        //<button class="btn2">버튼2</button> 요소 노드를 선택해
+        // 마우스 포인터를 올리는 동작(mouseover),
+        // 포커스를 강제로 적용하는 동작(focus)를 다중등록
+        //     이벤트 처리 코드
+        //     <p>내용2</p> 요소 노드를 선택해 "내용2" 글자 색상을 파란색으로 적용
+        $('.btn2').on({
+          'mouseover focus': function () {
+            $('.btn2').parent().next().css({ color: 'blue' });
+          }
+        });
+
+        // 마우스 포인터를 내리는 동작(mouseout),
+        // 포커스를 다른 요소로 이동시키는 동작(blur)를 다중 등록
+        //     이벤트 처리 코드
+        //     <p>내용2</p> 요소 노드를 선택해 "내용2" 글자 색상을 아쿠아 색으로 초기화
+        $('.btn2').on({
+          'mouseout blur': function () {
+            $('.btn2').parent().next().css({ color: 'aqua' });
+          }
+        });
+
+        //--------------------------------------------------------------------------
+
+        // on메소드를 이용하여 하나 이상의 이벤트 종류를 선택한 요소에 다중 등록 후
+        // 같은 이벤트 처리!
+        // <button class="btn3">버튼3</button> 선택해서 click mouseover focus 다중 등록
+        //     body 요소를 선택해서 배경색을 green으로 설정
+        //    <p>내용3</p> 요소를 선택해서 내용3 글자를 내용으로 변경
+
+        // $('.btn3').on({
+        //   click: function () {
+        //     $('body').css({ background: 'green' });
+        //     $('.btn3').parent().next().text('내용');
+        //   },
+        //   mouseover: function () {
+        //     $('body').css({ background: 'green' });
+        //     $('.btn3').parent().next().text('내용');
+        //   },
+        //   mouseout: function () {
+        //     $('body').css({ background: 'white' });
+        //     $('.btn3').parent().next().text('내용3');
+        //   },
+        //   focus: function () {
+        //     $('body').css({ background: 'green' });
+        //     $('.btn3').parent().next().text('내용');
+        //   }
+        // });
+
+        $('.btn3').on('click mouseover focus', function () {
+          $('body').css({ background: 'green' });
+          $('.btn3').parent().next().text('내용');
+        });
+      }); // $(function(){             });<-닫는기호를 말함
+    </script>
+  </head>
+  <body>
+    <p>
+      <button class="btn1">버튼1</button>
+    </p>
+    <p>내용1</p>
+    <p>
+      <button class="btn2">버튼2</button>
+    </p>
+    <p>내용2</p>
+    <p>
+      <button class="btn3">버튼3</button>
+    </p>
+    <p>내용3</p>
+  </body>
+</html>

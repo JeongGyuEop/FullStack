@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+
+    <!-- 제이쿼리 설치 -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        //주제 : 선택한요소! 강제로 이벤트 발생시키기 -> trigger()메소드 적용!
+
+        /*
+	단독 이벤트 등록 메소드와 trigger()메소드를 사용해 강제로 이벤트를 발생시키는 메소드 사용 문법
+	
+	순서1. $("이벤트대상요소선택").단독이벤트등록메소드(function(){ 이벤트 처리코드작성;  });
+	
+	순서2. $("이벤트대상요소선택").trigger("등록한단독이벤트메소드명"); 
+	
+	      -> trigger메소드를 호출하면 강제로 등록한 단독이벤트가 발생하게 됩니다.
+*/
+
+        //주제 : 버튼을 강제로 클릭되게 하여~~   이벤트 처리하는 방법
+        // 순서1. <button class="btn1">버튼1</button> 요소를 선택해 가져와
+        //        click 단독 이벤트 등록 메서드로 click 이벤트 등록
+        $('.btn1').click(function () {
+          // click 이벤트가 발생하면 처리할 코드 작성
+          // <p>내용1</p> 요소를 선택해 내용1 글자색을 빨강으로 설정
+          $('p:eq(1)').css('color', 'red');
+        });
+
+        // 순서2. trigger("click") 메소드를 호출하여 <button class="btn1">버튼1</button>에
+        //         사이트 이용자가 클릭동작(이벤트)을 하지 않아도 자동으로 강제로 클릭동작
+        //         (이벤트)가 발생하게 한다.
+        // $('.btn1').trigger('click');
+
+        // 참고. 클릭하지 않아도 강제 클릭되게 click() 메소드를 호출하는 문법도 있다.
+        $('.btn1').click();
+        //--------------------------------------------------------------------------------
+
+        // 순서1. <button class="btn2">버튼2</button>을 선택해서 가져와 btn2 변수에 저장
+        let btn2 = $('.btn2');
+        // 순서1-1. btn2 변수에 저장된 버튼2 요소에 마우스포인터를 올리는 동작,
+        //          포커스를 가하는 동작을 다중 등록
+        btn2.on('mouseover focus', function () {
+          //             // 이벤트 처리 코드 작성
+          //             <p>
+          //                <button class="btn2">버튼2</button>
+          //             </p>
+          //             <p>내용2</p>   <---- 최종 선택해서 가져와 글자색을 파란색으로 설정
+          btn2.parent().next().css({ color: 'blue' });
+        });
+
+        // 순서2. trigger 메소드를 이용하여 <button class="btn2">버튼2</button> 요소에
+        //        mouseover 이벤트 강제로 발생시키기
+        btn2.trigger('mouseover');
+
+				// 참고. trigger 메소드 호출 대신 강제로 mouseover 이벤트를 적용할 때
+				//       mouseover() 메소드 호출하여 강제로 mouseover이벤트를 발생
+				btn2.mouseover();
+
+				// 순서2. trigger 메소드를 이용하여 <button class="btn2">버튼2</button>에 
+				//        focus 이벤트 강제로 발생시키기
+        btn2.trigger('focus');
+				// 참고. trigger 메소드 호출 대신 강제로 focus 이벤트를 적용할 때
+				//       focus() 메소드 호출하여 강제로 focus 이벤트를 발생
+        btn2.focus();
+        //--------------------------------------------------------------------------------
+      });
+    </script>
+
+
+
+
+      });
+    </script>
+  </head>
+  <body>
+    <p>
+      <button class="btn1">버튼1</button>
+    </p>
+    <p>내용1</p>
+    <p>
+      <button class="btn2">버튼2</button>
+    </p>
+    <p>내용2</p>
+  </body>
+</html>
