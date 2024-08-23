@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title> 객체 조작 및 생성 </title>  
-	<!-- 
+  <head>
+    <meta charset="UTF-8" />
+    <title>객체 조작 및 생성</title>
+    <!-- 
 		객체 편집 메소드 종류
 		
 		unwrap()
@@ -29,28 +29,47 @@
 			 $("요소선택").wrapInner("새요소 생성");
 	
 	 -->
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script>
-	$(function( ){
-	 
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      $(function () {
+        // <strong></strong> 요소를 선택해서 감싸고 있는 부모요소 <h1></h1>을 삭제
+        // $('strong').unwrap();
 
-	});
-	</script>
-	<style>
-		div{background-color:aqua;}
-	</style>
-</head>
-<body>
-	<h1 id="tit_1">
-		<strong>객체 조작 및 생성</strong>
-	</h1>
-		<p class="ct1">내용1</p>
-		<p class="ct1">내용2</p>
-		<p class="ct2">내용3</p>
-		<p class="ct2">내용4</p>
-	<ul>
-		<li>내용3</li>
-		<li>내용4</li>
-	</ul>
-</body>
+        //  <div>
+        // 		<p class="ct2">내용1</p>
+        //  </div>
+        //  <div>
+        // 		<p class="ct2">내용2</p>
+        //  </div>
+        // 내용1 내용2 <p>요소 2쌍을 선택해 가져와 새로 만든 <div></div>로 감싸서 적용!
+        $('.ct1').wrap('<div>');
+
+        //  <div>
+        // 		<p class="ct2">내용3</p>
+        // 		<p class="ct2">내용4</p>
+        //  </div>
+        $('.ct2').wrapAll('<div>');
+
+        $('li').wrapInner('<h3>');
+      });
+    </script>
+    <style>
+      div {
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="tit_1">
+      <strong>객체 조작 및 생성</strong>
+    </h1>
+    <p class="ct1">내용1</p>
+    <p class="ct1">내용2</p>
+    <p class="ct2">내용3</p>
+    <p class="ct2">내용4</p>
+    <ul>
+      <li>내용3</li>
+      <li>내용4</li>
+    </ul>
+  </body>
 </html>
