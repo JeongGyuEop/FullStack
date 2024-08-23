@@ -1,0 +1,12 @@
+// 패키지 선언이라고 부르며
+// Hello.java 소스파일이 src/ch01/sec09 패키지에 있다는 뜻이다.
+package ch01.sec90;
+
+public class Hello {
+
+	public static void main(String[] args) {
+		System.out.println("Hello, Java");
+
+	}  
+
+}
