@@ -1,0 +1,21 @@
+
+
+/*
+ *   예제. 확장 대입 연산자 +=
+ */
+
+
+public class Opr06_02 {
+
+	public static void main(String[] args) {
+		
+		int a = 10;
+		
+		// a 변수에 10을 누적해서 20을 저장하고 싶다.
+		a += 10;
+		
+		System.out.println(a);
+		
+	}
+
+}

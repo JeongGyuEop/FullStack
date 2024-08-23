@@ -1,0 +1,20 @@
+
+/*
+ * 예제. 변수의 값을 1 증가 시키는 증가 연산자 ++
+ */
+
+public class Opr07 {
+
+	public static void main(String[] args) {
+		int a = 10;
+		int b = 10;
+		
+		++a;
+		
+		System.out.println(a); // 11
+		
+		b++;
+		System.out.println(b); //
+	}
+
+}
