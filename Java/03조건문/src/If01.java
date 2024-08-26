@@ -28,7 +28,7 @@ public class If01 {
 			num = -num;
 		}
 		
-		System.out.println(" absolute num = " + num);
+		System.out.println(" absolute num = " + num); // 5
 
 	}
 
