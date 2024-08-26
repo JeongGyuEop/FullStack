@@ -74,9 +74,9 @@ nav{
 
 #topMenu > li > ul { /* 서브 메뉴 스타일 */
   display: none;  /* 서브 메뉴 처음에는 화면에 안 보이게 */ 
-  position:absolute;  /* 서브 메뉴 포지셔닝 */ 
-  width:160px;
-  background:rgba(255,255,255,0.6);  /* 슬라이드 쇼 비치도록 배경 색 조절 */
+  position: absolute;  /* 서브 메뉴 포지셔닝 */ 
+  width: 160px;
+  background: rgba(255,255,255,0.6);  /* 슬라이드 쇼 비치도록 배경 색 조절 */
   left:20px;     
   margin:0;
 }

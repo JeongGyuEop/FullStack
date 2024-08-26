@@ -9,7 +9,7 @@ next.onclick = nextSlide; // 다음 이미지 표시
 
 // n 번째 슬라이드 이미지를 화면에 표시하는 함수
 function showSlides(n) {
-  for (let i = 0; i < n.length; i++) {
+  for (let i = 0; i < slides.length; i++) {
     // 배열의 처음부터 끝까지 반복
     slides[i].style.display = 'none'; // 모든 이미지를 화면에서 감춤
   }

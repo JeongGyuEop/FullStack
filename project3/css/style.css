@@ -7,11 +7,11 @@
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none; /* 텍스트 링크 밑줄 없애기 */
 }
 
-ul, ol {
-  list-style: none;
+ul {
+  list-style: none; /* 리스트 스타일 없애기 */
 }
 
 #container {
@@ -19,28 +19,30 @@ ul, ol {
   width: 1200px; /* 너비 설정 */
 }
 
-header {
-  width: 100%;
-  height: 100px;
-  background-color: #07c;
+/* ------------------------- 헤더 영역 ----------------------------- */
+header{
+  width:100%;    /* 헤더 영역의 너비 */
+  height:100px;   /* 헤더 영역의 높이 */ 
+  background-color:#07c;
 }
 
 #logo {
-  float: left;
-  width: 250px;
-  height: 100px;
-  line-height: 100px;
-  padding-left: 20px;
+  float: left; /* 로고를 왼쪽으로 플로팅 */ 
+  width: 250px; /* 로고의 너비 */ 
+  height: 100px; /* 로고의 높이 */ 
+  line-height: 100px; /* 줄간격을 높이 값과 같게하여 세로로 중간에 맞춘다 */ 
+  padding-left: 20px; /* 안쪽 왼쪽의 여백을 20px로 설정 */ 
 }
 
 #logo h1 {
-  font-family: "Merienda", cursive;
-  font-weight: 700;
-  font-size: 40px;
-  color: #fff;
-  text-shadow: 0 -1px 0 #222;
+  font-family: "Merienda", cursive; /* 폰트 모양을 설정 */ 
+  font-weight: 700;/* 폰트 굵기를 설정 */ 
+  font-size: 40px; /* 글자 크기를 설정 */ 
+  color: #fff; /* 글자 색상을 설정 */ 
+  text-shadow: 0 -1px 0 #222; /* 그림자 색상을 설정 */ 
 }
 
+/* ----------------------- 네비게이션 메뉴 ---------------------- */
 nav {
   float: right; /* 오른쪽으로 플로팅 */
   width: 900px; /* 너비 */
@@ -49,7 +51,7 @@ nav {
 }
 
 #topMenu {
-  height: 60px;
+  height: 60px; /* 메뉴의 높이를 60px로 설정 */ 
 }
 
 #topMenu > li {
@@ -58,119 +60,272 @@ nav {
 }
 
 #topMenu > li > a {
-  display: block; /* 링크 텍스트는 블록으로 */
-  color: #fff; /* 폰트 색상 */
-  font-weight: 600; /* 폰트 굵기*/
+  display: block; /* 링크 텍스트는 블록으로 설정*/
+  color: #fff; /* 폰트 색상 흰색 설정*/
+  font-weight: 600; /* 폰트 굵기를 굵게 설정*/
   text-shadow: 0 1px #07c; /* 그림자 추가 */
-  padding: 20px 60px;
+  padding: 20px 60px; /*  안쪽 여벽을 위아래 20px 좌우 60px로 설정 */ 
 }
 
+/* 메뉴가 있는 항목에 화살표를 표시 */ 
 #topMenu > li > a > span {
-  font-size: 0.5em;
+  font-size: 0.5em; /* 폰트 크기를 0.5em으로 설정 */ 
 }
 
+/* 요소에 마우스를 올리면 */ 
 #topMenu > li > a:hover {
-  color: #000;
-  text-shadow: 0 -1px #07c;
+  color: #000; /* 글자 색을 검정으로 변경 */ 
+  text-shadow: 0 -1px #07c; /* 그림자를 추가 */ 
 }
 
+/* 서브 메뉴 스타일 지정 */ 
 #topMenu > li > ul {
-  display: none;
-  position: absolute;
-  width: 160px;
-  background-color: rgba(255, 255, 255, 0.6);
-  left: 0px;
-  margin: 0;
+  display: none; /* 처음에는 화면에서 안 보이게 설정 */ 
+  position: absolute; /* 포지션을 absolute로 설정 */  
+  width: 160px; /* 너비를 160px로 설정 */ 
+  background: rgba(255, 255, 255, 0.6); /* 슬라이드가 보이도록 배경 색 설정 */ 
+  left: 20px; /* 왼쪽 여백 20px로 설정 */ 
+  margin: 0; /* 바깥 여백 0으로 설정 */ 
 }
 
 #topMenu > li > ul > li {
-  padding: 10px 10px 10px 30px;
+  padding: 10px 10px 10px 30px; /* 서브 메뉴의 항목의 안쪽 여백을 10(위), 10(오), 10(아), 30(왼)px로 설정 */ 
 }
 
 #topMenu > li > ul > li > a {
-  font-size: 14px;
-  padding: 10px;
-  color: #000;
+  font-size: 14px; /* 폰트 크기 설정 */ 
+  padding: 10px; /* 안쪽 여백을 10px로 설정 */ 
+  color: #000; /* 글자 색상을 검정으로 설정 */
 }
 
+/* 메인 메뉴 항목 위로 마우스를 올렸을 때 */ 
 #topMenu > li:hover > ul {
-  display: block;
-  z-index: 10;
+  display: block; /* 서브 메뉴를 표시하기 위해 display를 block으로 설정 */ 
+  z-index: 10; /* 슬라이드 쇼에 가리지 않도록 z-index를 10으로 설정 */ 
 }
 
 #topMenu > li > ul > li > a:hover {
-  color: #f00;
+  color: #f00; /* 서브 메뉴에 마우스를 올리면 글자 색상 빨강으로 변경 */
 }
 
+/* ------------------------- 이미지 슬라이드 영역 -------------------------- */ 
 #slideShow {
-  clear: both;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  position: relative;
+  clear: both; /* clear:both로 설정하여 플로팅을 해제 */
+  width: 100%; /* 너비를 100%로 하여 부모 요소의 너비에 꽉차게 설정 */
+  height: 300px; /* 높이를 300px로 설정 */
+  overflow: hidden; /* 영역이 넘치면 숨긴다 */
+  position: relative; /* 슬라이드와 버튼 요소를 absolute로 하기 위해 부모 요소의 포지션을 relative로 설정 */
 }
 
 #slides {
-  position: absolute;
+  position: absolute; /* 요소의 포지션을 absolute로 설정 */
 }
 
 #slides > img {
-  width: 100%;
-  float: left;
+  width: 100%; /* 요소의 너비를 부모 요소에 꽉차게 100%로 설정 */
+  float: left; /* 왼쪽으로 플로팅 설정하여 가로로 배치 */
 }
 
 button {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  border: none;
-  padding: 20px;
-  background-color: transparent;
-  color: #000;
-  font-weight: 800;
-  font-size: 24px;
-  opacity: 0.5;
+  position: absolute; /* 요소의 포지션을 absolute로 설정 */
+  height: 100%; /* 요소의 높이를 부모 요소에 꽉 차게 100%로 설정 */
+  top: 0; /* 요소를 위쪽으로 붙인다 */
+  border: none; /* 요소의 테두리를 없앤다 */
+  padding: 20px; /* 안쪽 여백을 모두 20px로 설정 */
+  background-color: transparent; /* 배경 색상을 투명으로 설정 */
+  color: #000; /* 텍스트 생상을 검정으로 설정 */
+  font-weight: 800; /* 폰트 굵기를 굵게 설정 */
+  font-size: 24px; /* 폰트 크기를 24px로 설정 */
+  opacity: 0.5; /* 반투명 하게 설정 */
 }
 
 #prev {
-  left: 0;
+  left: 0; /* 이전 화살표 버튼 요소를 왼쪽으로 붙인다. */
 }
 #next {
-  right: 0;
+  right: 0; /* 다음 화살표 버튼 요소를 오른쪽으로 붙인다. */
 }
 
+/* 버튼에 마우스를 올렸을 때 */
 button:hover {
-  background-color: #222;
-  color: #fff;
-  opacity: 0.6;
-  cursor: pointer;
+  background-color: #222; /* 배경 색상을 짙은 회색 배경으로 설정 */
+  color: #fff; /* 화살표 색상을 흰색으로 설정 */
+  opacity: 0.6; /* 불투명도를 조금 높임 */ 
+  cursor: pointer; /* 커서 모양을 포인터로 설정 */ 
 }
 
 button:focus {
-  outline: 0;
+  outline: 0; /* 아웃라인을 없애도록 설정 */
 }
 
+/* ------------------------ 콘텐츠 영역 --------------------------*/
 #contents {
-  width: 100%;
-  height: 300px;
+  width: 100%; /* 요소의 너비를 부요 요소에 꽉 차게 100%로 설정 */
+  height: 300px; /* 요소의 높이를 300px로 설정 */
+  margin-top: 20px; /* 위쪽 바깥 여백을 20px로 설정*/
 }
 
 #tabMenu {
-  float: left;
-  width: 600px;
-  height: 100%;
-  background-color: violet;
+  float: left; /* 왼쪽으로 플로팅하도록 설정*/
+  width: 600px; /* 너비를 600px 로 설정 */
+  height: 100%; /* 높이를 부모 요소위 위 아래에 딱 맞게 설정 */
+  margin-top:10px;  /* 탭 메뉴 위쪽에 여백 두기 */
 }
 
+#tabMenu input[type="radio"] {
+  display: none; /* 라디오 버튼을 보이지 않게 설정 */
+}
+
+/* 탭의 제목 스타일 설정 */
+#tabMenu label {
+  display: inline-block; /* 탭의 위치를 가로로 설정 */
+  margin: 0 0; /* 위아래 바깥 여백과 좌우 바깥 여백을 0으로 설정 */
+  padding: 15px 25px; /* 위아래 안쪽 여백을 15px, 좌우 안쪽 여백을 25px로 설정 */
+  font-weight: 600; /* 폰트 굵기를 설정 */
+  text-align: center; /* 폰트를 가운데로 정렬 */
+  color: #aaa; /* 폰트 색상을 연한 회색으로 설정 */
+  border: 1px solid transparent; /* 테두리를 설정 */
+}
+
+/* id가 tapMenu인 요소의 하위 label 요소에 마우스를 올렸을 때*/
+#tabMenu label:hover {
+  color: #222; /* 폰트 색상을 검정으로 설정 */
+  cursor: pointer; /* 커서를 pointer로 설정 */
+}
+
+/* id가 tapMenu인 요소의 하위 label 요소rk checked (활성화) 된 상태일 때 */
+#tabMenu input:checked + label {
+  color: #b00;
+  border: 1px solid #ddd;
+  background-color: #eee;
+}
+
+/* 탭 내용 스타일을 설정 */
+.tabContent {
+  display: none; /* 기본적으로 모든 탭 내용을 숨긴다. */
+  padding: 20px 0 0; /* 탭 내용 상단 안쪽 여백을 20px로 설정 */
+  border-top: 1px solid #ddd; /* 위쪽 테두리를 연한회색으로 1px 설정 */
+}
+
+.tabContent h2 {
+  display: none; /* 탭 내의 h2 요소를 숨김 */
+}
+
+#notice ul {
+  list-style: disc; /* 목록의 항목에 기본 스타일을 적용한다. */
+  margin-left:30px; /* 왼쪽 바깥 여백을 30px로 설정 */
+}
+
+#notice ul li {
+  font-size:16px; /* 목록 항목의 글자 크기를 16px로 설정 */
+  line-height:2.5; /* 줄 간격을 2.5로 설정 */
+}
+
+#gallery ul li{
+  display:inline;  /* 이미지 항목들을 가로로 나란히 배치 */
+}
+
+/* tab1이 선택(checked)되면 tab1에 해당하는 탭 내용(#notice)을 보여준다. */
+/* tab2가 선택(checked)되면 tab2에 해당하는 탭 내용(#gallery)을 보여준다. */
+#tab1:checked ~ #notice, 
+#tab2:checked ~ #gallery {
+  display:block; /* 해당하는 탭 내용이 보이도록 설정 */
+}
+
+/* 퀵 링크 */
 #links {
-  float: right;
-  width: 600px;
-  height: 100%;
-  background-color: skyblue;
+  float: right; /* 오른쪽으로 플로팅 설정 */
+  width: 600px; /* 너비를 600px로 설정 */
+  height: 100%; /* 높이를 부모 요소의 위아래에 딱 맞게 100%로 설정 */
+  margin-top:15px;  /* 위쪽 바깥 여백을 20px로 설정 */
 }
 
+#links ul {
+  padding: 0; /* 요소의 안쪽 여백을 0으로 설정하여 여백을 없앤다. */
+  overflow: hidden; /* 넘치는 항목은 숨기도록 설정 */
+}
+
+#links ul li {
+  float: left; /* 요소의 항목들을 가로로 배치 */
+  width: 33%; /* 세 항목의 영역이 균일하게 배치되도록 설정 */
+  text-align: center; /* 폰트를 가운데로 정렬 */
+  margin: 10px 0; /* 위아래 바깥 여백을 10px 좌우 바깥 여백을 0px로 설정 */
+}
+
+#links ul li a span{
+  display:block;  /* 요소의 display를 block으로 설정하여 요소를 보이도록 설정 */ 
+  margin:0 auto;  /* 요소를 영역의 가운데 배치 */ 
+  width:150px;  /* 너비를 150px로 설정 */ 
+  height:150px;  /* 높이를 150px로 설정 */
+  border-radius:100%;  /* 테두리를 100%로 하여 완전하게 둥글게 설정*/ 
+  border:1px solid #ddd;  /* 테두리 스타일 설정*/
+  line-height:150px;  /* 줄 간격을 설정하여 수직으로 중간에 오게 설정*/ 
+}
+
+#quick-icon1 {
+  background-image: url('../images/icon-1.jpg'); /* 요소의 배경 이미지 설정 */
+}
+
+#quick-icon2 {
+  background-image: url('../images/icon-2.jpg'); /* 요소의 배경 이미지 설정 */
+}
+
+#quick-icon3 {
+  background-image: url('../images/icon-3.jpg'); /* 요소의 배경 이미지 설정 */
+}
+
+#links ul li a p {
+  margin-top:15px;  /* 위쪽 마진 */
+  font-weight:600;  /* 글자 굵기 */
+  color:#666;  /* 글자 색 */
+}
+
+/* ---------------------------- 푸터 영역 -------------------------------- */
 footer {
-  width: 100%;
-  height: 100px;
-  background-color: gray;
+  width: 100%; /* 요소의 너비를 부모요소의 너비에 딱 맞게 100% 로 설정 */
+  height: 100px; /* 요소의 높이를 100px로 설정 */
+  border-top: 2px solid #222; /* 위쪽 테두리를 설정하여 가로선 추가 */
+}
+
+#bottomMenu{
+  width:100%; /* 요소의 너비를 부모요소의 너비에 딱 맞게 100% 로 설정 */
+  height:20px; /* 요소의 높이를 20px로 설정 */
+  position:relative;  /* sns <div> 요소를 absolute로 하기 위해 부모 요소의 포지션을 relative로 설정 */
+}
+#bottomMenu ul {
+  margin-top:15px;  /* 요소의 위쪽 바깥 여백을 15px로 설정 */ 
+}
+#bottomMenu ul li{
+  float:left;  /* 요소들을 왼쪽으로 플로팅하여 가로로 배치*/ 
+  padding:5px 20px; /* 요소의 안쪽 여백을 위아래 5px 좌우 20px로 설정 */
+  border-right:1px solid #ddd;   /* 항목 오른쪽에 테두리 설정*/ 
+}
+
+/* id가 bottomMenu인 요소의 하위 ul요소의 하위 li요소중에서 마지막 li요소를 선택해서 가져온다. */
+#bottomMenu ul li:last-child{
+  border:none;  /* 마지막 항목에는 오른쪽 테두리 없음 */  
+}
+/* #bottomMenu라는 id를 가진 요소 내에서 ul > li > a 구조를 가진 모든 링크와, 
+그 중에서 이미 방문된 링크를 선택해서 가지고 온다. */
+#bottomMenu ul li a, #bottomMenu ul li a:visited {  
+  font-size:15px;  /* 글자 크기 15px로 설정*/ 
+  color:#666;   /* 글자 색 짙은 회색으로 설정*/ 
+}
+
+#sns {
+  position:absolute;  /* 요소의 포지션을 페이지의 고정된 위치에 배치하도록 absolute로 설정 */
+  right:0;  /* 오른쪽 끝에 배치 */ 
+}
+#sns ul li{
+  border:none;  /* 요소의 테두리를 없앤다. */
+  padding:5px;   /* 요소의 안쪽 여백을 모두 5px로 설정 */
+} 
+#company{
+  clear:left;  /* 플로팅 해제. clear:both도 가능 */
+  margin-top:25px;  /* 위쪽 바깥 여백을 25px로 설정 */
+  margin-left:20px;  /* 왼쪽 바깥 여백을 20px로 설정 */ 
+}
+p {
+  font-size:14px;  /* 글자 크기 14px로 설정 */
+  color:#aaa;    /* 글자 색 연한 회색으로 설정*/ 
 }
