@@ -1,0 +1,34 @@
+# Eclipse metadata and settings
+Java/.metadata/
+Java/.settings/
+
+# Build and dependency directories (if applicable)
+Java/bin/
+Java/target/
+
+# Local environment files
+Java/.classpath
+Java/.project
+Java/.idea/
+Java/.vscode/
+
+# Operating system files
+*.DS_Store
+*.log
+*.tmp
+*.swp
+
+# Thumbs.db files (Windows)
+Thumbs.db
+
+# PDF files
+*.pdf
+
+# IDE config files (specific to your IDE if using others)
+*.iml
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
