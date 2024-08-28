@@ -1,20 +1,25 @@
 
 
-
-class Tree {
+// 원 클래스(설계도) 만들기
+class Circle {
 	
-	// 멤버변수 - 데이터(사과나무, 빨간색 사과, 100살) 저장용도
-	String name;
-	String color;
-	int age;
+	// 변수
+	// 원의 반지름 데이터를 저장할 변수
+	double radius;
 	
-	// 메소드 - 동작, 기능(흔들리다, 사과가 떨어지다) 표현 용도
-	void move() {
-		System.out.println("흔들리다.");
+	
+	// 메서드
+	// 매개변수 newRadius로 전달받은 반지름의 값을 double radius 변수에 저장할 메소드
+	public void setRadius(double newRadius) {
+		
+		radius = newRadius;
+		
 	}
-	
-	void dowon() {
-		System.out.println("떨어지다.");
+		
+	// 원의 면적을 계산해서 반환(제공)하는 기능의 메소드
+	// 원의 면적 : 반지름 X 반지름 X 3.14
+	public double calculateArea() {
+		return radius * radius * 3.14;
 	}
 	
 }
@@ -23,27 +28,141 @@ class Tree {
 
 
 
-public class Ex2_1 {
+
+
+
+// 사각형 클래스(설계도) 만들기
+class Rectangle {
+	// 변수
+	double width;
+	double height;
 	
+	// 메소드
+	// Rectangle 객체를 생성하여 객체 메모리 내부에 만들어진 객체 변수 width와 height의 값을
+	// 새로 변경하여 저장시킬 기능의 setDimensions 메소드 정의
+	public void setDimensions(double newWidth, double newHeight) {
+		width = newWidth;
+		height = newHeight;
+	}
+	
+	// 사각형의 면적을 계산해서 반환(제공)하는 calculateArea메소드 정의
+	public double calculateArea() {
+		return width * height;
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+public class Ex2_1 {
+
 	public static void main(String[] args) {
 
-		Tree tree1 = new Tree();
+		// 객체를 생성해서 사용
+		// 1. Circle 클래스 설계도를 이용해서 Circle 객체를 생성
+		Circle circle = new Circle();
 		
-		tree1.name = "사과나무";
-		tree1.color  = "빨간색 사과";
-		tree1.age = 100;
-		tree1.move();
-		tree1.dowon();
+		circle.setRadius(5);		
 		
-		Tree tree2 = new Tree();
+		System.out.println(circle.calculateArea());
 		
-		tree2.name = "배나무";
-		tree1.color  = "파란색 배";
-		tree1.age = 99;
-		tree1.move();
-		tree1.dowon();
+//					  = 						0x16   
+//					    ----------------------------------------------------
+//					    |     	// 변수
+//						|		// 원의 반지름 데이터를 저장할 변수
+//						|		double radius; [0.0] -> [5.0]
+//						|
+//						|
+//						|		// 메서드
+//						|		// 매개변수 newRadius로 전달받은 반지름의 값을 double radius 변수에 저장할 메소드
+//						|		public void setRadius(double newRadius) {
+//						|	
+//						|				radius = newRadius;
+//						|	
+//						|		}
+//						|	
+//						|		// 원의 면적을 계산해서 반환(제공)하는 기능의 메소드
+//						|		// 원의 면적 : 반지름 X 반지름 X 3.14
+//						|		public double calculateArea() {
+//						|			return radius * radius * 3.14;
+//						|		}
+//					    ----------------------------------------------------
+		
+		Circle circle2 = new Circle();
+		
+		circle2.radius = 3;
+		
+		// 원 면적을 제공받기 위해 객체메소드 calculateArea() 호출
+		double result = circle2.calculateArea();
+		
+		System.out.println(result);
+		
+		
+//		  = 						0x16   
+//	    ----------------------------------------------------
+//	    |     	// 변수
+//		|		// 원의 반지름 데이터를 저장할 변수
+//		|		double radius; [0.0]
+//		|
+//		|
+//		|		// 메서드
+//		|		// 매개변수 newRadius로 전달받은 반지름의 값을 double radius 변수에 저장할 메소드
+//		|		public void setRadius(double newRadius) {
+//		|	
+//		|				radius = newRadius;
+//		|	
+//		|		}
+//		|	
+//		|		// 원의 면적을 계산해서 반환(제공)하는 기능의 메소드
+//		|		// 원의 면적 : 반지름 X 반지름 X 3.14
+//		|		public double calculateArea() {
+//		|			return radius * radius * 3.14;
+//		|		}
+//	    ----------------------------------------------------
+	
+		
+// --------------------------------------------------------------------------------------------------------------
+		
+		// Rectangle 클래스를 이용하여 객체 생성하기
+		Rectangle rectangle = new Rectangle();
+		
+		rectangle.setDimensions(4, 6);
+		double result2 = rectangle.calculateArea();
+		System.out.println(result2);
+		
+		/*
+						    = 
+						    -------------------------------------------------
+						    |	// 변수
+							|	double width; [0.0] -> [4.0]
+							|	double height; [0.0] -> [6.0]
+							|
+							|	// 메소드
+							|	// Rectangle 객체를 생성하여 객체 메모리 내부에 만들어진 객체 변수 width와 height의 값을
+							|	// 새로 변경하여 저장시킬 기능의 setDimensions 메소드 정의
+							|	public void setDimensions(double newWidth, double newHeight) {
+							|		width = newWidth;
+							|		height = newHeight;
+							|	}
+							|
+							|	// 사각형의 면적을 계산해서 반환(제공)하는 calculateArea메소드 정의
+							|	public double calculateArea() {
+							|		return width * height;
+							|	}
+						    -------------------------------------------------
+		*/
 		
 
+
+		
+		
+		
+		
 	}
 
 }
