@@ -7,10 +7,10 @@ package PA;
 
 public class A { // PA 패키지 안에 있는 A부모 클래스
 
-	int i; // default 접근제어자 사용
+	          int i; // default 접근제어자 사용
 	protected int pro;
-	private int pri;
-	public int pub;
+	private   int pri;
+	public    int pub;
 	
 	public void print() {
 		System.out.print("i=" + this.i + ", ");
