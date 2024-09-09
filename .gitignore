@@ -36,3 +36,13 @@ Thumbs.db
 
 # Any additional directories or files you don't want to track
 기타/
+Java/*/.classpath
+Java/*/.settings
+Java/.classpath
+Java/.metadata/
+Java/.project
+Java/.settings/
+Java/*/.gitignore
+Java/.settings/org.eclipse.jdt.core.prefs
+
+Java/*/bin/
