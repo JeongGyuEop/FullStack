@@ -1,6 +1,5 @@
 package ch08.sec02;
 
-import java.rmi.Remote;
 
 /*
 	인터페이스(Interface)란?
