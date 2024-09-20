@@ -15,7 +15,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Collection02 {
+public class Collections02 {
 
 	public static void main(String[] args) {
 		
