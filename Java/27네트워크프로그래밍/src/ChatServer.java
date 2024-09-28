@@ -165,7 +165,7 @@ class ChatServerThread implements Runnable{
 			
 			//이미 서버채팅프로그램에 접속되어 있는 모든 클라이언트 채팅프로그램들에게
 			//XXX아이디가 접속되었다는 메세지 전송
-			boradcast(user_id + "님이 접속하셨습니다.");
+			broadcast(user_id + "님이 접속하셨습니다.");
 			
 			//여러 스레드가 공유하는 해쉬맵을 동기화
 			synchronized (hm) {
@@ -210,7 +210,7 @@ class ChatServerThread implements Runnable{
 				//입력하면 모든 클라이언트 채팅프로그램들에게 브로드 캐스팅한다
 				}else {
 					
-					boradcast(user_id + " : " + reciveData);
+					broadcast(user_id + " : " + reciveData);
 				}
 				
 			}
@@ -235,13 +235,50 @@ class ChatServerThread implements Runnable{
 			try {
 				// 서버채팅 프로그램에 접속하여 종료메세지를 보낸 클라이언트 채팅프로그램
 				// 전용 소켓 통로 자원해제(서버채팅 프로그램과 클라이언트 채팅프로그램 접속 해제)
-				if(child != null) { child.colse(); }
+				if(child != null) { child.close(); }
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}		
 	}
 	
+	
+	public void broadcast(String message) {
+		// HashMap을 통해 동기화
+	    synchronized (hm) {
+	        for (ObjectOutputStream oos : hm.values()) {
+	            try {
+	                oos.writeObject(message);
+	                oos.flush();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
+	
+	// 4. 귓속말을 하기 위해서 특정 클라이언트 에게  메세지를 보냈다면 다음과 같은 형식으로 보낸다.
+	public void sendMsg(String message) {
+	    // "/to user_id message" 형식으로 가정
+	    String[] tokens = message.split(" ", 3); // 공백을 기준으로 3개로 나눔
+
+	    if (tokens.length >= 3 && tokens[0].equals("/to")) {
+	        String id = tokens[1]; // 대상 사용자 ID
+	        String msg = tokens[2]; // 전송할 메시지
+
+	        ObjectOutputStream oos = hm.get(id); // 해시맵에서 대상 사용자 ID의 출력 스트림을 얻음
+
+	        if (oos != null) {
+	            try {
+	                oos.writeObject(user_id + "님이 다음과 같은 귓속말을 보내셨습니다: " + msg);
+	                oos.flush();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
+
 	
 	
 }
