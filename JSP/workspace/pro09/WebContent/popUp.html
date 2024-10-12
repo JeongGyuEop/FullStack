@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<script>
+	// 웹브라우저가 html문서의 html태그들 모두 로딩 했을때...
+	window.onload = pageLoad; // 페이지 로딩이 완료되면 pageLoad 함수를 호출합니다.
+
+	function pageLoad() {
+		// 쿠키 저장소에 저장된 쿠키값을 얻어옵니다.
+		notShowPop = getCookieValue();
+
+		if (notShowPop != "true") {
+			// 팝업창을 띄웁니다. popUpTest.html은 너비 400, 높이 500, 크기 조절 불가능, 상태바 미표시, 스크롤바 허용하지 않고, 메뉴바 없는 팝업창을 엽니다.
+			window.open("popUpTest.html", "pop", "width=400,height=500, resizeble=no, status=no, scrollbars=yes, menubar=no");
+		}
+	}
+
+	function getCookieValue() {
+		var result = "false"; // 쿠키 값을 "false"로 초기화합니다.
+
+		if (document.cookie != "") {
+			// document의 cookie 속성으로 쿠키 정보를 문자열로 가져온 후 세미콜론 ";" 기호로 분리해 각각의 쿠키를 얻습니다.
+			cookie = document.cookie.split(";");
+
+			for (var i = 0; i < cookie.length; i++) {
+				element = cookie[i].split("=");
+				value = element[0];
+				// 정규식을 이용해 쿠키 이름 문자열의 공백(\s)을 제거합니다.
+				value = value.replace(/^\s*/, '');
+
+				// 쿠키 이름이 "notShowPop"이면 해당하는 쿠키 값을 가져와 반환합니다.
+				if (value == "notShowPop") {
+					result = element[1];
+				} // if
+			} // for
+		} // 바깥 if
+
+		return result;
+	} // getCookieValue() 함수
+
+	// 쿠키 삭제 버튼을 클릭했을 때 호출되는 함수
+	// "notShowPop" 쿠키값을 "false"로 설정하여 팝업창이 다시 뜨도록 합니다.
+	function deleteCookie() {
+		document.cookie = "notShowPop=false;path=/; expires=-1";
+	}
+
+</script>
+</head>
+<body>
+
+<!-- "쿠키삭제" 버튼을 생성하고, 클릭 시 deleteCookie() 함수를 호출합니다. -->
+<input type="button" value="쿠키삭제" onClick="deleteCookie()">
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<script>
+	
+	//setPopUpStart(obj) 함수는 "오늘 더 이상 팝업창 띄우지 않기" 체크박스를 체크하거나 해제했을 때 호출되는 함수입니다.
+	function setPopUpStart(obj) {
+		// 체크박스가 체크되었을 때, 즉 "오늘 더 이상 팝업창 띄우지 않기"를 선택했을 때
+		if (obj.checked == true) {
+			var expireDate = new Date();
+			
+			// 쿠키 유효시간을 하루로 설정합니다.
+			var days = 1;
+			
+			//체크박스가 체크되면, 현재 날짜에 하루를 더한 시간을 쿠키의 유효시간으로 설정합니다.
+			expireDate.setDate(expireDate.getDate() + days);
+			
+			// 오늘 더 이상 팝업창을 나타내지 않기를 체크하면, notShowPop 쿠키값을 true로 설정하여
+			// 재 접속시 팝업창을 나타내지 않습니다.                 //쿠키 만료값 설정 
+			document.cookie = "notShowPop=true; path=/; expires=" + expireDate.toGMTString();
+			
+			// 팝업창을 닫습니다.
+			window.close();
+		}
+	}
+
+</script>
+</head>
+<body>
+	알림 팝업창입니다.
+	<br><br><br><br><br><br><br>
+	<form>
+		<!-- "오늘 더 이상 팝업창 띄우지 않기" 체크박스를 생성하고, 체크 시 setPopUpStart(this) 함수가 호출됩니다. -->
+		<input type="checkbox" onclick="setPopUpStart(this)">오늘 더 이상 팝업창 띄우지 않기 
+	</form>
+
+</body>
+</html>

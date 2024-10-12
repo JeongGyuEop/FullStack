@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인 창</title>
+
+<script type="text/javascript">
+	
+	// 아이디와 비밀번호 입력 후 로그인 버튼을 클릭했을 때 호출되는 메소드로서
+	// 아이디와 비밀번호가 모두 입력되었는지 유효성 검사하는 함수
+	// 만약 입력했으면 <form>의 action 속성에 설정된 서버페이지로 요청하게 된다.
+	function fn_validate() {
+		// <form> 태그의 name 속성으로 <form> 태그 한쌍을 선택해서 가져와 변수에 저장
+		let frmLogin = document.login;
+		
+		// <form> 태그 내부에 작성된 자식 <input> 태그의 입력한 값 얻어서 저장
+		let user_id = frmLogin.user_id.value; 
+		let user_pw = frmLogin.user_pw.value; 
+		
+		// 아이디 또는 비밀번호를 입력하지 않았을 경우
+		if((user_id.length == 0 || user_id == "") || (user_pw.length == 0 || user_pw =="")) {
+			alert("아이디와 비밀번호는 필수 입니다.");
+		} else { // 아이디 또는 비밀번호를 입력했을 경우
+			frmLogin.method = "post"; // <form> 태그의 전송 방식을 post로 설정
+			frmLogin.action = "login5"; // <form> 태그의 action 속성을 서블릿 매핑 이름인 login5로 설정
+			frmLogin.submit(); // 자바스크립트에서 <form> 태그를 이용해 서블릿으로 전송
+		}
+		
+	}
+</script>
+
+</head>
+<body> 
+
+	 <form action="login" name="login" method="get" >
+	 	
+	 	아이디 : <input type="text" name="user_id"> <br>
+	 	비밀번호 : <input type="password" name="user_pw"> <br>
+	 	
+	 	<input type="button" value="로그인" onclick="fn_validate();">
+	 	<input type="reset" value="취소">
+	 
+	 	
+	 	<!-- type="hidden"으로 설정하면 <input> 디자인은 노출 안하고
+	 		요청할 값(name-value) 묵어서 HttpServletRequest 객체 메모리에 담아서
+	 		서블릿으로 전송하게 된다. -->
+	 		<input type="hidden" name="user_address" value="서울시 성북구">
+	 		
+	 </form>
+<!--
+	<form>태그의 여러가지 속성과 기능에 대한 표
+	
+	속성					기능
+	name				<form>태그의 이름을 지정합니다.
+						여러 개의 <form>태그가 존재할 경우 구분하는 이름을 설정할때 사용합니다.
+						자바스크립트 문법에서 <form>태그에 접근할때(선택해올) 자주 사용합니다.	
+	
+	method				<form>태그 내부에 입력한 데이터를 서버페이지(서블릿)로 전송할때의 전송방법을 지정합니다.
+						전송방법의 종류는 GET전송방법  또는 POST전송방법이 있습니다. 둘중 하나를 지정합니다.
+
+						GET전송 방식
+						- 서블릿에 데이터를 전송할때 데이터가 URL주소뒤에  name=value형태로 노출되어 전송하는 방법 입니다.
+						- 여러개의 데이터를 전송할때 는 &기호로 구분해서 작성하여 전송시킵니다.
+						  ( http://localhost:8090/pro06/third?name1=value1&name2=value2 )
+						- 보안에 취약합니다.
+						- 기본 전송 방식이고 사용이 쉽습니다. (method=get 이라고 적어 주지 않는 경우)
+						- 웹 브라우저 주소창에 직접 주소를 입력해서 전송하는 방법입니다.
+						- 서블릿 페이지에서는 doGet()메소드에서  요청 전송된 데이터를 처리 합니다. 
+						- GET전송 방식은 서버페이지로 전송할 데이터량이 적고 간단한 정보를 전달할때 사용합니다.
+						- 서버페이지로 전송할 데이터가 민감한정보(로그인 및 개인정보)의 전송에는 적합하지 않습니다. 
+						
+						
+						POST전송방식
+						- POST전송방식은 클라이언트에서 서버페이지로 데이터를 HTTP요청 본문에 포함하여 전송하는 방법입니다.
+						   이때 데이터는 요청 헤더와 별도로 전달되며, 웹브라우저의 주소창에 표시 되지 않습니다.
+						- 이방식은 대용량 데이터 전송 및 민감한 정보 전달에 적합하며, GET방식의 제한 사항을 극복할수 있습니다. 
+						- POST전송방식은 데이터 전송이 상대적으로 느리고 복잡한 구조일수 있으나, 
+						    보안성이 상대적으로 높습니다.
+						- 서블릿 서버페이지에서는 doPost()메소드에서 요청 전송된 데이터를 처리 합니다.
+						
+	action				<form>태그에 입력한 요청할 정보들을  서버페이지(서블릿이나 JSP)로 요청전송할때  서버페이지의 주소 경로를 지정합니다.					
+	
+	encType				파일 업로드 요청을 서버페이지로 할때  값으로 multipart/form-data로 설정 해야 합니다. 					  
+
+-->
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
