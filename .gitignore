@@ -1,39 +1,48 @@
 # Eclipse metadata and settings
-Java/.metadata/
-Java/.settings/
+/.metadata/
+/.settings/
+/.project
+/.classpath
 
-# Build and dependency directories (if applicable)
-Java/bin/
-Java/target/
+# Build and dependency directories
+/bin/
+/target/
 
-# Local environment files
-Java/.classpath
-Java/.project
-Java/.idea/
-Java/.vscode/
-
-# Operating system files
+# Local IDE and OS-specific files
+/.idea/
+/.vscode/
+*.iml
+*.swp
 *.DS_Store
 *.log
 *.tmp
-*.swp
-
-# Thumbs.db files (Windows)
 Thumbs.db
 
-# PDF files
+# Java class files
+*.class
+
+# Mac OS specific files
+**/.DS_Store
+
+# Windows specific files
+**/Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Ignore PDF files (if needed)
 *.pdf
 
-# IDE config files (specific to your IDE if using others)
-*.iml
-.idea/
-*.sublime-project
-*.sublime-workspace
+# Any additional directories or files you don't want to track
+기타/
+Java/*/.classpath
+Java/*/.settings
+Java/.classpath
+Java/.metadata/
+Java/.project
+Java/.settings/
+Java/*/.gitignore
+Java/.settings/org.eclipse.jdt.core.prefs
 
-# Log files
-*.log
-
-*.class
-.metadata
-./기타
-C:\Users\1\OneDrive\바탕 화면\FullStack\기타
+Java/*/bin/

@@ -60,23 +60,23 @@
 	 
 	 // 이클립스에서 메소드 오버라이딩에 대한 단축키 제공
 	 // alt + shift + s v
-	 @Override
-	public void print(int num) {
-		// TODO Auto-generated method stub
-		super.print(num);
-	}
+//	 @Override
+//	public void print(int num) {
+//		// TODO Auto-generated method stub
+//		super.print(num);
+//	}
 	 
 	 // 어노테이션 기호 이름 : @Overrid
 	 // 어노테이션 기호의 의미 : 작성 해놓은 메소드는 부모클래스로부터
 	 //							부모 클래스의 메소드를 오버라이딩 해놓은 
 	 //							메소드이다~ 라고 컴파일러에게 알려주는 기호
-//	 @Override
+	 @Override
 	 // 메소드의 선언부
-//	 public void print(int num) // 정수 하나를 매개변수로 받아 출력 
-//	 {
-//		 // 메소드의 구현부
-//		 System.out.println(num + 1);
-//	 }
+	 public void print(int num) // 정수 하나를 매개변수로 받아 출력 
+	 {
+		 // 메소드의 구현부
+		 System.out.println(num + 1);
+	 }
 	 
 	// B 자식 클래스의 멤버 메소드
 	 public void bInfo() {
