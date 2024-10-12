@@ -46,3 +46,18 @@ Java/*/.gitignore
 Java/.settings/org.eclipse.jdt.core.prefs
 
 Java/*/bin/
+
+
+
+# Eclipse related files
+/.metadata/
+/*.class
+/*.jar
+/.project
+/.classpath
+/.settings/
+/bin/
+/target/
+/Servers/
+/Tomcat v9.0 Server at localhost-config/
+/.profiles/
