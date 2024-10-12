@@ -50,14 +50,14 @@ Java/*/bin/
 
 
 # Eclipse related files
-/.metadata/
-/*.class
-/*.jar
-/.project
-/.classpath
-/.settings/
-/bin/
-/target/
-/Servers/
-/Tomcat v9.0 Server at localhost-config/
-/.profiles/
+JSP/workspace/.metadata/
+JSP/workspace/*.class
+JSP/workspace/*.jar
+JSP/workspace/.project
+JSP/workspace/.classpath
+JSP/workspace/.settings/
+JSP/workspace/bin/
+JSP/workspace/target/
+JSP/workspace/Servers/
+JSP/workspace/Tomcat v9.0 Server at localhost-config/
+JSP/workspace/.profiles/
