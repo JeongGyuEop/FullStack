@@ -3,7 +3,6 @@
 	<name>pro09</name>
 	<comment></comment>
 	<projects>
-		<project>ojdbc6</project>
 		<project>tomcat-dbcp-7.0.30</project>
 	</projects>
 	<buildSpec>
