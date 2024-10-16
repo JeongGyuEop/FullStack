@@ -26,11 +26,38 @@ String id = request.getParameter("id");
 String pwd = request.getParameter("pwd");
 String name = request.getParameter("name");
 String email = request.getParameter("email");
+%>
 
+<%--
+	<jsp:useBean>액션태그는 자바코드 객체 생성하는 구문을 대체해서 작성할수 있는 태그입니다
+	
+	id속성에는 생성한 객체의 참조변수명을 지정해서 객체를 식별할 유일한 고유ID값을 지정합니다
+	class속성에는 객체를 생성할때 사용하는 설계도인 클래스경로를 패키지명을 포함해서 지정합니다
+	scope속성에는 자바빈역할을 하는 VO또는 DTO객체를 생성후 저장될 내장객체 메모리영역 종류명 하나 지정
+	
+	문법
+		<jsp:useBean  id="생성한 객체를 식별할 고유ID값(참조변수명 설정)"    
+					  class="객체 생성시 사용될 클래스파일이 저장된 경로" 
+					  scope="생성한 객체는 어떤 내장객체 메모리영역에 저장할지 종류작성"
+							 page 또는 request 또는 session 또는 application
+		/>
+ --%>
+<%
 //3. 요청한 데이터를 통해~ 비즈니스로직처리(insert작업)한 웹브라우저로 응답할 값을 마련
 
 //3.1.MemberBean클래스의 객체 하나를 생성해서 각 변수에 요청한 데이터들을 각각 저장
-MemberBean mb = new MemberBean(id,pwd,name,email);
+//MemberBean mb = new MemberBean(id,pwd,name,email); 
+%>
+<%--기본생성자를 호출해 MemberBean클래스의 객체를 생성합니다. --%>
+ <jsp:useBean id="mb" class="sec01.ex01.MemberBean" scope="page"/>	
+<%
+   //useBean액션태그로 생성한 MemberBean객체 내부에 만들어져 있는 
+   //setter인스턴스메소드들을 호출해서 인스턴스변수값들을 각각 초기화 
+   mb.setId(id);
+   mb.setPwd(pwd);
+   mb.setName(name);
+   mb.setEmail(email);
+
 
 //3.2.MemberDAO객체를 생성해서 addMember메소드 호출시
 //    매개변수로 DB에 insert할 정보가 저장된 MemberBean객체의 주소 전달

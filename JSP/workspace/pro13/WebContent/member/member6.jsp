@@ -5,33 +5,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%/*1. 요청한 데이터 request에 UTF-8설정*/ request.setCharacterEncoding("UTF-8");%>
+<%--
+  2. 요청한 값들을 얻기 (회원가입을 위해 입력한 값들을 request객체 얻기)
+  3. MemberBean객체를 생성해서 각 인스턴스변수에 요청한 값들을 저장
+ --%>
+ <jsp:useBean id="mb" class="sec01.ex01.MemberBean" scope="page"/>	
+ <jsp:setProperty property="*" name="mb"/>
+ <%--
+     해석 : MemberBean객체의 모든 setter메소드 호출해서 
+                모든 인스턴스변수에 각각 요청한 값들을 저장 시킨다.
+                
+     조건 : MemberBean클래스의 변수명과  
+        MemberForm.html에 작성한 <input>의 name속성값이 같아야함
+  --%>
+ 
 <%
-/*
-member.jsp설명
-- memberForm.html(회원가입을 위해 입력한 정보를 요청하는 화면)에서 
-    입력한 가입할 정보들을  request객체 메모리에서 가져온후 ...
-  MemberBean클래스의 객체 생성후 각 인스턴스변수에 저장 시킵니다.
-  그런 다음 MemberDAO객체를 생성해서 addMember()메소드 호출시~~ 
-  이메소드의 매개변수로 MemberBean객체의 주소를 전달합니다
-  addMember메소드 내부에서  회원가입정보를 DB의 t_member테이블에 INSERT시킨후~
-  INSERT에 성공하면 다시 ~ MemberDAO객체의 listMembers()메소드를 호출해!!
-  DB의 t_member테이블에 저장된 가입된 회원정보들을 조회해와서 
-    현재 member.jsp에 목록으로 출력(응답)합니다.
-*/
-//1. 요청한 데이터 request에 UTF-8설정
-request.setCharacterEncoding("UTF-8");
-
-//2. 요청한 데이터 얻기(가입을 위해 입력한값들을 request객체 메모리에서 얻기)
-String id = request.getParameter("id");
-String pwd = request.getParameter("pwd");
-String name = request.getParameter("name");
-String email = request.getParameter("email");
-
-//3. 요청한 데이터를 통해~ 비즈니스로직처리(insert작업)한 웹브라우저로 응답할 값을 마련
-
-//3.1.MemberBean클래스의 객체 하나를 생성해서 각 변수에 요청한 데이터들을 각각 저장
-MemberBean mb = new MemberBean(id,pwd,name,email);
-
 //3.2.MemberDAO객체를 생성해서 addMember메소드 호출시
 //    매개변수로 DB에 insert할 정보가 저장된 MemberBean객체의 주소 전달
 MemberDAO dao = new MemberDAO();

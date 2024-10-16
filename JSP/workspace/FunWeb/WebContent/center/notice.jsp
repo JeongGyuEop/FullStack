@@ -27,7 +27,7 @@
 	<div id="wrap">
 	
 		<!-- 헤더가 들어가는 곳 -->
-		<%@ include file="../inc/top.jsp" %>  
+		<jsp:include page="../inc/top.jsp" />  
 		<!-- 헤더가 들어가는 곳 -->
 
 		<!-- 본문들어가는 곳 -->
@@ -57,121 +57,41 @@
 					<th class="tdate">Date</th>
 					<th class="tread">Read</th>
 				</tr>
-				<tr>
-					<td>15</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>14</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>13</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>12</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>11</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>10</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td class="left">Vivanus viveer portitor commodo.</td>
-					<td>Host Admin</td>
-					<td>2012.11.06</td>
-					<td>15</td>
-				</tr>
+				
 			</table>
 			<div id="table_search">
-				<input type="text" name="search" class="input_box"> <input
-					type="button" value="search" class="btn">
+				<input type="text" name="search" class="input_box"> 
+				<input type="button" value="search" class="btn">
+<%
+				// 각각의 서브페이지에서 로그인 후 이동해 올때 session 영역에서 아이디를 꺼내온다.
+				String id = (String)session.getAttribute("id");
+			
+				if(id != null){ // id가 session에 저장되어 있으면?(로그인 한 상태에서 게시판 화면 보고있음)
+%>
+						<input type="button" 
+							   value="글쓰기" 
+							   class="btn"
+							   onclick="location.href='write.jsp'"
+						>
+<%
+				}
+%>			
+				
 			</div>
 			<div class="clear"></div>
 			<div id="page_control">
-				<a href="#">Prev</a> <a href="#">1</a><a href="#">2</a><a href="#">3</a>
-				<a href="#">4</a><a href="#">5</a><a href="#">6</a> <a href="#">7</a><a
-					href="#">8</a><a href="#">9</a> <a href="#">10</a> <a href="#">Next</a>
+				<a href="#">Prev</a> 
+				<a href="#">1</a>
+				<a href="#">2</a>
+				<a href="#">3</a>
+				<a href="#">4</a>
+				<a href="#">5</a>
+				<a href="#">6</a> 
+				<a href="#">7</a>
+				<a href="#">8</a>
+				<a href="#">9</a> 
+				<a href="#">10</a> 
+				<a href="#">Next</a>
 			</div>
 		</article>
 		<!-- 게시판 -->
@@ -179,7 +99,7 @@
 		<div class="clear"></div>
 		
 		<!-- 푸터들어가는 곳 -->
-		<%@ include file="../inc/bottom.jsp" %>
+		<jsp:include page="../inc/bottom.jsp" />
 		<!-- 푸터들어가는 곳 -->
 	</div>
 </body>

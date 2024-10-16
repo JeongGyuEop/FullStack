@@ -28,7 +28,7 @@
 <body>
 	<div id="wrap">
 	<!-- 헤더가 들어가는 곳 -->
-		<%@ include file="../inc/top.jsp" %>  
+		<jsp:include page="../inc/top.jsp" />  
 		<!-- 헤더가 들어가는 곳 -->
 
 		<!-- 본문 들어가는 곳 -->
@@ -82,8 +82,8 @@
 		<!-- 본문 들어가는 곳 -->
 		<div class="clear"></div>
 		
-		<!-- 푸터 들어가는 곳 -->
-		<%@ include file="../inc/bottom.jsp" %>
+		<!-- 푸터들어가는 곳 -->
+		<jsp:include page="../inc/bottom.jsp" />
 		<!-- 푸터들어가는 곳 -->
 	</div>
 </body>

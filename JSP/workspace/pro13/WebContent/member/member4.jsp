@@ -6,32 +6,28 @@
     pageEncoding="UTF-8"%>
     
 <%
-/*
-member.jsp설명
-- memberForm.html(회원가입을 위해 입력한 정보를 요청하는 화면)에서 
-    입력한 가입할 정보들을  request객체 메모리에서 가져온후 ...
-  MemberBean클래스의 객체 생성후 각 인스턴스변수에 저장 시킵니다.
-  그런 다음 MemberDAO객체를 생성해서 addMember()메소드 호출시~~ 
-  이메소드의 매개변수로 MemberBean객체의 주소를 전달합니다
-  addMember메소드 내부에서  회원가입정보를 DB의 t_member테이블에 INSERT시킨후~
-  INSERT에 성공하면 다시 ~ MemberDAO객체의 listMembers()메소드를 호출해!!
-  DB의 t_member테이블에 저장된 가입된 회원정보들을 조회해와서 
-    현재 member.jsp에 목록으로 출력(응답)합니다.
-*/
 //1. 요청한 데이터 request에 UTF-8설정
 request.setCharacterEncoding("UTF-8");
-
-//2. 요청한 데이터 얻기(가입을 위해 입력한값들을 request객체 메모리에서 얻기)
-String id = request.getParameter("id");
-String pwd = request.getParameter("pwd");
-String name = request.getParameter("name");
-String email = request.getParameter("email");
-
-//3. 요청한 데이터를 통해~ 비즈니스로직처리(insert작업)한 웹브라우저로 응답할 값을 마련
-
-//3.1.MemberBean클래스의 객체 하나를 생성해서 각 변수에 요청한 데이터들을 각각 저장
-MemberBean mb = new MemberBean(id,pwd,name,email);
-
+%>
+<%--
+  2. 요청한 값들을 얻기 (회원가입을 위해 입력한 값들을 request객체 얻기)
+  3. MemberBean객체를 생성해서 각 인스턴스변수에 요청한 값들을 저장
+  
+  회원가입 창(memberForm.html)에서 전달된 값들을 rquest객체 에서 자동으로 얻어
+ setProperty액션태그에 의해 MemberBean의 각변수에 저장하기 위해서
+ setProperty액션태그에 value속성 대신 param속성을 사용 합니다.
+ param속성에는 입력했던 input태그의 name속성값을 넣습니다.
+ 
+ param속성을 작성하는 조건-> 
+ MemberBean클래스의 인스턴스변수명과 input태그의 name속성값이 일치해야 함
+ --%>
+ <jsp:useBean id="mb" class="sec01.ex01.MemberBean" scope="page"/>	
+ 
+ <jsp:setProperty name="mb" property="id" param="id" />
+ <jsp:setProperty name="mb" property="pwd" param="pwd" />
+ <jsp:setProperty name="mb" property="name" param="name" />
+ <jsp:setProperty name="mb" property="email" param="email"/>
+<%
 //3.2.MemberDAO객체를 생성해서 addMember메소드 호출시
 //    매개변수로 DB에 insert할 정보가 저장된 MemberBean객체의 주소 전달
 MemberDAO dao = new MemberDAO();
