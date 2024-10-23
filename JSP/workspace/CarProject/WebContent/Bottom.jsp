@@ -5,6 +5,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
+<%
+	// 컨텍스트 주소 얻기
+	String contextPath = request.getContextPath();
+%>
 
 <!DOCTYPE html>
 <html>
@@ -19,17 +23,17 @@
 	
 	<!--  아래 로고 이미지 부분 -->
 	<a href="#">
-		<img alt="" src="img/bo.jpg" width="500" height="50" border="0">
+		<img alt="" src="<%=contextPath %>/img/bo.jpg" width="500" height="50" border="0">
 	</a>
 	<font size="2">
 		<b>
 			<!-- "회사 소개" 이미지 링크를 눌렷을 때 .. 회사 소개 페이지로 이동 -->
 			<a href="CarMain.jsp?center=Company.jsp">
-				<img alt="" src="img/sodog.jpg" border="0">
+				<img alt="" src="<%=contextPath %>/img/sodog.jpg" border="0">
 			</a>
 			<!-- "개인정보 취급방침" 이미지 링크를 눌렸을 때 -->
 			<a href="CarMain.jsp?center=Info.jsp">
-				<img alt="" src="img/info.jpg" border="0"> | 사이버신문고 | 이용약관 | 인재채용
+				<img alt="" src="<%=contextPath %>/img/info.jpg" border="0"> | 사이버신문고 | 이용약관 | 인재채용
 			</a>
 		</b>
 		<br><br>

@@ -5,6 +5,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
+<%
+	// 컨텍스트 주소 얻기
+	String contextPath = request.getContextPath();
+%>
 
 <!DOCTYPE html>
 <html>
@@ -14,9 +18,9 @@
 </head>
 <body>
 	
-	<a href="CarMain.jsp?center=NoticeListController.do">
-		<img alt="" src="img/Main.jpg" width="1000" border="0" />
-	</a>
+	<a href="#">
+  		<img  src="<%=request.getContextPath()%>/img/Main.jpg" width="1000"  />
+  	</a>
 	
 </body>
 </html>
