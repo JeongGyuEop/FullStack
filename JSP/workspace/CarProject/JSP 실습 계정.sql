@@ -67,4 +67,11 @@ create sequence non_carorder_non_orderid
        nocycle                -- 최대값에 도달해도 다시 1로 되돌아가지 않음 (순환하지 않음)
        nocache                -- 시퀀스 값을 캐싱하지 않음
        noorder;               -- 시퀀스가 순차적으로 생성되지 않을 수 있음
-?
+
+SELECT * FROM carlist NATURAL JOIN non_carorder 
+WHERE sysdate < TO_DATE(carbegindate, 'YYYY-MM-DD') 
+AND memberphone='01011112222' AND memberpass='3344';
+
+select * from non_carorder where non_orderid=4;
+
+select * from non_carorder;

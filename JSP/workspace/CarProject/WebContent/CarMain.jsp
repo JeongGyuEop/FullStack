@@ -28,7 +28,7 @@
 	<center>
 		<table width="1000" height="700">
 			<tr align="center">
-				<td ><jsp:include page="Top.jsp" /></td>
+				<td ><jsp:include page="Top2.jsp" /></td>
 			</tr>
 			<tr>
 				<td height="500"><jsp:include page="${center}" /></td>
