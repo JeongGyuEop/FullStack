@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+   <script type="text/javascript">
+ 	//XMLHttpRequest객체 : Ajax에서 통신을 담당하고 데이터를 송수신 할수 있는 핵심 객체
+
+ 	
+	//보충  : 
+		//기본적으로 Ajax 어플리케이션을 구현할 때는 readyState(값:4)와 status(값:200)프로퍼티를
+		//비교하여  요청이 모두 정상적으로 완료된 것을 확인한 후에 다음작업을 진행 해야 한다.
+		
+		
+ 	
+	//XMLHttpRequest객체의 메서드 및 프로퍼티
+	//1.readyState프로퍼티 역할 -> HTTP통신에 따라서 5가지의 반환값을 가질수 있다.
+	//반환값 0 : 미초기화(아직 open메서드가 호출되지 않음)
+	//반환값 1 : 로드중(open메서드는 호출 되었으나, send메서드는 미호출)
+	//반환값 2 : 로드완료(send메서드는 호출 되었으나, 응답status/header 미처리)
+	//반환값 3 : 일부 응답 처리 완료(응답 status/header 처리 되었으나, 본문은 미처리)
+	//반환값4 :  모든 응답처리 완료
+	
+	//2.status프로퍼티 역할 -> HTTP상태 코드값
+	//반환값 200 : OK(정상처리)
+	//반환값 401 : Unauthorized(인증 필요)
+	//반환값 403 : Forbidden(액세스거부)
+	//반환값404 : NOt Found(요청 자원 없음)
+	//반환값 505 : Internal Server Error(서버 내부 에러)
+	//반환값 503 : Service Unavailable(요청 서버 사용 불가)
+	
+	//3. onreadystatechange프로퍼티 -> 통신 상태가 변화될때 마다 호출되는 이벤트 핸들러
+	//설명1:  서버는 클라이언트의 요청을 모두 처리하고 실행 결과를 응답한다.
+	//       비동기 방식으로 처리 되는 경우에는 클라이언트의 입장에서 서버의 응답이 언제 도착할지 모르기 떄문에..
+	//		 서버 응답에 대한 이벤트 처리를 담당하는  onreadystatechange프로퍼티가 제공 된다.
+	//설명2:  onreadystatechange는 요청의 처리 상태를 나타내는readyState프로퍼티값이 변경될때마다     
+	//       이벤트가 자동으로 발생한다.   		
+ 		
+ 	
+	//4. responseText프로퍼티 ->  서버의 응답값(텍스트 파일형식) 
+	
+		//XMLHttpRequest객체를 저장할 javascript문법의 참조변수 xhttp를 선언
+		var xhttp;
+	
+		//XMLHttpRequest객체를 얻는 방법
+		//-> createHttpRequest()함수를 호출하면 얻을수 있음
+		function createHttpRequest(){
+			
+			//XMLHttpRequest객체를 생성하여 xhttp변수에 저장
+			xhttp = new XMLHttpRequest();
+		}
+		
+		
+		function mySend(){
+			//createHttpRequest함수를 호출하여 XMLHttpRequest객체를 생성하고
+			createHttpRequest();
+			
+			//서버의 응답을 처리 하기 위해서 onreadystatechange프로퍼티에서는
+			//readyState프로퍼티의 반환값에 따라 자동으로 호출하는 이벤트 처리함수인
+			//callFunction함수를 설정 한다
+			xhttp.onreadystatechange = callFunction;
+			//보충 설명 : callFunction()함수는 readyState 상태값의 변화에 따라서 
+			//자동으로 호출되는 콜백 함수 이다.
+			//클라이언트와 서버간 통신이 제대로 이루어지면 readyState 반환값이 4이고 ,
+			//status반환값이 200인 경우에 정상적인 응답 처리 작업을 할수 있다.
+			
+			//XMLHttpRequest객체의 open()메서드는  요청을 초기화하는 역할을 당당함.
+			//open()메서드의 첫번째 인자는 요청 메서드 방법인 GET 또는 POST값을 설정하고,
+			//두번째 인자는 요청 URL값을 설정 한다.
+			//세번째 인자는 생략가능한 옵션으로 true로 설정하면 비동기로 처리하고,
+			//false로 설정 하면 동기로 처리 한다.
+			//기본값은 true로 비동기로 처리 한다.	
+			xhttp.open("GET", "sample.txt", true);
+			
+			//open()메소드로 요청을 초기화한 후에 send()메서드를 이용하여 실제로 요청 한다.
+			xhttp.send(null);
+			//보충설명:
+			//GET방식 또는 POST방식에 따라서 사용하는 send()메서드 형태는 두가지가 있다.
+			//첫번째 형태 -> GET방식에서는 send()메서드의 인자값으로 null을 지정함.
+			//			  서버로 넘겨줄 파라미터는 open()메서드에서 요청 URL뒤에 '?'와 '&'를 
+			//			 사용하는 쿼리 스트링을 이용하여 설정 한다.
+			//예)xhttp.open("GET", "index.jsp?name=test&age=20", true);
+			//	 xhttp.send(null);
+			
+			//두번째 형태 -> POST방식의 요청인 경우  URL값은 open()메서드에서 지정하고,
+			//			 서버로 넘겨줄 파라미터는 send()메서드에서 지정한다.
+			//예)
+			//xhttp.open("POST", "index.jsp", true);
+			
+			//var sendString = "name=test&age=20";
+			
+			//xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			//xhttp.send(sendString);
+			
+			//특히 POST방식은 한글을 제대로 전송하기 위해서 setRequestHeader()메소드를 이용하여
+			//Content-Type프로퍼티의 값을 반드시 "application/x-www-form-urlencoded"로 설정 해야한다.
+			//하지만 GET방식은 기본적으로 한글 처리가 가능 하다.				
+		}
+		
+		function callFunction(){
+			//서버와 클라이언트 간의 통신이 모두 성공적으로 완료된시점이
+			//readyState는 4이고 , status는 200이다.
+			//따라서 2개의 값으로 조건 검사를  하여  
+			if(xhttp.readyState == 4){
+				
+				if(xhttp.status == 200){
+					
+					//응답데이터 형식은 responseText프로퍼티를 이용한 
+					//일반 텍스트 형식으로 데이터 를 받는다.
+					var responseData = xhttp.responseText;
+					//보충
+					//서버로 부터 데이터의 내용을 응답 받는 방법으로 2가지 방법을 제공 한다.
+					//방법1 : responseText에 의해 일반적인 텍스트 형식으로 받는 방법
+					//방법2 : responseXML에 의해 XML형식으로 받는 방법 					
+				
+					//id속성값이 result인 <div>요소를 선택해서
+					//텍스트노드자리에 innerHTML속성에 웹브라우저로 응답할값 설정
+					document.getElementById("result").innerHTML = responseData;
+				}
+				
+			}	
+		}//-------------------------callFunction()
+	
+		
+   </script>
+
+</head>
+<body>
+	일반 텍스트파일 파일 실습입니다. <br>
+	
+	<!-- 파일 수신 요청 버튼을 클릭 하면 mySend()함수를 호출하는 이벤트 핸들러 함수 설정 -->
+	<button onclick="mySend();">파일 수신 요청</button>
+	
+	<!-- 외부 텍스트 파일의 내용을 비동기 통신을 이용해 불러와 보여줄 영역 -->
+	<div id="result"></div>
+<!-- 
+	테스트 실습
+	:[파일수신요청]버튼을 클릭하면 Ajax통신을 이용하여  서버에 sample.txt파일을 요청한다.
+	 서버는 sample.txt파일의 내용을 읽어 클라이언트에 응답 하고 클라이언트는 응답 데이터를 
+	 <div>태그에 출력 한다.
+	 따라서 sample.txt파일 내에 저장된 문자열 "정적 데이터를 활용한 Ajax실습입니다"를 
+	 화면전환없이 동적으로 사용자의 웹브라우저에 출력 할수 있다.	 
+ -->	
+	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+   <script type="text/javascript">
+ 	//XMLHttpRequest객체 : Ajax에서 통신을 담당하고 데이터를 송수신 할수 있는 핵심 객체
+
+	//4. responseText프로퍼티 ->  서버의 응답값(텍스트 파일형식) 
+	
+		//XMLHttpRequest객체를 저장할 javascript문법의 참조변수 xhttp를 선언
+		var xhttp;
+	
+		//XMLHttpRequest객체를 얻는 방법
+		//-> createHttpRequest()함수를 호출하면 얻을수 있음
+		function createHttpRequest(){
+			
+			//XMLHttpRequest객체를 생성하여 xhttp변수에 저장
+			xhttp = new XMLHttpRequest();
+		}
+		
+		
+		function mySend(){
+			//createHttpRequest함수를 호출하여 XMLHttpRequest객체를 생성하고
+			createHttpRequest();
+			
+
+			xhttp.onreadystatechange = callFunction;
+
+			xhttp.open("GET", "sampleText.jsp?userid=홍길동&passwd=test", true);
+			
+			//open()메소드로 요청을 초기화한 후에 send()메서드를 이용하여 실제로 요청 한다.
+			xhttp.send(null);
+		
+		}
+		
+		function callFunction(){
+			//서버와 클라이언트 간의 통신이 모두 성공적으로 완료된시점이
+			//readyState는 4이고 , status는 200이다.
+			//따라서 2개의 값으로 조건 검사를  하여  
+			if(xhttp.readyState == 4){
+				
+				if(xhttp.status == 200){
+					
+					//sampleText.jsp에서 out.print메소드로 웹브라우저로 응답하는 데이터가
+					//텍스트 문자열이기때문에 responseText프로퍼티를 호출하면 반환받는다.
+					var responseData = xhttp.responseText;
+					  //"홍길동	test"
+					
+					
+					document.getElementById("result").innerHTML = responseData;			
+			
+					 
+					 
+				
+				
+				}
+				
+			}	
+		}//-------------------------callFunction()
+	
+		
+   </script>
+
+</head>
+<body>
+	JSP파일  실습입니다. <br>
+	
+	<!-- 파일 수신 요청 버튼을 클릭 하면 mySend()함수를 호출하는 이벤트 핸들러 함수 설정 -->
+	<button onclick="mySend();">파일 수신 요청</button>
+	
+	<!-- 외부 텍스트 파일의 내용을 비동기 통신을 이용해 불러와 보여줄 영역 -->
+	<div id="result"></div>
+
+	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+jQUERY 아작스 ~~ .JSON 불러오기 
+http://devbox.tistory.com/entry/jQuery-jQuery%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-JSON-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0?category=578062
+
+
+jQUERY cdn방식 복사 방법
+https://blog.naver.com/powerblog3/221302749195
+
+
+JSON문법
+https://blog.naver.com/ksi123456ab/220975457922
+
+
+Jquery 학습~~ 
+http://tcpschool.com/jquery/jq_ajax_intro

@@ -1,0 +1,20 @@
+
+
+
+XMLHttpRequest객체
+	- 비동기적으로 데이터를 전송하거나 읽어오는 기능을 하는 객체.
+	- Ajax에서 통신을 담당하고 데이터를 송신할 수 있는 핵심 객체.
+	- 현재 크롬, 사파리 ,오페라 , 인터넷익스플로러등 거의 모든 웹브라우저에서 XMLHttpRequest객체를 지원 함.
+	
+	- XMLHttpRequest객체를 얻는 방법은 아래와 같이  createHttpRequest()함수를 이용할 수 있다.
+		예)	
+			var	xhttp;
+			
+			function createHttpRequest(){
+			
+				xhttp = new XMLHttpRequest();
+				
+			}
+	
+
+			

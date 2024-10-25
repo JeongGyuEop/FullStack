@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<!--  JQuery -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+	<script type="text/javascript">
+		/*
+			JQuery에서 비동기 요청을 서버로 보낼떄 사용하는 메소드 종류 1
+			
+				$.ajax()메소드
+				 - GET , POST 와 같은 HTTP메서드를 이용하여 서버페이지에
+				     비동기 통신으로 JSON , XML, HTML 등의 데이터 요청하고 응답받을수 있다
+				   
+				문법
+				
+					$.ajax({
+						
+						url:'요청할서버페이지주소경로',  //서버 요청 주소 
+						
+						type:'요청방식', //GET, POST, PUT, DELETE 등 (기본값:GET)
+						
+						dataType:'응답데이터형식', //json, xml, html, text 등 
+						
+						data:서버페이지에 요청할값, //객체나 문자열 형태
+						
+						success: function(response){ //요청 통신에 성공하면? 
+								                     //서버페이지가 응답한 데이터를 
+								                     //response매개변수로 전달받는다.
+							//response : 서버페이지에서 반환한 데이터
+							
+						},
+						error : function(xhr, status, error){ //요청 통신에 실패시  실행할 콜백함수 
+							
+							//xhr : XMLHttpRequest객체
+							//status : 오류 상태 코드 404, 405 ,500 등등 
+							//error : 오류 상태 메세지 	
+						},
+						complete : function(){//요청이 성공하든 실패하든 관계없이 요청이 완료된후 항상 콜백함수 실행함
+							//완료 후 실행할 작업
+							
+						}
+												
+						
+					});
+		
+		
+		*/
+	
+		$(document).ready(function(){
+//전제 흐름 : 
+//<input> 태그에 두개의 값을 입려한뒤에 [계산]버튼을 클릭하면,
+//입력한 두 개 의 값을 calc.jsp로  Ajax요청한다.
+//calc.jsp에서 응답결과를 text형식으로 받고  성공하면 <div>태그에 결과값을 출력한다.			
+			
+			//id속성값이 cal인  <button>요소를 선택해서 CLICK이벤트 등록
+			$("#cal").on("click", function(){
+				
+				$.ajax(
+						{
+							url:"calc2.jsp",//요청을 보낼 타깃 URL값으로 문자열로 지정
+							
+							type:"get", //요청방식 문자열로 지정
+							
+							//요청시 보낼 데이터  key:Value 형태인 JSONObject객체 형태로 넣는다
+							data:{ 
+									v1: $("#v1").val(),  
+									v2: $("#v2").val() 
+							},
+							
+							//요청을 보낸 서버페이지로 부터 응답받을 데이터 형식
+							//xml : xml문서의 데이터를 반환
+							//html : html문서의 데이터를 반환
+							//json : JSONObect데이터를 반환 
+							//text : 일반 텍스트형태의 문자열 데이터를 반환
+							dataType : "json",
+							
+							//요청통신에 성공했을때 호출되는 콜백함수 로 3개의 인자를 전달 받는다
+							//respseData인자 : 서버페이지에서 응답한 데이터가 저장됨
+							//status인자  : 상태코드값 저장됨
+							//jqXHR인자 : jquery 1.5부터 $.ajax함수가 반환하는 XMLHTTPRequest객체로
+							//           요청상태 ("succecc", "notmodified", 
+											   //"nocontent", "error"," timeout", "abort", 
+									           // or "parsererror")
+							success : function(responseData, status, jqxhr){
+								/*
+								{
+									"v1":<%=v1%>,
+									"v2":<%=v2%>,
+									"result":<%=v1+v2%>
+
+								}
+								*/
+
+								console.log(responseData);
+								console.log(typeof  responseData);
+								
+								
+								//서버페이지에서 응답받은 데이터를 사용 
+								$("#result").text(responseData.result);
+								
+							}, 
+							//요청 통신에 실패하면 호출되며
+							//첫번쨰 인자인 jqxhr에는 발생한 에러타입과 추가적인 예외사항이 저장되고,
+							//두번째 인자에는 "timeout", "abort" or "parsererror"와 같은 상태 값이 저장되고,
+							//세번쨰 인자는  HTTP에러 메세지가 담겨 있는데, "Not Found"나 "Internal Server Error"와 같은 값이 저장된다 
+							error : function(jqxhr, status, error){
+								
+								//에러 정보 콘솔에 출력
+								console.log(error);
+								
+							}
+							
+							
+							
+						}
+			
+					  );
+				
+				
+			});
+			
+			
+			
+			
+		});
+		
+					
+		
+	</script>
+
+</head>
+<body>
+	값1<input type="text" name="v1" id="v1"> <br>
+	값2<input type="text" name="v2" id="v2"> <br>
+	
+	<button id="cal">계산</button>
+		
+	<div id="result"></div>	
+	
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

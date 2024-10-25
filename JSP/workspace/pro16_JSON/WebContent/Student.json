@@ -1,0 +1,22 @@
+학생의 정보를 담고 있는 Student 객체 생성
+
+name: 학생이름, "Kim Jiho"
+age: 학생나이, 21
+major: 전공, "Computer Science"
+Courses: 수강한 과목들과 그 성적을 배열로 나타낸다.
+isGraduated: 졸업 여부를 나타내는 Boolean 값, false : 졸업하지 않음 
+
+{
+	"student":{
+		"name" : "Kim Jiho",
+		"age" : 21,
+		"major" : "Computer Science",
+		"Courses" : [
+			{"name":"Data Structures", "grade":"A"},
+			{"name":"Algorithms", "grade":"B+"},
+			{"name":"Operation Systems", "grade":"A-"},
+		],
+		"isGraduated": false
+	}
+
+}

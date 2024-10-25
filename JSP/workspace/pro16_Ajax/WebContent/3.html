@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+   <script type="text/javascript">
+ 	//XMLHttpRequest객체 : Ajax에서 통신을 담당하고 데이터를 송수신 할수 있는 핵심 객체
+
+	//4. responseText프로퍼티 ->  서버의 응답값(텍스트 파일형식) 
+	
+		//XMLHttpRequest객체를 저장할 javascript문법의 참조변수 xhttp를 선언
+		var xhttp;
+	
+		//XMLHttpRequest객체를 얻는 방법
+		//-> createHttpRequest()함수를 호출하면 얻을수 있음
+		function createHttpRequest(){
+			
+			//XMLHttpRequest객체를 생성하여 xhttp변수에 저장
+			xhttp = new XMLHttpRequest();
+		}
+		
+		
+		function mySend(){
+			//createHttpRequest함수를 호출하여 XMLHttpRequest객체를 생성하고
+			createHttpRequest();
+			
+
+			xhttp.onreadystatechange = callFunction;
+
+			xhttp.open("GET", "json.json", true);
+			
+			//open()메소드로 요청을 초기화한 후에 send()메서드를 이용하여 실제로 요청 한다.
+			xhttp.send(null);
+		
+		}
+		
+		function callFunction(){
+			//서버와 클라이언트 간의 통신이 모두 성공적으로 완료된시점이
+			//readyState는 4이고 , status는 200이다.
+			//따라서 2개의 값으로 조건 검사를  하여  
+			if(xhttp.readyState == 4){
+				
+				if(xhttp.status == 200){
+					
+					//JSON데이터를 응답받기 위해 responseText프로퍼티 호출!
+					var responseData = xhttp.responseText;
+					
+					console.log(typeof responseData); //string				
+				/*
+					'
+					{
+						  "username":"홍길동",
+						  "age":"20",
+						  "address":"서울"
+					}
+				    '
+				*/	
+				 //JSON문자열을 Javascript의 JSONObject객체로 변환
+				  let jsonObject   = JSON.parse(responseData);
+				/*
+					
+					{
+						  "username":"홍길동",
+						  "age":"20",
+						  "address":"서울"
+					}
+				   
+				*/						
+					 //JSONObject객체의 각 키에 대응되는 값을 얻어 출력
+					 console.log("UserName : " +  jsonObject.username );
+					 console.log("Age : " + jsonObject.age );
+					 console.log("Address : " +   jsonObject.address);
+				
+					 var name = jsonObject.username;
+					 var age = jsonObject.age;
+					 var address = jsonObject.address;
+					 
+					 
+					//id가 result인 <div>태그에 innerHTML속성을 사용하여  값출력 하기 
+					 document.getElementById("result").innerHTML = name + "\t" + age + "\t" + address;
+					 
+					 
+				
+				
+				}
+				
+			}	
+		}//-------------------------callFunction()
+	
+		
+   </script>
+
+</head>
+<body>
+	XML파일  실습입니다. <br>
+	
+	<!-- 파일 수신 요청 버튼을 클릭 하면 mySend()함수를 호출하는 이벤트 핸들러 함수 설정 -->
+	<button onclick="mySend();">파일 수신 요청</button>
+	
+	<!-- 외부 텍스트 파일의 내용을 비동기 통신을 이용해 불러와 보여줄 영역 -->
+	<div id="result"></div>
+<!-- 
+	테스트 실습
+	:[파일수신요청]버튼을 클릭하면 Ajax통신을 이용하여  서버에 sample.txt파일을 요청한다.
+	 서버는 sample.txt파일의 내용을 읽어 클라이언트에 응답 하고 클라이언트는 응답 데이터를 
+	 <div>태그에 출력 한다.
+	 따라서 sample.txt파일 내에 저장된 문자열 "정적 데이터를 활용한 Ajax실습입니다"를 
+	 화면전환없이 동적으로 사용자의 웹브라우저에 출력 할수 있다.	 
+ -->	
+	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
