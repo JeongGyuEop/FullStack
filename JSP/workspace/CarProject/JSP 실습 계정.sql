@@ -75,3 +75,45 @@ AND memberphone='01011112222' AND memberpass='3344';
 select * from non_carorder where non_orderid=4;
 
 select * from non_carorder;
+
+
+-- 회원 테이블 member 생성
+CREATE TABLE MEMBER(
+    id varchar2(12) not null primary key,
+    pass varchar2(12) not null,
+    name varchar2(20) not null,
+    reg_date DATE not null
+);
+
+alter table member
+add email varchar2(100);
+
+alter table member
+add tel varchar2(100);
+
+alter table member
+add hp varchar2(100);
+
+alter table member 
+add age number;
+
+alter table member
+add gender varchar2(5);
+
+alter table member
+add address varchar2(1000);
+
+-- 만들어진 member 테이블 구조 보기
+desc member;
+
+commit; -- 영구 반영
+
+select decode( count(*), 1, 'true', 'false' ) as result 
+from member
+where id='admin';
+
+
+
+
+
+
