@@ -171,6 +171,42 @@ public class MemberDAO {
 		
 		return check; // MemberService(부장)에게 결과 반환
 	}
+
+	// 로그인한 회원 아이디를 이용하여 회원정보 조회
+	// 이유 : 글 작성 화면에 조회한 회원정보를 보여주기 위해
+	public MemberVo memberOne(String memberid) {
+
+		MemberVo vo = null;
+		
+		try {
+			con = ds.getConnection(); // DB 연결
+			
+			
+			String sql = "SELECT email, name, id FROM member WHERE id=?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberid);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				vo = new MemberVo();
+				vo.setEmail(rs.getString("email"));
+				vo.setName(rs.getString("name"));
+				vo.setId(rs.getString("id"));
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("MemberDAO의 memberOne 메소드 내부에서 오류: " + e);
+			e.printStackTrace();
+		} finally {
+			// 자원해제
+			closeResource();
+		}
+			
+		return vo;
+	}
 	
 	
 	

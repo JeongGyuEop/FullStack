@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import API.SearchAPI;
 import Dao.CarDAO;
 import Vo.CarConfirmVo;
 import Vo.CarListVo;
@@ -470,9 +471,10 @@ public class CarController extends HttpServlet {
 	        // display 속성은 한번에 가져올 검색 결과의 갯수이며,
 	        // start 속성은 검색 시작 위치이다.									검색어가 들어갈 자리
 	        String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text
-	        		+ "&display=10&start=" + startNum;    // JSON 데이터응답받기 위한 네이버 서버에 요청할 주소
+	        		+ "&display=5&start=" + startNum;    // JSON 데이터응답받기 위한 네이버 서버에 요청할 주소
 	        //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // XML 결과
 
+	        
 	        // 4. API 호출
 	        
 	        Map<String, String> requestHeaders = new HashMap<>();
@@ -483,13 +485,23 @@ public class CarController extends HttpServlet {
 	        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
 	        
 	        // API 를 호출해서 JSON 데이터 문자열 형태로 응답 받는다.
-	        String responseBody = get(apiURL,requestHeaders);
+	        String responseBody = SearchAPI.get(apiURL,requestHeaders);
 
-	        request.setAttribute("searchData",  responseBody);
-	        request.setAttribute("center", "SearchView.jsp");
+	        // 웹 브라우저로 응답할 데이터 유형 서정
+	        response.setContentType("application/json; charset=utf-8");
+
+	        // PrinterWriter 객체 얻어 검색 결과 보냄
+	         response.getWriter().write(responseBody);
 	        
-	        nextPage = "CarMain.jsp";
-			
+	        request.setAttribute("keyword", text);
+	        request.setAttribute("searchData",  responseBody);
+	        request.setAttribute("center", "/SearchAPI/SearchView2.jsp");
+	        // request.setAttribute("center", "SearchResult.jsp");
+	        
+	        nextPage = "/CarMain.jsp";
+	        
+	        return;
+	        
 		}
 			
 		
@@ -500,65 +512,4 @@ public class CarController extends HttpServlet {
 		
 	} // doHandle 메소드
 	
-	
-	private static String get(String apiUrl, Map<String, String> requestHeaders){
-		HttpURLConnection con = connect(apiUrl);
-	    try {
-	    	
-	        con.setRequestMethod("GET");
-	        
-	        for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
-	            con.setRequestProperty(header.getKey(), header.getValue());
-	        }
-
-	        int responseCode = con.getResponseCode();
-	        
-	        if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 호출
-	            return readBody(con.getInputStream());
-	        } else { // 오류 발생
-	            return readBody(con.getErrorStream());
-	        }
-	        
-	    } catch (IOException e) {
-	        throw new RuntimeException("API 요청과 응답 실패", e);
-	    } finally {
-	        con.disconnect();
-	    }
-	}
-	
-	private static HttpURLConnection connect(String apiUrl){
-	    try {
-	    	
-	        URL url = new URL(apiUrl);
-	        
-	        return (HttpURLConnection)url.openConnection();
-	        
-	    } catch (MalformedURLException e) {
-	        throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
-	    } catch (IOException e) {
-	        throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
-	    }
-	}
-
-
-	private static String readBody(InputStream body){
-		
-	    InputStreamReader streamReader = new InputStreamReader(body);
-
-	    try (BufferedReader lineReader = new BufferedReader(streamReader)) {
-	    	
-	        StringBuilder responseBody = new StringBuilder();
-
-	        String line;
-	        
-	        while ((line = lineReader.readLine()) != null) {
-	            responseBody.append(line);
-	        }
-
-	        return responseBody.toString();
-	         
-	    } catch (IOException e) {
-	        throw new RuntimeException("API 응답을 읽는 데 실패했습니다.", e);
-	    }
-	}
 }
