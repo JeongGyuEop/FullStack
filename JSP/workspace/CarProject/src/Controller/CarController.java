@@ -486,12 +486,13 @@ public class CarController extends HttpServlet {
 	        
 	        // API 를 호출해서 JSON 데이터 문자열 형태로 응답 받는다.
 	        String responseBody = SearchAPI.get(apiURL,requestHeaders);
+	        System.out.println(responseBody);
 
 	        // 웹 브라우저로 응답할 데이터 유형 서정
 	        response.setContentType("application/json; charset=utf-8");
 
 	        // PrinterWriter 객체 얻어 검색 결과 보냄
-	         response.getWriter().write(responseBody);
+	        //response.getWriter().write(responseBody);
 	        
 	        request.setAttribute("keyword", text);
 	        request.setAttribute("searchData",  responseBody);
@@ -499,8 +500,6 @@ public class CarController extends HttpServlet {
 	        // request.setAttribute("center", "SearchResult.jsp");
 	        
 	        nextPage = "/CarMain.jsp";
-	        
-	        return;
 	        
 		}
 			

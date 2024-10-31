@@ -7,6 +7,16 @@
 
 	String contextPath = request.getContextPath();
 	
+	// 받는 이유
+	// list.jsp 화면에서 1 2 3 페이지 번호 중에서 만약 2페이지 번호를 클릭하면
+	// nowBlock 값은 0, nowPage값은 1일 것이다.
+	// 조회된 화면에서 글쓰기 버튼을 클릭했을 때 글을 작성하는 화면이 나올 것이다.
+	// 이때 글을 작성하는 화면에서 '목록'<a> 를 클릭했을 때
+	// 글을 작성하는 현재 wirte.jsp 로 오기전의 이전 목록을 조죄해서 바로 보여주기 위해 받았다.
+	// '목록'<a> 태그의 주소에  "nowPage", "nowBlock" 속성 추가하자
+	String nowPage = (String)request.getAttribute("nowPage");
+	String nowBlock = (String)request.getAttribute("nowBlock");
+	
 	// 조회한 글작성자의 정보
 	MemberVo membervo = (MemberVo)request.getAttribute("membervo");
 	String email = membervo.getEmail();
@@ -137,7 +147,7 @@
 			event.preventDefault(); // a태그 href 속성의 주소 요청 기본 이벤트 차단
 
 			// board 테이블에 저장된 모든 글 조회 요청!
-			location.href="<%=contextPath %>/Board/list.bo";
+			location.href="<%=contextPath %>/Board/list.bo?nowPage=<%=nowPage %>&nowBlock=<%=nowBlock%>";
 		});
 		
 		

@@ -152,8 +152,8 @@ SELECT border_b_idx.nextval, -- b_idx 값을 시퀀스로 자동 생성
        '1234' AS b_pw,    -- 기본 비밀번호 값 설정
       '장보고' AS b_name,       -- member 테이블의 name을 b_name으로 삽입
        m.email AS b_email,     -- member 테이블의 email을 b_email로 삽입
-       '글제목4' AS b_title,     -- 기본 제목
-       '글내용4' AS b_content, -- 기본 내용
+       '글제목7' AS b_title,     -- 기본 제목
+       '글내용7' AS b_content, -- 기본 내용
        1 AS b_group,           -- 기본 그룹 번호 (필요에 따라 변경 가능)
        0 AS b_level,           -- 기본 들여쓰기 레벨
        SYSDATE AS b_date,      -- 현재 날짜를 작성 날짜로 설정
@@ -166,3 +166,8 @@ SELECT * FROM board ORDER BY b_group asc;
 
 SELECT email, name, id FROM member WHERE id='admin';
 
+SELECT * FROM board WHERE b_idx=3;
+
+-- -------------------------------------------------------------------------------
+DELETE FROM BOARD;
+COMMIT;
