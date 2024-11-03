@@ -171,3 +171,68 @@ SELECT * FROM board WHERE b_idx=3;
 -- -------------------------------------------------------------------------------
 DELETE FROM BOARD;
 COMMIT;
+
+
+-- ------------------------------------------------------------------------------------------
+
+-- 답변글을 달수 있고 페이징 처리가 가능하고 파일첨부 및 다운로드 가능한
+-- 게시판 FileBoard테이블 생성
+CREATE TABLE FileBoard(
+    b_idx number  PRIMARY KEY, -- 게시판의 글의 순서값(글번호)
+    b_id  varchar2(20) not null, -- 글을 작성한 사람의 아이디
+    b_pw  varchar2(10), -- 작성하는 글의 비밀번호 
+    b_name varchar2(20), -- 글을 작성한 사람의 이름
+    b_email varchar2(50), -- 글을 작성한 사람의 이메일
+    b_title varchar2(100), -- 작성하는 글의 제목
+    b_content varchar2(4000), -- 작성하는 글의 내용
+    b_group number, -- 주글 과 답변글 그룹으로 묶어줄수 있는 그룹번호
+    b_level number, -- 작성한 답변글의 들여쓰기 정도 레벨 값
+    b_date Date, -- 글을 작성한 날짜
+    b_cnt number, -- 글 조회수
+    ofile   varchar2(200),  -- 첨부(업로드)한 원본파일 명 
+    sfile   varchar2(30),   -- 첨부(업로드)한 실제 파일명 (저장된 파일명)
+    downcount number(5) default 0 not null, -- 다운로드한 횟수 
+    
+     -- id 컬럼을 회원테이블 member의  id컬럼에 대해 외래키로 지정합니다.
+    CONSTRAINT FK_FileBoard_b_ID FOREIGN KEY(b_id)
+    REFERENCES member(id) ON DELETE CASCADE
+);       
+
+-- sfile   varchar2(30) 다운로하는 파일명이 길 경우 에러가 나기때문에
+--  sfile varchar2(1000) 으로 수정 
+ALTER TABLE FileBoard MODIFY(sfile varchar2(1000));       
+
+commit; 
+
+-- 시퀀스 생성
+create sequence FileBorder_b_idx
+       increment BY 1
+       start with 1
+       minvalue 1
+       maxvalue 9999
+       nocycle
+       nocache
+       noorder;       
+
+INSERT INTO FileBoard (b_idx, b_id, b_pw, b_name, b_email, b_title, b_content, b_group, b_level, b_date, b_cnt, ofile, sfile, downcount)
+SELECT FileBorder_b_idx.nextval, -- b_idx 값을 시퀀스로 자동 생성
+       m.id AS b_id,             -- member 테이블의 id를 b_id로 삽입
+       'defaultPW' AS b_pw,      -- 기본 비밀번호 값 설정
+       m.name AS b_name,         -- member 테이블의 name을 b_name으로 삽입
+       m.email AS b_email,       -- member 테이블의 email을 b_email로 삽입
+       '안녕' AS b_title,       -- 기본 제목
+       '안녕하세요' AS b_content,   -- 기본 내용
+       1 AS b_group,             -- 기본 그룹 번호 (필요에 따라 변경 가능)
+       0 AS b_level,             -- 기본 들여쓰기 레벨
+       SYSDATE AS b_date,        -- 현재 날짜를 작성 날짜로 설정
+       0 AS b_cnt,               -- 조회수를 0으로 설정
+       NULL AS ofile,            -- 원본 파일명을 NULL로 초기화
+       NULL AS sfile,            -- 저장된 파일명을 NULL로 초기화
+       0 AS downcount            -- 다운로드 횟수를 0으로 초기화
+FROM member m;
+
+commit; 
+
+select max(b_idx) from fileBoard;
+
+-- delete from fileboard;

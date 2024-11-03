@@ -138,10 +138,6 @@ public class FileUpload extends HttpServlet {
 		    	
 		     }//for
 		     
-		     
-			
-			
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
