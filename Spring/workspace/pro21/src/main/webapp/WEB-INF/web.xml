@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>pro21</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+   <!-- 
+  	웹브라우저 주소창에 요청할 주소를   *.do를 입력하여 요청하면 
+  	스프링에서 제공하는 DispatcherServlet클래스가 그 요청 주소를 받을수 있게 설정
+  
+  	참고.
+  	<load-on-startup>태그영역의 값이 1이상이면 톰캣 실행시
+  	DispatcherServlet을 미리 톰캣서버메모리에 로드 합니다.
+  	값을 지정하지 않거나 음수로 지정하면 웹브라우저 주소를 입력해서 요청할때~~~~~
+  	DispatcherServlet클래스의 객체를 생성해서 톰캣서버 메모리에 로드하게 되어  프로그램이 더 느립니다. 
+   -->
+  
+  <servlet>                           
+  	<servlet-name>action</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+ 	<load-on-startup>1</load-on-startup>
+  </servlet>
+   
+  <servlet-mapping>
+  	<servlet-name>action</servlet-name>  
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+   <!--  /test/loginForm.do 요청 주소를 받았음 -->
+   <!--  /test/login.do 요청 주소를 받았음 -->
+   
+  
+   
+   <!--  /test/index.do 요청 주소를 받았음  -->
+ 
+  
+</web-app>
+
+
+
+
+
+
+
+
+
+
+
+

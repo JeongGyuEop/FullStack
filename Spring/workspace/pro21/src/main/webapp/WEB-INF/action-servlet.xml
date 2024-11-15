@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 
+		action-servlet.xml 파일에 설정할 내용들
+		1. SimpleUrlController클래스에 대한 빈(객체)을 생성합니다.
+		2. 스프링에서 제공하는 SimpleUrlHandlerMapping클래스에 대한 빈(객체)을 생성하고
+		     요청한 주소  /test/index.do 에 대해 
+		     요청을 처리하는 컨트롤러 SimpleUrlController를 선택할수 있게 설정합니다.
+	 -->
+
+	
+	<!-- <bean id="simpleUrlController" class="com.spring.ex01.SimpleUrlController"/> -->
+	
+	
+   <!-- 요청한 주소가 /test/*.do로 입력되면 
+        의존주입된 UserController서블릿클래스를 요청하게 설정 -->	
+	<bean id="urlMapping" 
+		  class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		
+		<property name="mappings">
+			<props>
+				<prop key="/test/*.do">userController</prop>
+			</props>		
+		</property>            
+		
+	</bean>    
+
+    <!--  MVC 중에서 C역할을하는 컨트롤러 -->
+	<bean id="userController" class="com.spring.ex02.UserController">
+		
+		<!-- MultiActionContoller클래스를 상속받은  
+		             methodNameResolver 변수와  
+                     setMethodNameResolver메소드가 눈에 보이지 않지안 존재 합니다. -->
+				
+		<property name="methodNameResolver">
+			
+			<ref local="userMethodNameResolver" />
+		
+		</property>
+	
+	</bean>
+
+	<!-- PropertiesMethodNameResolver객체를 이용해
+		 요청한 클라이언트의 요청전체주소(URL)이 여러개라도 
+		 하나의 컨트롤러(UserController)의 특정 메소드를 호출할수 있게 해주는 객체 
+	
+	  -->
+	<bean id="userMethodNameResolver"
+		  class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+	
+		<property name="mappings">
+			<props>
+			<!-- 로그인 요청을 위해 입력하는 VIEW 요청주소를 받으면
+				  UserController에 만들어 놓은
+				  loginForm메소드를 호출하게 됩니다
+			 -->
+				<prop key="/test/loginForm.do">loginForm</prop>	
+				<prop key="/test/memberForm.do">memberForm</prop>	
+
+			<!-- 로그인 요청시 입력한 아이디와 비밀번호를 다시 확인 하기 위한
+                 VIEW요청주소를 받으면 
+                 UserController에 만들어 놓은
+				 login메소드를 호출하게 됩니다
+			  -->		
+				<prop key="/test/login.do">login</prop>
+				<prop key="/test/memberInfo.do">memberInfo</prop>
+			</props>
+		
+		</property>
+	
+	</bean>
+	
+	
+	
+<!-- 
+	컨트롤러 클래스(UserContrller)에서 문자열 loginForm VIEW명을
+	디스패처 서블릿으로 부터 받아서  뷰가 저장된 전체 경로를 만들어서 ~~~ 
+	다시~~ 디스패처 서블릿으로 전달하는 역할의 
+	InternalResourceViewResolver 빈 (객체) 생성
+
+	디스패처 서블릿은 action-servlet.xml설정파일에 설정된
+	InternalResourceViewResolver에게 뷰이름 loginForm을 전달하면
+	prefix변수(속성)에 저장된  뷰가 저장된 경로 ->  /test/  폴더 경로와
+	suffix변수(속성)에 저장된  뷰의 확장자명 ->   .jsp 를 연결해
+	/test/loginForm.jsp 뷰가 저장된 전체 주소를 만들어서 
+	디스패처 서블릿으로 다시 전달하여 뷰를 찾아 웹브라우저에 보여 줄수 있게 합니다.   	
+ -->
+	<bean id="viewResolver"
+	      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		
+		<property name="prefix" value="/test/"/>
+	
+		<property name="suffix" value=".jsp"/>
+	
+	</bean>
+
+
+
+
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
