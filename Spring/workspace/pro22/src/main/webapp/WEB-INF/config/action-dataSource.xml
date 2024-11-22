@@ -5,76 +5,65 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   
-						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-						http://www.springframework.org/schema/aop
-						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-						http://www.springframework.org/schema/context
-						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-
-
+     
     <!--    스프링에서 사용할 데이터베이스 연동 정보를 설정합니다.
     		먼저 jdbc.properties파일에서 
     		데이터베이스 연결 정보를 가져온 후 이연결 정보를 이용해
     		스프링에서 제공하는 SimpleDriverDataSource로 
     		빈(커넥션풀 객체)을 생성해서  MemberDAO로 주입합니다. 
      -->
-     
-<!--  
-org.springframework.beans.factory.config.PropertyPlaceholderConfigurer는 
-Spring Framework에서 제공하는 빈 설정의 속성 값을 외부 속성 파일로부터 주입하기 위한 유용한 클래스입니다. 
-이 클래스는 XML 또는 Java 구성 클래스를 사용하여 
-Spring 빈 설정 파일에서 프로퍼티 값을 가져오고 치환할 수 있습니다. 
-이를 통해 속성 값들을 중앙 집중화된 속성 파일에서 관리하고 
-런타임 중에 속성 값을 변경할 수 있습니다.
 
-   PropertyPlaceholderConfigurer 빈을 생성해서  
-   jdbc.properties파일이 저장된 경로를 
-   locations변수에 저장해 두면  데이터베이스 연결정보를 불러와 사용할수 있다. 
- -->    
- 
-	<bean id="propertyConfigurer" 
-	      class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		
+	<!--  
+	org.springframework.beans.factory.config.PropertyPlaceholderConfigurer는 
+	Spring Framework에서 제공하는 빈 설정의 속성 값을 외부 속성 파일로부터 주입하기 위한 유용한 클래스입니다. 
+	이 클래스는 XML 또는 Java 구성 클래스를 사용하여 Spring 빈 설정 파일에서 프로퍼티 값을 가져오고 치환할 수 있습니다. 이를 통해 속성 값들을 중앙 집중화된 속성 파일에서 관리하고 런타임 중에 속성 값을 변경할 수 있습니다.
+	
+    PropertyPlaceholderConfigurer 빈을 생성해서  jdbc.properties파일이 저장된 경로를 
+    locations변수에 저장해 두면  데이터베이스 연결정보를 불러와 사용할수 있다. 
+	 -->
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	
 		<property name="locations">
 			<list>
-				<value>/WEB-INF/config/jdbc.properties</value>				
-			</list>	
+				<value>/WEB-INF/config/jdbc.properties</value>
+			</list>
 		</property>
-	</bean> 
-    
-    
+
+	</bean>
      
-<!-- 스프링에서 제공하는 SimpleDriverDataSource로 빈(커넥션풀 객체)을 생성 -->     
-     <bean id="dataSource"
-           class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-     	
-     	<property name="driverClass"  value="${jdbc.driverClassName}"/>
-		<property name="url" value="${jdbc.url}"/>
-		<property name="username" value="${jdbc.username}"/>
-		<property name="password" value="${jdbc.password}" />
+    <!-- 
+    	스프링에서 제공하는 SimpleDriverDataSource로 빈(커넥션풀 객체)을 생성
+     -->
+     <bean 
+     id="dataSource" 
+     class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
      
-     </bean>	
-	
-	
- 	<!-- 바로 위 생성된 DB와 연결된 SimpleDriverDataSource 커넥션풀 객체를 
+     	<property name="driverClass" value="${jdbc.driverClassName}"/>      
+     	<property name="url" value="${jdbc.url}"/>
+     	<property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>   
+     
+     </bean>
+     
+     
+	<!-- 바로 위 생성된 DB와 연결된 SimpleDriverDataSource 커넥션풀 객체를 
 		 지금 만드는 MemberDAOImpl객체의 변수에 주입(저장) 시키자.
-	 -->   	
+	 -->
 	<bean id="memberDAO" class="com.spring.member.dao.MemberDAOImpl">
 	
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource"  ref="dataSource"/>
 	
 	</bean>
-	
-	
-       
+
 
 </beans>
-
-
-
-
-
 
 
 

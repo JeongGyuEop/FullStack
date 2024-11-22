@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>pro26</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+    <servlet>
+	  	<servlet-name>action</servlet-name>
+	  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>	
+	  	<load-on-startup>1</load-on-startup>
+  	</servlet>
+  
+  
+ 	<servlet-mapping>
+   		<servlet-name>action</servlet-name> 
+  		<url-pattern>*.do</url-pattern>
+  	</servlet-mapping> 
+  	
+  	<!-- 
+  		클라이언트의 요청(request객체)의 정보와 응답(response객체)의
+  		정보를 문자 인코딩을 UTF-8로 설정하는 역할을 하는 
+  		.CharacterEncodingFilter 클래스에 설정하는 <filter> 태그 작성
+  		
+  		# 작동원리
+  			1. 클라이언트가 웹 애플리케이션에 HTTP 요청을 보낸다.
+  		
+  			2. 톰캣서버는 요청을 처리하기 전에 <filter> 태그를 실행한다.
+  		   	   이 경우, CharacterEncodingFilter 클래스가 실행된다.
+  		       요청 request 객체의 인코딩을 UTF-8로 설정한다.
+  		
+  			3. 웹 브라우저로 응답을 생성할 때도 동일한 <filter> 태그가 
+  		       실행되어 response 객체(응답객체)의 정보에 인코딩을 UTF-8로 설정
+  		
+  			4. 결과적으로, 클라이언트와 서버간의 문자 데이터가 깨지지 않고 올바르게 전송되기 위한 설정 
+  	-->
+  	<filter>
+  		<filter-name>encodingFilter</filter-name>
+  		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  		<init-param>
+  			<param-name>encoding</param-name>
+  			<param-value>UTF-8</param-value>
+  		</init-param>
+  	</filter>
+  	
+  	<filter-mapping>
+  		<filter-name>encodingFilter</filter-name>
+  		<url-pattern>/*</url-pattern>
+  	</filter-mapping>
+ 	 
+  
+</web-app>

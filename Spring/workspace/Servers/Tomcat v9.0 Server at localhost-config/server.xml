@@ -172,7 +172,7 @@
      	-->
 	
 
-      <Context docBase="pro22" path="/pro22" reloadable="true" source="org.eclipse.jst.jee.server:pro22"/></Host>
+      <Context docBase="pro26" path="/pro26" reloadable="true" source="org.eclipse.jst.jee.server:pro26"/></Host>
     </Engine>
   </Service>
 </Server>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+
+	
+	
+	<!-- 
+	1. PropertyPlaceholderConfigurer클래스를 이용해
+       데이터베이스 설정 관련 정보가 저장된  jdbc.properties파일의 경로를 저장해 읽어 들일수 있도록합니다.
+	 -->
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/config/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 
+	  2. myBatis프레임웍(mybatis-3.0.5.jar)에서 제공하는
+	     PooledDataSource클래스를 이용하여 커넥션풀에 대한 객체 생성을 합니다.
+	 -->
+	 <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
+	 	
+	 	<property name="driver"  value="${jdbc.driverClassName}"  />
+	 	<property name="url" value="${jdbc.url}"/>
+	 	<property name="username" value="${jdbc.username}"   />
+	 	<property name="password" value="${jdbc.password}" />
+	 
+	 </bean>
+	 
+	 <!-- 
+	 3. mybatis프레임웍(mybatis-3.0.5.jar)에서 제공하는
+	 	SqlSessionFactoryBean 클래스를 이용해 빈을 생성하고  위~ PooledDataSource커넥션풀을 의존주입
+	 
+	 	참고. SqlSessionFactoryBean 빈을 생성하면서 
+	 	         매퍼 파일 member.xml파일과  빈 설정 파일인 modelConfig.xml파일을 코드내용을 읽어들입니다.
+	  -->
+	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 
+	 		<property name="dataSource" ref="dataSource"      />
+	 		
+	 		
+	 		<!-- mapperLocations변수에 mybatis폴더 내부의 mappers폴더 내부에 만들어져 있는 
+	 			 모든 매퍼파일들을 읽어들일 경로 저장-->
+	 		<property name="mapperLocations" 
+	 		          value="classpath:mybatis/mappers/*.xml"/>
+	 
+	 </bean>
+	 
+	 <!-- 
+	 	4. mybatis-spring.jar에서 제공하는 
+	 	   SqlSessionTemplate클래스를 이용하여 빈(객체) 생성을 설정합니다.	
+	 	      그리고  SqlSessionFactoryBean객체의 주소를  SqlSessionTemplate객체의 변수에 의존 주입 
+	  -->
+	  <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	  	
+	  		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	  	
+	  </bean>
+	 
+	 <!-- 
+	 	5. AccountDAO 빈을 생성하여 위 SqlSessionTempl빈을 AccountDAO의 변수에 주입!
+	  -->
+	  <bean id="accDAO"   class="com.spring.account.AccountDAO">
+	  
+	  	   <property name="sqlSession"   ref="sqlSession"   />
+	  
+	  </bean>
+	  
+	  
+	  <!-- 
+	  	  6.스프링에서 제공하는 DataSourceTransactionManager클래스를 이용해
+	  	    트랙잭션 처리할 빈을 생성한 후 dataSource변수에 위에 만들어 놓은 커넥션풀 빈의 주소를 주입하며
+	  	    데이터베이스 연동시 트랜잭션 기능을 적용합니다.
+	   -->
+	   <bean id="txManager" 
+	         class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+	   	
+	  		<property name="dataSource" ref="dataSource"/> 
+	  
+	   </bean>
+	   
+	   <!-- 
+	   		7.  6.에서 만든 DataSourceTransactionManager 빈에 
+	   		    <tx:annotation-driven>태그를 설정해
+	   		    자바코드 service 클래스 위에 어노테이션 기호를 작성하기 위해 작성
+	    -->
+	    <tx:annotation-driven transaction-manager="txManager"  />
+	   
+	   
+	   
+	   
+	  
+	
+
+</beans>			
+
+
+
+
+
+
+
+
+
+
+
+			

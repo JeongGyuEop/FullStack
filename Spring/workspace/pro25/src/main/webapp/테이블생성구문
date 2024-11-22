@@ -1,0 +1,20 @@
+
+-- 예금자 계좌 정보를 저장하는 테이블 생성
+create table cust_account(
+    -- 계좌 번호
+    accountNo   VARCHAR2(20) PRIMARY KEY,
+    -- 예금자 명 
+    custName    VARCHAR2(50),
+    -- 계좌 잔고
+    balance NUMBER(20,4)
+);
+-- 홍길동과 김유신의 계좌 정보를 생성합니다.
+insert into cust_account(accountNo, custName, balance)
+values('70-490-930','홍길동',10000000);
+
+insert into cust_account(accountNo, custName, balance)
+values('70-490-911','김유신',10000000);
+
+commit; -- 영구 반영
+
+select * from cust_account;

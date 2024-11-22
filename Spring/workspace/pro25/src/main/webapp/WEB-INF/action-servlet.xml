@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!--  Dispatcher서블릿으로 부터 웹브라우저로 응답할 뷰명을 받아서 뷰전체경로 생성하는 빈 -->
+	<bean id="viewResolver" 
+		  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		
+		<property name="viewClass" 
+				  value="org.springframework.web.servlet.view.JstlView"  />
+
+		<property name="prefix"  value="/WEB-INF/views/account/"/>
+		<property name="suffix"  value=".jsp"/>	  
+	</bean>
+
+	<!-- 
+		AccountController 빈을 생성하고
+		PropertiesMethodNameResolver빈의 주소를 의존주입하며
+		AccountService 빈의 주소를 의존 주입합니다.
+	 -->
+	 <bean id="accController"  class="com.spring.account.AccountController">
+	 
+	 	  <property name="methodNameResolver">
+	 	  	<ref local="methodResolver"/>
+	 	  </property>
+	 	  
+ 	  
+	 	  <property name="accService" ref="accService"/>
+	 </bean>
+
+
+	<!-- 요청한 주소가 /account/*.do로 끝나는 요청 주소를 받으면
+		 의존 주입된 AccountController빈을 요청할수 있도록
+		 SimpleUrlHandlerMapping 빈 생성
+	 -->
+	 <bean id="urlMapping" 
+	 	   class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	 
+	 		<property name="mappings">
+	 			<props>
+	 				<prop key="/account/*.do">accController</prop>
+	 			</props>
+	 		</property>
+	 </bean>
+	
+
+	 <!-- 
+	 	  /account/sendMoney.do로 요청하면
+	 	  AccountController 빈의 sendMoney메소드를 호출하게 
+	 	  PropertiesMethodNameResolver 빈 생성
+	  -->
+	  <bean id="methodResolver" 
+	     class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+	  	
+	  	  <property name="mappings">
+	  	  	<props>
+	  	  		<prop key="/account/sendMoney.do">sendMoney</prop>
+	  	  	
+	  	  	</props>
+	  	  </property>
+	  
+	  
+	  
+	  
+	  </bean>
+
+
+
+
+     
+
+</beans>
+
+
+
+
+
+
+
+
+

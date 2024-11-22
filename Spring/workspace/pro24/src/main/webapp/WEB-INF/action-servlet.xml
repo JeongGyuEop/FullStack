@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 
+		aciton-servlet.xml파일에 설정할 내용들
+		1.SimpleUrlController클래스에 대한 빈을 생성 합니다.
+		2.스프링에서 제공하는 SimpleUrlHandlerMapping클래스에 대한 빈을 생성하면
+		    요청주소  /test/index.do에 대해 처리하는 컨트롤러를
+		  SimpleUrlController로 설정 합니다. 
+	 
+
+	<bean id="simpleUrlController"  
+	      class="com.spring.ex01.SimpleUrlController" />
+
+	
+	<bean id="urlMapping"
+	      class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	      
+	      
+	      <property name="mappings">
+	      	<props>
+	      		<prop key="/test/index.do">simpleUrlController</prop>
+	      	</props>
+	      </property>
+	
+	</bean>
+	-->
+
+
+	<!-- 컨트롤러 클래스에서  ModelAndView에 저장된 뷰이름을 디스패처서블릿으로 부터 받아서
+		 뷰가 저장된 전체 경로를 만들어서 다시 디스패처 서블릿으로 전달 하는 역할의 
+		 InternalResourceViewResolver 빈 생성
+		 
+		   //디스패처 서블릿은 action-servlet.xml설정파일에 설정된 
+		  //InternalResourceViewResolver에게 뷰이름 result을 전달하면
+		  //  prefix변수에 설정된 뷰가 저장된 경로 ->  /test/ 와 
+		  //  suffix변수에 설정된 뷰의 확장자명 -> .jsp 를  연결해
+		  // /test/result.jsp 뷰가 저장된 전체 주소를 만들어서
+		  // 디스패처 서블릿으로 다시 전달 하여 뷰를 찾아 웹브라우저에 보여줍니다.  
+	 -->                                                    
+	 <bean id="viewResolver"                             
+	       class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	 
+	 	<property name="viewClass" 
+	 	          value="org.springframework.web.servlet.view.JstlView" />
+	 
+	 	<property name="prefix" value="/WEB-INF/views/member" />
+	 	<property name="suffix" value=".jsp"/>
+	
+	 </bean>                                        
+	 <!--   /WEB-INF/views/member/memberDetail.jsp -->     
+	 <!--   /WEB-INF/views/member/listMembers.jsp   -->
+	 <!--   /WEB-INF/views/member/memberForm.jsp -->
+	 <!--   /WEB-INF/views/member/memberDetail.jsp -->
+	
+
+	<!-- 요청주소가  /member/*.do로 시작되면  
+	         의존주입된 MemberControlleImpl클래스를 요청하게 설정 -->
+	<bean id="urlMapping"
+	      class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	           
+	      <property name="mappings">
+	      	<props>
+	      		<prop key="/member/*.do">memberController</prop>
+	      		<!-- /member/memberDel.do -->
+	      		
+	      	</props>
+	      </property>
+	
+	</bean>
+
+	<!--  MemberControllerImpl클래스에 대한 빈을 생성 후
+		 1. PropertiesMethodNameResolver 빈 주입 
+		 2. MemberServiceImpl 빈 주입 
+	 -->
+	<bean id="memberController" 
+	      class="com.spring.member.controller.MemberControllerImpl">
+	      	
+		<property name="methodNameResolver">
+			<ref local="methodResolver"/>
+		</property>
+		
+		<property name="memberService" ref="memberService"/>
+		
+	</bean>
+	
+	
+	<!--PropertiesMethodNameResolver를 이용해 
+		 /member/*.do 로 요청하면  MemberControllerImpl객체의 메소드를 호출하게 설정 
+	  -->
+	<bean id="methodResolver"
+	      class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+	
+		<property name="mappings">
+			<props>
+				<!--  DB에 저장된 모든 회원 조회 요청 주소를 받으면 
+					  MemberControllerImpl의 listMembers메소드가 호출되게 설정 
+				 -->
+				<prop key="/member/listMembers.do">listMembers</prop>
+				 
+				<!-- DB에 새 회원 추가(회원가입) 요청 주소를 받으면 -->
+				<prop key="/member/addMember.do">addMember</prop>
+				
+				<!-- 회원가입 양식 화면 요청 주소를 받으면 -->
+				<prop key="/member/memberForm.do">memberForm</prop>
+				          
+		       <!-- 회원삭제 요청 주소를 받으면 -->   
+				<prop key="/member/memberDel.do">memberDel</prop>
+				          
+				<!-- DB에 저장된 회원 한명 조회 요청 주소를 받으면 -->
+				<prop key="/member/memberDetail.do">memberDetail</prop>
+				
+				<!-- DB에 저장된 회원 한명 수정 요청 주소를 받으면 -->
+				<prop key="/member/UpdateMember.do">UpdateMember</prop>
+				
+				
+						   
+			</props>
+		</property>
+	
+	</bean>
+
+
+     
+
+</beans>
+
+
+
+
+
+
+
+
+

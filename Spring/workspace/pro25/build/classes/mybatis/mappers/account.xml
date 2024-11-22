@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 계좌기능 관련한 SQL문을 작성 해 놓는 account.xml(매퍼파일) -->    
+
+<!-- AccountDAO에서 mapper태그 내부에 접근 하기 위해 mapper태그의 namespace 이름 설정 -->
+<mapper namespace="mapper.account">
+
+	<!-- 홍길동이 김유신에게 500만원을 계좌이체 하므로 홍길동 잔고가 500만원 차감 되어야 하는 UPDATE구문 -->
+	<update id="updateBalance1">
+		<![CDATA[   
+			update cust_account
+			set balance = balance-5000000
+			where accountNo = '70-490-930'
+		]]>
+	</update>
+	<!-- 김유신 계좌 정보 500만원 + 시키는 UPDATE구문  -->
+	<update id="updateBalance2">
+		<![CDATA[   
+			update cust_account
+			set balance = balance+5000000
+			where accountNo = 70-490-911
+		]]>
+	</update> 
+</mapper>
+
+
+
+
+
+
+
+
+

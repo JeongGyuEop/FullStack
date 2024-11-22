@@ -5,35 +5,27 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   
-						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-						http://www.springframework.org/schema/aop
-						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-						http://www.springframework.org/schema/context
-						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-<!--     MemberServiceImpl클래스(부장)에 대한 빈(객체) 생성 후 
+	
+	<!-- MemberServiceImpl클래스(부장)에 대한 빈(객체) 생성 후 
 		 action-dataSource.xml파일에 생성해 놓은 MemberDAOImpl(사원) 빈(객체)를
-		 MemberServiceImpl객체내부의 변수에 주입
--->	
-		<bean id="memberService" 
-		      class="com.spring.member.service.MemberServiceImpl">
+		 MemberServiceImpl에 주입
+	 -->
+	 
+	 <bean id="memberService" 
+	 	  class="com.spring.member.service.MemberServiceImpl">
+	 
+	 	<property  name="memberDAO"  ref="memberDAO"     />
+	 
+	 </bean>
+	 
+
+</beans>			
+
+
 			
-			<property name="memberDAO" ref="memberDAO"   />
-			
-		</bean>
-
-
-
-</beans>
-
-
-
-
-
-
-
-
-
-
-
-

@@ -66,7 +66,6 @@
 				  loginForm메소드를 호출하게 됩니다
 			 -->
 				<prop key="/test/loginForm.do">loginForm</prop>	
-				<prop key="/test/memberForm.do">memberForm</prop>	
 
 			<!-- 로그인 요청시 입력한 아이디와 비밀번호를 다시 확인 하기 위한
                  VIEW요청주소를 받으면 
@@ -74,7 +73,7 @@
 				 login메소드를 호출하게 됩니다
 			  -->		
 				<prop key="/test/login.do">login</prop>
-				<prop key="/test/memberInfo.do">memberInfo</prop>
+				
 			</props>
 		
 		</property>

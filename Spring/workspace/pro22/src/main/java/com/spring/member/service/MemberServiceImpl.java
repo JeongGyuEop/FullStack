@@ -7,69 +7,65 @@ import org.springframework.dao.DataAccessException;
 import com.spring.member.dao.MemberDAO;
 import com.spring.member.vo.MemberVO;
 
-//ºÎÀå
+//ë¶€ì¥ 
+
 public class MemberServiceImpl implements MemberService {
 
-
-	//»ç¿ø MemberDAOImpl°´Ã¼¸¦ ÁÖÀÔ¹Ş¾Æ ÀúÀåÇÒ ÂüÁ¶º¯¼ö ¼±¾ğ
+	//ì‚¬ì› MemberDAOImplê°ì²´ë¥¼ ì£¼ì…ë°›ì•„ ì €ì¥í•  ì°¸ì¡°ë³€ìˆ˜ ì„ ì–¸
 	private MemberDAO memberDAO;// = new MemberDAOImpl();
 	
-	//action-service.xml¿¡¼­ <property>ÅÂ±×¿¡ ÀÇÇØ È£ÃâµÇ´Â ¸Ş¼Òµå·Î
-	//¹İµå½Ã ¸¸µé¾î ³õ¾Æ¾ß ÇÕ´Ï´Ù.
+	//action-service.xmlì—ì„œ <property>íƒœê·¸ì— ì˜í•´ í˜¸ì¶œë˜ëŠ” ë©”ì†Œë“œë¡œ
+	//ë°˜ë“œì‹œ ë§Œë“¤ì–´ ë†“ì•„ì•¼ í•©ë‹ˆë‹¤.
 	public void setMemberDAO(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
 	}
 	
-	//¸ğµç È¸¿ø Á¤º¸ Á¶È¸ ¸í·É!  »ç¿ø¿¡°Ô (MemberDAOImpl)
+	
+	//ëª¨ë“  íšŒì› ì •ë³´ ì¡°íšŒ ê¸°ëŠ¥ 
 	@Override
 	public List listMembers() throws DataAccessException {
-	
-		//»ç¿ø MemberDAOImpl°´Ã¼ÀÇ selectAllMembers()¸Ş¼Òµå¸¦ È£ÃâÇØ 
-		//¸ğµç È¸¿ø Á¤º¸ Á¶È¸ ¿äÃ»À» ¸í·ÉÇÔ!
-		//Á¶È¸µÈ È¸¿øÁ¤º¸µé(MemberVO°´Ã¼µé)ÀÌ ÀúÀåµÈ  List¹è¿­À» ¹İÈ¯ ¹ŞÀ½ 		
+		
+		//ì‚¬ì› MemberDAOImplê°ì²´ì˜ selectAllMembers()ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•´ 
+		//ëª¨ë“  íšŒì› ì •ë³´ ì¡°íšŒ ìš”ì²­ì„ ëª…ë ¹í•¨!
+		//ì¡°íšŒëœ íšŒì›ì •ë³´ë“¤(MemberVOê°ì²´ë“¤)ì´ ì €ì¥ëœ  Listë°°ì—´ì„ ë°˜í™˜ ë°›ìŒ 
 		List membersList = memberDAO.selectAllMembers();
-		
-		return membersList;//»çÀå´Ô MemberControllerImpl°´Ã¼¿¡ ¹İÈ¯
+	
+		return membersList;//ì‚¬ì¥ë‹˜ MemberControllerImplê°ì²´ì— ë°˜í™˜ 
 	}
 
+	//íšŒì› ê°€ì… ê¸°ëŠ¥
 	@Override
-	public void addMembers(MemberVO vo) throws DataAccessException {
+	public void addMembers(MemberVO vo) throws DataAccessException{
+		
 		memberDAO.InsertMember(vo);
-	}
-
-	//È¸¿ø Á¤º¸ ¼öÁ¤À» À§ÇØ  ¼öÁ¤ÇÒ È¸¿ø Á¤º¸ ÇÏ³ª Á¶È¸ ¸í·É ÇÏ´Â ¸Ş¼Òµå 
-	@Override
-	public MemberVO detailMembers(String id) throws DataAccessException {
-		
-		return memberDAO.oneMember(id);
-	}
-
-	//È¸¿ø Á¤º¸ ¼öÁ¤ UPDATE ¸í·ÉÇÏ´Â ¸Ş¼Òµå 
-	@Override
-	public void UpdateMember(MemberVO vo) throws DataAccessException {
-		
-		memberDAO.UpdateMember(vo);
 		
 	}
 
-	//È¸¿ø »èÁ¦ ¸í·É
+	//íšŒì› ì‚­ì œ ê¸°ëŠ¥ 
 	@Override
 	public void delMembers(String id) throws DataAccessException {
 		
 		memberDAO.DeleteMember(id);
 	}
 
+	//íšŒì›ì •ë³´  ìˆ˜ì •ì„ ìœ„í•´ íšŒì› í•œëª…ì˜ ì •ë³´ ì¡°íšŒ ê¸°ëŠ¥
+	@Override
+	public MemberVO detailMembers(String id) throws DataAccessException {
+		
+		return memberDAO.oneMember(id);
+	}
+
+	//íšŒì›ì •ë³´ ìˆ˜ì • ê¸°ëŠ¥ 
+	@Override
+	public void UpdateMember(MemberVO vo) throws DataAccessException {
+		
+		
+		memberDAO.UpdateMember(vo);
+	}
 	
 	
 	
 }
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+<!-- VO를 별칭으로 불러다 사용할수 있게 설정 하는 곳 -->
+	<typeAliases>
+		<!-- DAO에서 SQL문으로 값을 전달할떄 또는 
+		     SELECT SQL문을 실행한후 조회한 결과데이터를 DAO에 전달할때 사용할 
+			 MemberVO객체의 별칭 설정 -->
+		<typeAlias type="com.spring.ex04.MemberVO" alias="memberVO" />
+
+	</typeAliases>
+
+<!-- 트랜잭션 처리 설정과   커넥션풀(DataSource) 설정 하는 곳  -->
+	<environments default="development">
+		<environment id="development">		
+			<!-- 트랜잭션 처리 설정  -->
+			<transactionManager type="JDBC" />			
+			<!-- 커넥션풀(DataSource) 설정 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url" value="JDBC:oracle:thin:@localhost:1521:XE" />
+				<property name="username" value="scott" />
+				<property name="password" value="tiger" />
+			</dataSource>		
+		</environment>
+	</environments>
+	
+<!-- 매퍼 파일 경로 설정 하는 곳  -->
+	<mappers>
+		<!-- 
+			회원 기능 관련 SQL문이 작성되어 있는 매퍼파일(member.xml)의 주소경로를 등록함.
+			member.xml설정 내용을 읽어들이기 위함입니다.
+			이때 반드시 패키지이름과 xml명이 일치 해야 합니다. 
+		
+		<mapper resource="mybatis/mappers/member.xml"/>
+		 -->
+		 
+		 
+		<!-- 매퍼파일을 인터페이스로 등록 -->
+ 		<mapper class="InterfaceMappers.MemberMapper"  /> 		
+	</mappers>	
+	
+
+</configuration>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

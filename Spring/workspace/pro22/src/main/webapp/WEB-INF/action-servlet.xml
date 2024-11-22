@@ -56,9 +56,9 @@
 	 
 	 	<property name="prefix" value="/WEB-INF/views" />
 	 	<property name="suffix" value=".jsp"/>
-								<!-- 	/WEB-INF/views/memberDetail.jsp -->
+	
 	 </bean>
-					
+	
 
 	<!-- 요청주소가  /member/*.do로 시작되면  
 	         의존주입된 MemberControlleImpl클래스를 요청하게 설정 -->
@@ -110,8 +110,6 @@
 				          
 		       <!-- 회원삭제 요청 주소를 받으면 -->   
 				<prop key="/member/memberDel.do">memberDel</prop>
-				          
-				  
 				          
 				<!-- DB에 저장된 회원 한명 조회 요청 주소를 받으면 -->
 				<prop key="/member/memberDetail.do">memberDetail</prop>

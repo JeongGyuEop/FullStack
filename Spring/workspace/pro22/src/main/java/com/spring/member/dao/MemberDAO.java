@@ -8,19 +8,19 @@ import com.spring.member.vo.MemberVO;
 
 public interface MemberDAO {
 
-	//¸ğµç È¸¿øÀ» Á¶È¸ ÇÏ´Â ±â´É
+	//ëª¨ë“  íšŒì›ì„ ì¡°íšŒ í•˜ëŠ” ê¸°ëŠ¥
 	public List selectAllMembers() throws DataAccessException;
 
-	//È¸¿ø Ãß°¡ ±â´É 
+	//íšŒì› ì¶”ê°€ ê¸°ëŠ¥ 
 	public void InsertMember(MemberVO vo) throws DataAccessException;
 
-	//È¸¿ø »èÁ¦ ±â´É 
+	//íšŒì› ì‚­ì œ ê¸°ëŠ¥ 
 	public void DeleteMember(String id) throws DataAccessException;
 
-	//È¸¿øÁ¤º¸  ¼öÁ¤À» À§ÇØ È¸¿ø ÇÑ¸íÀÇ Á¤º¸ Á¶È¸ ±â´É
+	//íšŒì›ì •ë³´  ìˆ˜ì •ì„ ìœ„í•´ íšŒì› í•œëª…ì˜ ì •ë³´ ì¡°íšŒ ê¸°ëŠ¥
 	public MemberVO oneMember(String id) throws DataAccessException;
 
-	//È¸¿øÁ¤º¸ ¼öÁ¤ ±â´É
+	//íšŒì›ì •ë³´ ìˆ˜ì • ê¸°ëŠ¥
 	public void UpdateMember(MemberVO vo) throws DataAccessException;
 	
 	

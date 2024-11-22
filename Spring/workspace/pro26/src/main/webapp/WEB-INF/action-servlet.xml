@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!--  Dispatcher서블릿으로 부터 웹브라우저로 응답할 뷰명을 받아서 뷰전체경로 생성하는 빈 -->
+	<bean id="viewResolver" 
+		  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		
+		<property name="viewClass" 
+				  value="org.springframework.web.servlet.view.JstlView"  />
+
+		<property name="prefix"  value="/WEB-INF/views/test/" />
+		<property name="suffix"  value=".jsp"/>	  
+	</bean>
+
+
+	<!-- 클래스명 위에 @RequestMapping어노테이션 기호의 기능을 처리하는 객체(빈) 생성 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+
+	<!-- 메소드명 위에 @RequestMapping 어노테이션 기호의 기능을 처리하는 객체(빈) 생성 -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+	<!-- 
+		com.spring 패키지 내부에 만들어 놓은 
+		
+		Controller.java <- @Controller 어노테이션 기호를 클래스명 위에 작성해 놓을 것이다.
+		Service.java    <- @Service 어노테이션 기호를 클래스명 위에 작성해 놓을 것이다.
+		DAO.java        <- @Repository 어노테이션 기호를 클래스명 위에 작성해 놓을 것이다.
+		VO.java         <- @Component 어노테이션 기호를 클래스명 위에 작성해 놓을 것이다.
+		
+		위와 같이 작성하면!! 우리가 스프링 2.5 버전에서 작성했던
+		action-Servlet.xml, action-service.xml 등에 입력한
+		<bean> 태그를 자동으로 각 클래스에 맞게 톰캣 컨테이너 서버가 생성해서 담아둔다. 
+	 -->
+	<context:component-scan base-package="com.spring" />
+	
+</beans>
+
+
+
+
+
+
+
+
+

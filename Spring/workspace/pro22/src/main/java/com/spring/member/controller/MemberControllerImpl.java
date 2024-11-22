@@ -11,216 +11,213 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import com.spring.member.service.MemberService;
 import com.spring.member.vo.MemberVO;
 
-//MVCµğÀÚÀÎ ÆĞÅÏÀÇ C¿ªÇÒÀ» ÇÏ´Â »çÀå´Ô 
+//MVCì¤‘ì— C  
+//ì‚¬ì¥ 
+public class MemberControllerImpl extends MultiActionController implements MemberController {
 
-
-public class MemberControllerImpl extends MultiActionController 
-								  implements MemberController {
-	// new MemberServiceImpl();°´Ã¼¸¦ ÁÖÀÔÇÒ º¯¼ö 
-	private MemberService memberService;
+	// new MemberServiceImpl();ê°ì²´ë¥¼ ì£¼ì…í•  ë³€ìˆ˜ 
+	private MemberService memberService; 
 	
-
-	//action-servlet.xmlÆÄÀÏ¿¡¼­ 
-	//MemberControllerImpl¿¡ ´ëÇÑ <bean>À¸·Î °´Ã¼(ºó)¸¦ »ı¼ºÇÑ ÈÄ
-	//<property>ÅÂ±×¸¦ ÀÌ¿ëÇØ setMemberService¸Ş¼Òµå¸¦ È£ÃâÇÒ¶§...
-	//¸Å°³º¯¼ö·Î MemberServiceImpl°´Ã¼¸¦ Àü´Ş ÇÏ¿© ÀÇÁ¸ÇÏ´Â °´Ã¼¸¦ ÁÖÀÔ½ÃÄÑ ÀúÀåÇÏ±â À§ÇØ
-	//¾Æ·¡ÀÇ ¸Ş¼Òµå°¡ ÇÊ¿äÇÏ´Ù.	
+	
+	//action-servlet.xmlíŒŒì¼ì—ì„œ 
+	//MemberControllerImplì— ëŒ€í•œ ê°ì²´ë¥¼ ìƒì„±í•œ í›„
+	//<property>íƒœê·¸ë¥¼ ì´ìš©í•´ setMemberServiceë©”ì†Œë“œë¥¼ í˜¸ì¶œí• ë•Œ...
+	//ë§¤ê°œë³€ìˆ˜ë¡œ MemberServiceImplê°ì²´ë¥¼ ì „ë‹¬ í•˜ì—¬ ì˜ì¡´í•˜ëŠ” ê°ì²´ë¥¼ ì£¼ì…ì‹œì¼œ ì €ì¥í•˜ê¸° ìœ„í•´
+	//ì•„ë˜ì˜ ë©”ì†Œë“œê°€ í•„ìš”í•˜ë‹¤.
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
 	
-	
-	//¸ğµç È¸¿ø Á¤º¸ Á¶È¸ ±â´É ¸í·É 
-	//   /member/listMembers.do   ¿äÃ» ÁÖ¼Ò°¡ µé¾î ¿ÔÀ»¶§
-	//   DBÀÇ t_memberÅ×ÀÌºí¿¡ ÀúÀåµÈ ¸ğµç È¸¿ø Á¶È¸ ¿äÃ» ¸í·É! ºÎÀå(MemberServiceImpl)¿¡°Ô 
+	// /member/listMembers.do DBì— ì €ì¥ëœ ëª¨ë“  íšŒì› ì¡°íšŒ ìš”ì²­ ì£¼ì†Œë¥¼ ë°›ì•˜ì„ë•Œ í˜¸ì¶œ ë˜ëŠ” ë©”ì†Œë“œë¡œ
+	// 
 	@Override
-	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public ModelAndView listMembers(HttpServletRequest request, 
+									HttpServletResponse response) 
+											throws Exception {	
 		
-	//¿äÃ»ÇÑ ÁÖ¼Ò¿¡ °üÇÑ ÀÀ´äÇÒ°ª ¸¶·Ã
-		//ºÎÀå MemberServiceImpl°´Ã¼ÀÇ listMembers()¸Ş¼Òµå¸¦ È£ÃâÇÏ¿©
-		//¸ğµç È¸¿ø Á¶È¸ ¿äÃ»À» ¸í·ÉÇÔ!
-		//À¥ºê¶ó¿ìÀú·Î ÀÀ´äÇÒ Á¶È¸ÇÑ Á¤º¸µéÀÌ ´ã±ä  List¹è¿­À» ¹İÈ¯ ¹Ş´Â´Ù.
+	//ìš”ì²­í•œ ì£¼ì†Œë¥¼ ì´ìš©í•´ ì‘ë‹µí•  ê°’ì„ ë§ˆë ¨
+		//ë¶€ì¥ MemberServiceImplê°ì²´ì˜ listMembers()ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬
+		//ëª¨ë“  íšŒì› ì¡°íšŒ ìš”ì²­ì„ ëª…ë ¹í•¨!
+		//ì›¹ë¸Œë¼ìš°ì €ë¡œ ì‘ë‹µí•  ì¡°íšŒí•œ ì •ë³´ë“¤ì´ ë‹´ê¸´  Listë°°ì—´ì„ ë°˜í™˜ ë°›ëŠ”ë‹¤.
 		List membersList = memberService.listMembers();
+	
+	//ì‘ë‹µí•  ë·° ì´ë¦„ ì–»ê¸° 	
+		//ìš”ì²­ URLì£¼ì†Œ  /member/listMembers.do ì—ì„œ  .doë¥¼ ì œì™¸í•œ /listMembersë·°ì´ë¦„ì–»ê¸°
+		String viewName = getViewName(request); 
 		
-	//ÀÀ´äÇÒ °ª°ú ÀÀ´äÇÒ ºä ÀÌ¸§À» ModelAndView°´Ã¼ ¸Ş¸ğ¸®¿¡ ¹ÙÀÎµù (Å°¿Í °ªÀ» ÇÑ½ÖÀ¸·Î ¹­¾î¼­ ÀúÀå)
+	//ì‘ë‹µí•  ê°’ ê³¼ ì‘ë‹µí•  ë·° ì´ë¦„ì„  ModelAndViewê°ì²´ ë©”ëª¨ë¦¬ì— ë°”ì¸ë”©(ì €ì¥)
 		ModelAndView mav = new ModelAndView();
-					 mav.addObject("membersList", membersList);//ÀÀ´äÇÒ Model ÀúÀå 
-					 mav.setViewName(  getViewName(request) );//ÀÀ´äÇÒ ºä¸í ÀúÀå 
-					//¿äÃ» URLÁÖ¼Ò  /member/listMembers.do ¿¡¼­  
-					//.do¸¦ Á¦¿ÜÇÑ /listMembersºäÀÌ¸§¾ò±â
+					 //ì‘ë‹µí•  ë°ì´í„° ì €ì¥
+					 mav.addObject("membersList", membersList);	
+					//ë·° ì´ë¦„ ì €ì¥ 
+					 mav.setViewName(viewName);
 		
-		
-		return mav; //µğ½ºÆĞÃ³ ¼­ºí¸´À¸·Î ModelAndView¹İÈ¯ 
-	}
-
-	@Override
-	public String memberForm(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
-		
-		return "/memberForm";
+		return mav;//ë””ìŠ¤íŒ©ì²˜ ì„œë¸”ë¦¿ìœ¼ë¡œ ModelAndViewê°ì²´ ë°˜í™˜ 
 		
 	}
-
+	
+	//íšŒì›ê°€ì… í™”ë©´ ìš”ì²­ ì£¼ì†Œ /member/memberForm.doë¥¼ ë°›ì•˜ì„ë•Œ...
+	@Override     
+	public String memberForm(HttpServletRequest request, 
+							HttpServletResponse response) 
+									throws Exception {	
+		
+		String viewName = getViewName(request);
+		
+		return viewName;// "/memberForm";
+	}
+	
+	
+	// íšŒì›ê°€ì… ìš”ì²­ ì£¼ì†Œ /member/addMember.doë¥¼ ë°›ì•˜ì„ë•Œ....
 	@Override
-	public String addMember(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public String addMember(HttpServletRequest request, 
+						  HttpServletResponse response) 
+								  throws Exception {	
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		//ìš”ì²­í•œ ê°’ ì–»ê¸°
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		
-		//VO¿¡ ÀúÀå
+		//VOì— ì €ì¥
 		MemberVO vo = new MemberVO();
 				 vo.setId(id);
 				 vo.setPwd(pwd);
 				 vo.setName(name);
 				 vo.setEmail(email);
-		
-		memberService.addMembers(vo);
-		
+				 
+		//ë¶€ì¥ MemberServiceImplê°ì²´ì˜ ë©”ì†Œë“œ í˜¸ì¶œì‹œ voë¥¼ ì „ë‹¬í•˜ì—¬ INSERTëª…ë ¹!
+		memberService.addMembers(vo);		 
+			
+		//íšŒì›ê°€ì… í›„ ëª¨ë“ íšŒì›ì„ ì¡°íšŒ í•˜ëŠ” ì¬ìš”ì²­ ì£¼ì†Œ ì‘ì„± 
 		return "redirect:/member/listMembers.do";
-	}
 
-	//È¸¿øÁ¤º¸  ¼öÁ¤À» À§ÇØ È¸¿ø ÇÑ¸íÀÇ Á¤º¸ Á¶È¸ ±â´É
-	// ¼öÁ¤¸µÅ©¸¦ ´©¸£¸é ¿äÃ» ÁÖ¼Ò   ->  /member/memberDetail.do	
+	}
+	
+	//íšŒì›ì‚­ì œ ê¸°ëŠ¥ 
 	@Override
-	public ModelAndView memberDetail(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
-		
-		//http://localhost:8090/pro22/member/memberDetail.do?id=admin1
-		
+	public String memberDel(HttpServletRequest request, 
+							HttpServletResponse response) 
+							throws Exception {
+	
 		request.setCharacterEncoding("UTF-8");
 		
-		//¿äÃ»ÇÑ °ª (¼öÁ¤ÇÒ È¸¿øÀ» Á¶È¸ ÇÏ±â À§ÇÑ ¾ÆÀÌµğ)¾ò±â
+		//ìš”ì²­í•œ ê°’ ì–»ê¸°
+		String id = request.getParameter("id");
+		System.out.println("ì‚­ì œí•  íšŒì› ì•„ì´ë”” = " + id);
+			 
+		//ë¶€ì¥ MemberServiceImplê°ì²´ì˜ ë©”ì†Œë“œ í˜¸ì¶œì‹œ voë¥¼ ì „ë‹¬í•˜ì—¬ DELETEëª…ë ¹!
+		memberService.delMembers(id);		 
+			
+		//íšŒì› ì‚­ì œí›„ ëª¨ë“ íšŒì›ì„ ì¡°íšŒ í•˜ëŠ” ì¬ìš”ì²­ ì£¼ì†Œ ì‘ì„± 
+		return "redirect:/member/listMembers.do";
+	}
+	
+	//íšŒì›ì •ë³´  ìˆ˜ì •ì„ ìœ„í•´ íšŒì› í•œëª…ì˜ ì •ë³´ ì¡°íšŒ ê¸°ëŠ¥
+	// ìˆ˜ì •ë§í¬ë¥¼ ëˆ„ë¥´ë©´ ìš”ì²­ ì£¼ì†Œ   ->  /member/memberDetail.do
+	@Override
+	public ModelAndView memberDetail(HttpServletRequest request, 
+									 HttpServletResponse response) 
+											 throws Exception {
+		
+		request.setCharacterEncoding("UTF-8");
+			
+		//ìš”ì²­í•œ ê°’(ìˆ˜ì •í•  íšŒì›ì„ ì¡°íšŒ í•˜ê¸° ìœ„í•œ ì•„ì´ë””ê°’) ì–»ê¸°
 		String id = request.getParameter("id");
 		
-		//ºÎÀå MemberServiceImpl°´Ã¼ÀÇ ¸Ş¼Òµå È£Ãâ½Ã vo¸¦ Àü´ŞÇÏ¿© SELECT¸í·É!
+		//ë¶€ì¥ MemberServiceImplê°ì²´ì˜ ë©”ì†Œë“œ í˜¸ì¶œì‹œ voë¥¼ ì „ë‹¬í•˜ì—¬ SELECTëª…ë ¹!
 		MemberVO vo = memberService.detailMembers(id);		 
 		
-		//ºäÆäÀÌÁö¿¡ Á¶È¸µÈ Á¤º¸¸¦ º¸¿©ÁÖ±â À§ÇØ ModelAndView°´Ã¼ ¸Ş¸ğ¸®¿¡ ¹ÙÀÎµù
-		ModelAndView mav = new ModelAndView( getViewName(request) ); //ºä¸í /memberDetail ÀúÀå
-					 mav.addObject("membervo", vo);// ¹ÙÀÎµù
-					 
-					
-		return mav;//µğ½ºÆĞÃ³ ¼­ºí¸´À¸·Î ModelAndView°´Ã¼ ¹İÈ¯
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("membervo",vo);
+		mav.setViewName( getViewName(request) ); // /memberDetail
+	 
+		return mav;
+		
+		
 	}
-
 	
-	//¼öÁ¤ ¿äÃ» /member/UpdateMember.do ÁÖ¼Ò¸¦ ¹Ş¾ÒÀ»¶§
+	//ìˆ˜ì • ìš”ì²­ /member/UpdateMember.do ì£¼ì†Œë¥¼ ë°›ì•˜ì„ë•Œ
 	@Override
-	public String UpdateMember(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+	public String UpdateMember(HttpServletRequest request, 
+							   HttpServletResponse response) throws Exception {
 
+		
 		request.setCharacterEncoding("UTF-8");
 		
-		//¿äÃ»ÇÑ ¼öÁ¤ÇÒ °ª ¾ò±â
-		//¿äÃ»ÇÑ °ª ¾ò±â
+		//ìš”ì²­í•œ ìˆ˜ì •í•  ê°’ ì–»ê¸°
+		//ìš”ì²­í•œ ê°’ ì–»ê¸°
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		
-		System.out.println("¼öÁ¤ÇÒ È¸¿ø ¾ÆÀÌµğ = " + id);
+		System.out.println("ìˆ˜ì •í•  íšŒì› ì•„ì´ë”” = " + id);
 		
-		//VO¿¡ ÀúÀå
+		//VOì— ì €ì¥
 		MemberVO vo = new MemberVO();
 				 vo.setId(id);
 				 vo.setPwd(pwd);
 				 vo.setName(name);
 				 vo.setEmail(email);
 		
-		//ºÎÀå MemberServiceImpl°´Ã¼ÀÇ ¸Ş¼Òµå È£Ãâ½Ã ¼öÁ¤ÇÒ id¸¦ Àü´ŞÇÏ¿© UPDATE¸í·É!
+		//ë¶€ì¥ MemberServiceImplê°ì²´ì˜ ë©”ì†Œë“œ í˜¸ì¶œì‹œ ìˆ˜ì •í•  idë¥¼ ì „ë‹¬í•˜ì—¬ UPDATEëª…ë ¹!
 		memberService.UpdateMember(vo);		 
 			
-		//È¸¿ø ¼öÁ¤ÈÄ ¸ğµçÈ¸¿øÀ» Á¶È¸ ÇÏ´Â Àç¿äÃ» ÁÖ¼Ò ÀÛ¼º 
+		//íšŒì› ìˆ˜ì •í›„ ëª¨ë“ íšŒì›ì„ ì¡°íšŒ í•˜ëŠ” ì¬ìš”ì²­ ì£¼ì†Œ ì‘ì„± 
 		return "redirect:/member/listMembers.do";
-	}
-
-	//»èÁ¦¸µÅ©¸¦ ´©¸£¸é ¿äÃ» ÁÖ¼Ò   ->  /member/memberDel.do
-	@Override
-	public String memberDel(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
+		
 	
-		request.setCharacterEncoding("UTF-8");
-		
-		//È¸¿ø »èÁ¦ ¿äÃ»½Ã Àü´ŞÇÑ  id¾ò±â
-		String id = request.getParameter("id");
-		System.out.println("»èÁ¦ÇÒ È¸¿ø ¾ÆÀÌµğ : " + id);		
-		
-		//ºÎÀå MemberServiceImpl°´Ã¼ÀÇ ¸Ş¼Òµå È£Ãâ½Ã~ ÀÎÀÚ·Î »èÁ¦ÇÒ È¸¿ø ID³Ñ°Ü¼­ DELETE¸í·É
-		memberService.delMembers(id);
-		
-		
-		//È¸¿ø »èÁ¦¿¡ ¼º°øÇÏ¸é ¸ğµçÈ¸¿øÀ» Á¶È¸ ÇØ¼­ º¸¿© ÁÖ±â À§ÇØ ¸ğµçÈ¸¿ø Á¶È¸ Àç¿äÃ»!
-		//À¥ºê¶ó¿ìÀú ÁÖ¼ÒÃ¢¿¡ ¹ØÀÇ ÁÖ¼Ò°¡ ÀÚµ¿À¸·Î ÀûÈ÷¸é¼­ ¿£ÅÍ¸¦ ´­·¯ µğ½ºÆĞÃ³ ¼­ºí¸´À¸·Î ¿äÃ»ÇÑ °Í°ú °°´Ù.
-		return "redirect:/member/listMembers.do";
 	}
 	
-	//http://localhost:8090/pro21/test/loginForm.do ¿äÃ»ÁÖ¼Ò¸¦ ¹ŞÀ¸¸é
-	//È®ÀåÀÚ .do¸¦ Á¦¿ÜÇÑ  loginForm VIEW¸íÀ» ¾ò¾î Á¦°øÇÏ´Â ¸Ş¼Òµå 
+	
+	
+	
+	
+	//request ê°ì²´ì—ì„œ URL ìš”ì²­ëª…ì„ ê°€ì ¸ì™€ .doë¥¼ ì œì™¸í•œ ìš”ì²­ëª…ì„ êµ¬í•˜ëŠ” ë©”ì†Œë“œ 
 	private  String getViewName(HttpServletRequest request) throws Exception {
-	    
-		// /pro21
-		 String contextPath = request.getContextPath();
-		
-	      String uri = (String)request.getAttribute("javax.servlet.include.request_uri");
-	      if(uri == null || uri.trim().equals("")) {
-	        
-	    	  uri = request.getRequestURI();
-	    	  System.out.println("uri : " + uri);
-	      }
 	      
-	      // http://localhost:8090/pro21/test/loginForm.do·Î ¿äÃ»½Ã
-	      int begin = 0;  //
-	      if(!((contextPath==null)||("".equals(contextPath)))){
-	    	  
-	    	  //   /pro21  -> ¹®ÀÚ°¹¼ö 6
-	         begin = contextPath.length();  // ÀüÃ¼ ¿äÃ»¸í ÀÇ ±æÀÌ¸¦ ±¸ÇÔ
+		  String contextPath = request.getContextPath();
+	      // /pro21
+		  String uri = (String)request.getAttribute("javax.servlet.include.request_uri");
+	      
+		  if(uri == null || uri.trim().equals("")) {
+	       //ìš”ì²­í•œ ì£¼ì†Œ ì „ì²´ ì–»ê¸° 
+	         uri = request.getRequestURI();
+	       //http://localhost:8090/pro21/test/memberForm.do
+	         
+	         System.out.println(uri);
 	      }
-
+	      int begin = 0;
+	      if(!((contextPath==null)||("".equals(contextPath)))){
+	         begin = contextPath.length();
+	      }
 	      int end;
 	      if(uri.indexOf(";")!=-1){
-	         end=uri.indexOf(";");  //¿äÃ» uri¿¡ ';'°¡ ÀÖÀ» °æ¿ì ';'¹®ÀÚ À§Ä¡¸¦ ±¸ÇÔ
+	         end=uri.indexOf(";");
 	      }else if(uri.indexOf("?")!=-1){
-	         end=uri.indexOf("?");   //¿äÃ» uri¿¡ '?'°¡ ÀÖÀ» °æ¿ì '?' ¹®ÀÚ À§Ä¡¸¦ ±¸ÇÔ
+	         end=uri.indexOf("?");
 	      }else{
 	         end=uri.length();
 	      }
-
-	      //http://localhost:8090/pro21/test/loginForm.do·Î ¿äÃ»½Ã 
-	      //¸ÕÀú '.do'¸¦ Á¦°ÅÇÑ http://localhost:8081/pro21/test/loginForm¸¦ ±¸ÇÑ ÈÄ,
-	      
-	      //´Ù½Ãhttp://localhost:8090/pro21/test/loginForm¿¡¼­ 
-	      //¿ª¼øÀ¸·Î Ã¹¹øÂ° '/' À§Ä¡¸¦ ±¸ÇÑ ÈÄ, ±× µÚÀÇ loginForm¸¦ ±¸ÇÑ´Ù.
 	      String fileName=uri.substring(begin,end);
-	      System.out.println("fileName : " + fileName);
-	      
+	
 	      if(fileName.indexOf(".")!=-1){
-	         fileName=fileName.substring(0,fileName.lastIndexOf("."));  //¿äÃ»¸í¿¡¼­ ¿ª¼øÀ¸·Î ÃÖÃÊ '.'ÀÇ À§Ä¡¸¦ ±¸ÇÑÈÄ, '.do' ¾Õ¿¡±îÁöÀÇ ¹®ÀÚ¿­À» ±¸ÇÔ
+	         fileName=fileName.substring(0,fileName.lastIndexOf("."));
 	      }
 	      if(fileName.lastIndexOf("/")!=-1){
-	         fileName=fileName.substring(fileName.lastIndexOf("/"),fileName.length()); //¿äÃ»¸í¿¡¼­ ¿ª¼øÀ¸·Î ÃÖÃÊ '/'ÀÇ À§Ä¡¸¦ ±¸ÇÑÈÄ, '/' ´ÙÀ½ºÎÅÍÀÇ ¹®ÀÚ¿­À» ±¸ÇÔ  
+	         fileName=fileName.substring(fileName.lastIndexOf("/"),fileName.length());
 	      }
-	      
-	      System.out.println("result :" + fileName);
-	      return fileName;
+	      return fileName; // .doë¥¼ ì œì™¸í•œ ìš”ì²­ì£¼ì†Œë¥¼ ë¦¬í„´
 	   }
-	
-	
 
+
+
+
+
+
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

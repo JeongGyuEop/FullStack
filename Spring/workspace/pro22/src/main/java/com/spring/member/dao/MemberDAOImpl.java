@@ -13,128 +13,125 @@ import org.springframework.jdbc.core.RowMapper;
 import com.spring.member.vo.MemberVO;
 
 /*
- ½ºÇÁ¸µ ÇÁ·¹ÀÓ¿öÅ©¿¡¼­ Á¦°øÇØ ÁÖ´Â ½ºÇÁ¸µ JDBC±â´É¿¡ ´ëÇØ¼­..
- 	1. ½ºÇÁ¸µ¿¡¼­ Á¦°øÇÏ´Â JdbcTemplateÅ¬·¡½º ¿ªÇÒ
- 		- JdbcTemplateÅ¬·¡½º¸¦ »ç¿ëÇÏ¸é  Ä¿³Ø¼ÇÇ®ÀÌ³ª Connection DB¿¬°á ¾ò±â,
- 		  PreparedStatement½ÇÇà°´Ã¼, ResultSet°´Ã¼¸¦ Á÷Á¢ »ı¼ºÇØ¼­ »ç¿ëÇÏÁö ¾Ê°í,
- 		  JdbcTemplateÅ¬·¡½º¿¡¼­ Á¦°øÇÏ´Â ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÏ¿© SQLÀ» ½±°Ô ½ÇÇàÇÒ¼ö ÀÖ´Ù.
+ ìŠ¤í”„ë§ í”„ë ˆì„ì›Œí¬ì—ì„œ ì œê³µí•´ ì£¼ëŠ” ìŠ¤í”„ë§ JDBCê¸°ëŠ¥ì— ëŒ€í•´ì„œ..
+ 	1. ìŠ¤í”„ë§ì—ì„œ ì œê³µí•˜ëŠ” JdbcTemplateí´ë˜ìŠ¤ ì—­í• 
+ 		- JdbcTemplateí´ë˜ìŠ¤ë¥¼ ì‚¬ìš©í•˜ë©´  ì»¤ë„¥ì…˜í’€ì´ë‚˜ Connection DBì—°ê²° ì–»ê¸°,
+ 		  PreparedStatementì‹¤í–‰ê°ì²´, ResultSetê°ì²´ë¥¼ ì§ì ‘ ìƒì„±í•´ì„œ ì‚¬ìš©í•˜ì§€ ì•Šê³ ,
+ 		  JdbcTemplateí´ë˜ìŠ¤ì—ì„œ ì œê³µí•˜ëŠ” ë©”ì†Œë“œë¥¼ ì´ìš©í•˜ì—¬ SQLì„ ì‰½ê²Œ ì‹¤í–‰í• ìˆ˜ ìˆë‹¤.
  	
- 	2. JdbcTemplateÅ¬·¡½º°¡ Á¦°øÇÏ´Â ¿©·¯°¡Áö  SQL½ÇÇà °ü·Ã ¸Ş¼Ò½ºµé 
+ 	2. JdbcTemplateí´ë˜ìŠ¤ê°€ ì œê³µí•˜ëŠ” ì—¬ëŸ¬ê°€ì§€  SQLì‹¤í–‰ ê´€ë ¨ ë©”ì†ŒìŠ¤ë“¤ 
 		
-		2.1 select¹®À» DB¿¡ ½ÇÇàÇÏ¿© Á¶È¸ ±â´ÉÀ» Á¦°øÇÏ´Â ¿À¹ö·ÎµùµÈ ´ëÇ¥ÀûÀÎ ¸Ş¼Òµå ÇÏ³ª
+		2.1 selectë¬¸ì„ DBì— ì‹¤í–‰í•˜ì—¬ ì¡°íšŒ ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” ì˜¤ë²„ë¡œë”©ëœ ëŒ€í‘œì ì¸ ë©”ì†Œë“œ í•˜ë‚˜
 			
 			"select  * from t_member"
 			
 			List<T> query(String sql, RowMaaper<T> rowMapper)
 
-			¼³¸í : query()¸Ş¼Òµå´Â Ã¹¹øÂ° ¸Å°³º¯¼ö sql·Î !! Á¶È¸ÇÒ SELECT¹®À» Àü´ŞÇÏ°í,
-				 µÎ¹øÂ° ¸Å°³º¯¼ö rowMapper·Î 
-				 RowMapperÀÎÅÍÆäÀÌ½ºÀÇ mapRow(ResultSet rs, int rowNum)Ãß»ó¸Ş¼Òµå¸¦
-				 ¿À¹ö¶óÀÌµùÇÑ ³»ºÎÀÍ¸í°´Ã¼¸¦ Àü´ŞÇÏ°Ô µË´Ï´Ù.
+			ì„¤ëª… : query()ë©”ì†Œë“œëŠ” ì²«ë²ˆì§¸ ë§¤ê°œë³€ìˆ˜ sqlë¡œ !! ì¡°íšŒí•  SELECTë¬¸ì„ ì „ë‹¬í•˜ê³ ,
+				 ë‘ë²ˆì§¸ ë§¤ê°œë³€ìˆ˜ rowMapperë¡œ 
+				 RowMapperì¸í„°í˜ì´ìŠ¤ì˜ mapRow(ResultSet rs, int rowNum)ì¶”ìƒë©”ì†Œë“œë¥¼
+				 ì˜¤ë²„ë¼ì´ë”©í•œ ë‚´ë¶€ìµëª…ê°ì²´ë¥¼ ì „ë‹¬í•˜ê²Œ ë©ë‹ˆë‹¤.
 				 
-				 µÎ¹øÂ° ¸Å°³º¯¼ö rowMapper·Î Àü´ŞÇÑ ³»ºÎÀÍ¸í°´Ã¼ ³»ºÎÀÇ ¿À¹ö¶óÀÌµù½ÃÅ²
-				 mapRow¸Ş¼Òµå´Â  query¸Ş¼ÒµåÀÇ Ã¹¹øÂ° ¸Å°³º¯¼ö sql·Î Àü´ŞµÈ
-				 select¹®ÀÇ Á¶È¸µÈ °á°ú(ResultSet)¸¦ ÇÏ³ªÀÇ Çà ´ÜÀ§·Î ¹İº¹ÇØ¼­  ÀĞ¾î¿Í
-				 VO°´Ã¼¸¦ »ı¼ºÇÏ¿© ÀúÀåÇÑ ÈÄ
-				 VO°´Ã¼µéÀ» ´Ù½Ã List¹è¿­¿¡ ´ã¾Æ List¹è¿­À» ¸®ÅÏ ÇÕ´Ï´Ù. 
+				 ë‘ë²ˆì§¸ ë§¤ê°œë³€ìˆ˜ rowMapperë¡œ ì „ë‹¬í•œ ë‚´ë¶€ìµëª…ê°ì²´ ë‚´ë¶€ì˜ ì˜¤ë²„ë¼ì´ë”©ì‹œí‚¨
+				 mapRowë©”ì†Œë“œëŠ”  queryë©”ì†Œë“œì˜ ì²«ë²ˆì§¸ ë§¤ê°œë³€ìˆ˜ sqlë¡œ ì „ë‹¬ëœ
+				 selectë¬¸ì˜ ì¡°íšŒëœ ê²°ê³¼(ResultSet)ë¥¼ í•˜ë‚˜ì˜ í–‰ ë‹¨ìœ„ë¡œ ë°˜ë³µí•´ì„œ  ì½ì–´ì™€
+				 VOê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ ì €ì¥í•œ í›„
+				 VOê°ì²´ë“¤ì„ ë‹¤ì‹œ Listë°°ì—´ì— ë‹´ì•„ Listë°°ì—´ì„ ë¦¬í„´ í•©ë‹ˆë‹¤. 
 
 		 
-		   2.2 SQLÀÇ DML Áß SELECT¸¦ ½ÇÇàÇßÀ» ¶§  Á¶È¸µÈ ÇÑÇàÀÇ  °á°ú °ªÀ» °´Ã¼¿¡ ÀúÀåÇÏ¿© ¹Ş¾Æ¿À±â À§ÇØ  
-		              »ç¿ëÇÏ´Â  qyeryForObject() ¸Ş¼ÒµåÀÌ´Ù.
+		   2.2 SQLì˜ DML ì¤‘ SELECTë¥¼ ì‹¤í–‰í–ˆì„ ë•Œ  ì¡°íšŒëœ í•œí–‰ì˜  ê²°ê³¼ ê°’ì„ ê°ì²´ì— ì €ì¥í•˜ì—¬ ë°›ì•„ì˜¤ê¸° ìœ„í•´  
+		              ì‚¬ìš©í•˜ëŠ”  qyeryForObject() ë©”ì†Œë“œì´ë‹¤.
 		 	  
 		 	  
-				"select  * from t_member where Á¶°Ç¿­=Á¶°Ç°ª";
+				"select  * from t_member where ì¡°ê±´ì—´=ì¡°ê±´ê°’";
 			
 				Object  queryForObject(String sql, RowMaaper<T> rowMapper)
 
 
-	        2.3  JdbcTemplateÀ» ÀÌ¿ëÇÑ INSERT, UPDATE, DELETE Äõ¸® ½ÇÇàÀº  update()¸Ş¼Òµå¸¦ »ç¿ëÇÏÀÚ
+	        2.3  JdbcTemplateì„ ì´ìš©í•œ INSERT, UPDATE, DELETE ì¿¼ë¦¬ ì‹¤í–‰ì€  update()ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•˜ì
 	        		
-				update() ¸Ş¼­µåÀÇ Á¾·ù
+				update() ë©”ì„œë“œì˜ ì¢…ë¥˜
 				
 				  1. int update(String sql)
 				
 				  2. int update(String sql , Object... args)
 
-				¿¹Á¦
+				ì˜ˆì œ
 				public void update(Member member) {
         			jdbcTemplate.update( "update MEMBER set NAME = ?, PASSWORD = ? where EMAIL = ?",
                 							member.getName(), member.getPassword(), member.getEmail() );
     }
 */
 
-//»ç¿ø  DBÀÛ¾÷À» Á÷Á¢ ÇÏ´Â Å¬·¡½º 
+//ì‚¬ì›  DBì‘ì—…ì„ ì§ì ‘ í•˜ëŠ” í´ë˜ìŠ¤ 
 
 public class MemberDAOImpl implements MemberDAO{
 
-	//JdbcTempleÅ¬·¡½ºÀÇ °´Ã¼¸¦ ÀúÀåÇÒ º¯¼ö ¼±¾ğ
+	//JdbcTempleí´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ì €ì¥í•  ë³€ìˆ˜ ì„ ì–¸
 	private JdbcTemplate jdbcTemplate;
 	
 	//setter
-	//action-dataSource.xmlÆÄÀÏ¿¡¼­
-	//<bean>ÅÂ±×·Î MemberDAOImpl°´Ã¼¸¦ »ı¼ºÇÏ°í
-	//<bean>ÅÂ±×·Î »ı¼ºÇÑ SimpleDriverDataSourceÄ¿³Ø¼ÇÇ®°´Ã¼¸¦
-	//<property>ÅÂ±×¿¡ ÀÇÇØ MemberDAOImpl¿¡ ÀÛ¼ºµÈ
-	//new JdbcTemplate()°´Ã¼¿¡ ÀúÀå½ÃÅ°±â À§ÇØ
-	//¾Æ·¡ÀÇ setDataSource¸Ş¼Òµå¸¦ ¸¸µé¾î ³õ¾Æ¾ß ÇÕ´Ï´Ù.
+	//action-dataSource.xmlíŒŒì¼ì—ì„œ
+	//<bean>íƒœê·¸ë¡œ MemberDAOImplê°ì²´ë¥¼ ìƒì„±í•˜ê³ 
+	//<bean>íƒœê·¸ë¡œ ìƒì„±í•œ SimpleDriverDataSourceì»¤ë„¥ì…˜í’€ê°ì²´ë¥¼
+	//<property>íƒœê·¸ì— ì˜í•´ MemberDAOImplì— ì‘ì„±ëœ
+	//new JdbcTemplate()ê°ì²´ì— ì €ì¥ì‹œí‚¤ê¸° ìœ„í•´
+	//ì•„ë˜ì˜ setDataSourceë©”ì†Œë“œë¥¼ ë§Œë“¤ì–´ ë†“ì•„ì•¼ í•©ë‹ˆë‹¤.
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
 	
 	
-	//¸ğµç È¸¿ø Á¶È¸ 
+	//ëª¨ë“  íšŒì› ì¡°íšŒ 
 	@Override
 	public List selectAllMembers() throws DataAccessException {
 		
-		//SELECT¹®
+		//SELECTë¬¸
 		String query = "select id,pwd,name,email,joinDate"
 					 + " from t_member order by joinDate desc";
 		
 		
-		//Á¶È¸ÇÑ È¸¿øÁ¤º¸µéÀ» ÀúÀå½ÃÅ³ ¹è¿­À» ÀúÀåÇÒ º¯¼ö
+		//ì¡°íšŒí•œ íšŒì›ì •ë³´ë“¤ì„ ì €ì¥ì‹œí‚¬ ë°°ì—´ì„ ì €ì¥í•  ë³€ìˆ˜
 		List membersList = null;
 		
 		
-		//JdbcTemplateÀÇ query¸Ş¼Òµå¸¦ È£Ãâ½Ã~~
-		//Ã¹¹øÂ° ¸Å°³º¯¼ö·Î Á¶È¸ÇÒ SELECT¹®ÀåÀ» Àü´ŞÇØ 
-		//Á¶È¸ÇÑ ·¹ÄÚµåÀÇ °¹¼ö¸¸Å­ ¹İº¹ÇÏ¿© MemberVO°´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù.
-		//°¢ ·¹ÄÚµåÀÇ °ªÀ» MemberVO°´Ã¼ÀÇ ÀÎ½ºÅÏ½ºº¯¼ö¿¡ ÀúÀåÇÏ°í  
-		//´Ù½Ã~~~~~ ArrayList¹è¿­¿¡ MemberVO°´Ã¼¸¦ ¹İº¹ÇØ¼­ ÀúÀå½ÃÅµ´Ï´Ù.
-		//¸¶Áö¸·À¸·Î query¸Ş¼Òµå´Â ÃÖÁ¾ ArrayList¹è¿­À» ¹İÈ¯ÇØ Áİ´Ï´Ù.
-		membersList = jdbcTemplate.query(query, new  RowMapper() {
+		//JdbcTemplateì˜ queryë©”ì†Œë“œë¥¼ í˜¸ì¶œì‹œ~~
+		//ì²«ë²ˆì§¸ ë§¤ê°œë³€ìˆ˜ë¡œ ì¡°íšŒí•  SELECTë¬¸ì¥ì„ ì „ë‹¬í•´ 
+		//ì¡°íšŒí•œ ë ˆì½”ë“œì˜ ê°¯ìˆ˜ë§Œí¼ ë°˜ë³µí•˜ì—¬ MemberVOê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
+		//ê° ë ˆì½”ë“œì˜ ê°’ì„ MemberVOê°ì²´ì˜ ì¸ìŠ¤í„´ìŠ¤ë³€ìˆ˜ì— ì €ì¥í•˜ê³   
+		//ë‹¤ì‹œ~~~~~ ArrayListë°°ì—´ì— MemberVOê°ì²´ë¥¼ ë°˜ë³µí•´ì„œ ì €ì¥ì‹œí‚µë‹ˆë‹¤.
+		//ë§ˆì§€ë§‰ìœ¼ë¡œ queryë©”ì†Œë“œëŠ” ìµœì¢… ArrayListë°°ì—´ì„ ë°˜í™˜í•´ ì¤ë‹ˆë‹¤.
+		membersList = this.jdbcTemplate.query(query, new RowMapper() {
 
 			@Override
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 				
-				//Á¶È¸µÈ ÇàÀÇ À§Ä¡ ¹øÈ£´Â 0ºÎÅÍ ¸Å°³º¯¼ö int rowNumÀ¸·Î ³Ñ°Ü ¹Ş´Â´Ù.
+				//ì¡°íšŒí•œ í–‰ì˜ ìœ„ì¹˜ ë²ˆí˜¸ëŠ” 0ë¶€í„°  ë§¤ê°œë³€ìˆ˜ë¡œ ë„˜ê²¨ ë°›ëŠ”ë‹¤.
 				System.out.println(rowNum);
 				
-				//MemberVO°´Ã¼ »ı¼º ÇÑÈÄ setter¸¦ ÀÌ¿ëÇÏ¿©
-				//Á¶È¸µÈ ÇÑ ÇàÀÇ Á¤º¸¸¦ ResultSet¿¡¼­ ²¨³»¿Í MemberVO¿¡ º¯¼ö ¿¡ ÀúÀå
-				MemberVO membervo = new MemberVO();
-						 membervo.setId(  rs.getString("ID") );
-						 membervo.setPwd( rs.getString("PWD") );
-						 membervo.setName(  rs.getString("NAME") );
-						 membervo.setEmail( rs.getString("EMAIL"));
-						 membervo.setJoinDate(  rs.getDate("JOINDATE") );
+				MemberVO memberVO = new MemberVO();
+						 memberVO.setId(rs.getString("id"));
+						 memberVO.setPwd(rs.getString("pwd"));
+						 memberVO.setName(rs.getString("name"));
+						 memberVO.setEmail(rs.getString("email"));
+						 memberVO.setJoinDate(rs.getDate("joinDate"));
 				
 				
-				return membervo;
-			}	
+				return memberVO;
+			}
+			
 		});
 				
-				
-						
-		//ArrayList¹è¿­¿¡ Á¶È¸µÈ Á¤º¸µé(MemberVO°´Ã¼µé)ÀÌ ÀúÀåµÇ¾î ÀÖ´Â °æ¿ì¿Í
-		//ÀúÀåµÇ¾î ÀÖÁö ¾ÊÀº °æ¿ì¸¦ ±¸ºĞÇØ¼­ ¸®ÅÏ ½ÃÅ³¼ö ÀÖ´Ù.
-		//MemberServiceImplºÎÀå¿¡°Ô ¸®ÅÏ
+		//ArrayListë°°ì—´ì— ì¡°íšŒëœ ì •ë³´ë“¤(MemberVOê°ì²´ë“¤)ì´ ì €ì¥ë˜ì–´ ìˆëŠ” ê²½ìš°ì™€
+		//ì €ì¥ë˜ì–´ ìˆì§€ ì•Šì€ ê²½ìš°ë¥¼ êµ¬ë¶„í•´ì„œ ë¦¬í„´ ì‹œí‚¬ìˆ˜ ìˆë‹¤.
+		//MemberServiceImplë¶€ì¥ì—ê²Œ ë¦¬í„´
 		return  membersList.isEmpty() ? null : membersList;
 	
-	}//selectAllMembers¸Ş¼Òµå ´İ´Â ±âÈ£ 
+	}//selectAllMembersë©”ì†Œë“œ ë‹«ëŠ” ê¸°í˜¸ 
 
 
-	//È¸¿ø Ãß°¡ ±â´É 
+	//íšŒì› ì¶”ê°€ ê¸°ëŠ¥ 
 	@Override
 	public void InsertMember(MemberVO vo) throws DataAccessException {
 	
@@ -157,7 +154,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 
-	//È¸¿ø »èÁ¦ ±â´É 
+	//íšŒì› ì‚­ì œ ê¸°ëŠ¥ 
 	@Override
 	public void DeleteMember(String id) throws DataAccessException {
 		
@@ -168,7 +165,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 
-	//È¸¿øÁ¤º¸  ¼öÁ¤À» À§ÇØ È¸¿ø ÇÑ¸íÀÇ Á¤º¸ Á¶È¸ ±â´É
+	//íšŒì›ì •ë³´  ìˆ˜ì •ì„ ìœ„í•´ íšŒì› í•œëª…ì˜ ì •ë³´ ì¡°íšŒ ê¸°ëŠ¥
 	@Override
 	public MemberVO oneMember(String id) throws DataAccessException {
 
@@ -194,7 +191,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 
-	//È¸¿øÁ¤º¸ ¼öÁ¤±â´É 
+	//íšŒì›ì •ë³´ ìˆ˜ì •ê¸°ëŠ¥ 
 	@Override
 	public void UpdateMember(MemberVO vo) throws DataAccessException {
 				
@@ -202,16 +199,7 @@ public class MemberDAOImpl implements MemberDAO{
 									vo.getPwd(), vo.getName(), vo.getEmail(), vo.getId() );
 		
 	}
-}//MemberDAOImplÅ¬·¡½º ´İ´Â ±âÈ£ 
-
-
-
-
-
-
-
-
-
+}//MemberDAOImplí´ë˜ìŠ¤ ë‹«ëŠ” ê¸°í˜¸ 
 
 
 
