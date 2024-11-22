@@ -20,7 +20,8 @@
 	 <%-- <form action="${pageContext.request.contextPath }/test/login.do" method="post"> --%> <%-- 기본 로그인 요청--%>
 	 <%-- <form action="${pageContext.request.contextPath }/test/login2.do" method="post"> --%> <%-- @RequestParam 사용 --%>
 	 <%-- <form action="${pageContext.request.contextPath }/test/login3.do" method="post"> --%> <%-- @RequestParam에 Map<> 사용 --%>
-	 <form action="${pageContext.request.contextPath }/test/login4.do" method="post"> <%-- @ModelAttribute이용해서 VO 매개변수 사용 --%>
+	 <%-- <form action="${pageContext.request.contextPath }/test/login4.do" method="post"> --%> <%-- @ModelAttribute이용해서 VO 매개변수 사용 --%>
+	 <%-- <form action="${pageContext.request.contextPath }/test/login5.do" method="get"> --%> <%-- Model클래스 이용해서 값 전달하기 --%>	
 	 	
 	 	<!-- <input type="hidden" name="email" value="hong@test.com"> -->
 	 

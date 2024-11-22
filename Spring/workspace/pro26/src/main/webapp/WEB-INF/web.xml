@@ -10,6 +10,25 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  	<!-- 
+  		여러 설정 파일을 web.xml에 코드를 읽어 들이기 위해 스프링에서 제공하는
+  		ContextLoaderListener 클래스 설정
+  	 -->
+  	 <listener>
+  	 	<listener-class>
+  	 		org.springframework.web.context.ContextLoaderListener
+  	 	</listener-class>
+  	 </listener>
+  	
+  	<context-param>
+  		<param-name>contextConfigLocation</param-name>
+  		
+  		<!-- 애플리케이션 실행 시 ContextLoaderListener로 해당 위치의 설정 파일을 읽어 들인다. -->
+  		<param-value>
+  			/WEB-INF/config/action-mybatis.xml
+  		</param-value>
+  	</context-param>
+  
     <servlet>
 	  	<servlet-name>action</servlet-name>
 	  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>	
