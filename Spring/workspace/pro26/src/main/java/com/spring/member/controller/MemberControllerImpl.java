@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
@@ -82,52 +84,37 @@ public class MemberControllerImpl implements MemberController {
 	
 	// 회원가입 요청 주소 /member/addMember.do를 받았을때....
 	@Override
-	public String addMember(HttpServletRequest request, 
-						  HttpServletResponse response) 
-								  throws Exception {	
-		
-		request.setCharacterEncoding("UTF-8");
-		/*
-		//요청한 값 얻기
-		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		
-		//VO에 저장
-		MemberVO vo = new MemberVO();
-				 vo.setId(id);
-				 vo.setPwd(pwd);
-				 vo.setName(name);
-				 vo.setEmail(email);
-		*/
-		MemberVO membervo = new MemberVO();
+	@RequestMapping(value="/member/addMember.do", method=RequestMethod.POST)
+	public ModelAndView addMember(@ModelAttribute("member") MemberVO member,
+								  HttpServletRequest request, 
+								  HttpServletResponse response) 
+										  throws Exception {	
 		
 		//부장 MemberServiceImpl객체의 메소드 호출시 vo를 전달하여 INSERT명령!
-		memberService.addMembers(membervo);		 
+		memberService.addMembers(member);		 
 			
 		//회원가입 후 모든회원을 조회 하는 재요청 주소 작성 
-		return "redirect:/member/listMembers.do";
+		return new ModelAndView("redirect:/member/listMembers.do");
 
 	}
 	
 	//회원삭제 기능 
+	// <a href="${contextPath}/member/memberDel.do?id=${member.id}">삭제</a>
 	@Override
-	public String memberDel(HttpServletRequest request, 
-							HttpServletResponse response) 
-							throws Exception {
+	@RequestMapping(value="/member/memberDel.do", method=RequestMethod.GET)
+//	@GetMapping("/member/memberDel.do")
+	public ModelAndView memberDel(@RequestParam("id") String id,
+								  HttpServletRequest request, 
+								  HttpServletResponse response) 
+								  throws Exception {
 	
 		request.setCharacterEncoding("UTF-8");
-		
-		//요청한 값 얻기
-		String id = request.getParameter("id");
-		System.out.println("삭제할 회원 아이디 = " + id);
 			 
 		//부장 MemberServiceImpl객체의 메소드 호출시 vo를 전달하여 DELETE명령!
 		memberService.delMembers(id);		 
 			
 		//회원 삭제후 모든회원을 조회 하는 재요청 주소 작성 
-		return "redirect:/member/listMembers.do";
+		return new ModelAndView("redirect:/member/listMembers.do");
 	}
 	
 	//회원정보  수정을 위해 회원 한명의 정보 조회 기능
