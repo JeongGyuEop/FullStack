@@ -2,34 +2,14 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
-
-<configuration>
-
-<!-- VO를 별칭으로 불러다 사용할수 있게 설정 하는 곳 -->
-	<typeAliases>
-		<!-- DAO에서 SQL문으로 값을 전달할떄 또는 
-		     SELECT SQL문을 실행한후 조회한 결과데이터를 DAO에 전달할때 사용할 
-			 MemberVO객체의 별칭 설정 -->
-		<typeAlias type="com.myspring.pro27.member.vo.MemberVO" alias="memberVO" />
-
-	</typeAliases>
-
-
-	
-
-</configuration>  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
+<configuration>
+ 	<!-- MemberVO클래스에 대한 빈 생성을 하고 별칭을 정하자 
+ 		 참고. <typeAlias>태그를 이용하여 매퍼파일 member.xml에서 긴 이름의 클래스를 별칭으로 사용할수 있게 설정
+ 	-->
+ 	<typeAliases>
+ 		<typeAlias type="com.myspring.pro27.member.vo.MemberVO" alias="memberVO"/>
+ 		
+ 	</typeAliases>
+ 	
+</configuration>

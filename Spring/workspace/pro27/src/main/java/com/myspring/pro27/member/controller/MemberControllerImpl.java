@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,35 +13,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.pro27.member.service.MemberService;
 import com.myspring.pro27.member.vo.MemberVO;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 //MVC중에 C  
 //사장 
 
-// id 속성 값이 memberController인
-// <bean id="memberController"
-//		 class="com.spring.member.controller.MemberControllerImpl">을 자동 생성해 준다.
-@Controller("memberController")
-public class MemberControllerImpl implements MemberController {
 
-	// id 속성값이 memberService인
-	// <bean id="memberService"
-	//		class="com.spring.member.service.MemberServiceImpl">을 자동 주입해 준다.
+@RequestMapping("/member")
+//id속성값이 memberController인 
+//<bean id="memberController" 
+//      class="com.spring.member.controller.MemberControllerImpl">을 자동 생성해 줍니다.
+@Controller("memberController")
+public class MemberControllerImpl  implements MemberController {
+
+	//LoggerFactory클래스를 이용해  전달한 클래스의 정보를 지닌 Logger객체를 반환해 옴
+	private static final Logger logger = LoggerFactory.getLogger(MemberControllerImpl.class);
+	
+	
+	
+	//id속성값이 memberService인 
+	//<bean id="memberService" 
+	//    class="com.spring.member.service.MemberServiceImpl">을 자동 주입 해줍니다.
 	@Autowired
 	private MemberService memberService; 
-	
-	// id 속성값이 memberVO인
-	// <bean id="memberVO"
-	//		class="com.spring.member.vo.MemberVO">을 자동 주입해 준다.
+
+	//id속성값이 memberVO인
+	//<bean id="memberVO" 
+	//      class="com.spring.member.vo.MemberVO">을 자동 주입해 줍니다. 
 	@Autowired
 	private MemberVO memberVO;
 	
+	
+	
 	// /member/listMembers.do DB에 저장된 모든 회원 조회 요청 주소를 받았을때 호출 되는 메소드로
-	// 
+	
 	@Override
-	@RequestMapping(value="/member/listMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/listMembers.do", method=RequestMethod.GET)
 	public ModelAndView listMembers(HttpServletRequest request, 
 									HttpServletResponse response) 
 											throws Exception {	
@@ -52,9 +66,16 @@ public class MemberControllerImpl implements MemberController {
 		List membersList = memberService.listMembers();
 	
 	//응답할 뷰 이름 얻기 	
-		//요청 URL주소  /member/listMembers.do 에서  .do를 제외한 /listMembers뷰 이름 얻기
+		//요청 URL주소  /member/listMembers.do 에서  .do를 제외한 /listMembers뷰이름얻기
 		String viewName = getViewName(request); 
-		System.out.println("viewName : " + viewName);
+		
+	//	System.out.println(viewName);
+		//Logger클래스의 info메소드를 이용해 로그 메세지 레벨을 info로 설정 하여 출력 합니다.
+		logger.info("info 레벨 : viewName = " + viewName);
+		//Logger클래스의 debug메소드를 이용해 로그 메세지 레벨을 debug로 설정 하여 출력 합니다.
+		logger.debug("debug 레벨 : viewName = " + viewName);
+		
+		
 		
 	//응답할 값 과 응답할 뷰 이름을  ModelAndView객체 메모리에 바인딩(저장)
 		ModelAndView mav = new ModelAndView();
@@ -65,50 +86,69 @@ public class MemberControllerImpl implements MemberController {
 		
 		return mav;//디스팩처 서블릿으로 ModelAndView객체 반환 
 		
-	}
-	
-	//회원가입 화면 요청 주소 /member/memberForm.do를 받았을때...
+	} 
 	
 	
-	// 여러 요청 주소에 대해 한개의 메소드를 호출할 경우 정규식을 이용해서 매핑하는 역할을 한다.
-	// 요청한 주소가 Form.do로 끝나는 주소로 요청하며 Form 메소드가 호출되게 작성
+//	/memberForm.do
+	//여러 요청주소에 대해 한개의 메소드를 호출할 경우 정규식을 이용해 매핑하는 역할을 합니다. 
+	//요청한 주소가 Form.do로 끝나는 주소로 요청하면 Form메소드가 호출되게 작성 
 	@Override     
-	@RequestMapping(value="/member/*Form.do", method=RequestMethod.GET)
-	public ModelAndView Form(HttpServletRequest request, 
-					   HttpServletResponse response) 
-									throws Exception {	
-		return new ModelAndView(getViewName(request));// "/memberForm";
+	@RequestMapping(value="/*Form.do", method= {RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView Form( @RequestParam(value="result", required = false) String result,
+							  HttpServletRequest request, 
+							  HttpServletResponse response) 
+									  		throws Exception {	
+		
+		String viewName = getViewName(request); //   /memberForm
+												//  /loginForm
+		
+		ModelAndView mav = new ModelAndView();
+					 mav.addObject("result",result);
+					 mav.setViewName(viewName);
+		
+		return mav;
 	}
 	
+//	public String memberForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		
+//		String viewName = getViewName(request); //  /member/memberForm.do  ->  memberForm
+//		
+//		 return viewName;
+//	}
 	
 	// 회원가입 요청 주소 /member/addMember.do를 받았을때....
 	@Override
-	@RequestMapping(value="/member/addMember.do", method=RequestMethod.POST)
+	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
 	public ModelAndView addMember(@ModelAttribute("member") MemberVO member,
 								  HttpServletRequest request, 
 								  HttpServletResponse response) 
 										  throws Exception {	
 		
+		request.setCharacterEncoding("UTF-8");
+			
+						 
 		//부장 MemberServiceImpl객체의 메소드 호출시 vo를 전달하여 INSERT명령!
-		memberService.addMembers(member);		 
+		memberService.addMembers(member);	
+		
+		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
 			
 		//회원가입 후 모든회원을 조회 하는 재요청 주소 작성 
-		return new ModelAndView("redirect:/member/listMembers.do");
-
+		return mav;
+ 
 	}
 	
 	//회원삭제 기능 
-	// <a href="${contextPath}/member/memberDel.do?id=${member.id}">삭제</a>
+	///member/memberDel.do
 	@Override
-	@RequestMapping(value="/member/memberDel.do", method=RequestMethod.GET)
-//	@GetMapping("/member/memberDel.do")
+	@RequestMapping(value="/memberDel.do", method=RequestMethod.GET)
 	public ModelAndView memberDel(@RequestParam("id") String id,
-								  HttpServletRequest request, 
-								  HttpServletResponse response) 
-								  throws Exception {
-	
+									HttpServletRequest request, 
+									HttpServletResponse response) 
+									throws Exception {
+			
 		request.setCharacterEncoding("UTF-8");
-			 
+
+	
 		//부장 MemberServiceImpl객체의 메소드 호출시 vo를 전달하여 DELETE명령!
 		memberService.delMembers(id);		 
 			
@@ -119,6 +159,7 @@ public class MemberControllerImpl implements MemberController {
 	//회원정보  수정을 위해 회원 한명의 정보 조회 기능
 	// 수정링크를 누르면 요청 주소   ->  /member/memberDetail.do
 	@Override
+	@RequestMapping(value="/memberDetail.do", method=RequestMethod.GET)
 	public ModelAndView memberDetail(HttpServletRequest request, 
 									 HttpServletResponse response) 
 											 throws Exception {
@@ -142,42 +183,72 @@ public class MemberControllerImpl implements MemberController {
 	
 	//수정 요청 /member/UpdateMember.do 주소를 받았을때
 	@Override
-	public String UpdateMember(HttpServletRequest request, 
-							   HttpServletResponse response) throws Exception {
+	@RequestMapping(value="/UpdateMember.do", method=RequestMethod.POST)
+	public ModelAndView UpdateMember(@ModelAttribute("member") MemberVO member,
+									 HttpServletRequest request, 
+									 HttpServletResponse response) throws Exception {
 
 		
 		request.setCharacterEncoding("UTF-8");
-		/*
-		//요청한 수정할 값 얻기
-		//요청한 값 얻기
-		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		
-		System.out.println("수정할 회원 아이디 = " + id);
-		
-		//VO에 저장
-		MemberVO vo = new MemberVO();
-				 vo.setId(id);
-				 vo.setPwd(pwd);
-				 vo.setName(name);
-				 vo.setEmail(email);
-		*/
-		MemberVO vo = new MemberVO();
 		
 		//부장 MemberServiceImpl객체의 메소드 호출시 수정할 id를 전달하여 UPDATE명령!
-		memberService.UpdateMember(vo);		 
+		memberService.UpdateMember(member);		 
 			
 		//회원 수정후 모든회원을 조회 하는 재요청 주소 작성 
-		return "redirect:/member/listMembers.do";
+		return  new ModelAndView("redirect:/member/listMembers.do");
 		
 	
 	}
 	
+	@RequestMapping(value="/login.do", method = RequestMethod.POST)
+	public ModelAndView login(@ModelAttribute("member")  MemberVO member,
+							  RedirectAttributes rAttr,
+							  HttpServletRequest  request,
+							  HttpServletResponse response
+							 ) throws Exception {
+							 //RedirectAttributes클래스를 이용해 로그인 실패시 
+							 // 다시 로그인창으로 리다이렉트 재요청하여 실패 메세지를 전달 합니다.
+							
+		
+		ModelAndView mav = new ModelAndView();
+		
+		//서비스 부장의 login메소드를 호출하면서 로그인처리를 위해 입력한 아이디와 비밀번호를 전달
+		memberVO = memberService.login(member);
+		
+		if(memberVO != null) {//로그인 요청시 입력한 아이디와 비밀번호가 DB에 저장되어 있으면?
+							  //즉! MemberVO객체를 반환받으면?
+			HttpSession session = request.getSession();//세션을 만들어서 
+			session.setAttribute("member", memberVO); //세션에 로그인한 사람의 회원정보 저장
+			session.setAttribute("isLogOn", true); //세션에 로그인된 상태의 값을 true로 저장 
+			mav.setViewName("redirect:/member/listMembers.do");
+			
+		}else {//로그인 요청시 입력한 아이디와 비밀번호가 DB에 저장되어 있지 않으면?
+			   //즉! MemberVO객체를 반환 받지 못하면?
+			
+			//로그인 실패시 실패 메세지를 로그인창으로 전달합니다.
+			rAttr.addAttribute("result", "loginFailed");
+			mav.setViewName("redirect:/member/loginForm.do");	
+		}
+		
+		return mav;
+	}
 	
 	
+	@RequestMapping(value="/logout.do", method = RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest  request,
+							   HttpServletResponse response
+							   ) throws Exception {
+		
+		HttpSession session = request.getSession();//기존 세션을 얻어서 
+		//세션에 저장되어 있던 MemberVO객체와  isLogOn true 를 삭제 
+		session.removeAttribute("member");
+		session.removeAttribute("isLogOn");
+		
+		ModelAndView mav = new ModelAndView();
+					 mav.setViewName("redirect:/main.do");
 	
+		return mav;
+	}
 	
 	//request 객체에서 URL 요청명을 가져와 .do를 제외한 요청명을 구하는 메소드 
 	private  String getViewName(HttpServletRequest request) throws Exception {
@@ -191,7 +262,7 @@ public class MemberControllerImpl implements MemberController {
 	         uri = request.getRequestURI();
 	       //http://localhost:8090/pro21/test/memberForm.do
 	         
-	         System.out.println(uri);
+//	         System.out.println(uri);
 	      }
 	      int begin = 0;
 	      if(!((contextPath==null)||("".equals(contextPath)))){
@@ -210,12 +281,12 @@ public class MemberControllerImpl implements MemberController {
 	      if(fileName.indexOf(".")!=-1){
 	         fileName=fileName.substring(0,fileName.lastIndexOf("."));
 	      }
-	      
-	      // /member/listMembers.do로 요청할 경우 member.listMember 뷰 경로 구하기
 	      if(fileName.lastIndexOf("/")!=-1){
-	         fileName=fileName.substring(fileName.lastIndexOf("/",1),fileName.length());
+	         fileName=fileName.substring(fileName.lastIndexOf("/"),fileName.length());
+	         fileName=fileName.substring(fileName.lastIndexOf("/"),fileName.length());
+		      
 	      }
-	      return fileName; // .do를 제외한 member/listMembers를 리턴
+	      return fileName; // .do를 제외한 요청주소를 리턴
 	   }
 
 

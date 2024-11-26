@@ -11,17 +11,26 @@ import com.myspring.pro27.member.vo.MemberVO;
 
 //부장 
 
-//id 속성값이 memberService인
-// <bean id="memberService"
-//		class="com.spring.member.service.MemberServiceImpl">을 자동 생성해 준다.
+//id속성값이 memberService인 
+//<bean id="memberService" 
+//    class="com.spring.member.service.MemberServiceImpl">을 자동 생성 해 줍니다. 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
 
-	// id 속성값이 memberDAO인
-	// <bean id="memberDAO"
-	//		class="com.spring.member.dao.MemberDAOImpl">을 자동 주입해 준다.
+	//id속성값이 memberDAO인
+	//<bean id="memberDAO"
+	//     class="com.spring.member.dao.MemberDAOImpl">을 자동 주입합니다. 
 	@Autowired
 	private MemberDAO memberDAO;// = new MemberDAOImpl();
+	
+	
+	//MemberDAO의 loginById()메소드를 호출하면서 전달된 ID와 비밀번호를 다시 전달합니다. 
+	@Override
+	public MemberVO login(MemberVO member) throws DataAccessException {
+	
+		return memberDAO.loginById(member);
+	}
+	
 	
 	
 	//모든 회원 정보 조회 기능 
@@ -69,13 +78,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 }
-
-
-
-
-
-
-
 
 
 

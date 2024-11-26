@@ -23,6 +23,9 @@ public interface MemberService {
 	
 	//회원 삭제 기능 
 	public void delMembers(String id) throws DataAccessException;
+
+	//로그인 기능 
+	public MemberVO login(MemberVO member) throws DataAccessException;
 	
 	
 }

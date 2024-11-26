@@ -16,27 +16,39 @@ import org.springframework.stereotype.Repository;
 import com.myspring.pro27.member.vo.MemberVO;
 
 
-
-/* 
-<bean id="memberDAO"   class="com.spring.member.dao.MemberDAOImpl"></bean>
-*/
-@Repository("memberDAO")
 //사원  DB작업을 직접 하는 클래스 
+
+@Repository("memberDAO")
 public class MemberDAOImpl implements MemberDAO{
 
-	// action-mybatis.xml 파일에 작성해 놓은
-	// <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"></bean>의
-	// id를 이용하여 아래의 sqlSession 변수에 @Autowired 로 자동 주입한다.
+
+	//SqlSessionTemplate을 주입받기 위해 참조변수 선언
+	
+	//action-mybatis.xml파일에 작성해 놓은
+	// <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"></bean>
+	// 의 id를 이용하여 아래의 sqlSession변수에 @Autowired로 자동 주입 합니다.
 	@Autowired
 	private SqlSession sqlSession;
 	
-		
+	@Override
+	public MemberVO loginById(MemberVO member) throws DataAccessException {
+	
+		//메소드 호출시 전달된 MemberVO를 SQL문으로 전달해 ID와 비밀번호에 대한 회원정보를 조회해
+		//MemberVO객체로 반환 받습니다. 
+		return sqlSession.selectOne("mapper.member.loginById", member);
+	}
+	
+	
+	
 	//모든 회원 조회 
 	@Override
 	public List selectAllMembers() throws DataAccessException {
+				
+		List<MemberVO> membersList = null;
 		
-		//SqlSesssionTemplate내부에 주입된 SqlSessionFactoryBean의 selectList 메소드 호출!
-		return sqlSession.selectList("mapper.member.selectAllMemberList");
+		membersList = sqlSession.selectList("mapper.member.selectAllMemberList");
+		
+		return membersList;
 	
 	}//selectAllMembers메소드 닫는 기호 
 
@@ -45,20 +57,17 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public void InsertMember(MemberVO memberVO) throws DataAccessException {
 			
-		//SqlSessionFactoryBean의 insert메소드 호출!
-		sqlSession.insert("mapper.member.insertMember",  memberVO );
+		sqlSession.insert("mapper.member.insertMember", memberVO); 
 		
 	}
 
 
 	//회원 삭제 기능 
 	@Override
-	public int DeleteMember(String id) throws DataAccessException {
+	public void DeleteMember(String id) throws DataAccessException {
 		
-		//SqlSessionFactoryBean의 delete메소드 호출!
-		int result = sqlSession.delete("mapper.member.deleteMember", id);
-	 
-		return result;                  
+		sqlSession.delete("mapper.member.deleteMember", id);
+		
 	}
 
 
@@ -66,30 +75,20 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public MemberVO oneMember(String id) throws DataAccessException {
 
-		return  (MemberVO)sqlSession.selectOne("mapper.member.selectMemberById", id);
+		  MemberVO vo = (MemberVO)sqlSession.selectOne("mapper.member.selectMemberById", id);
 		
+		  return vo;
 	}
 
 
 	//회원정보 수정기능 
 	@Override
 	public void UpdateMember(MemberVO memberVO) throws DataAccessException {
-	
+				
 		sqlSession.update("mapper.member.updateMember", memberVO);
-		
 		
 	}
 }//MemberDAOImpl클래스 닫는 기호 
-
-
-
-
-
-
-
-
-
-
 
 
 

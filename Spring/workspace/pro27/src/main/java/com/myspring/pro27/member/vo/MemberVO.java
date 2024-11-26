@@ -4,22 +4,19 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-//VO???
-//Value Object?¼?Š” ?œ»?œ¼ë¡?
-//?—­?• 1. ?°?´?„°ë² ì´?Š¤?— ???¥?œ ?šŒ?› ?•œ?‚¬?Œ?˜ ? •ë³´ë?? ì¡°íšŒ?•œ ?›„
-//     VO?´?˜?Š¤?˜ ë³??ˆ˜?— ???¥?•  ?—­?• 
-//?—­?• 2. ?ƒˆë¡œìš´ ?šŒ?›? •ë³? ?•˜?‚˜ë¥? ?°?´?„°ë² ì´?Š¤?— insert?•˜ê¸°ì „?—
-//     ?„?‹œë¡? VO?´?˜?Š¤?˜ ê°ë??ˆ˜?— ???¥?•  ?—­?• 
+//VOë€?
+//Value Objectë¼ëŠ” ëœ»ìœ¼ë¡œ
+//ì—­í• 1. ë°ì´í„°ë² ì´ìŠ¤ì— ì €ì¥ëœ íšŒì› í•œì‚¬ëŒì˜ ì •ë³´ë¥¼ ì¡°íšŒí•œ í›„
+//     VOí´ë˜ìŠ¤ì˜ ë³€ìˆ˜ì— ì €ì¥í•  ì—­í• 
+//ì—­í• 2. ìƒˆë¡œìš´ íšŒì›ì •ë³´ í•˜ë‚˜ë¥¼ ë°ì´í„°ë² ì´ìŠ¤ì— insertí•˜ê¸°ì „ì—
+//     ì„ì‹œë¡œ VOí´ë˜ìŠ¤ì˜ ê°ë³€ìˆ˜ì— ì €ì¥í•  ì—­í• 
 
-/*
- 	<bean id="memberVO" class="com.spring.memebr.vo.MemberVO" /> ê°ì²´(ë¹?) ??™ ?ƒ?„±?•´ ì¤??‹¤.
- */
 @Component("memberVO")
 public class MemberVO {
 
-	//ë³??ˆ˜
-	//t_member?…Œ?´ë¸”ì˜ ì»¬ëŸ¼ ?´ë¦„ê³¼ ?™?¼?•œ ?ë£Œí˜•ê³? ?´ë¦„ìœ¼ë¡? 
-	//ë³??ˆ˜?“¤?„ ?„ ?–¸?•©?‹ˆ?‹¤.
+	//ë³€ìˆ˜
+	//t_memberí…Œì´ë¸”ì˜ ì»¬ëŸ¼ ì´ë¦„ê³¼ ë™ì¼í•œ ìë£Œí˜•ê³¼ ì´ë¦„ìœ¼ë¡œ 
+	//ë³€ìˆ˜ë“¤ì„ ì„ ì–¸í•©ë‹ˆë‹¤.
 	private String id;
 	private String pwd;
 	private String name;
@@ -27,7 +24,7 @@ public class MemberVO {
 	private Date  joinDate;
 	
 	
-	//setter, getter ë©”ì†Œ?“œ
+	//setter, getter ë©”ì†Œë“œ
 	public String getId() {
 		return id;
 	}

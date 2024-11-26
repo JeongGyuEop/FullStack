@@ -15,14 +15,25 @@ public interface MemberDAO {
 	public void InsertMember(MemberVO vo) throws DataAccessException;
 
 	//회원 삭제 기능 
-	public int DeleteMember(String id) throws DataAccessException;
+	public void DeleteMember(String id) throws DataAccessException;
 
 	//회원정보  수정을 위해 회원 한명의 정보 조회 기능
 	public MemberVO oneMember(String id) throws DataAccessException;
 
 	//회원정보 수정 기능
 	public void UpdateMember(MemberVO vo) throws DataAccessException;
+
+	//로그인 기능
+	public MemberVO loginById(MemberVO member) throws DataAccessException;
 	
+	//
 	
+	//
+	
+	//
 	
 }
+
+
+
+

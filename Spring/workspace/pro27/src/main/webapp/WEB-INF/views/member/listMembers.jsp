@@ -26,7 +26,7 @@
 			<td><b>수정</b></td>	
 			<td><b>삭제</b></td>		
 		</tr>
-<c:forEach var="member"  items="${membersList}">
+<c:forEach var="member"  items="${membersList}"> 
 		<tr align="center">
 			<td>${member.id}</td>
 			<td>${member.pwd}</td>

@@ -12,17 +12,49 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	
+	<!-- jsp페이지에서 사용될 자바스크립트 파일이나 이미지 파일 경로를 지정합니다.  -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory 
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="prefix" value="/WEB-INF/views/member/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	-->
+	
+	
+	<!-- 스프링의 TilesConfigurer클래스를 이용해 객체(빈)를 생성합니다. -->
+	<!-- tiles패키지의 모든 설정 xml파일들을 읽어들이기 위해 경로 저장  -->
+	
+	
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>classpath:tiles/*.xml</beans:value> 
+			</beans:list>
+		</beans:property>
+		<beans:property name="preparerFactoryClass"
+			           value="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory" />
+	
+	</beans:bean>
+	
+	
+	
+	<!-- 타일즈 뷰리졸버를 사용해 화면에 표시 하기 위해 객체(bean) 생성 -->	
+	<beans:bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+	</beans:bean>
+	
 	
 	<context:component-scan base-package="com.myspring.pro27" />
 	
 	
 	
 </beans:beans>
+
+
+
+
+
