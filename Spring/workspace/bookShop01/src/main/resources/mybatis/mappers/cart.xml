@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.cart">
+	<!-- 리절트 맵 정의 -->
+	
+	
+	<!-- 회원 아이디로 조회한 장바구니 테이블의 상품정보를 한행씩 저장할 객체 설정 -->
+	<resultMap id="cartResult" type="CartVO">
+		<result property="cart_id" column="cart_id" />
+		<result property="goods_id" column="goods_id" />
+		<result property="member_id" column="member_id" />
+		<result property="cart_goods_qty" column="cart_goods_qty" />
+		<result property="creDate" column="creDate" />
+	</resultMap>
+	
+	<!-- 바로위의 resultMap태그에 설정한 장바구니 테이블에서 조회한 상품번호를 이용해  
+	        도서상품 테이블과 도서이미지정보 테이블의 정보를 조회한 한행을 저장할 객체 설정 -->
+	<resultMap id="goodsResult" type="GoodsVO">
+		<result property="goods_id" column="goods_id" />
+		<result property="goods_title" column="goods_title" />
+		<result property="goods_writer" column="goods_writer" />
+		<result property="goods_price" column="goods_price" />
+		<result property="goods_publisher" column="goods_publisher" />
+
+		<result property="goods_status" column="goods_status" />
+		<result property="goods_sales_price" column="goods_sales_price" />
+		<result property="goods_published_date" column="goods_published_date" />
+		<result property="goods_total_page" column="goods_total_page" />
+		<result property="goods_isbn" column="goods_isbn" />
+		<result property="goods_delivery_price" column="goods_delivery_price" />
+		<result property="goods_delivery_date" column="goods_delivery_date" />
+
+		<result property="goods_fileName" column="fileName" />
+		<result property="goods_sort" column="goods_sort" />
+		<result property="goods_writer_intro" column="goods_writer_intro" />
+		<result property="goods_contents_order" column="goods_contents_order" />
+		<result property="goods_intro" column="goods_intro" />
+	</resultMap>
+
+
+
+<!-- 
+
+장바구니 리스트에서 수량을 변경하니 다른 항목이 변하므로
+장바구니 리스트가 상품정보는  goodsList로 받아오고 장바구니에 들어간 항목 수는 cartList에서 받아옵니다. 
+이게 SQL에서 SELECT할때 순서가 안맞다 보니 다르게 장바구니 목록 화면에서 출력되어 나오더라구여~~
+순서를 맞추기 위해 cart_id 순으로 정렬해서 보여줘야 할것 같아서  
+바로 아래의 <select id="selectCartList"...></select> 내부에  order by cart_id desc 구문을 추가하였고 
+그 아래의  <select id="selectGoodsList"...></select> 내부의 SELECT문에 T_SHOPPING_CART(장바구니 테이블)을 하나더 JOIN하여 
+cart_id열의 값 순으로 정렬해서 보여주면 원하는 장바주니  수가 제대로 보여 집니다.
+혹시 다르게 하신분이 계시면 공유 합시다~ 
+
+-->
+    <!-- 로그인한 회원 아이디(주문자)로 장바구니 테이블(t_shopping_cart) 에 담았던 구매 할 도서 상품 정보를 장바구니 번호를 기준으로 내림 차순 정렬  하여 조회 합니다. 
+                장바구니 목록을 myCartList.jsp페이지에 보여주기 위함-->
+	<select id="selectCartList"  parameterType="cartVO"  resultMap="cartResult"   >
+	    <![CDATA[
+		select cart_id, goods_id, member_id, cart_goods_qty, creDate 
+		from t_shopping_cart 
+		where member_id=#{member_id} 
+		order by cart_id desc
+		]]>
+	</select>
+
+	<!-- 장바구니 테이블에 담긴 상품번호를 이용해 도서상품 테이블과 도서이미지정보가저장되는 테이블 ! 2개의 테이블을 JOIN해서 
+		 SELECT 조회 해온 결과 데이터들(GoodsVO객체들)을 List배열에 담아 CarDAOImpl클래스의 selectGoodsList메소드로 반환함. 
+	 
+	 
+	      select g.*,d.fileName from t_shopping_goods g, t_goods_detail_image d
+          where g.goods_id=d.goods_id
+          and d.filetype='main_image'
+           and g.goods_id in('342','339','395','397')
+           order by g.goods_creDate desc
+	 -->
+<!-- 	<select id="selectGoodsList" resultMap="goodsResult" parameterType="java.util.Map">
+      <![CDATA[
+          select g.*,d.fileName from t_shopping_goods g, t_goods_detail_image d
+          where g.goods_id=d.goods_id
+          and d.filetype='main_image'
+           and g.goods_id in
+      ]]>
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item.goods_id}
+		</foreach>
+		order by g.goods_creDate desc
+	</select>
+ -->
+
+
+<!-- 
+
+
+SELECT G.*, I.FILENAME, C.CART_ID
+FROM T_SHOPPING_GOODS G
+JOIN T_GOODS_DETAIL_IMAGE I ON G.GOODS_ID = I.GOODS_ID
+JOIN T_SHOPPING_CART C ON I.GOODS_ID = C.GOODS_ID
+WHERE I.FILETYPE = 'main_image'
+AND G.GOODS_ID IN('342','339','395','397')
+ORDER BY C.CART_ID DESC; 
+
+설명:
+
+위 SQL 쿼리는 3개의  "T_SHOPPING_GOODS" 도서상품 테이블과 
+                "T_GOODS_DETAIL_IMAGE" 도서이미지정보 테이블, 
+                  그리고 "T_SHOPPING_CART" 장바구니 테이블을 JOIN하여 
+           
+도서이미지정보 테이블에서 FILETYPE(파일 유형)이 'main_image'이고, "
+도서상품 테이블에서 GOODS_ID(상품번호)가 '342', '339', '395', '397'인 상품들을 조회 하되, 
+장바구니 테이블에 담긴  CART_ID(장바구니 번호)를  기준으로 내림차순으로 정렬 해서 최종 조회하는 쿼리입니다.     
+ -->
+<select id="selectGoodsList" resultMap="goodsResult" parameterType="java.util.Map">
+  <![CDATA[
+    SELECT G.*, I.FILENAME, C.CART_ID
+    FROM T_SHOPPING_GOODS G
+    JOIN T_GOODS_DETAIL_IMAGE I ON G.GOODS_ID = I.GOODS_ID
+    JOIN T_SHOPPING_CART C ON I.GOODS_ID = C.GOODS_ID
+    WHERE I.FILETYPE = 'main_image'
+    AND G.GOODS_ID IN
+  ]]>
+  <foreach item="item" collection="list" open="(" separator="," close=")">
+    #{item.goods_id}
+  </foreach>
+  <![CDATA[
+    ORDER BY C.CART_ID DESC
+  ]]>
+</select>
+
+
+
+	<select id="selectCountInCart" resultType="String" parameterType="cartVO">
+	    <![CDATA[
+		    select decode(count(*), 0, 'false', 'true') from t_shopping_cart
+			where goods_id=#{goods_id}
+			  and member_id=#{member_id} 
+
+    	]]>
+	</select>
+
+	<insert id="insertGoodsInCart" parameterType="cartVO">
+	    <![CDATA[
+		    	insert into t_shopping_cart(cart_id,
+		    	                           goods_id,
+		    	                           member_id)
+		        				 values(#{cart_id},
+    							        #{goods_id},
+    							        #{member_id})
+    	]]>
+	</insert>
+
+	<update id="updateCartGoodsQty"    parameterType="cartVO"     >
+	    <![CDATA[
+			update t_shopping_cart
+			       set cart_goods_qty=#{cart_goods_qty}
+		 	       where member_id=#{member_id}
+			        and goods_id=#{goods_id}
+    	]]>
+	</update>
+	<delete id="deleteCartGoods" parameterType="int">
+	    <![CDATA[
+	      delete from t_shopping_cart
+	      where cart_id=#{cart_id}
+    	]]>
+	</delete>
+	
+	<select id="selectMaxCartId" resultType="int">
+	    <![CDATA[
+			select nvl(max(cart_id), 0) + 1 from t_shopping_cart 
+    	]]>
+	</select>
+
+</mapper>

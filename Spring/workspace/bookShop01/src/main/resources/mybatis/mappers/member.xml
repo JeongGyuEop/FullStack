@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="memberResult" type="MemberVO">
+		<result property="member_id" column="member_id" />
+		<result property="member_pw" column="member_pw" />
+		<result property="member_name" column="member_name" />
+		<result property="member_gender" column="member_gender" />
+		
+		<result property="member_birth_y" column="member_birth_y" />
+		<result property="member_birth_m" column="member_birth_m" />
+		<result property="member_birth_d" column="member_birth_d" />
+		
+		<result property="member_birth_gn" column="member_birth_gn" />
+		<result property="tel1" column="tel1" />
+		<result property="tel2" column="tel2" />
+		<result property="tel3" column="tel3" />
+		
+		<result property="hp1" column="hp1" />
+		<result property="hp2" column="hp2" />
+		<result property="hp3" column="hp3" />
+		<result property="smssts_yn" column="smssts_yn" />
+		<result property="email1" column="email1" />
+		<result property="email2" column="email2" />
+		<result property="emailsts_yn" column="emailsts_yn" />
+		
+		<result property="zipcode" column="zipcode" />
+		<result property="roadAddress" column="roadAddress" />
+		<result property="jibunAddress" column="jibunAddress" />
+		<result property="namujiAddress" column="namujiAddress" />
+		<result property="joinDate" column="joinDate" />
+	</resultMap>	
+
+    <!-- 로그인시 입력한 아이디 , 비밀번호 값에 해당하는 정보를 테이블에서 조회!!
+    	 조회가 되면 입력한 아이디 또는 비밀번호가  DB의 테이블에 저장되어 있다는 뜻이므로 
+      -->
+	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
+	    <![CDATA[
+			select * from t_shopping_member 
+			 where member_id=#{member_id}
+			 and member_pw=#{member_pw}			
+			 
+		]]>
+	</select>
+	
+	<!-- 
+		회원가입을 위해 입력한 아이디로 조회한 회원이 1명이라면? true  0이라면? false의 결과를 조회 후 반환 
+	 -->
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+	   select decode(count(*),1, 'true', 0, 'false')
+	   from t_shopping_member
+	   where member_id = #{id}
+	</select>
+	
+  <insert id="insertNewMember"  parameterType="memberVO">
+  <![CDATA[
+    	insert into t_shopping_member(member_id,
+				 					 member_pw,
+                                     member_name,
+                                     member_gender,
+                                     member_birth_y,
+                                     member_birth_m,
+                                     member_birth_d,
+                                     member_birth_gn,
+                                     tel1,
+                                     tel2,
+                                     tel3,
+                                     hp1,
+                                     hp2,
+                                     hp3,
+                                     smssts_yn,
+                                     email1,
+                                     email2,
+                                     emailsts_yn,
+                                     zipcode,
+                                     roadAddress,
+                                     jibunAddress,
+                                     namujiAddress)
+							 values(#{member_id},
+									#{member_pw},
+									#{member_name},
+                                 	#{member_gender},
+                                   	#{member_birth_y},
+                                   	#{member_birth_m},
+                                    #{member_birth_d},
+                                    #{member_birth_gn},
+                                    #{tel1},
+                                    #{tel2},
+                                    #{tel3},
+                                    #{hp1},
+                                    #{hp2},
+                                    #{hp3},
+                                    #{smssts_yn},
+                                    #{email1},
+                                    #{email2},
+                                    #{emailsts_yn},
+                                    #{zipcode},
+                                    #{roadAddress},
+                                    #{jibunAddress},
+                                    #{namujiAddress})
+                                  
+                                      
+   ]]>      
+  </insert>
+</mapper>

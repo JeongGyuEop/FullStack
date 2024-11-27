@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+goods.xml파일 설명
+
+MyBatis 프레임워크를 사용하여 SQL 쿼리와 객체 매핑을 구현하는 매퍼 파일입니다. 
+이 매퍼 파일은 "mapper.goods" 네임스페이스를 가지고 있습니다.
+
+이 매퍼 파일에는 총 5개의 SQL 쿼리가 포함되어 있습니다. 
+각각의 쿼리는 select 문으로 시작하며, select 문의 결과를 객체로 매핑하기 위해 resultMap을 사용합니다.
+
+selectGoodsList: 
+	상품 리스트를 가져오는 쿼리입니다. 
+	goodsStatus를 매개변수로 받아서 해당 상태의 상품을 최근 등록 순으로 15개까지 가져옵니다. 
+	상품 정보와 메인 이미지 파일명이 포함되어 있습니다.
+
+selectGoodsDetail: 
+	상품 상세 정보를 가져오는 쿼리입니다. 
+	goods_id를 매개변수로 받아서 해당 상품의 상세 정보와 메인 이미지 파일명을 가져옵니다.
+	
+selectGoodsDetailImage: 
+	상품 상세 페이지에 표시할 상품 이미지들을 가져오는 쿼리입니다. 
+	goods_id를 매개변수로 받아서 해당 상품의 이미지 정보를 가져옵니다.
+	
+selectGoodsBySearchWord: 
+	검색어에 따라 상품 리스트를 가져오는 쿼리입니다. 
+	searchWord를 매개변수로 받아서 해당 검색어를 포함하는 상품 정보와 메인 이미지 파일명을 최근 등록 순으로 가져옵니다.
+
+selectKeywordSearch: 
+	검색어 자동 완성 기능에 사용되는 쿼리입니다. 
+	keyword를 매개변수로 받아서 해당 검색어를 포함하는 상품 제목을 최근 등록 순으로 가져옵니다.
+	각각의 SQL 쿼리는 CDATA 섹션으로 묶여 있으며, 실제 SQL 문은 그 안에 포함되어 있습니다. 
+	resultMap 태그는 각각의 쿼리에서 쿼리 결과를 매핑할 객체의 타입을 지정하고, 객체의 속성과 데이터베이스 열을 매핑합니다. 
+	매핑할 객체의 타입은 VO(Value Object)로, goodsVO와 ImageFileVO가 사용됩니다.
+
+ -->
+
+
+<mapper namespace="mapper.goods">
+	
+	
+<!-- 
+이 코드는 MyBatis Mapper 파일에서 goodsResult라는 이름의 resultMap을 정의하고 있습니다. 
+이 resultMap은 goodsVO 클래스와 매핑되며, SQL 쿼리 실행 결과를 해당 클래스의 객체로 매핑할 때 사용됩니다.
+<result> 태그는 resultMap 안에서 각각의 필드를 정의합니다. 
+property 속성은 매핑할 클래스의 필드명을 지정하고, 
+column 속성은 SQL 쿼리 실행 결과에서 가져올 컬럼명을 지정합니다.
+
+예를 들어, goods_id 컬럼의 값을 goodsVO 클래스의 goods_id 필드에 매핑하고자 할 때, 
+<result property="goods_id" column="goods_id" />와 같이 작성하면 됩니다. 
+이와 같은 방식으로 다른 필드들도 매핑합니다.
+
+goods_id, goods_title, goods_writer 등은 상품 정보를 나타내는 필드들이며, 
+goods_status, goods_sales_price, goods_delivery_price 등은 상품의 상태, 판매가격, 배송비 등의 필드들입니다. 
+goods_fileName, goods_sort, goods_writer_intro 등은 상품의 이미지 파일명, 카테고리, 작가 소개 등을 나타내는 필드들입니다. 
+이러한 필드들은 SQL 쿼리 실행 결과에서 각각의 컬럼으로부터 값을 가져와서, goodsVO 객체의 필드에 매핑됩니다.
+ -->	
+	<resultMap id="goodsResult" type="goodsVO">
+		<result property="goods_id" column="goods_id" />
+		<result property="goods_title" column="goods_title" />
+		<result property="goods_writer" column="goods_writer" />
+		<result property="goods_price" column="goods_price" />
+		<result property="goods_publisher" column="goods_publisher" />
+		
+		<result property="goods_status" column="goods_status" />
+		<result property="goods_sales_price" column="goods_sales_price" />
+		<result property="goods_published_date" column="goods_published_date" />
+		<result property="goods_total_page" column="goods_total_page" />
+		<result property="goods_isbn" column="goods_isbn" />
+		<result property="goods_delivery_price" column="goods_delivery_price" />
+		<result property="goods_delivery_date" column="goods_delivery_date" />
+		
+		<result property="goods_fileName" column="fileName" />
+		<result property="goods_sort" column="goods_sort" />
+		<result property="goods_writer_intro" column="goods_writer_intro" />
+		<result property="goods_contents_order" column="goods_contents_order" />
+		<result property="goods_intro" column="goods_intro" />
+	</resultMap>	
+
+
+
+<!-- 
+이 코드는 MyBatis 프레임워크를 사용하여 
+데이터베이스에서 조회한 이미지 파일 정보를 매핑하기 위한 resultMap을 정의하는 것입니다.
+
+id: 이 resultMap의 고유한 식별자입니다.
+type: resultMap에서 매핑할 객체의 클래스 타입입니다.
+<result>: 조회 결과를 매핑할 객체의 속성(property)과 데이터베이스에서 조회한 컬럼(column)을 매핑합니다.
+property: 객체의 속성 이름입니다.
+column: 데이터베이스에서 조회한 컬럼 이름입니다.
+따라서 이 코드에서는 ImageFileVO 클래스의 객체에 대해 goods_id, fileName, reg_id, image_id, fileType 속성이 매핑됩니다. 
+즉, 조회한 이미지 파일 정보에서 해당 속성들의 값을 가져와서 ImageFileVO 객체에 설정합니다.
+ -->
+	<resultMap id="imageResult" type="ImageFileVO">
+	   <result property="goods_id" column="goods_id" />
+	   <result property="fileName" column="fileName" />
+	   <result property="reg_id" column="reg_id" />
+	   <result property="image_id" column="image_id" />
+	   <result property="fileType" column="fileType" />
+	</resultMap>
+	
+
+	
+   <!-- 
+   
+   요약 : 	
+       메인 홈페이지 화면에 보여줄 상품 리스트를 조회 해서 가져오는 SELECT문 입니다. 
+	goodsStatus열에 대한 값 'bestseller' 또는  'newbook' 또는 'steadyseller'를  매개변수로 받아서 
+	해당 상태의 상품을 최근 등록 순으로 15개까지 조회 해서 가져옵니다. 
+	상품 정보와 메인 이미지 파일명이 포함되어 있습니다.
+	
+  자세히:	
+   	t_shopping_goods(도서상품 테이블)및 
+   	t_goods_detail_image (도서상품 이미지 정보 테이블)에서 필요한 데이터를 JOIN 후 조회해서 가져옵니다. 
+   	
+   	t_goods_detail_image (도서상품 이미지 정보 테이블)의 
+   	filetype열(이미지파일 종류 열)에 대한 값이 'main_image'인 도서 상품 이미지 파일 이름을 조회 해서 가져옵니다. 
+   	이는 상품 상세 페이지에서 보여줄 상품의 대표 이미지 파일만 조회 해서 메인 화면에 보여 주기 위함입니다.
+   	
+   	t_shopping_goods(도서상품 테이블)의 
+   	goodsStatus열(상품분류 열) 값이 'bestseller' 또는  'newbook' 또는 'steadyseller'인   상품만 조회 하게 조건을 설정 하고, 
+   	
+   	t_shopping_goods(도서상품 테이블)의
+   	goods_creDate(도서 상품 입고일 열)열의 값을 내림차순으로 정렬되게 조회 하되~~ 
+   	마지막으로, rowNum 값이 16보다 작은 결과를 반환합니다.
+   	이는 해당 상태의 상품을 최근 등록 순으로 정렬 후  15개까지 조회해서 가져옵니다. 
+   
+    -->
+      <select id="selectGoodsList" parameterType="String" resultMap="goodsResult"   >
+        <![CDATA[
+         select t.*
+          from(
+			select g.*,d.fileName from t_shopping_goods g, t_goods_detail_image d
+        	where g.goods_id=d.goods_id 
+        	and d.filetype='main_image'
+        	and goods_status=#{goodsStatus}
+            order by g.goods_creDate desc)  t
+	             where   rowNum <16
+	    ]]>
+	</select>
+	
+	
+<!-- 
+	상품 정보와 상품 메인 이미지 파일 정보를 조회 합니다. 
+ -->	
+	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="String"  >
+	    <![CDATA[
+		     select g.*,d.fileName from t_shopping_goods g, t_goods_detail_image d
+	        where g.goods_id=d.goods_id
+	        and d.filetype='main_image'
+	        and g.goods_id=#{goods_id}
+	        order by g.goods_id
+    	]]>
+	</select>
+
+<!-- 
+	상품 상세 이미지 파일 정보를 조회 합니다.
+ -->	
+	<select id="selectGoodsDetailImage" resultMap="imageResult"   parameterType="String"  >
+	    <![CDATA[
+		    	select * from  t_goods_detail_image 
+		    	where  fileType!='main_image'
+				and goods_id=#{goods_id}
+    	]]>
+	</select>
+	
+	
+	<!--  header.jsp에서 검색 버튼을 클릭했을때..검색창에 입력한 단어를 가져와 그 단어가 포함된  도서상품 제목을 조회합니다. -->
+   <select id="selectGoodsBySearchWord" resultMap="goodsResult"   parameterType="String"  >
+     <![CDATA[
+			select g.*,d.fileName from t_shopping_goods g, t_goods_detail_image d
+		    where g.goods_id=d.goods_id
+		    and d.filetype='main_image'
+		    and g.goods_title like '%'|| #{searchWord} || '%'
+		    order by g.goods_creDate desc
+		]]>
+	</select>	
+
+
+<!-- 
+주제 : Ajax 이용해 입력한 검색어 관련  데이터 자동으로 표시하기
+	<input>에 검색 키워드를 입력하기 위해 키보드의 키를 눌렀다가 떼면 ~
+	입력된 키워드가 포함된 도서상품 책제목을 조회해서 가져옵니다.
+ -->		
+	<!-- 검색창에 입력한 키워드를 가져와 그키워드가 포함된 상품 제목을 조회합니다. -->
+	<select id="selectKeywordSearch" resultType="String"   parameterType="String"  >
+	    <![CDATA[
+        select goods_title from t_shopping_goods 
+        where         
+        goods_title like '%'|| #{keyword} || '%'
+        order by goods_creDate desc
+		]]>
+	</select>
+	
+
+</mapper>

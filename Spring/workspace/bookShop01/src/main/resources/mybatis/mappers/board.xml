@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+    
+<mapper namespace="mapper.board">
+    <insert id="insertContent" parameterType="java.util.HashMap">
+        insert into board(
+        	id,
+			subject,
+			content,
+			writer,
+			password
+		)values(
+			board_seq.nextval,
+			#{subject},
+			#{content},
+			#{writer},
+			#{password}
+		)
+    </insert>
+    <update id="updateContent" parameterType="java.util.HashMap">
+    	update
+    		board
+    	set
+    		subject = #{subject},
+			content = #{content},
+			writer = #{writer},
+			password = #{password}
+		where
+			id = #{id}
+    </update>
+    <select id="selectContentCnt" resultType="int" parameterType="java.util.HashMap">
+    	select
+    		count(id)
+    	from
+    		board
+    </select>
+    <select id="selectContent" resultType="Board" parameterType="java.util.HashMap">
+    	select
+		    id,
+		    subject,
+		    content,
+		    writer,
+		    register_datetime
+		from
+		(select
+		    rownum rn,
+		    id,
+		    subject,
+		    content,
+		    writer,
+		    to_char(register_datetime, 'YYYY-MM-DD HH24:mi:ss') register_datetime
+		from
+		    board
+		order by id) total
+		where
+		    rn &gt; #{start} and rn &lt;= #{end}
+    </select>
+    <select id="selectContentView" resultType="Board" parameterType="java.util.HashMap">
+    	select
+    		id,
+			subject,
+			content,
+			writer,
+			to_char(register_datetime, 'YYYY-MM-DD HH24:mi:ss') register_datetime
+    	from
+    		board
+    	where
+    		id = #{id}
+    </select>
+    
+    <insert id="insertBoardReply" parameterType="java.util.HashMap">
+		<selectKey keyProperty="reply_id" resultType="string" order="BEFORE">
+		  select reply_seq.nextval FROM DUAL
+		</selectKey>
+		insert into board_reply(
+        	reply_id,
+        	board_id,
+			parent_id,
+			depth,
+			reply_content,
+			reply_writer,
+			reply_password
+		)values(
+			#{reply_id},
+			#{board_id},
+			#{parent_id},
+			#{depth},
+			#{reply_content},
+			#{reply_writer},
+			#{reply_password}
+		)
+	</insert>
+    <select id="selectBoardReplyList" resultType="BoardReply" parameterType="java.util.HashMap">
+    	select
+			reply_id,
+			board_id,
+			parent_id,
+			depth,
+			reply_content,
+			reply_writer,
+			reply_password
+		from
+			board_reply
+		where
+			board_id = #{id}
+		order by reply_id asc
+    </select>
+    <delete id="deleteBoardReply" parameterType="java.util.HashMap">
+    	delete
+    	from
+    		board_reply
+    	where
+    		reply_id = #{reply_id}
+    		and reply_password = #{reply_password}
+    </delete>
+    <delete id="deleteBoardReplyAll" parameterType="java.util.HashMap">
+    	delete
+    	from
+    		board_reply
+    	where
+    		reply_id in (
+		    	select
+		    		reply_id
+		    	from
+		    		board_reply
+		    	where
+		    		reply_id = #{reply_id}
+		    		and reply_password = #{reply_password}
+    		) or parent_id in (
+		    	select
+		    		reply_id
+		    	from
+		    		board_reply
+		    	where
+		    		reply_id = #{reply_id}
+		    		and reply_password = #{reply_password}
+    		)
+    </delete>
+    <select id="selectBoardCnt" resultType="int" parameterType="java.util.HashMap">
+    	select
+    		count(id)
+    	from
+    		board
+    	where
+    		id = #{id}
+    		and password = #{password}
+    </select>
+    <delete id="deleteBoard" parameterType="java.util.HashMap">
+        delete
+        from
+        	board
+        where
+        	id = #{id}
+        	and password = #{password}
+    </delete>
+    <select id="selectReplyPassword" resultType="int" parameterType="java.util.HashMap">
+    	select
+    		count(*)
+    	from
+    		board_reply
+    	where
+    		reply_id = #{reply_id}
+    		and reply_password = #{reply_password}
+    </select>
+    <update id="updateReply" parameterType="java.util.HashMap">
+    	update
+		    board_reply
+		set
+		    parent_id = #{parent_id},
+		    depth = #{depth},
+		    reply_content = #{reply_content},
+		    reply_writer = #{reply_writer},
+		    reply_password = #{reply_password}
+		where
+		    reply_id = #{reply_id}
+    </update>
+</mapper>
