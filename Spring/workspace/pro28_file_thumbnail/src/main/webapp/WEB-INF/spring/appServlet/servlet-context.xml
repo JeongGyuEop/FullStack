@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.myspring.pro28" />
+	
+<!-- 
+`org.springframework.web.multipart.commons.CommonsMultipartResolver`는 
+ Spring Framework에서 파일 업로드 처리를 지원하는 클래스 중 하나입니다. 
+ 이 클래스는 Apache Commons FileUpload 라이브러리를 기반으로 구현되어 있으며, 
+ 웹 애플리케이션에서 클라이언트로부터 전송된 파일을 처리하고 업로드하는 데 사용됩니다.
+
+CommonsMultipartResolver는 주로 다음과 같은 기능을 제공합니다:
+		
+		1. 파일 업로드 처리: 웹 애플리케이션에서 클라이언트가 업로드한 파일을 처리할 수 있도록 도와줍니다. 
+		                이를 통해 사용자는 웹 양식을 통해 이미지, 동영상, 문서 등 
+		                다양한 파일을 서버로 업로드할 수 있습니다.
+		
+		2. 멀티파트 요청 해석: HTTP 요청이 멀티파트(form-based file upload) 요청인지 여부를 판별하고, 
+						  요청 본문을 파싱하여 클라이언트가 업로드한 파일 데이터를 추출합니다.
+		
+		3. 업로드된 파일의 메타 데이터 처리: CommonsMultipartResolver는 업로드된 각 파일에 대한 메타 데이터를 읽어올 수 있습니다. 
+		                             이 메타 데이터에는 파일 이름, 크기, 콘텐츠 타입 등이 포함됩니다.
+
+CommonsMultipartResolver를 Spring 애플리케이션에서 설정하고 사용하려면 다음 단계를 수행해야 합니다:
+		
+		1. Spring 설정 파일(XML 또는 Java Config)에서 CommonsMultipartResolver 빈을 정의하고 구성합니다.
+		
+		2. 웹 양식(form)에서 `enctype="multipart/form-data"` 속성을 사용하여 파일 업로드를 지원하도록 설정합니다.
+		
+		3. 컨트롤러에서 CommonsMultipartResolver 빈을 사용하여 업로드된 파일을 처리하고 저장합니다.
+		
+		CommonsMultipartResolver는 웹 애플리케이션에서 파일 업로드를 처리하는 데 편리한 방법을 제공하며, 
+		Spring의 다른 기능과 통합하여 파일 업로드를 쉽게 구현할 수 있습니다.
+	
+
+
+스프링의 CommonsMultipartResolver클래스의 변수(속성)
+			
+
+1. **maxUploadSize 속성(변수)**:
+   - 이 속성은 클라이언트가 업로드할 수 있는 파일의 최대 크기를 설정하는 데 사용됩니다. 
+     설정한 크기를 초과하는 파일을 업로드하려고 시도하면 업로드를 거부합니다. 
+     이 속성은 바이트 단위로 설정됩니다. 기본값은 -1로 설정되어 무제한 크기의 파일을 허용합니다.
+
+     10 * 1024 * 1024  // 10MB 크기까지 허용
+  
+  
+2. **maxInMemorySize 속성(변수)**:
+   - 이 속성은 메모리에 저장할 최대 파일 크기를 설정합니다. 
+     업로드된 파일 중 해당 크기를 초과하는 파일은 디스크에 임시로 저장됩니다. 
+     기본값은 256KB입니다.
+
+	 1 * 1024 * 1024; // 1MB까지 메모리에 저장
+   
+   
+3. **defaultEncoding 속성(변수)**:
+   - 이 속성은 파일 및 텍스트 파라미터를 디코딩할 때 사용할 기본 문자 인코딩을 설정합니다. 
+     대부분의 경우 기본값인 "ISO-8859-1" (Latin-1)을 변경할 필요가 없습니다. 
+     그러나 특정 요구 사항에 따라 UTF-8 등 다른 인코딩을 사용하려면 설정할 수 있습니다.
+	 
+	 UTF-8 // UTF-8 인코딩 사용
+
+
+4. **uploadTempDir 속성(변수)***:
+   - 업로드된 파일이 임시로 저장될 디렉터리를 설정합니다. 
+      이 값을 지정하지 않으면 시스템의 기본 임시 디렉터리가 사용됩니다.
+
+     /path/to/temp   // 임시 디렉터리 설정
+  
+  
+5. **resolveLazily 속성(변수)**:
+   - 이 속성을 `true`로 설정하면 업로드된 파일을 실제로 요청 처리 시에 해석하고 저장합니다. 
+     파일이 사용되지 않는 경우 리소스를 절약할 수 있습니다. 하지만 
+     `false`로 설정하면 업로드된 파일은 즉시 해석됩니다.
+
+	true  // 지연 업로드 처리 활성화 
+
+
+6. **multipartResolverBeanName 속성(변수) **:
+   - 이 속성은 CommonsMultipartResolver 빈의 이름을 설정합니다. 
+     웹 애플리케이션에서 여러 개의 파일 업로드 리졸버를 사용할 때 유용합니다.
+
+   customMultipartResolver  // 커스텀 빈 이름 설정
+   
+
+이러한 속성들을 사용하여 CommonsMultipartResolver를 특정 애플리케이션의 요구 사항에 맞게 구성하고 파일 업로드 처리를 조절할 수 있습니다.
+설정은 Spring Framework의 설정 파일(XML 또는 Java Config)에서 수행됩니다.
+						
+	-->	
+	
+	
+	<beans:bean id="multipartResolver" 
+	         class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	
+		<!-- 클라이언트가 업로드할 수 있는 파일의 최대 크기 설정 -->
+		<!--  multipartResolver.setMaxUploadSize(50 * 1024 * 1024); // 50MB 크기까지 허용  -->
+		<beans:property   name="maxUploadSize" value="52428800"/>
+		
+		<!--  메모리에 저장할 최대 파일 크기를 설정합니다. 
+             업로드된 파일 중 해당 크기를 초과하는 파일은 디스크에 임시로 저장됩니다. 기본값은 256KB입니다.  -->
+		<!--   multipartResolver.setMaxInMemorySize(1 * 1024 * 1024); // 1MB까지 메모리에 저장  -->
+		<beans:property   name="maxInMemorySize" value="1000000" />
+		
+		
+		<!-- 이 속성은 파일 및 텍스트 파라미터를 디코딩할 때 사용할 기본 문자 인코딩을 설정합니다. 
+			 대부분의 경우 기본값인 "ISO-8859-1" (Latin-1)을 변경할 필요가 없습니다. 
+		      그러나 특정 요구 사항에 따라 UTF-8 등 다른 인코딩을 사용하려면 설정할 수 있습니다. -->
+		<beans:property name="defaultEncoding" value="utf-8"/>
+	
+	
+	
+	</beans:bean>
+	
+	
+	
+	
+	
+</beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
