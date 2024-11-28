@@ -23,17 +23,13 @@ public interface MemberDAO {
 	//회원정보 수정 기능
 	public void UpdateMember(MemberVO vo) throws DataAccessException;
 
-	//로그인 기능
-	public MemberVO loginById(MemberVO member) throws DataAccessException;
+	//로그인 기능 
+	public MemberVO loginById(MemberVO member);
 	
-	//
+	//로그아웃 기능 
 	
 	//
 	
 	//
 	
 }
-
-
-
-

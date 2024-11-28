@@ -2,6 +2,8 @@
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
@@ -114,10 +116,32 @@ CommonsMultipartResolver를 Spring 애플리케이션에서 설정하고 사용�
 	
 		<beans:property name="defaultEncoding" value="utf-8" /> <!-- 이 속성은 파일 및 텍스트 파라미터를 디코딩할 때 사용할 기본 문자 인코딩을 설정합니다. 
 																	 대부분의 경우 기본값인 "ISO-8859-1" (Latin-1)을 변경할 필요가 없습니다. 
-																	 그러나 특정 요구 사항에 따라 UTF-8 등 다른 인코딩을 사용하려면 설정할 수 있습니다. -->
-	
-	
+																	 그러나 특정 요구 사항에 따라 UTF-8 등 다른 인코딩을 사용하려면 설정할 수 있습니다. -->	
 	</beans:bean>
+	
+	
+	<!-- 브라우저의 요청에 대해 수행할 인터셉터 기능 역할을 하는 클래스의 빈 생성 
+	
+		<mvc:mapping path="/test/*.do"/>
+			특정 요청 주소! 즉 /test/*.do에 대해서만 인터셉터 객체 기능을 수행하게 설정
+	
+	
+		<mvc:mapping path="/*/*.do"/>
+			모든 요청주소에 대해 인터셉터 기능을 수행하게 설정
+	
+		<beans:bean  class="com.myspring.pro28.ex04.LocaleInterceptor" />
+			인터셉터 기능을 처리하는 클래스의 객체 생성 설정
+	-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/test/*.do"/>			
+			<mvc:mapping path="/*/*.do"/>	
+			<beans:bean  class="com.myspring.pro28.ex04.LocaleInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
+	
 	
 	
 	

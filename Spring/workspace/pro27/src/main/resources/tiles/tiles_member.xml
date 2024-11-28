@@ -1,73 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
 "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
 "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	<!-- 공통 레이아웃(전체 레이아웃)의 뷰 이름을 지정 합니다. -->
-	<definition name="baseLayout"  template="/WEB-INF/views/common/layout.jsp">
+	<!--        공통레이아웃을 가져자 사용할 이름 설정 ,   전체 화면의 공통 레이아웃을  layout.jsp로 지정합니다. -->
+	<definition name="baseLayout" template="/WEB-INF/views/common/layout.jsp">
 	
-		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"  />
-		<put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />
+		<put-attribute name="title" value=""/>
+	
+		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/> <!-- 레이아웃에서 상단(헤더)를 구성하는 jsp의 위치를 지정 -->
+		
+		<put-attribute name="side" value="/WEB-INF/views/common/side.jsp"/> <!-- 레이아웃에서 사이드 메뉴를 구성하는 jsp의 위치를 지정 -->
+		
 		<put-attribute name="body" value=""/>
-		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+	
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/> <!-- 레이아웃에서 하단을 구성하는 jsp의 위치를 지정  -->
 	
 	</definition>
 	
-	<!-- 메인화면의 뷰 이름을 지정합니다. -->
-	<!-- 기본적인 레이아웃 name="baseLayout"인 태그의 레이아웃을 상속 받아 사용 -->
-	
-	<definition name="main" extends="baseLayout">
-	
-		<put-attribute name="title" value="메인페이지"/>
-		<put-attribute name="body"  value="/WEB-INF/views/main.jsp"/>
+	<!-- 메인화면의 뷰이름 지정,   기본적인 레이아웃은 name속성이 baseLayout인 <definition>태그의 template속성에 설정한 layout.jsp를 상속받아 사용할것을 설정 -->
+	<definition name="main"  extends="baseLayout">
+		
+		<put-attribute name="title"  value="메인페이지" /> <!--  레이아웃의 창 제목에 표시할 구문을 지정합니다.   -->
+		
+		<put-attribute name="body" value="/WEB-INF/views/main.jsp"/> <!-- 메인화면의 중앙 영역에 표시할 jsp 위치를 지정 -->
 	
 	</definition>
 	
-<!-- 
- 중앙화면을 listMembers.jsp로 보여주기 위해  전체 레이아웃템플릿 구조가 적힌? 
-name속성값이 baseLayout인  <definition>태그의 구조를 상속 받아 
-중앙body주소와 창제목 tile속성값만 추가 후 사용!
-        
-주의할점은? MemberControllerImpl클래스 내부의  listMembers메소드에서 ModelAndView객체에 저장했던
-뷰명 /listMembers 와 아래의 definition name="/listMembers" 값을 뷰리졸버가 매칭하여 뷰를 찾아줍니다.
-           -->
-   <definition name="/listMembers" extends="baseLayout">   
-   		<put-attribute name="title" value="검색한 회원 목록창"/>
-		<put-attribute name="body"  value="/WEB-INF/views/member/listMembers.jsp"/>
+	 <definition name="/listMembers" extends="baseLayout">
+      <put-attribute name="title" value="회원목록창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/listMembers.jsp" />
+   </definition>
+   
+
+    
+   <definition name="/loginForm" extends="baseLayout">
+      <put-attribute name="title" value="로그인창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
+   </definition>
+      
+ 
+   <definition name="/memberForm" extends="baseLayout">
+      <put-attribute name="title" value="회원등록창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
    </definition>
 
-
-   <!--  중앙화면을 회원가입시 입력하는 화면  memberForm.jsp로 보여주기 -->
-   <definition name="/memberForm" extends="baseLayout">   
-   		<put-attribute name="title" value="회원 가입 창"/>
-		<put-attribute name="body"  value="/WEB-INF/views/member/memberForm.jsp"/>
-   </definition>
-
-	<!-- 중앙화면을 회원수정시 입력하는 화면  memberDetail.jsp로 보여주기 -->
-   <definition name="/memberDetail" extends="baseLayout">   
-   		<put-attribute name="title" value="회원 수정 창 "/>
-		<put-attribute name="body"  value="/WEB-INF/views/member/memberDetail.jsp"/>
-   </definition>
-
-	<!-- header.jsp에서 로그인 링크를 누르면 로그인요청화면 보여주기  -->
-    <definition name="/loginForm" extends="baseLayout">
-   		<put-attribute name="title" value="로그인 요청 창 "/>
-		<put-attribute name="body"  value="/WEB-INF/views/member/loginForm.jsp"/>    	  
-    </definition>
-
-
+   <definition name="/memberDetail" extends="baseLayout">
+      <put-attribute name="title" value="회원상세(수정)창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/memberDetail.jsp" />
+   </definition> 
 </tiles-definitions>
-
-
-
-
-
-
-
-
-
 
 
 

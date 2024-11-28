@@ -17,8 +17,7 @@
                 		
         
         <property name="java-output-path" value="target/classes"/>
-                
-        <property name="context-root" value="mytest04"/>
+        <property name="context-root" value="bookshop01"/>
                 	
     
     </wb-module>

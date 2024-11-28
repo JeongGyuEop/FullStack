@@ -1,32 +1,162 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
-	<!-- Console Appenders -->
+	Appenders
+	
+		
+log4j.xml을 이루는 태그들
+		
+<appender></appender>
+		
+로그메세지의 출력 위치를 결정(파일, 콘솔창, DB)합니다.
+log4j API문서의  XXXApender로 끝나는 클래스들의 이름을 본면 출력위치를 알수 있습니다.
+		
+		<appender></appender>태그를 이용해  콘솔로 출력할지 파일로 출력할지 DB에 출력할지 설정 하는데..
+		여러 가지 XXXApender로 끝나는 클래스들 종류
+			ConsoleAppender    -   org.apache.log4j.ConsoleAppender 클래스로 
+								   이클립스나 STS의 console창에 로그메시지를 출력위치를 결정합니다.
+								   
+			FileAppender	-      org.apache.log4j.FileAppender 클래스로 
+								   파일에 로그메시지를 출력(기록)하기 위해 파일을 출력위치로 결정합니다.
+								   
+			RollingFileAppender  - 	org.apache.log4j.rolling.RollingFileAppender 클래스로
+									파일 크기가 일정 기준을 넘으면 기존파일을 백업파일로 바꾸고 처음부터 다시 기록
+		
+			DailyRollingFileAppender  - 	org.apache.log4j.DailyRollingFileAppender 클래스로
+										설정한 기간 단위로 새 파일을 만들어서 로그메세지를 기록 									   
+
+
+
+<layout></layout>
+
+	어떤 형식으로 출력할지 출력 레이아웃을 결정하는 태그 
+
+	<layout>태그에 class속성에 설정한 PatternLayout클래스의 출력형식을 지정하는 속성들
+		
+		%p	 debug,info,error,fatal등 로그레벨 이름 출력
+		%m   로그 메세지 출력
+		%d   로깅 이벤트 발생 시각 출력 
+		%F	 로깅이 발생한 프로그램 파일 이름 출력 
+		%l	 로깅이 발생한 caller의 정보 출력
+		%L	 로깅이 발생한 caller의 라인수 출력 
+		%M	 로깅이 발생한 mothod이름 출력 
+		%c	 로깅 메세지 앞에 전체 패키지 이름이나 전체 파일 이름 출력 
+		.......
+		
+<logger></logger>
+	로깅 메세지를 appender태그의 클래스에 전달하는 역할을 합니다.
+	개발자가 로그 레벨을 이용해 로그출력여부를 조정할수 있습니다.
+	logger태그는 로그 레벨을 가지고 있으며, 로그의 출력여부는 로그문의 레벨과 로거의 레벨을 가지고 결정합니다.		
+		
+		
+	log4j의 레벨은 6단계로 나누어집니다. 종류 표 
+	
+		FATAL	  시스템차원에서 심각한문제가 발생해 애플리케이션 작동이 불가능 한경우에 해당하는 레벨종류 입니다.
+				  일반적으로 애플리케이션에서 사용할 일이 없습니다.
+				  
+		ERROR	  실행 중 문제가 발생한 상태를 나타내는 레벨 종류 입니다.
+		
+		WARN      향후 시스템오류의 원인이 될수 있는 경고 메세지를 나타내를 레벨 종류 입니다.
+		
+		INFO	  로그인, 상태 변경과 같은 실제 애플리케이션 운영과 관련된 정보 메세지를 나타낼 레벨 종류 입니다. 
+		
+		DEBUG	  개발시 디버깅 용도로 사용한 메세지를 나태낼 레벨 종류 입니다.
+		
+		TRACE	  DEBUG레벨 보다 상세한 로깅 정보를 출력하기 위해 도입된 레벨 입니다. 
+				  			  
+	
+	참고. 낮은 레벨로 코드의 메세지를 설정했다면 그 레벨 보다 높게 설정한 메세지들은 모두 출력됩니다.
+		 예를 들어  log4j.xml에서 DEBUG로 애플리케이션 레벨을 설정했다면 
+		 실제 코드에서 그이상의 레벨로 설정된 메세지들은 모두 출력됩니다. 
+		 
+		 더 자세한 내용흔 log4j홈페이지 참고   http://logging.apache.org/log4j/1.2/manual.html	
+		
+		
+	
+	
+	
+	
+	
+	ConsoleAppender 클래스를 appender태그에 설정해  로그 메세지 출력 위치를 sts의 console창으로 설정함
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		
+		Target이라는 매개변수를 설정하고 값으로 System.out을 지정하고 있는데 이의미는 로그가 STS의 콘솔창에 출력되도록 하는 설정임. 
 		<param name="Target" value="System.out" />
+		
+		PatternLayout 클래스를 layout태그에 설정해  로그 메세지의 출력 포멧 형식을 지정함 
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%-5p: %c - %m%n%n" />
+		
+			ConversionPattern매개변수를 정의 하고, 이를 사용하여 로그메세지의 출력 형식을 지정합니다.
+				 %p  로그레벨(예: INFO, ERROR, DEBUG 등) 이름이 출력되도록 설정   
+				 %c  로깅 이벤트가 발생한 클래스의 이름이 출력되도록 설정 
+				 %m  실제 로그 메세지 내용이 출력되도록 설정
+				 %n  줄바꿈 문자를 삽입하여 각 로그메세지를 새로운 줄에 출력하도록 설정 
+			 
+			 예를 들어  다음과 같은 형식으로 출력 됩니다.
+			 	'로그레벨명: 로깅이벤트가발생한클래스이름 - 로그메세지내용'
+			 	
+			 예를 들어 만약 로그레벨이 "INFO"이고 로깅 클래스의 이름이 "MyClass"이며 로그메세지 내용이  "이것은 로그 메세지 입니다."라면 출력 되는 형태는?	
+			 	'INFO: MyClass - 이것은 로그 메세지 입니다.'
+			
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
 	
-	<!-- DailyFile Appenders -->
-	<appender name="dailyFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="C:\\spring\\logs\\output.log" />
-		<param name="Append" value="true" />
+	
+	DailyRollingAppender클래스를 이용해서 로그 메세지를 파일로 기록(출력)하게 위치 설정 함 
+	
+		의미 : 로그 메세지를 일일 로그 파일에 기록하며, 
+		      각 로그 메세지는 지정된 형식으로 날짜,시간,레벨, 파일 및 라인정보와 함께 출력됩니다. 
+	 		  로그파일 관리하고 로그 이벤트를 추적하는데 사용되는 중요한 설정 입니다.
+	
+	<appender name="dailyFileAppender" class="org.apache.log4j.DailyRollingFileAppender">		
+		로그파일 생성 위치를 설정합니다.
+		<param name="File" value="C:\\spring\\logs\\output.log"  />	
+	
+		Append name속성을 가진 param태그의 value값으로 true를 설정하면 
+			 새로운 로그메세지를 기존 로그파일에 추가할것을 나타냅니다. 만약 false로 설명하면 매번 새로운 로그 파일이 생성됩니다. 
+		
+		<param name="Append" value="false"  />
+		
+		PatternLayout 클래스를 layout태그에 설정해  로그 메세지의 출력 포멧 형식을 지정함 
 		<layout class="org.apache.log4j.PatternLayout">
-		  <param name="DatePattern"   value="'.'yyyy-MM-dd"/>
-			<param name="ConversionPattern"   value="[%d{HH:mm:ss}][%-5p](%F:%L)-%m%n%n"/>
+		
+			DatePattern 이매개변수는 일일 로그 파일의 날짜 패턴을 지정합니다.
+				 '.'yyyy-MM-dd 형식으로 지정되어 있으므로,  일일 로그파일은 "output.log.년-월-일"형식으로 생성됩니다. 
+			
+			<param name="DatePattern" value="'.'yyyy-MM-dd" />
+			
+			
+				 ConversionPattern 이매개변수는 로그 메세지의 출력형식을 지정합니다.
+				 
+				 	%d{HH:mm:ss}   는  로그메세지의 날짜 및 시간을 나타냅니다.
+				 	
+				 	%-5p 는  로그 레벨이름을 출력 합니다.  예를 들어, "INFO"레벨의 로그는 "[INFO]"로 출력됩니다. 
+				 	
+				 	%F:%L 는 로그 이벤트가 발생한 파일명과 라인 번호를 나타냅니다.
+				 	
+				 	%m 는 실제 로그 메세지 내용을 출력 합니다.
+				 	
+				 	%n 는 줄바꿈 문자를 삽입하여 각 로그메세지를 새로운 줄에 출력합니다. 
+				
+			 	
+			
+			<param name="ConversionPattern" value="[%d{HH:mm:ss}][%-5p](%F:%L)-%m%n" />
+		
 		</layout>
 	</appender>
 	
+
 	
-	<!-- Application Loggers -->
+	
+	Application Loggers
+	logger태그로  com.myspring.pro27 패키지에 존재하는 클래스들의 로그 레벨을 info로 설정하고 로깅이벤트 발생시 출력되게 설정 
 	<logger name="com.myspring.pro27">
 		<level value="info" />
 	</logger>
 	
-	<!-- 3rdparty Loggers -->
+	3rdparty Loggers
 	<logger name="org.springframework.core">
 		<level value="info" />
 	</logger>
@@ -43,11 +173,27 @@
 		<level value="info" />
 	</logger>
 
-	<!-- Root Logger -->
+	Root Logger
+	애플리케이션의 전체 로그메세지를 콘솔 또는 파일에 출력 할것을 설정
 	<root>
+		
 		<priority value="debug" />
+
 		<appender-ref ref="console" />
 		<appender-ref ref="dailyFileAppender" />
+			
 	</root>
 	
 </log4j:configuration>
+
+
+
+
+
+
+
+
+
+
+
+ -->

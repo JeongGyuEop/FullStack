@@ -72,7 +72,7 @@ public class MailService {
 			
 			//메일 수신시 지정한 보내는 사람(송신자)의 이메일 주소와  이름으로 표시되게 합니다. 
 			//이메일을 보내는 사람(송신자)의 이메일 주소 적기!!!!!!!!!
-			messageHelper.setFrom("gueeop0219@gmail.com","홍길동 동생의 동생");
+			messageHelper.setFrom("ssk3924@gamil.com","홍길동 동생");
 	
 		
 			
@@ -84,7 +84,7 @@ public class MailService {
 			messageHelper.setSubject(subject); //"테스트 메일"
 			
 			//수신자(To) 이메일을 받을 사람의 이메일주소
-			messageHelper.setTo(to);  //"gueeop0219@gmail.com"
+			messageHelper.setTo(to);  //"ssk3924@naver.com"
 			
 			//보내는 이메일 본문 내용
 //			messageHelper.setText(body);//"안녕하세요.보낸 메일 내용입니다."   

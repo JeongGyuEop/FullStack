@@ -1,0 +1,71 @@
+ DB의 t_member테이블에 저장된 모든 회원정보 조회 요청 동작 순서 예시 
+
+-------------------------------------------------------------------------------------
+
+
+순서1.웹브라우저 주소창에 요청 URL http://localhost:8090/pro27/member/listMembers.do  입력하여
+     톰캣 서버에게 보내어 요청한다.
+
+순서2. ViewNameInterceptor클래스의 preHanle메소드가 자동으로 호출되어 코드가 실행된다.
+         실행되는 코드는?  
+		
+		//요청 URL http://localhost:8090/pro27/member/listMembers.do  이면
+		///listMembers  VIEW 경로를 구해온다.
+		String viewName = getViewName(request); 
+		request.setAttribute("viewName", viewName); //    /listMembers  VIEW 경로 바인딩 
+            			
+		return true; // 코드에 의해 MemberControllerImpl클래스 내부에 만들어 놓은 listMembers메소드가 호출되어 실행됨
+
+
+순서3. MemberControllerImpl클래스 내부에 만들어 놓은 listMembers메소드가 호출되어 실행됨
+
+@Override
+	@RequestMapping(value="/listMembers.do", method=RequestMethod.GET)
+	public ModelAndView listMembers(HttpServletRequest request, 
+				      HttpServletResponse response) 
+							throws Exception {	   
+
+	//부장 MemberServiceImpl객체의 listMembers()메소드를 호출하여
+	//모든 회원 조회 요청을 명령함!
+	//웹브라우저로 응답할 조회한 정보들이 담긴  List배열을 반환 받는다.
+	List membersList = memberService.listMembers();
+
+	//응답할 뷰 이름 얻기 	
+	//요청 URL주소  /member/listMembers.do 에서  .do를 제외한 /listMembers뷰이름얻기
+            String viewName = (String)request.getAttribute("viewName"); //  /listMembers
+
+
+	//응답할 값 과 응답할 뷰 이름을  ModelAndView객체 메모리에 바인딩(저장)
+	ModelAndView mav = new ModelAndView();
+	//응답할 데이터 저장
+	mav.addObject("membersList", membersList);	
+	//뷰 이름 저장 
+	mav.setViewName(viewName);   //   /listMembers
+		
+	return mav;//디스팩처 서블릿으로 ModelAndView객체 반환 
+ }
+
+순서4.  MemberControllerImpl클래스 내부에 만들어 놓은 listMembers메소드의 코드가 모두 실행된 후 
+         ViewNameInterceptor클래스의  postHandle메소드 내부 코드 실행
+
+
+순서5.  순서3.에서 ModelAndview에 저장한  VIEW 경로   /listMembers를  타일즈의 UrlBasedViewResolver 객체에 전달하는데
+         이 UrlBasedViewResolver객체는  tiles_member.xml에 작성한 
+
+<definition name="/listMembers" extends="baseLayout">
+      <put-attribute name="title" value="회원목록창" />
+      <put-attribute name="body" value="/WEB-INF/views/member/listMembers.jsp" />
+  </definition>
+        태그의 name="/listMembers" 과  매칭하여 뷰를 보여준다.
+
+순서6. 뷰를 보여줄때 ModelAndView에 저장된 List를 꺼내어 반복해서 웹브라우저에 출력해서 보여준다.
+
+
+순서7.  마지막으로 ViewNameInterceptor클래스의 afterCompletion메소드가 자동으로 호출되어 코드가 실행된다.	
+  
+
+
+
+
+
+  	

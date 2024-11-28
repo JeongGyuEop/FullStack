@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<c:set var="result" value="${param.result }" />
 <%
    request.setCharacterEncoding("UTF-8");
 %>     
@@ -13,7 +12,7 @@
 <head>
   <meta charset="UTF-8">
 <title>로그인창</title>
-<c:choose>  
+<c:choose>
 	<c:when test="${result=='loginFailed' }">
 	  <script>
 	    window.onload=function(){

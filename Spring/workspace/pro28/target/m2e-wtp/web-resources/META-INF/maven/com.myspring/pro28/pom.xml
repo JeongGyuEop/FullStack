@@ -115,24 +115,34 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>  
 		
-		<!-- 스프링에서 다중 파일업로드에 대한 
-			Apache Commons FileUpload,	Apache Commons IO 라이브러리	-->
+	<!-- 스프링에서 다중파일업로드에 필요한  
+	     Apache Commons FileUpload라이브러리,  commons-io 라이브러리 설치 -->
+		
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
 		    <groupId>commons-fileupload</groupId>
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.2.1</version>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
 		    <groupId>commons-io</groupId>
 		    <artifactId>commons-io</artifactId>
 		    <version>1.4</version>
 		</dependency>
-		
-		<!-- 썸네일 관련 라이브러리 -->
+<!-- 
+썸네일(Thumbnail)은 원본이미지의 일부를 축소하여 만든 작은 이미지를 말합니다.
+대개는 이미지 검색, 웹페이지 미리보기, 앨범 등에서 사용됩니다.
+썸네일 이미지는 원본이미지와 비교하여 용량이 작고 해상도가 낮기때문에  빠른 로딩과 전송이 가능합니다.
+
+java에서는 javax.imageio 패키지를 사용하여 이미지 처리를 할수 있습니다.
+이 피캐지에서는 이미지 리사이징을 위한 ImageIo클래스와 썸네일 생성을 위한 Thumbnailator라이브러리등을 제공함
+
+스프링 프레임워크에서 제공해주는 thumbnailator-0.4.8.jar라이브러리 파일을 의존 주입해서 사용합니다. 
+ -->			
 		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
 		<dependency>
 		    <groupId>net.coobird</groupId>
@@ -140,26 +150,32 @@
 		    <version>0.4.8</version>
 		</dependency>
 		
-		<!-- 이메일 보내기 관련 라이브러리 -->
+		
+		<!-- 
+			스프링에서 이메일 보내기 기능 라이브러리 jar 파일 추가 
+		 -->
 		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
 		    <artifactId>javax.mail-api</artifactId>
 		    <version>1.5.4</version>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
 		<dependency>
 		    <groupId>com.sun.mail</groupId>
 		    <artifactId>javax.mail</artifactId>
 		    <version>1.5.3</version>
 		</dependency>
-		<!-- 스프링 버전 4이상 사용시 메일 보내기 할때 추가해 주자! -->
+		
+		<!--  스프링 버전 4이상 사용시 메일보내기 할때 추가해 주자! -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>${org.springframework-version}</version>
-		</dependency>
+		</dependency>		
 		
+							      
 	</dependencies>
     <build>
         <plugins>

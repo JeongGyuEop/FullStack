@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @EnableAsync
 @Controller
 public class MailController {
+	
     @Autowired
     private MailService mailService;
  
@@ -47,7 +48,7 @@ public class MailController {
         	String str = sb.toString();
         
         //MailService의 sendMail 메서드를 호출하여 수신자, 제목, 내용을 전달하고, 
-        mailService.sendMail("gueeop0219@gmail.com","신상품을 소개 합니다.",str);
+        mailService.sendMail("ssk3924@naver.com","신상품을 소개 합니다.",str);
         
         // MailService의 sendPreConfiguredMail 메서드를 호출하여 미리 설정된 메일을 전송합니다.
         mailService.sendPreConfiguredMail("테스트 메일입니다.");

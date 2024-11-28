@@ -23,25 +23,21 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;// = new MemberDAOImpl();
 	
-	
-	//MemberDAO의 loginById()메소드를 호출하면서 전달된 ID와 비밀번호를 다시 전달합니다. 
-	@Override
-	public MemberVO login(MemberVO member) throws DataAccessException {
-	
-		return memberDAO.loginById(member);
-	}
-	
-	
-	
+
 	//모든 회원 정보 조회 기능 
 	@Override
 	public List listMembers() throws DataAccessException {
 		
+		System.out.println("MemberServiceImpl 클래스의 listMemebrs() 메소드 시작");
+		
 		//사원 MemberDAOImpl객체의 selectAllMembers()메소드를 호출해 
 		//모든 회원 정보 조회 요청을 명령함!
 		//조회된 회원정보들(MemberVO객체들)이 저장된  List배열을 반환 받음 
+
+		System.out.println("MemberDAOImpl 클래스의 selectAllMembers() 메소드 호출");
 		List membersList = memberDAO.selectAllMembers();
 	
+		System.out.println("MemberServiceImpl 클래스의 listMemebrs() 메소드 종료");
 		return membersList;//사장님 MemberControllerImpl객체에 반환 
 	}
 
@@ -73,6 +69,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 		memberDAO.UpdateMember(vo);
+	}
+
+	@Override
+	public MemberVO login(MemberVO vo) {
+		return memberDAO.loginById(vo);
 	}
 	
 	

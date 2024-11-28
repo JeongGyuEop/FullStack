@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	
+	
+	<!-- 
+		1. PropertyPlaceholderConfigurer클래스를 이용해
+		   데이터베이스 설정 관련 정보가 저장된  jdbc.properties파일의 경로를 저장해 읽어 들일수 있도록합니다.
+	 -->
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/config/jdbc/jdbc.properties</value>
+			</list>
+		</property>
+
+	</bean>
+	
+	<!-- 
+		2.mybatis프레임웍(mybatis-3.0.5.jar)에서 제공하는
+		  PooledDataSource클래스를 이용해서 커넥션풀 빈을 생성 합니다.
+	 -->
+ 	<bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
+		<property name="driver" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	 
+	 <!-- 
+	 	3. 
+	 	mybatis프레임웍(mybatis-3.0.5.jar)에서 제공하는
+	 	SqlSessionFactoryBean클래스를 이용해 빈을 생성하고  위 PooledDataSource커넥션풀을 주입
+	 	
+	 	참고. SqlSessionFactoryBean 빈을 생성하면서 매퍼파일인 member.xml파일과 
+	 	         빈 설정 파일인 modelConfig.xml파일을 읽어 들입니다. 
+	 	
+	  -->
+	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 	
+	 	<property name="dataSource" ref="dataSource"/>
+	 	
+	 	<property name="configLocation"  value="classpath:mybatis/model/modelConfig.xml"/>
+	 	
+	 	<!-- mapperLocations변수에  mybatis/mappers폴더에 만들어져 있는  모든 매퍼파일들을 읽어들일 경로 저장 -->
+	 	<property name="mapperLocations" value="classpath:mybatis/mappers/*.xml" />
+	 
+	 </bean>
+	 
+	 <!-- 
+	 	4. mybatis-spring 프레임웍(mybatis-spring-1.0.1.jar)에서 제공하는
+	 	   SqlsessionTemplate클래스를 이용하여 빈 생성을 설정 합니다.
+	 	     그리고 SqlSessionFactoryBean을 SqlSessionTemplate의 변수에 주입 !! 
+	 
+	  -->
+	 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	 		
+	 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	 		
+	 </bean>
+		
+	<!-- 
+		MemberDAOImpl클래스는 개발자가 직접 만든 클래스 이므로 
+		현재 xml파일에서 <bean>태그를 작성해서 직접 객체를 생성하지 않고
+		MemberDAOImpl.java파일을 열어 애너테이션 기호 를 이용해서 객체 생성을 설정합니다.
+	
+		5. MemberDAOImpl 빈을 생성 하여  위의 SqlSessionTempl빈을  MemberDAOImpl의 변수에 주입!!	 
+	
+	<bean id="memberDAO" class="com.spring.member.dao.MemberDAOImpl">
+	
+		<property name="sqlSession"  ref="sqlSession" />
+	
+	</bean>
+		
+	-->
+	
+</beans>
+
+
+
+
+
+
+
+
+
+

@@ -30,23 +30,18 @@ public class MemberDAOImpl implements MemberDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@Override
-	public MemberVO loginById(MemberVO member) throws DataAccessException {
-	
-		//메소드 호출시 전달된 MemberVO를 SQL문으로 전달해 ID와 비밀번호에 대한 회원정보를 조회해
-		//MemberVO객체로 반환 받습니다. 
-		return sqlSession.selectOne("mapper.member.loginById", member);
-	}
-	
-	
 	
 	//모든 회원 조회 
 	@Override
 	public List selectAllMembers() throws DataAccessException {
+		
+		System.out.println("MemberDAOImpl 클래스의 selectAllMembers() 메소드 시작");
 				
 		List<MemberVO> membersList = null;
 		
 		membersList = sqlSession.selectList("mapper.member.selectAllMemberList");
+
+		System.out.println("MemberDAOImpl 클래스의 selectAllMembers() 메소드 종료");
 		
 		return membersList;
 	
@@ -88,6 +83,17 @@ public class MemberDAOImpl implements MemberDAO{
 		sqlSession.update("mapper.member.updateMember", memberVO);
 		
 	}
+
+	//로그인 기능
+	@Override
+	public MemberVO loginById(MemberVO memberVO) {
+	
+		return sqlSession.selectOne("mapper.member.loginById", memberVO);
+	}
+	
+	
+	
+	
 }//MemberDAOImpl클래스 닫는 기호 
 
 

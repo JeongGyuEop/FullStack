@@ -317,13 +317,12 @@
 	
 -->
     
-    <select id="loginById" parameterType="memberVO" resultType="memberVO">
-    	
-    	<![CDATA[
-  			select * from t_member  where id=#{id} and pwd=#{pwd}
-  		]]>
-    
-    </select>
+	<!-- 로그인창에서 입력한 ID와 비밀번호로 회원정보를 조회하는 SQL문  -->
+	<select id="loginById" parameterType="memberVO" resultType="memberVO">
+		<![CDATA[
+			select * from t_member where id = #{id} and pwd = #{pwd} 
+		]]>
+	</select>   
     
     
     

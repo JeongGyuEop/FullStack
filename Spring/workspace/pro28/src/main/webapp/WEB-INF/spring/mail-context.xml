@@ -21,8 +21,8 @@
 		<property name="port" value="587" />
 	
 		<!--  자신의 구글 메일 계정과 비밀번호를 설정합니다 -->
-		<property name="username" value="gueeop0219@gmail.com" />
-		<property name="password" value="wisl zkii vvyu liqt"/>
+		<property name="username" value="ssk3924@gmail.com" />
+		<property name="password" value="wwqi oaer sjnf kpui"/>
 	
 		<!-- 
 			 //위 final String password변수에 저장될 비밀번호 값은
@@ -104,10 +104,11 @@ JavaMail API의 javax.mail.Session 클래스에 전달될 속성들을 설정하
 	<bean id="preConfiguredMessage" 
 	      class="org.springframework.mail.SimpleMailMessage">
 	
-		<property name="to" value="gueeop0219@naver.com"></property>	<!-- 수신자 이메일 -->
-		<property name="from" value="gueeop0219@gmail.com"></property> <!-- 발신자 이메일 -->
+		<property name="to" value="ssk3924@naver.com"></property>	<!-- 수신자 이메일 -->
+		<property name="from" value="ssk3924@gmail.com"></property> <!-- 발신자 이메일 -->
 		<property name="subject" value="테스트 메일제목입니다."/>  <!-- 보낼 메일 제목  -->
 		
+	
 	</bean>
 	
 	<!-- 

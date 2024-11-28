@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.pro27.member.vo.MemberVO;
 
@@ -50,9 +51,15 @@ public interface MemberController {
 	
 	//여러 요청주소에 대해 한개의 메소드를 호출할 경우 정규식을 이용해 매핑하는 역할을 합니다. 
 	//요청한 주소가 Form.do로 끝나는 주소로 요청하면 Form메소드가 호출되게 작성 
-	ModelAndView Form(String result, 
-					  HttpServletRequest request, 
-					  HttpServletResponse response) throws Exception;
+	//ModelAndView Form(HttpServletRequest request, 
+	//				    HttpServletResponse response) throws Exception;
+
+	ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	ModelAndView login(MemberVO member, RedirectAttributes rAttr, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
+	ModelAndView Form(String result, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	
 

@@ -31,6 +31,8 @@ public class ViewNameInterceptor extends  HandlerInterceptorAdapter{
 	  //adminGoodsMain.jsp에서  상품등록하기 버튼을 클릭하여  상품을 등록할 화면 요청 주소 /admin/goods/addNewGoodsForm.do 를 받았을때
 	  @Override
 	   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
+
+		   System.out.println("ViewNameInterceptor인터셉터 내부의 preHandle메소드 시작");
 		   try {
 			
 			   String viewName = getViewName(request);//  /main/main	
@@ -60,7 +62,7 @@ public class ViewNameInterceptor extends  HandlerInterceptorAdapter{
 				System.out.println("ViewInterceptor클래스의 preHendle메소드가 먼저 호출됨!!!!");
 				System.out.println("VIewInterceptor클래스의 preHendle메소드 내부에서 "
 								 + "getViewName메소드에 의해 얻은 타일즈에서 사용할 View이름 => " + viewName + " 을"
-								 + " request.setAttribute('viewName', viewName); 바인딩하고  reutrn true;에 의해 "
+								 + " request.setAttribute('viewName', viewName); 바인딩하고\n  reutrn true;에 의해 "
 								 + " 클라이언트가 요청 한 주소와 매핑된 특정 컨트롤러클래스의  @RequestMapping된 메소드가 호출되어 실행 됩니다.");
 
 		  } catch (Exception e) {
@@ -90,6 +92,7 @@ public class ViewNameInterceptor extends  HandlerInterceptorAdapter{
 	  //</definition> 
 	   //태그의 name="/main/main" 과 매칭되어  중앙영역에 main.jsp를 보여준다.
 	   private String getViewName(HttpServletRequest request) throws Exception {
+		    System.out.println("ViewNameInterceptor인터셉터 내부의 getViewName 메소드 호출되어 시작");
 			String contextPath = request.getContextPath();
 			String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
 			if (uri == null || uri.trim().equals("")) {
