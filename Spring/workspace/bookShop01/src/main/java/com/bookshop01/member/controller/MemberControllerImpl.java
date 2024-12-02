@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.common.base.BaseController;
+import com.bookshop01.kakao.vo.KakaoVO;
 import com.bookshop01.member.service.MemberService;
 import com.bookshop01.member.vo.MemberVO;
 
