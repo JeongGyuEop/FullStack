@@ -83,7 +83,7 @@ function fn_overlapped(){
        	    alert("사용할 수 있는 ID입니다.");
        	    $('#btnOverlapped').prop("disabled", true);
        	    $('#_member_id').prop("disabled", true);
-       	    //$('#member_id').val(_id);
+       	    $('#member_id').val(_id);
           }else{
         	  alert("사용할 수 없는 ID입니다.");
           }
@@ -123,9 +123,9 @@ function fn_overlapped(){
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">성별</td>
-					<td><input type="radio" name="member_gender" value="102" />
-						여성<span style="padding-left:120px"></span>
-						 <input type="radio" name="member_gender" value="101" checked />남성
+					<td><input type="radio" name="member_gender" value="102" />여성
+						<span style="padding-left:120px"></span>
+						<input type="radio" name="member_gender" value="101" checked />남성
 					</td>
 				</tr>
 				<tr class="dot_line">

@@ -183,13 +183,13 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		    memberService.addMember(_memberVO);//새 회원 정보를 DB에 추가~ 
 		    message  = "<script>";
 		    message +=" alert('회원가입에 성공 했습니다.');";
-		//    message += " location.href='"+request.getContextPath()+"/member/loginForm.do';";
+		    message += " location.href='"+request.getContextPath()+"/member/loginForm.do';";
 		    message += " </script>";
 		    
 		}catch(Exception e) {
 			message  = "<script>";
 		    message +=" alert('회원가입 실패 했어요.');";
-		 //   message += " location.href='"+request.getContextPath()+"/member/memberForm.do';";
+		    message += " location.href='"+request.getContextPath()+"/member/memberForm.do';";
 		    message += " </script>";
 			e.printStackTrace();
 		}
@@ -213,6 +213,34 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		
 		return resEntity;
 	}
+	
+	@RequestMapping(value="/kakao/callback", method=RequestMethod.GET)
+	public ResponseEntity<String> kakaoCallback(@RequestParam("code") String code, HttpServletRequest request) {
+	    try {
+	        // 1. 액세스 토큰 요청
+	        String accessToken = memberService.getAccessToken(code);
+	        
+	        // 2. 사용자 정보 가져오기
+	        KakaoVO kakaoUser = memberService.getUserInfo(accessToken);
+
+	        // 3. DB 확인
+	        boolean userExists = memberService.checkKakaoUser(kakaoUser.getId());
+	        if (userExists) {
+	            // 로그인 처리
+	            memberService.loginByKakao(kakaoUser.getId(), request);
+	            return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/main/main.do").build();
+	        } else {
+	            // 회원가입 페이지로 리다이렉트
+	            String signupRedirect = "/member/memberForm.do?kakaoId=" + kakaoUser.getId() +
+	                                    "&email=" + kakaoUser.getEmail() + "&name=" + kakaoUser.getName();
+	            return ResponseEntity.status(HttpStatus.FOUND).header("Location", signupRedirect).build();
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return new ResponseEntity<>("카카오 로그인 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	}
+
 }
 
 

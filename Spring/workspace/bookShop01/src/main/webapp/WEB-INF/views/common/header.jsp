@@ -6,7 +6,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 
-<script type="text/javascript">
+<head>
+
+    <!-- 외부 스타일시트 연결 -->
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
+    
+    <script type="text/javascript">
 	var loopSearch=true;
 	
 	//사용자가 검색창에 검색키워드를 입력하면 Ajax기능을 이용해 해당 키워드가 포함된 목록을 조회해서 가져옵니다.
@@ -38,7 +43,9 @@
 //    			"초보자를 위한 자바 프로그래밍",
 //    			"자바스크립트 배우기",
 //    			"Try! helloworld 자바스크립트"]}
+
 			    var jsonInfo = JSON.parse(data);
+//			    var jsonInfo = data;
 				displayResult(jsonInfo);
 			},
 			error : function(data, textStatus) {
@@ -124,6 +131,9 @@
 	}
 
 </script>
+</head>
+
+
 <body>
 	<div id="logo">
 	<a href="${contextPath}/main/main.do">

@@ -2,6 +2,8 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<!-- UTF-8 인코딩 강제 -->
    <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>
@@ -12,23 +14,33 @@
             <param-value>UTF-8</param-value>
         </init-param>
 	</filter>
+	
+	<!-- URL 패턴 /*으로 들어오는 모든 요청에 대해 필터를 적용 -->
 	<filter-mapping>
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- Spring의 기본 설정 파일 mybatis-context.xml을 지정 -->
+	<!-- 역할: 데이터베이스 연결 설정, Bean 정의 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/mybatis-context.xml</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<!-- 애플리케이션 시작 시 Spring 컨텍스트를 초기화 -->
+	<!-- Root Context를 로드하고 애플리케이션에서 공유되는 Bean을 초기화 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
 	<!-- Processes application requests -->
+	<!-- 
+		DispatcherServlet: Spring MVC의 핵심 서블릿으로, 클라이언트 요청을 적절한 컨트롤러로 매핑 
+		contextConfigLocation: DispatcherServlet이 사용하는 Spring 설정 파일 경로
+							   (/WEB-INF/spring/appServlet/servlet-context.xml)를 지정합니다.-->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -38,7 +50,11 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-		
+	
+	<!-- 
+		/ 패턴: 모든 요청을 appServlet으로 전달합니다.
+				DispatcherServlet이 모든 요청을 처리하게 된다.
+	 -->
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>

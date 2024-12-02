@@ -1,0 +1,8 @@
+
+/* styles.css */
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css');
+
+/* 이후 원하는 요소에 글꼴을 적용 */
+* {
+    font-family: 'NanumSquareNeo', sans-serif;
+}

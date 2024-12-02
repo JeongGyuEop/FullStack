@@ -4,3 +4,10 @@
 @import url( tablet.css ) only screen and (orientation:portrait) and (max-width:1000px) and (min-width:768px);
 @import url( tablet.css ) only screen and (orientation:landscape) and (max-width:1000px) and (min-width:768px);
 @import url( main.css ) only screen and (max-width:1600px) and (min-width:1100px);
+/* styles.css */
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css');
+
+/* 이후 원하는 요소에 글꼴을 적용 */
+body {
+    font-family: 'NanumSquareNeo', sans-serif;
+}

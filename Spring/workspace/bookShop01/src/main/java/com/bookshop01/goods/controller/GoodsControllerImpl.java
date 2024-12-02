@@ -37,15 +37,19 @@ import net.sf.json.JSONObject;
 */
 
 @Controller("goodsController")
-@RequestMapping(value="/goods") 
+@RequestMapping(value="/goods") // 1단계 요청 주소
 public class GoodsControllerImpl extends BaseController   implements GoodsController {
+	
 	@Autowired
 	private GoodsService goodsService;
-	
+	//						2단계 요청주소
 	@RequestMapping(value="/goodsDetail.do" ,method = RequestMethod.GET)
 									//main.jsp에서 상품 클릭시 전달한 상품번호(상품아이디) 얻기 
 	public ModelAndView goodsDetail(@RequestParam("goods_id") String goods_id, 
 			                       HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+
+		System.out.println("GoodsControllerImpl 클래스의 goodsDetail 메소드 시작");
 		
 		 // /goods/goodsDetail   웹브라우저에 보여줄 뷰의  주소 는 ViewIntercepter클래스에서 생성하여 request에 저장했었음!!
 		String viewName=(String)request.getAttribute("viewName"); 
@@ -64,6 +68,8 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		//상품 상페페이지에서 조회한 상품 정보를 빠른메뉴(퀵메뉴)에 표시하기 위해 !!! 
 		//메소드 호출시!  조회된 도서상품 번호, 조회한 도서상품 정보!GoodsVO객체, 세션을  전달합니다.
 		addGoodsInQuick(goods_id,goodsVO,session); 
+
+		System.out.println("GoodsControllerImpl 클래스의 goodsDetail 메소드 종료");
 		
 		return mav;
 	}
@@ -83,6 +89,8 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 //session에 또한 최근 본 상품정보가 저장된(퀵메뉴에 보여질 상품정보가 저장된) ArrayList배열이 저장되어 있지 않으면?
 	//상품상세페이지 요청시 본 상품정보(두번쨰 매개변수 GoodsVO goodsVO로 받는 상품정보)를  ArrayList배열 생성후 추가시킵니다.
 	private void addGoodsInQuick(String goods_id,GoodsVO goodsVO,HttpSession session){
+
+		System.out.println("GoodsControllerImpl 클래스의 addGoodsInQuick 메소드 시작");
 		
 		boolean already_existed=false;
 		
@@ -124,6 +132,8 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		session.setAttribute("quickGoodsList",quickGoodsList);
 		//최근 본 상품목록에 저장된 상품 개수를 세션에 저장합니다.
 		session.setAttribute("quickGoodsListNum", quickGoodsList.size());
+
+		System.out.println("GoodsControllerImpl 클래스의 addGoodsInQuick 메소드 종료");
 	}
 
 /*	
@@ -149,6 +159,9 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 	//JSON데이터를 웹브라우저로 출력합니다.             //검색할 키워드를 가져 옵니다. 
 	public @ResponseBody String  keywordSearch(@RequestParam("keyword") String keyword,
 			                                  HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		System.out.println("GoodsControllerImpl 클래스의 keywordSearch 메소드 시작");
+		
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		//System.out.println(keyword);
@@ -177,7 +190,9 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 //	    			"자바스크립트 배우기",
 //	    			"Try! helloworld 자바스크립트"]}
 	
-	    System.out.println(jsonInfo);
+	    System.out.println("GoodsControllerImpl 클래스의 keywordSearch 메소드의 JSON 데이터 : " + jsonInfo);
+
+		System.out.println("GoodsControllerImpl 클래스의 keywordSearch 메소드 종료");
 	    
 	    return jsonInfo ;
 	}
@@ -187,6 +202,8 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 	@RequestMapping(value="/searchGoods.do" ,method = RequestMethod.GET)
 	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,
 			                       HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+		System.out.println("GoodsControllerImpl 클래스의 searchGoods 메소드 시작");
 		
 		String viewName=(String)request.getAttribute("viewName"); //  /goods/searchGoods
 		
@@ -195,6 +212,8 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		ModelAndView mav = new ModelAndView(viewName); // /goods/searchGoods
 		
 		mav.addObject("goodsList", goodsList);
+
+		System.out.println("GoodsControllerImpl 클래스의 searchGoods 메소드 종료");
 		
 		return mav;
 		

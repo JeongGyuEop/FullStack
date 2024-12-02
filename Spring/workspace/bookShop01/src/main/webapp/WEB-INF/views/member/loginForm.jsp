@@ -39,11 +39,15 @@ function result(){
 		<br><br>
 		<INPUT	type="submit" value="로그인"> 
 		<INPUT type="button" value="초기화">
+		<br><hr>
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id=6d9c47e51202a4e281197512a48b13b0&redirect_uri=YOUR_REDIRECT_URI&response_type=code">
+		    카카오 로그인
+		</a>
 		
 		<Br><br>
 		   <a href="#">아이디 찾기</a>  | 
 		   <a href="#">비밀번호 찾기</a> | 
-		   <a href="${contextPath}/member/addMember.do">회원가입</a>    | 
+		   <a href="${contextPath}/member/memberForm.do">회원가입</a>    | 
 		   <a href="#">고객 센터</a>
 					   
 	</form>		

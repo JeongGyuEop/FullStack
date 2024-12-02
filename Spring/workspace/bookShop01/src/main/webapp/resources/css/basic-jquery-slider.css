@@ -1,3 +1,14 @@
+/* styles.css */
+/* @import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css');
+ */
+ 
+ 
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css');
+
+/* 이후 원하는 요소에 글꼴을 적용 */
+body {
+    font-family: 'NanumSquareNeo', sans-serif;
+}
 ul.bjqs {
 	list-style: none; margin: 0px; padding: 0px; overflow: hidden; display: none; position: relative;
 }

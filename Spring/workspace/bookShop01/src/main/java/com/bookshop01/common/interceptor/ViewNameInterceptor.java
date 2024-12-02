@@ -7,7 +7,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class ViewNameInterceptor extends  HandlerInterceptorAdapter{
 	
-	//컨트롤러 클래스 실행전 요청한 주소에 관하여  뷰주소를 얻어 request메모리에 뷰주소를 저장하는 메소드 
+	//컨트롤러 클래스 메소드 실행전 요청한 주소에 관하여  뷰주소를 얻어 request메모리에 뷰주소를 저장하는 메소드 
 	  // http://localhost:8090/bookshop01/main/main.do
 	  // http://localhost:8090/bookshop01/goods/goodsDetail.do
 	  // http://localhost:8090/bookshop01/goods/keywordSearch.do  입력한 검색어 단어가 포함된 책제목 자동완성을 위해  검색 AJAX
@@ -64,6 +64,9 @@ public class ViewNameInterceptor extends  HandlerInterceptorAdapter{
 								 + "getViewName메소드에 의해 얻은 타일즈에서 사용할 View이름 => " + viewName + " 을"
 								 + " request.setAttribute('viewName', viewName); 바인딩하고\n  reutrn true;에 의해 "
 								 + " 클라이언트가 요청 한 주소와 매핑된 특정 컨트롤러클래스의  @RequestMapping된 메소드가 호출되어 실행 됩니다.");
+
+				System.out.println("===========================================================================================\n");
+				
 
 		  } catch (Exception e) {
 			e.printStackTrace();

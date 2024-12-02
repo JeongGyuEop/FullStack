@@ -17,9 +17,7 @@ selectGoodsList:
 	goodsStatus를 매개변수로 받아서 해당 상태의 상품을 최근 등록 순으로 15개까지 가져옵니다. 
 	상품 정보와 메인 이미지 파일명이 포함되어 있습니다.
 
-selectGoodsDetail: 
-	상품 상세 정보를 가져오는 쿼리입니다. 
-	goods_id를 매개변수로 받아서 해당 상품의 상세 정보와 메인 이미지 파일명을 가져옵니다.
+
 	
 selectGoodsDetailImage: 
 	상품 상세 페이지에 표시할 상품 이미지들을 가져오는 쿼리입니다. 
@@ -145,6 +143,10 @@ column: 데이터베이스에서 조회한 컬럼 이름입니다.
 	
 <!-- 
 	상품 정보와 상품 메인 이미지 파일 정보를 조회 합니다. 
+	
+	selectGoodsDetail: 
+	상품 상세 정보를 가져오는 쿼리입니다. 
+	goods_id를 매개변수로 받아서 해당 상품의 상세 정보와 메인 이미지 파일명을 가져옵니다.
  -->	
 	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="String"  >
 	    <![CDATA[
