@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+
+import com.bookshop01.kakao.vo.KakaoVO;
 import com.bookshop01.member.vo.MemberVO;
 
 @Repository("memberDAO")
@@ -33,5 +35,15 @@ public class MemberDAOImpl  implements MemberDAO{
 		return result;
 	}
 	
-	
+	@Override
+	public MemberVO selectKakaoUser(String kakaoId) throws DataAccessException {
+	    return sqlSession.selectOne("mapper.member.selectKakaoUser", kakaoId);
+	}
+
+
+	@Override
+	public void insertKakaoUser(KakaoVO kakaoUser) throws DataAccessException {
+	    sqlSession.insert("mapper.member.insertKakaoUser", kakaoUser);
+	}
+
 }

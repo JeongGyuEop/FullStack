@@ -28,7 +28,45 @@ public class MemberVO {
 	private String namujiAddress;
 	private String joinDate;
 	private String del_yn;
+
+    // Kakao 관련 추가
+	private String kakao_id;
+	private String social_provider;
+	private String nickname;
+	private String email;
+	private String profile_image;
+
 	
+	public String getKakao_id() {
+		return kakao_id;
+	}
+	public void setKakao_id(String kakao_id) {
+		this.kakao_id = kakao_id;
+	}
+	public String getSocial_provider() {
+		return social_provider;
+	}
+	public void setSocial_provider(String social_provider) {
+		this.social_provider = social_provider;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getProfile_image() {
+		return profile_image;
+	}
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
+	}
 	public String getMember_id() {
 		return member_id;
 	}
@@ -42,6 +80,7 @@ public class MemberVO {
 	public void setMember_pw(String member_pw) {
 		this.member_pw = member_pw;
 	}
+	
 	public String getMember_name() {
 		return member_name;
 	}

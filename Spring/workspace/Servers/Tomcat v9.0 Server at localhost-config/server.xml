@@ -172,7 +172,7 @@
      	-->
 	
 
-      <Context docBase="bookShop01" path="/bookshop01" reloadable="true" source="org.eclipse.jst.jee.server:bookShop01"/></Host>
+      <Context docBase="bookShop01" path="/bookShop01" reloadable="true" source="org.eclipse.jst.jee.server:bookShop01"/></Host>
     </Engine>
   </Service>
 </Server>

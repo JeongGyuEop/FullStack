@@ -3,6 +3,8 @@
 	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+
 <!DOCTYPE html >
 <html>
 <head>
@@ -123,57 +125,110 @@ function fn_overlapped(){
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">성별</td>
-					<td><input type="radio" name="member_gender" value="102" />여성
-						<span style="padding-left:120px"></span>
-						<input type="radio" name="member_gender" value="101" checked />남성
-					</td>
+					 <td>
+				        <c:choose>
+				            <c:when test="${not empty param.gender}">
+				                <input type="radio" name="member_gender" value="female" 
+				                       <c:if test="${param.gender == 'female'}">checked</c:if> disabled />여성
+				                <span style="padding-left:120px"></span>
+				                <input type="radio" name="member_gender" value="male" 
+				                       <c:if test="${param.gender == 'male'}">checked</c:if> disabled />남성
+				                <input type="hidden" name="member_gender" value="${param.gender}" />
+				            </c:when>
+				
+				            <c:otherwise>
+				                <input type="radio" name="member_gender" value="female" />여성
+				                <span style="padding-left:120px"></span>
+				                <input type="radio" name="member_gender" value="male" checked />남성
+				            </c:otherwise>
+				        </c:choose>
+				    </td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">법정생년월일</td>
-					<td>
-					<select name="member_birth_y">
-					 
-					     <c:forEach var="year" begin="1" end="100">
-					       <c:choose>
-					         <c:when test="${year==80}">
-							   <option value="${ 1920+year}" selected>${ 1920+year} </option>
-							</c:when>
-							<c:otherwise>
-							  <option value="${ 1920+year}" >${ 1920+year} </option>
-							</c:otherwise>
-							</c:choose>
-					   	</c:forEach> 
-							
-					</select>년 
-					 <select name="member_birth_m" >
-					   <c:forEach var="month" begin="1" end="12">
-					       <c:choose>
-					         <c:when test="${month==5 }">
-							   <option value="${month }" selected>${month }</option>
-							</c:when>
-							<c:otherwise>
-							  <option value="${month }">${month}</option>
-							</c:otherwise>
-							</c:choose>
-					   	</c:forEach>
-					</select>월  
-					<select name="member_birth_d">
-							<c:forEach var="day" begin="1" end="31">
-					       <c:choose>
-					         <c:when test="${day==10 }">
-							   <option value="${day}" selected>${day}</option>
-							</c:when>
-							<c:otherwise>
-							  <option value="${day}">${day}</option>
-							</c:otherwise>
-							</c:choose>
-					   	</c:forEach>
-					</select>일 <span style="padding-left:50px"></span>
-					  <input type="radio" name="member_birth_gn" value="2" checked />양력
-						 <span style="padding-left:50px"></span>
-						<input type="radio"  name="member_birth_gn" value="1" />음력
-				  </td>
+				    <td class="fixed_join">법정생년월일</td>
+				    <td>
+				        <!-- 연도 -->
+				        <c:choose>
+				            <c:when test="${not empty param.birthyear}">
+				                <input type="text" name="member_birth_y" 
+				                       value="${param.birthyear}" 
+				                       readonly 
+				                       style="font-size:12px; color:gray; width:50px;" />년
+				            </c:when>
+				            <c:otherwise>
+				                <select name="member_birth_y" style="font-size:12px; color:gray; width:60px;">
+				                    <c:forEach var="year" begin="1920" end="2020">
+				                        <option value="${year}" 
+				                                <c:if test="${year == 1980}">selected</c:if>>${year}</option>
+				                    </c:forEach>
+				                </select>년
+				            </c:otherwise>
+				        </c:choose>
+				
+				        <!-- 월 -->
+				        <c:choose>
+				            <c:when test="${not empty param.birthday}">
+				                <input type="text" name="member_birth_m" 
+				                       value="${param.birthday.substring(0, 2)}" 
+				                       readonly 
+				                       style="font-size:12px; color:gray; width:30px;" />월
+				            </c:when>
+				            <c:otherwise>
+				                <select name="member_birth_m" style="font-size:12px; color:gray; width:40px;">
+				                    <c:forEach var="month" begin="1" end="12">
+				                        <option value="${month}" 
+				                                <c:if test="${month == 5}">selected</c:if>>${month}</option>
+				                    </c:forEach>
+				                </select>월
+				            </c:otherwise>
+				        </c:choose>
+				
+				        <!-- 일 -->
+				        <c:choose>
+				            <c:when test="${not empty param.birthday}">
+				                <input type="text" name="member_birth_d" 
+				                       value="${param.birthday.substring(2, 4)}" 
+				                       readonly 
+				                       style="font-size:12px; color:gray; width:30px;" />일
+				            </c:when>
+				            <c:otherwise>
+				                <select name="member_birth_d" style="font-size:12px; color:gray; width:40px;">
+				                    <c:forEach var="day" begin="1" end="31">
+				                        <option value="${day}" 
+				                                <c:if test="${day == 10}">selected</c:if>>${day}</option>
+				                    </c:forEach>
+				                </select>일
+				            </c:otherwise>
+				        </c:choose>
+				
+				        <span style="padding-left:20px;"></span>
+				
+				        <!-- 양력/음력 -->
+				        <c:choose>
+				            <c:when test="${not empty param.birth_gn}">
+				                <input type="radio" name="member_birth_gn" 
+				                       value="2" 
+				                       <c:if test="${param.birth_gn == '2'}">checked</c:if> 
+				                       disabled 
+				                       style="font-size:12px; color:gray;" />양력
+				                <span style="padding-left:20px;"></span>
+				                <input type="radio" name="member_birth_gn" 
+				                       value="1" 
+				                       <c:if test="${param.birth_gn == '1'}">checked</c:if> 
+				                       disabled 
+				                       style="font-size:12px; color:gray;" />음력
+				            </c:when>
+				            <c:otherwise>
+				                <input type="radio" name="member_birth_gn" value="2" checked 
+				                       style="font-size:12px; color:gray;" />양력
+				                <span style="padding-left:20px;"></span>
+				                <input type="radio" name="member_birth_gn" value="1" 
+				                       style="font-size:12px; color:gray;" />음력
+				            </c:otherwise>
+				        </c:choose>
+				    </td>
 				</tr>
+
 				<tr class="dot_line">
 					<td class="fixed_join">전화번호</td>
 					<td><select  name="tel1">
@@ -206,36 +261,67 @@ function fn_overlapped(){
 					</td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">휴대폰번호</td>
-					<td><select  name="hp1">
-							<option>없음</option>
-							<option selected value="010">010</option>
-							<option value="011">011</option>
-							<option value="016">016</option>
-							<option value="017">017</option>
-							<option value="018">018</option>
-							<option value="019">019</option>
-					</select> - <input size="10px"  type="text" name="hp2"> - <input size="10px"  type="text"name="hp3"><br> <br> 
-					<input type="checkbox"	name="smssts_yn" value="Y" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.</td>
+				    <td class="fixed_join">휴대폰번호</td>
+				    <td>
+				        <c:choose>
+				            <c:when test="${not empty param.phoneNumber}">
+				                <input type="text" name="phoneNumber" size="15" 
+				                       value="${param.phoneNumber}" readonly 
+				                       style="color:gray;" />
+				            </c:when>
+				            
+				            <c:otherwise>
+				                <select name="hp1">
+				                    <option>없음</option>
+				                    <option value="010" selected>010</option>
+				                    <option value="011">011</option>
+				                    <option value="016">016</option>
+				                    <option value="017">017</option>
+				                    <option value="018">018</option>
+				                    <option value="019">019</option>
+				                </select> - 
+				                <input size="10px" type="text" name="hp2"> - 
+				                <input size="10px" type="text" name="hp3"><br><br>
+				                <input type="checkbox" name="smssts_yn" value="Y" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
+				            </c:otherwise>
+				        </c:choose>
+				    </td>
 				</tr>
+				
 				<tr class="dot_line">
-					<td class="fixed_join">이메일<br>(e-mail)</td>
-					<td><input size="10px"   type="text" name="email1" /> @ <input  size="10px"  type="text"name="email2" /> 
-						  <select name="email2" onChange=""	title="직접입력">
-									<option value="non">직접입력</option>
-									<option value="hanmail.net">hanmail.net</option>
-									<option value="naver.com">naver.com</option>
-									<option value="yahoo.co.kr">yahoo.co.kr</option>
-									<option value="hotmail.com">hotmail.com</option>
-									<option value="paran.com">paran.com</option>
-									<option value="nate.com">nate.com</option>
-									<option value="google.com">google.com</option>
-									<option value="gmail.com">gmail.com</option>
-									<option value="empal.com">empal.com</option>
-									<option value="korea.com">korea.com</option>
-									<option value="freechal.com">freechal.com</option>
-							</select><br> <br> <input type="checkbox" name="emailsts_yn" value="Y" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.</td>
+				    <td class="fixed_join">이메일<br>(e-mail)</td>
+				    <td>
+				        <c:choose>
+				            <c:when test="${not empty param.email1 and not empty param.email2}">
+				            	<input size="10px" type="text" name="email1" value="${param.email1}" style="color:gray;" readonly /> @
+								<input size="10px" type="text" name="email2" value="${param.email2}" style="color:gray;" readonly />
+				            </c:when>
+				
+				            <c:otherwise>
+				                <input size="10px" type="text" name="email1" /> @ 
+				                <input size="10px" type="text" name="email2" /> 
+				                <select name="email2" onChange="" title="직접입력">
+				                    <option value="non">직접입력</option>
+				                    <option value="hanmail.net">hanmail.net</option>
+				                    <option value="naver.com">naver.com</option>
+				                    <option value="yahoo.co.kr">yahoo.co.kr</option>
+				                    <option value="hotmail.com">hotmail.com</option>
+				                    <option value="paran.com">paran.com</option>
+				                    <option value="nate.com">nate.com</option>
+				                    <option value="google.com">google.com</option>
+				                    <option value="gmail.com">gmail.com</option>
+				                    <option value="empal.com">empal.com</option>
+				                    <option value="korea.com">korea.com</option>
+				                    <option value="freechal.com">freechal.com</option>
+				                </select>
+				            </c:otherwise>
+				        </c:choose>
+				        <br><br>
+				        <input type="checkbox" name="emailsts_yn" value="Y" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
+				    </td>
 				</tr>
+
+
 				<tr class="dot_line">
 					<td class="fixed_join">주소</td>
 					<td>

@@ -40,7 +40,10 @@ function result(){
 		<INPUT	type="submit" value="로그인"> 
 		<INPUT type="button" value="초기화">
 		<br><hr>
-		<a href="https://kauth.kakao.com/oauth/authorize?client_id=6d9c47e51202a4e281197512a48b13b0&redirect_uri=YOUR_REDIRECT_URI&response_type=code">
+		<a href="https://kauth.kakao.com/oauth/authorize?
+					client_id=f6d8eb0ebbe1cc122b97b3f7be2a2b1a&
+					redirect_uri=http://localhost:8090/bookShop01/member/kakao/callback&
+					response_type=code">
 		    카카오 로그인
 		</a>
 		

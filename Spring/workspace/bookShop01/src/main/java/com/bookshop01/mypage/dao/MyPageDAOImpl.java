@@ -44,11 +44,14 @@ public class MyPageDAOImpl implements MyPageDAO{
 		return memberVO;
 		
 	}
+	
+	
 	 //주문취소 버튼을 눌러  t_shopping_order테이블에 저장된 
      //주문번호에 해당 하는  주문상태열의 값을  주문취소(cancel_order)로 수정! 
 	public void updateMyOrderCancel(String order_id) throws DataAccessException{
 		sqlSession.update("mapper.mypage.updateMyOrderCancel",order_id);
 	}
+	
 }
 
 

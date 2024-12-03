@@ -33,7 +33,25 @@
 		<result property="jibunAddress" column="jibunAddress" />
 		<result property="namujiAddress" column="namujiAddress" />
 		<result property="joinDate" column="joinDate" />
+		
+ 	    <!-- Kakao 관련 추가 -->
+        <result property="kakao_id" column="kakao_id" />
+        <result property="social_provider" column="social_provider" />
+        <result property="nickname" column="nickname" />
+        <result property="email" column="email" />
+        <result property="profile_image" column="profile_image" />
+        
 	</resultMap>	
+	
+	<select id="selectKakaoUser" parameterType="String" resultMap="memberResult">
+	    SELECT *
+	    FROM t_shopping_member
+	    WHERE kakao_id = #{kakaoId}
+	</select>
+
+
+
+
 
     <!-- 로그인시 입력한 아이디 , 비밀번호 값에 해당하는 정보를 테이블에서 조회!!
     	 조회가 되면 입력한 아이디 또는 비밀번호가  DB의 테이블에 저장되어 있다는 뜻이므로 
@@ -106,4 +124,5 @@
                                       
    ]]>      
   </insert>
+  
 </mapper>

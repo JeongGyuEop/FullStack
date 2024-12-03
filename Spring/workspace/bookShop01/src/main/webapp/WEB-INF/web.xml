@@ -59,6 +59,8 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	
    
 <!--     http://localhost:8090/bookshop01/main/main.do 주소를 입력하면  main화면을 요청! -->
 

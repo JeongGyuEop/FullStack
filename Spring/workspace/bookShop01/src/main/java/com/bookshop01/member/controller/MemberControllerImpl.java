@@ -220,27 +220,67 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	    try {
 	        // 1. 액세스 토큰 요청
 	        String accessToken = memberService.getAccessToken(code);
-	        
+
 	        // 2. 사용자 정보 가져오기
 	        KakaoVO kakaoUser = memberService.getUserInfo(accessToken);
+	        
+	        System.out.println(kakaoUser.getAccountEmail());
+	        System.out.println(kakaoUser.getBirthday());
+	        System.out.println(kakaoUser.getBirthyear());
+	        System.out.println(kakaoUser.getGender());
+	        System.out.println(kakaoUser.getId());
+	        System.out.println(kakaoUser.getPhoneNumber());
+
+	        // 필수 필드 검증
+	        if (kakaoUser.getAccountEmail() == null || 
+	            kakaoUser.getGender() == null || kakaoUser.getBirthday() == null ||
+	            kakaoUser.getBirthyear() == null || kakaoUser.getPhoneNumber() == null) {
+	            throw new RuntimeException("필수 동의 항목이 누락되었습니다.");
+	        }
 
 	        // 3. DB 확인
 	        boolean userExists = memberService.checkKakaoUser(kakaoUser.getId());
 	        if (userExists) {
 	            // 로그인 처리
 	            memberService.loginByKakao(kakaoUser.getId(), request);
-	            return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/main/main.do").build();
+
+	            return ResponseEntity
+	                .status(HttpStatus.FOUND)
+	                .header("Location", "/main/main.do")
+	                .body("Redirecting to main page");
+
 	        } else {
+	        	// 이메일을 '@' 기준으로 나눔
+	        	String accountEmail = kakaoUser.getAccountEmail();
+	        	String email1 = "";
+	        	String email2 = "";
+	        	if (accountEmail != null && accountEmail.contains("@")) {
+	        	    String[] emailParts = accountEmail.split("@");
+	        	    email1 = emailParts[0];
+	        	    email2 = emailParts[1];
+	        	}
+
 	            // 회원가입 페이지로 리다이렉트
-	            String signupRedirect = "/member/memberForm.do?kakaoId=" + kakaoUser.getId() +
-	                                    "&email=" + kakaoUser.getEmail() + "&name=" + kakaoUser.getName();
-	            return ResponseEntity.status(HttpStatus.FOUND).header("Location", signupRedirect).build();
+	            String signupRedirect = request.getContextPath() + "/member/memberForm.do?" +
+	            		"kakaoId=" + kakaoUser.getId() +
+	            		"&email1=" + email1 +
+	                    "&email2=" + email2 +
+	                    "&gender=" + kakaoUser.getGender() +
+	                    "&birthday=" + kakaoUser.getBirthday() +
+	                    "&birthyear=" + kakaoUser.getBirthyear() +
+	                    "&phoneNumber=" + kakaoUser.getPhoneNumber().replace("82 ", "0");
+
+	            return ResponseEntity
+	                .status(HttpStatus.FOUND)
+	                .header("Location", signupRedirect)
+	                .body("Redirecting to signup page");
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return new ResponseEntity<>("카카오 로그인 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
+
 
 }
 
