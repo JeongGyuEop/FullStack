@@ -1,0 +1,53 @@
+면접 질문 단골!
+
+REST(Representational State Transfer) API는 
+	자원을 이름으로 구분하여 해당 자원의 상태(Representation)를 주고 받는 
+    애플리케이션을 설계하고 구축하는 데 사용하는 패턴(아키텍처)을 정의하는 API 
+
+	쉽게 요약 : http프로토콜 규칙에 맞게 웹브라우저가 제공하는 GET,POST,PUT,DELETE메소드등으로 요청을 보낼때 
+	          어떤 uri를 사용할지 어떤 메소드를 사용할지에 대한 약속 규칙 형식   
+
+	참고 할 동영상 https://www.youtube.com/watch?v=iOueE9AXDQQ
+
+
+REST API 방식으로 요청하는 전형적인 URL은 다음과 같은 구조를 가집니다.
+
+	http://[도메인]/[컨텍스트 패스]/[리소스 경로]/[리소스 식별자]
+	
+	도메인: 요청을 보내는 서버의 도메인 이름입니다. 예를 들어, www.example.com.
+	컨텍스트 패스: 해당 서버 내에서 어플리케이션을 구분하는 경로입니다. 예를 들어, /myapp.
+	리소스 경로: 요청을 보내는 자원의 경로입니다. 예를 들어, /users.
+	리소스 식별자: 요청하는 자원의 식별자입니다. 예를 들어, /users/123.
+	예를 들어, 사용자 정보를 조회하는 REST API의 URL은 다음과 같을 수 있습니다.
+	
+	
+	http://www.example.com/myapp/users/123
+	
+	위 URL에서 www.example.com는 서버의 도메인 이름을 나타내고, 
+	/myapp은 어플리케이션을 구분하는 컨텍스트 패스를 나타냅니다. 
+	/users는 사용자 정보를 나타내는 리소스 경로이며, 
+	123은 조회하려는 사용자의 식별자입니다.
+	
+	
+	REST API에서는 HTTP Method를 이용하여 자원을 조작합니다. 
+	일반적으로 CRUD(Create, Read, Update, Delete) 연산을 수행하는데, 이때 사용되는 HTTP Method는 다음과 같습니다.
+	
+	GET: 리소스 조회
+	POST: 리소스 생성
+	PUT: 리소스 수정
+	DELETE: 리소스 삭제
+	따라서, REST API의 전형적인 URL과 HTTP Method는 다음과 같이 결합하여 사용됩니다.
+	
+	GET http://www.example.com/myapp/users: 모든 사용자 조회
+	GET http://www.example.com/myapp/users/123: 사용자 123 조회
+	POST http://www.example.com/myapp/users: 사용자 생성
+	PUT http://www.example.com/myapp/users/123: 사용자 123 수정
+	DELETE http://www.example.com/myapp/users/123: 사용자 123 삭제
+	
+스프링에서 외부 API 호출하는 방법들
+https://jie0025.tistory.com/531
+	
+	
+	
+	
+	

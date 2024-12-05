@@ -120,9 +120,21 @@ function fn_modify_goods(goods_id, attribute){
 	}); //end ajax	
 }
 
-
-
+	// 이미지 미리보기 기능을 구현하는 함수
   function readURL(input,preview) {
+		
+		// input 매개변수로 넘어오는 DOM <- onchange 이벤트가 발생한 <input type="file"> DOM을
+		//									this의 키워드에 의해서 매개변수로 전달 받음
+		
+		console.debug(input); //크롬 웹브라우저 F12 버튼 눌려 개발자 코드 창의 console 탭에서 출력되는지 확인
+							  // <input type="file">
+		
+		console.log(input.files);
+		/*
+		참고 :
+			<input 
+		*/
+		
 	//  alert(preview);
     if (input.files && input.files[0]) {
         var reader = new FileReader();

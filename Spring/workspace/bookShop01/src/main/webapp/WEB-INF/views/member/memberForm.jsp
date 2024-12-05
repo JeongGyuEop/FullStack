@@ -11,6 +11,36 @@
 <meta charset="utf-8">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
+$(document).ready(function () {
+    $("#_member_id").on("keyup", function () {
+        var memberId = $(this).val().trim();
+
+        // 입력값이 없으면 메시지 초기화
+        if (memberId === '') {
+            $("#overlapMessage").text("");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "${contextPath}/member/overlapped.do",
+            data: { member_id: memberId },
+            success: function (response) {
+                if (response === 'false') {
+                    // 사용 가능한 아이디
+                    $("#overlapMessage").text("사용 가능한 아이디입니다.").css("color", "green");
+                    $("#member_id").val(memberId);
+                } else {
+                    // 중복된 아이디
+                    $("#overlapMessage").text("사용할 수 없는 아이디입니다.").css("color", "red");
+                }
+            },
+            error: function () {
+                $("#overlapMessage").text("서버 요청 중 오류가 발생했습니다.").css("color", "red");
+            }
+        });
+    });
+});
 
 
 function execDaumPostcode() {
@@ -64,40 +94,7 @@ function execDaumPostcode() {
   }).open();
 }
 
-//아이디 중복 확인
-function fn_overlapped(){
-	
-    var _id=$("#_member_id").val();
-    
-    if(_id==''){
-   	 alert("ID를 입력하세요");
-   	 return;
-    }
-    
-    $.ajax({
-       type:"post",
-       async:false,  
-       url:"${contextPath}/member/overlapped.do", //회원가입 시  입력한 아이디가 DB에 저장되어 있는지 중복확인 요청!
-       dataType:"text",
-       data: {id:_id},
-       success:function (data,textStatus){
-          if(data=='false'){
-       	    alert("사용할 수 있는 ID입니다.");
-       	    $('#btnOverlapped').prop("disabled", true);
-       	    $('#_member_id').prop("disabled", true);
-       	    $('#member_id').val(_id);
-          }else{
-        	  alert("사용할 수 없는 ID입니다.");
-          }
-       },
-       error:function(data,textStatus){
-          alert("에러가 발생했습니다.");ㅣ
-       },
-       complete:function(data,textStatus){
-          //alert("작업을완료 했습니다");
-       }
-    });  //end ajax	 
- }	
+
 </script>
 </head>
 <body>
@@ -111,8 +108,7 @@ function fn_overlapped(){
 					<td>
 					  <input type="text" name="_member_id"  id="_member_id"  size="20" />
 					  <input type="hidden" name="member_id"  id="member_id" value=""/>
-					  
-					  <input type="button"  id="btnOverlapped" value="중복체크" onClick="fn_overlapped()" />
+					  <span id="overlapMessage" style="color: red; margin-left: 10px;"></span>
 					</td>
 				</tr>
 				<tr class="dot_line">
