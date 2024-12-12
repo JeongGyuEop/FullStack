@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ 	<h1 th:text="${product.name}">제품명</h1>
+  	<h1 th:text="${product.unitCost}">1200</h1>
+  <!-- 
+  뷰에 전달된 데이터(model attribute) 중에서, 
+  이름이 "product"인 객체의 name 속성값이 출력된다.
+   즉 getName() 메소드가 호출되고,
+   이 getName() 메소드가 리턴한 값이, 이 태그 사이에 출력된다.
+
+   액션 메소드는 다음과 같이 "product" 이름의 model attribute를 전달해야 한다.
+   model.addAttribute("product", product);
+   -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

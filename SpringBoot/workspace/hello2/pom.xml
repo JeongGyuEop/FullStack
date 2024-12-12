@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- XML 문서의 시작 부분으로, 파일이 UTF-8 인코딩 방식으로 작성되었음을 나타냄 -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!-- Maven 프로젝트 파일(POM)의 루트 태그로, XML 네임스페이스 및 스키마 위치가 정의됨 -->
+	<!--
+		xmlns: 기본 네임스페이스 (Maven POM XML 정의용)
+		xmlns:xsi: XML 스키마 인스턴스를 위한 네임스페이스
+		xsi:schemaLocation: XML 스키마의 실제 위치를 정의하여 Maven이 XML을 검증할 수 있도록 도움
+	-->
+
+	<modelVersion>4.0.0</modelVersion>
+	<!-- Maven POM 파일의 모델 버전 (현재 4.0.0 고정값) -->
+
+	<parent>
+		<!-- 현재 프로젝트의 부모 프로젝트를 지정 -->
+		<groupId>org.springframework.boot</groupId>
+		<!-- 부모 프로젝트의 그룹 ID: Spring Boot의 기본 스타터 프로젝트 -->
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<!-- 부모 프로젝트의 아티팩트 ID -->
+		<version>3.2.11</version>
+		<!-- 부모 프로젝트의 버전 (Spring Boot 버전) -->
+		<relativePath/> <!-- lookup parent from repository -->
+		<!-- 부모 POM 파일의 위치를 지정하는 속성 -->
+		<!-- 비워 두면 Maven 중앙 저장소에서 해당 부모를 검색 -->
+	</parent>
+
+	<groupId>net.skhu</groupId>
+	<!-- 이 프로젝트의 그룹 ID: 조직 또는 도메인 기반의 고유 식별자 -->
+	<!-- 예: net.skhu는 'net.skhu' 도메인을 가진 조직의 프로젝트임을 나타냄 -->
+
+	<artifactId>hello2</artifactId>
+	<!-- 이 프로젝트의 아티팩트 ID: 프로젝트의 고유 이름 -->
+
+	<version>0.0.1-SNAPSHOT</version>
+	<!-- 이 프로젝트의 버전: 0.0.1은 초기 버전을, SNAPSHOT은 개발 중임을 의미 -->
+
+	<packaging>war</packaging>
+	<!-- 프로젝트의 빌드 결과물 형식: WAR(Web Application Archive) -->
+	<!-- WAR 파일은 외부 서버(Tomcat, JBoss 등)에서 실행 가능 -->
+
+	<name>hello2</name>
+	<!-- 프로젝트 이름: 사람이 읽을 수 있는 이름 -->
+
+	<description>Demo project for Spring Boot</description>
+	<!-- 프로젝트 설명: 이 프로젝트가 무엇인지 간단히 설명 -->
+
+	<url/>
+	<!-- 프로젝트 URL: 비어 있음 (필요 시 프로젝트 관련 URL 입력 가능) -->
+
+	<licenses>
+		<license/>
+		<!-- 프로젝트의 라이선스 정보를 입력 (현재 비어 있음) -->
+	</licenses>
+
+	<developers>
+		<developer/>
+		<!-- 개발자 정보 입력 가능 (현재 비어 있음) -->
+	</developers>
+
+	<scm>
+		<!-- 소스 코드 관리 정보 -->
+		<connection/>
+		<!-- 원격 저장소에 접근하기 위한 URL (비어 있음) -->
+		<developerConnection/>
+		<!-- 개발자가 사용할 저장소 접근 URL (비어 있음) -->
+		<tag/>
+		<!-- 소스 코드의 태그 정보 (비어 있음) -->
+		<url/>
+		<!-- 저장소 URL (비어 있음) -->
+	</scm>
+
+	<properties>
+		<java.version>17</java.version>
+		<!-- 이 프로젝트에서 사용할 Java 버전: 17 -->
+	</properties>
+
+	<dependencies>
+		<!-- 이 프로젝트에서 사용할 외부 라이브러리(의존성)를 정의 -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot 그룹 ID -->
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<!-- Thymeleaf 템플릿 엔진 스타터 -->
+			<!-- Thymeleaf는 HTML 파일을 렌더링하는 템플릿 엔진 -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot 그룹 ID -->
+			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- 웹 애플리케이션 개발을 위한 스타터 -->
+			<!-- Spring MVC 및 RESTful API를 개발하는 데 필요한 라이브러리 포함 -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot 그룹 ID -->
+			<artifactId>spring-boot-devtools</artifactId>
+			<!-- 개발 도구 스타터 -->
+			<!-- 변경 사항 자동 반영(핫스왑), 캐시 초기화 등의 기능 제공 -->
+			<scope>runtime</scope>
+			<!-- 런타임 시에만 포함 -->
+			<optional>true</optional>
+			<!-- 선택적 의존성으로 표시 (필요하지 않을 경우 제외 가능) -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot 그룹 ID -->
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<!-- 내장 Tomcat 서버 스타터 -->
+			<!-- WAR 패키징 시 내장 Tomcat을 사용하지 않으므로 provided로 설정 -->
+			<scope>provided</scope>
+			<!-- 외부 서버가 이 의존성을 제공하므로 실행 파일에 포함하지 않음 -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<!-- Spring Boot 그룹 ID -->
+			<artifactId>spring-boot-starter-test</artifactId>
+			<!-- 테스트 관련 라이브러리 스타터 -->
+			<!-- JUnit, Mockito 등 포함 -->
+			<scope>test</scope>
+			<!-- 테스트 단계에서만 포함 -->
+		</dependency>
+	</dependencies>
+
+	<build>
+		<!-- 이 프로젝트의 빌드 프로세스를 정의 -->
+		<plugins>
+			<!-- 빌드 과정에서 사용할 플러그인 설정 -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<!-- Spring Boot 플러그인의 그룹 ID -->
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- Maven용 Spring Boot 플러그인 -->
+				<!-- 이 플러그인은 실행 가능한 JAR/WAR 파일 생성, 빌드 및 실행 등을 수행 -->
+			</plugin>
+		</plugins>
+	</build>
+</project>
+<!--
+
+## **요약**
+1. **Spring Boot 프로젝트**:
+   - WAR 형식으로 패키징되며, 외부 애플리케이션 서버에 배포 가능.
+2. **주요 의존성**:
+   - Thymeleaf: HTML 렌더링.
+   - Web: Spring MVC 및 REST API 개발.
+   - DevTools: 개발 편의 도구.
+   - Tomcat: 내장 Tomcat 사용 가능.
+   - Test: 테스트 라이브러리.
+3. **빌드 플러그인**:
+   - `spring-boot-maven-plugin`: 실행 가능한 JAR/WAR 생성 및 실행 담당.
+-->

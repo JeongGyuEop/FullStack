@@ -1,0 +1,59 @@
+
+<!-- 
+	이 뷰 파일의 경로가 second/test1.html 이므로
+  
+    컨트롤러의 액션 메소드는 다음과 같은 문자열을 리턴해야 한다.
+    return "second/test1";
+ -->
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!-- 
+위 태그는 다음과 같이 선언한다.
+   이 html 문서의 언어는 한국어고 (ko)
+   이 html 문서에는 thymeleaf 확장 태그가 포함되어 있고, 
+   그 확장 태그에는 th: 접두어가 붙어있다.
+                                                      
+   예: th:text="${message}"
+-->
+
+<head>
+<meta charset="UTF-8">
+<!-- 
+이 문서의 문자 인코딩은 "utf-8" 이다.
+한글이 깨지지 않고 제대로 보이려면, 인코딩 선언이 필요하다.
+ -->  
+
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 th:text="${message}">메세지가 없습니다</h1>
+<!-- 
+뷰에 전달된 model attribute 데이터 중에서, 
+이름이 "message"인 데이터가 이 태그 사이에 출력된다.
+따라서 '메시지가 없습니다' 문구는 출력되지 않는다.
+
+액션 메소드는 다음과 같이 "message" 이름의 model attribute를 전달해야 한다.
+  model.addAttribute("message", "안녕하세요");
+
+위 소스코드에 의해서 웹브라우저로 전송(출력)되는 html 태그는 다음과 같다.
+   <h1>안녕하세요</h1>
+ -->  
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

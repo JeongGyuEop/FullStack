@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/common.css"  />
+<title>Insert title here</title>
+<style>
+	form {
+		width: 500px;
+		padding: 1em 3em;
+	}
+	button {   margin-left: 1em;     }
+</style>
+</head>
+<body>
+<!-- 
+${student} 부분과 ${ errorMsg } 부분은 
+액션 메소드로부터 전달된 model attribte 데이터이다. 
+
+   예: model.addAttribute("student", ...); 
+       model.addAttribute("errorMsg", ...); 
+        위와 같이 전달하는 코드가 StudentController 클래스의 어디에 있는지 찾아보라. 
+
+입력 폼 태그 요약 
+ <form method="post" th:object="${student}" class="shadow"> 
+    <input type="text" th:field="*{studentNo}" /> 
+    <input type="text" th:field="*{name}" /> 
+    <button type="submit" class="btn">저장</button> 
+  </form> 
+ 
+  *{studentNo} 부분과 *{name} 부분은 th:object="${student}" 객체의 속성이다.
+  
+  
+  
+  ${ } 부분과 *{ } 부분을 구별하자. 
+   하늘색 부분은 model attribute 이름이다. 예: ${studentEdit} 
+   연두색 부분은 객체의 속성이다.  예: *{studentNo} 
+-->
+	<div class="container">
+		<form   method="post"  th:object="${studentEdit}" class="shadow">
+			<h1>학생 수정</h1>
+			<div class="row">
+				<label>학번:</label>
+				<input type="text" th:field="*{studentNo}" />
+				<div class="error" th:errors="*{studentNo}"></div>
+				<!-- 
+				<div class="error" th:errors="*{studentNo}"></div> 
+					studentEdit 객체의 studentNo 속성 값에 대한 spring form validation 오류 메시지가  
+					<div> 태그 사이에 출력된다. 
+					이 오류 메시지는 spring form validation 자동 검사 기능에 의해서 
+					bindingResult 객체에 담겨서 뷰에 전달되었다. 	
+				 -->
+				
+			</div>
+			<div class="row">
+				<label>이름:</label>
+				<input type="text" th:field="*{name}" />
+				<div class="error" th:errors="*{name}"></div>	
+			</div>	
+		    <div class="row"> 
+		      <label>학과:</label> 
+		      <select th:field="*{departmentId}"> 
+		        <option value="0">학과를 선택하세요</option> 
+		        <option value="1">소프트웨어공학과</option> 
+		        <option value="2">컴퓨터공학과</option> 
+		        <option value="3">정보통신공학과</option> 
+		      </select> 
+		      <div class="error" th:errors="*{departmentId}"></div>
+		    </div> 
+		    <!-- 라디오 버튼과 체크박스를 <label> 태그로 감싸주면 
+   				  남자, 여자, 휴학 등 레이블 부분을 클릭해도 체크 상태가 변경되니 편리하다. -->
+		    <div class="row"> 
+		      <label>성별:</label> 
+		      <label><input type="radio" th:field="*{gender}" value="남자" />남자</label> 
+		      <label><input type="radio" th:field="*{gender}" value="여자" />여자</label> 
+		       <div class="error" th:errors="*{gender}"></div>
+		    </div> 
+		    <div class="row"> 
+		      <label>졸업:</label> 
+		      <label><input type="checkbox" th:field="*{absense}" />휴학</label>
+    		  <div class="error" th:errors="*{absense}"></div>	       
+		    </div> 
+		    <div class="row"> 
+		      <label>학년:</label> 
+		      <input type="number" th:field="*{year}" /> 
+        	  <div class="error" th:errors="*{year}"></div>	             
+		    </div>   	
+			<hr/>
+			<button type="submit" class="btn">저장</button>
+			<span class="error" th:errors="${studentEdit}"></span>	
+<!-- 
+<span class="error" th:errors="${studentEdit}"></span> 
+
+		속성 값 오류 메시지가 아니고 studentEdit 객체에 대한 오류 메시지가  
+		<span> 태그 사이에 출력된다. 
+		이 오류 메시지는 액션 메소드의 아래 코드에 의해서 bindingResult 객체에 담겨서 뷰에 전달되었다. 
+		bindingResult.reject("", null, ex.getMessage()); 
+
+ -->			
+			
+						
+		</form>	
+	</div>
+<!-- 
+ 위 뷰 템플릿 파일이 서버에서 실행되어, 입력 폼 html 태그들이 웹브라우저에 출력될 때,  
+    <input type="text" th:field="*{studentNo}" /> 
+      이 소스 코드에 의해서 
+      student 객체의 studentNo 속성값이 채워진 input 태그가 출력되고, 
+ 
+    <input type="text" th:field="*{name}" /> 
+      이 소스 코드에 의해서 
+      student 객체의 name 속성값이 채워진 input 태그가 출력된다. 
+ -->	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

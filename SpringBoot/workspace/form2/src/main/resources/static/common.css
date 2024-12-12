@@ -1,0 +1,26 @@
+@charset "UTF-8";
+div.container { width: 800px; margin: 10px auto; font-size: 11pt; } 
+.shadow { box-shadow: 2px 2px 5px gray; } 
+ 
+.btn { padding: 0.4em 1em; border: 1px solid gray; 
+       border-radius: 0.5em; background: linear-gradient(#fff, #ddd); 
+       text-decoration: none; color: black; 
+       display: inline-block; } 
+.btn:active { 
+      -ms-transform: translateY(2px); 
+      -webkit-transform: translateY(2px); 
+      transform: translateY(2px); 
+      background: #ccc; } 
+ 
+table.list { border-collapse: collapse; width: 100%; } 
+table.list td { padding: 4px; border: 1px solid gray; } 
+table.list th { padding: 4px; border: 1px solid gray;  background-color: #eee; } 
+ 
+div.row { margin-bottom: 0.8em; } 
+div.row > label:nth-child(1) { display: inline-block; min-width: 4em; text-align: right; } 
+ 
+input[type=text], input[type=number] { padding: 0.3em; } 
+select { padding: 0.3em; } 
+h1 { margin: 0.5em 0; } 
+hr { margin: 1em 0; } 
+.error { color: red; padding: 0.2em; margin-left: 1em; } 

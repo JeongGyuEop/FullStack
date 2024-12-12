@@ -1,0 +1,137 @@
+
+
+1. 배경 지식
+1) lombok
+lombok은 getter,setter메소드를 자동으로 생성해 주는 도구 입니다.
+lombok을 사용하면, getter,setter메소드를 구현하지 않아도 되니 편하다.
+equals메소드, hasCode메소드, toString 메소드도 자동으로 생성해 줍니다.
+
+DTO 클래스에 @Data 어노테이션을 붙이면
+모든 멤버변수에 대해서
+getter, setter, equals, hasCode, toString메소드들이 자동 구현된다.
+
+바이트코드 파일에 생성됨(*.class)
+그런데 소스 코드 파일이 아니고, 컴파일되어 생성되는 *.class파일에,
+위 메소드들이 자동으로 생성된다.
+
+@Data 어노테이션
+예)
+    @Data
+    public class Student{
+    
+    	int id;
+    	String name;    
+    }
+    - 모든 멤버 변수에 대해서 getter, setter메소드들이 자동으로 구현된다.
+    - 모든 멤버변수 값이 같은지 비교하는 equlas메소드가 자동으로 구현된다.
+    - 모든 멤버변수 값을 바탄으로 해시 값을 계산하는 hasCode메소드가 자동으로 구현된다.
+    - 모든 멤버변수 값을 얻어 문자열로 반환하는 toString메소드가 자동으로 구현된다.
+    
+2) 로그기록
+
+버그를 찾고 해결하는 가장 좋은 수단은 다음과 같다.
+	(1) JUnit 단위 테스트 구현
+	(2) 로그 메세지 출력
+	
+	디버깅에 필요한 정보를 출력할때,
+	System.out.println(...) 메소드를 사용하는것은 바람직하지 않다.
+	로그 메세지 출력 기능을 사용해야 한다.
+	
+@Slf4j 어노테이션
+- 로그 메세지 출력기능을 구현하려는 클래스위에 이 어노테이션을 붙여주자.	
+	
+	예)
+			import lombok.extern.slf4j.Slf4j;
+	
+			@Controller
+			@Slf4j
+			public class StudentController{
+			
+				static final Logger log = 
+				LoggerFactory.getLogger(StudentService.class);
+				
+				//즉~ @Slf4j 어노테이션이 붙은 클래스에는 log 멤버변수의 객체가
+				//자동으로 생성된다. 이것도 lombok의 기능이다.
+				
+			}
+			
+	로그메세지 등급
+	
+		심각한 정도를 기준으로 로그 메세지의 등급이 구분된다.
+		
+			trace < debug < info < warn < error
+			
+				trace 등급이 가장 낮고, error등급이 가장 높다.
+				주로 사용하는 등급은 debug, info, error이다.
+						
+				error : 에러 발생
+				warn : 에러까지는 아니지만, 큰 성능 하락 등 위험한 상황
+				info : 서버 시작, 연결 성공 등 중요한 이벤트
+				debug : 디버깅을 위해 필요한 여러가지 정보 출력
+				trace : 사소한 정보 출력
+				
+		등급별로 로그 메세지 출력메소드 종류
+			log.error("An ERROR Message"); 
+			log.warn("A WARN Message"); 
+			log.info("An INFO Message"); 
+			log.debug("A DEBUG Message"); 
+			log.trace("A TRACE Message");
+				
+	이 메소드들로 출력한 로그 메시지들은 
+	eclipse 에서 실행할 때 eclipse 콘솔창에 출력되고, 
+	서버에서 실행할 때는 로그 파일에 기록된다. (약간의 서버 로그 출력 설정 필요)
+	
+	
+	로그 메세지 출력 설정하기
+		소스 코드에 구현한 로그 메시지 출력이 언제나 전부 출력되는 것은 아니다. 
+		어느 등급 이상만 출력하고 그 미만은 무시하라고 설정할 수 있다. 
+		
+		application.properties 
+		
+			logging.level.root=info 
+			위와 같이 설정하면 info 등급 이상의 로그 메시지만 출력되고, 
+			이 미만 등급은 전부 무시된다. 
+			이 설정의 디폴트 값은 info 등급이다.
+
+
+			logging.level.root=debug 
+			위와 같이 설정하면 debug 등급 이상의 로그 메시지들이 출력된다.
+
+			logging.level.net.skhu=debug	 
+				net.skhu 패키지 아래 클래스들은 debug 등급 이상 
+				그외 나머지 클래스들은 디폴트인 info 등급 이상
+				
+			logging.level.net.skhu.mapper=debug
+				net.skhu.mapper 패키지 아래 클래스들은 debug 등급 이상 
+				그외 나머지 클래스들은 디폴트인 info 등급 이상 
+
+			logging.net.skhu.controller.StudentController=debug 
+				net.skhu.controller.StudentController 클래스는 debug 등급 이상 
+				그외 나머지 클래스들은 디폴트인 info 등급 이상
+				
+			
+			디버깅이 끝나면 위 debug 설정만 지우면 된다. 
+			디폴트 설정이 info 이므로, log.deubg(...) 출력은 무시되기 때문이다. 
+
+			소스코드에서 log.debug(...) 호출을 삭제하지 않으면, 
+			나중에 또 디버깅 해야할 때, 그 부분의 debug 등급 설정만 해주면 되니 편리하다. 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+
+
+
+
+
+

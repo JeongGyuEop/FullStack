@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/common.css"  />
+<title>Insert title here</title>
+<style>
+	form {
+		width: 500px;
+		padding: 1em 3em;
+	}
+	button {   margin-left: 1em;     }
+</style>
+</head>
+<body>
+<!-- 
+${student} 부분과 ${ errorMsg } 부분은 
+액션 메소드로부터 전달된 model attribte 데이터이다. 
+
+   예: model.addAttribute("student", ...); 
+       model.addAttribute("errorMsg", ...); 
+        위와 같이 전달하는 코드가 StudentController 클래스의 어디에 있는지 찾아보라. 
+
+입력 폼 태그 요약 
+ <form method="post" th:object="${student}" class="shadow"> 
+    <input type="text" th:field="*{studentNo}" /> 
+    <input type="text" th:field="*{name}" /> 
+    <button type="submit" class="btn">저장</button> 
+  </form> 
+ 
+  *{studentNo} 부분과 *{name} 부분은 th:object="${student}" 객체의 속성이다.
+-->
+	<div class="container">
+		<form   method="post"  th:object="${student}" class="shadow">
+			<h1>학생 수정</h1>
+			<div class="row">
+				<label>학번:</label>
+				<input type="text" th:field="*{studentNo}" />
+			</div>
+			<div class="row">
+				<label>이름:</label>
+				<input type="text" th:field="*{name}" />
+			</div>			
+			<hr/>
+			<button type="submit" class="btn">저장</button>
+			<span class="error" th:text="${errorMsg}"></span>				
+		</form>	
+	</div>
+<!-- 
+ 위 뷰 템플릿 파일이 서버에서 실행되어, 입력 폼 html 태그들이 웹브라우저에 출력될 때,  
+    <input type="text" th:field="*{studentNo}" /> 
+      이 소스 코드에 의해서 
+      student 객체의 studentNo 속성값이 채워진 input 태그가 출력되고, 
+ 
+    <input type="text" th:field="*{name}" /> 
+      이 소스 코드에 의해서 
+      student 객체의 name 속성값이 채워진 input 태그가 출력된다. 
+ -->	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

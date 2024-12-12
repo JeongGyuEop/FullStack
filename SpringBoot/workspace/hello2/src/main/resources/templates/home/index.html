@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Hello2</h1>
+	
+	<a href="first/test1">first/test1</a> <br>
+	
+	<a href="first/test2">first/test2</a> <br>
+	
+	<a href="first/test3">first/test3</a> <br>
+
+	<a href="first/test4">first/test4</a> <br>
+	
+	<br><br>
+	
+	<a href="second/test1">second/test1</a> <br>
+	
+	<a href="second/test2">second/test2</a> <br>
+<!-- 
+위 실행 절차
+1	hello2 프로젝트를 실행하면, hello2 프로젝트가 빌드되고, 
+    빌드된 배포 파일(hello2.war) 내부의 톰켓 서버가 실행된다.
+    
+2	웹브라우저가 http://localhost:8088/ URL을 요청하면, 
+    서버에서 HomeController의 index 메소드가 호출된다.
+    
+3	src/main/resource/templates/home/index.html 파일이 실행되고, 
+    그 실행결과 출력이 웹브라우저에 전송된다.
+    
+4	전송된 html 태그가 웹브라우저에 표시된다.
+
+5	사용자가 웹브라우저에서 first/test3 링크<a>를 마우스로 클릭한다.
+
+6	웹브라우저가 http://locahost:8088/first/test3 URL을 웹서버에 요청한다.
+
+7	FirstController의 test3 액션 메소드가 서버에서 실행된다.
+
+8	test3 액션 메소드가 리턴한 데이터가 웹브라우저에 전송된다.
+
+9	전송된 데이터가 웹브라우저에 표시된다.
+ -->	
+	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

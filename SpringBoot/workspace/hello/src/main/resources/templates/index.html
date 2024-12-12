@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<!-- 타임리프 언어 사용하기 위해 설정 추가 -->
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+</head>
+<body>
+	<h1>Hello World</h1>
+	<p th:text="${message}">기본메세지</p>
+	<p th:text="${#dates.format(now,'yyyy-MM-dd HH:mm:ss')}">기본 날짜</p>
+<!-- 
+웹브라우저의 요청(http request)에 대한 응답(http response)으로, 
+웹서버에서 웹브라우저로 전송되는 것은 대부분 html 태그이다.
+
+
+실행 순서
+	웹브라우저에서 웹서버에 요청(http request)이 전달되면,
+	요청된 URL과 일치하는, 컨트롤러의 액션 메소드가 실행된다.
+    그리고 액션 메소드의 뒤를 이어서 뷰(view) 파일이 실행된다.
+	뷰 파일의 실행 결과 출력된 html 태그들이 웹브라우저로 전송된다.
+	
+<p th:text="${message}">기본 메시지</p>
+설명 : 뷰에 전달된 model attribute 데이터 중에서, 
+      이름이 "message"인 데이터가 이 태그 사이 텍스트로 출력된다.
+
+
+
+<p th:text="${#dates.format(now, 'yyyy-MM-dd HH:mm:ss')}">기본 날짜</p>
+
+설명1.이름이 "now" 인 model attribute는 Date 타입의 객체이다.
+	 이 객체의 값이 'yyyy-MM-dd HH:mm:ss' 포멧의 문자열로 변환되어
+	 <p> 태그의 텍스트로 출력된다.</p> 
+
+
+<p th:text="${#dates.format(now, 'yyyy-MM-dd HH:mm:ss')}">기본 날짜</p>
+ 설명2.  이 부분은 thymeleaf 뷰 템플릿 소스코드이다.
+  		 서버에서 이 소스코드가 실행되어 
+  		 다음과 같은 형태의 html 태그가 웹브라우저로 전송된다.
+   		<p>2014-09-02 16:45:27</p> 
+
+ -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
