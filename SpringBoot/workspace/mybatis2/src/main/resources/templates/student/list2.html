@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/common.css" />
+
+<style>
+	form { margin-bottom: 4px; }
+
+</style>
+	
+</head>
+<body>
+<!-- 
+	<tr th:each=" st  : ${students}  ">
+		..... st.변수명
+	</tr>
+ 	  
+ 	  students 목록의 학생 객체들 각각에 대해서  
+      그 학생 객체를 st 변수에 대입하여 
+      <tr> 태그와 그 내부 <td> 태그들이 반복 출력된다.     
+ -->	
+
+	<div class="container shadow">
+		<h1>학생 목록</h1>
+		<!--  http://localhost:8088/student/list2 -->
+		<form>
+			<input type="text" name="name" th:value="${name}">
+			<button type="submit">조회</button>
+		</form>
+		<table class="list">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>학번</th>
+					<th>이름</th>
+					<th>학과</th>
+					<th>전화</th>
+					<th>성별</th>
+					<th>이메일</th>					
+				</tr>
+			</thead>
+			<tbody>
+			 <!-- st 부분은 thymeleaf 변수 선언이다. 
+   		  		   이 변수에 students 목록에서 꺼낸 학생 객체Student가 대입된다. -->
+				<tr th:each=" st  : ${students}"><!-- students 부분은 model attribute 이름이다. 
+   										     		  이 model attribuet 값은 학생 목록 객체이다. 
+   										     		  List<Student> 객체. -->
+					<td th:text="${st.id}"></td>
+					<td th:text="${st.studentNo}"></td>
+					<td th:text="${st.name}"></td>
+					<td th:text="${st.departmentName}"></td>
+					<td th:text="${st.phone}"></td>
+					<td th:text="${st.sex}"></td>
+					<td th:text="${st.email}"></td>
+				</tr>
+		
+			</tbody>
+		
+		
+		</table>
+		
+		
+		
+	</div>
+</body>
+</html>
+
+
+
+
+
+
